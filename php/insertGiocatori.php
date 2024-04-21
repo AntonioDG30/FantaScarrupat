@@ -1,26 +1,15 @@
 <?php
-// Connessione al database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_fantascarrupat";
-
-// Connessione
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verifica della connessione
-if ($conn->connect_error) {
-  die("Connessione fallita: " . $conn->connect_error);
-}
+// Includi il file di connessione al database
+global $conn;
+include 'connectionDB.php';
 
 // Apro il file CSV in modalità lettura
-$csv_file = fopen('file/Lista.csv', 'r');
+$csv_file = fopen('../file/Lista.csv', 'r');
 
 // Controllo se il file è stato aperto correttamente
 if (!$csv_file) {
   die("Impossibile aprire il file CSV");
 }
-
 
 // Itero sulle righe del file CSV
 while (($row = fgetcsv($csv_file, 1000, ",")) !== FALSE) {
