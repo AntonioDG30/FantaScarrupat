@@ -59,7 +59,7 @@ CREATE TABLE partita_avvessario (
                                   punti_trasferta FLOAT NOT NULL,
                                   giornata INT NOT NULL,
                                   tipologia VARCHAR(100) NOT NULL,
-                                  girone VARCHAR(100) NOT NULL,
+                                  girone VARCHAR(100),
                                   FOREIGN KEY (tipologia) REFERENCES tipologia_partita(tipologia),
                                   FOREIGN KEY (nome_fantasquadra_casa) REFERENCES fantasquadra(nome_fantasquadra),
                                   FOREIGN KEY (nome_fantasquadra_trasferta) REFERENCES fantasquadra(nome_fantasquadra),
@@ -118,3 +118,34 @@ INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
 VALUES ('F.C. VOLANTE', 'Vincenzo Gervasio');
 INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
 VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'Francesco Parolisi');
+
+
+
+INSERT INTO tipologia_competizione (tipologia)
+VALUES ('A Calendario');
+INSERT INTO tipologia_competizione (tipologia)
+VALUES ('Eliminazione Diretta');
+INSERT INTO tipologia_competizione (tipologia)
+VALUES ('A Gruppi');
+INSERT INTO tipologia_competizione (tipologia)
+VALUES ('Uno vs Tutti');
+INSERT INTO tipologia_competizione (tipologia)
+VALUES ('Battle Royale');
+INSERT INTO tipologia_competizione (tipologia)
+VALUES ('Formula Uno');
+INSERT INTO tipologia_competizione (tipologia)
+VALUES ('Highlander');
+
+
+INSERT INTO tipologia_partita (tipologia)
+VALUES ('Calendario');
+INSERT INTO tipologia_partita (tipologia)
+VALUES ('Fase a Gironi');
+INSERT INTO tipologia_partita (tipologia)
+VALUES ('Ottavi di Finale');
+INSERT INTO tipologia_partita (tipologia)
+VALUES ('Quarti di Finale');
+INSERT INTO tipologia_partita (tipologia)
+VALUES ('Semifinali');
+INSERT INTO tipologia_partita (tipologia)
+VALUES ('Finale');
