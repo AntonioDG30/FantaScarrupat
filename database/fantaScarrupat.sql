@@ -1,7 +1,9 @@
+-- Creazione del database FantaScarrupat
 DROP SCHEMA IF EXISTS my_fantascarrupat;
 CREATE SCHEMA my_fantascarrupat;
 USE my_fantascarrupat;
 
+-- Creazione delle entità
 CREATE TABLE giocatore (
                          id_giocatore INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                          codice_fantacalcio INT NOT NULL,
@@ -20,6 +22,7 @@ CREATE TABLE rosa (
                     id_rosa INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                     nome_fantasquadra VARCHAR(100) NOT NULL,
                     id_giocatore INT NOT NULL,
+                    crediti_pagati INT NOT NULL,
                     anno INT NOT NULL,
                     FOREIGN KEY (nome_fantasquadra) REFERENCES fantasquadra(nome_fantasquadra),
                     FOREIGN KEY (id_giocatore) REFERENCES giocatore(id_giocatore)
@@ -32,6 +35,7 @@ CREATE TABLE tipologia_competizione (
 CREATE TABLE competizione (
                             nome_competizione VARCHAR(100) PRIMARY KEY NOT NULL,
                             tipologia VARCHAR(100) NOT NULL,
+                            logo VARCHAR(100),
                             FOREIGN KEY (tipologia) REFERENCES tipologia_competizione(tipologia)
 );
 
@@ -55,8 +59,8 @@ CREATE TABLE partita_avvessario (
                                   nome_fantasquadra_trasferta VARCHAR(100) NOT NULL,
                                   gol_casa INT NOT NULL,
                                   gol_trasferta INT NOT NULL,
-                                  punti_casa FLOAT NOT NULL,
-                                  punti_trasferta FLOAT NOT NULL,
+                                  punteggio_casa FLOAT NOT NULL,
+                                  punteggio_trasferta FLOAT NOT NULL,
                                   giornata INT NOT NULL,
                                   tipologia VARCHAR(100) NOT NULL,
                                   girone VARCHAR(100),
@@ -76,32 +80,8 @@ CREATE TABLE partita_solitaria (
                                  FOREIGN KEY (id_competizione_disputata) REFERENCES competizione_disputata(id_competizione_disputata)
 );
 
-CREATE TABLE classifica (
-                          id_competizione_disputata INT NOT NULL,
-                          nome_fantasquadra VARCHAR(100) NOT NULL,
-                          punteggio_totale INT,
-                          punti INT,
-                          FOREIGN KEY (id_competizione_disputata) REFERENCES competizione_disputata(id_competizione_disputata),
-                          FOREIGN KEY (nome_fantasquadra) REFERENCES fantasquadra(nome_fantasquadra),
-                          PRIMARY KEY (id_competizione_disputata, nome_fantasquadra)
-);
 
-CREATE TABLE informazioni_extra_classifica (
-                                             id_competizione_disputata INT NOT NULL,
-                                             nome_fantasquadra VARCHAR(100) NOT NULL,
-                                             gol_fatti INT NOT NULL,
-                                             gol_subiti INT NOT NULL,
-                                             numero_vittorie INT NOT NULL,
-                                             numero_sconfitte INT NOT NULL,
-                                             numero_pareggi INT NOT NULL,
-                                             FOREIGN KEY (id_competizione_disputata) REFERENCES competizione_disputata(id_competizione_disputata),
-                                             FOREIGN KEY (nome_fantasquadra) REFERENCES fantasquadra(nome_fantasquadra),
-                                             PRIMARY KEY (id_competizione_disputata, nome_fantasquadra)
-);
-
-
-
-
+-- INSERIMENTO DATI
 INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
 VALUES ('AntFeud', 'Antonio Di Giorgio');
 INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
@@ -118,8 +98,12 @@ INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
 VALUES ('F.C. VOLANTE', 'Vincenzo Gervasio');
 INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
 VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'Francesco Parolisi');
-
-
+INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
+VALUES ('Quadrato Team', 'Giuseppe Costanzo');
+INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
+VALUES ('Emanuele Torcia', 'Mainz Na Gioia');
+INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore)
+VALUES ('Antonio Guarino', 'FC Alastor');
 
 INSERT INTO tipologia_competizione (tipologia)
 VALUES ('A Calendario');
@@ -136,6 +120,47 @@ VALUES ('Formula Uno');
 INSERT INTO tipologia_competizione (tipologia)
 VALUES ('Highlander');
 
+INSERT INTO competizione (nome_competizione, tipologia)
+VALUES ('7', 'A Calendario');
+INSERT INTO competizione (nome_competizione, tipologia)
+VALUES ('Champions League', 'A Gruppi');
+INSERT INTO competizione (nome_competizione, tipologia)
+VALUES ('Coppa Italia', 'Eliminazione Diretta');
+INSERT INTO competizione (nome_competizione, tipologia)
+VALUES ('Battle Royale', 'Battle Royale');
+INSERT INTO competizione (nome_competizione, tipologia)
+VALUES ('Formula 1', 'Formula Uno');
+
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('7', '2017', 'Quadrato Team');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('7', '2018', 'Napolethanos');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('7', '2019', 'AntFeud');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('7', '2020', 'AntFeud');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('7', '2021', 'Mainz Na Gioia');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('7', '2022', 'FC LUKAND');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('7', '2023', 'F.C. VOLANTE');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Champions League', '2019', 'FC Pocholoco');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Champions League', '2020', 'FC Pocholoco');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Champions League', '2021', 'F.C. VOLANTE');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Champions League', '2022', 'FC LUKAND');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Champions League', '2023', 'Napolethanos');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Coppa Italia', '2021', 'FC Alastor');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Battle Royale', '2022', 'Lambrate FC');
+INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
+VALUES ('Formula 1', '2023', 'Napolethanos');
 
 INSERT INTO tipologia_partita (tipologia)
 VALUES ('Calendario');

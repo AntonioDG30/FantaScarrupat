@@ -1,7 +1,6 @@
 <?php
 // Importa connessione con il database
 global $conn;
-
 include 'connectionDB.php';
 
 // Includi la libreria PhpSpreadsheet
@@ -44,7 +43,7 @@ if ($result->num_rows > 0) {
 }
 
 // Carica il file Excel
-$objPHPExcel = IOFactory::load('../file/Calendario_Champions-League.xlsx');
+$objPHPExcel = IOFactory::load('../file/Calendario_Serie-A.xlsx');
 
 // Seleziona il foglio di lavoro (presumo che il foglio di lavoro sia il primo, puoi modificare di conseguenza se necessario)
 $sheet = $objPHPExcel->getActiveSheet();
@@ -125,13 +124,12 @@ function estraiValori($data, $i)
   } else {
     $sql .= "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punti_casa, punti_trasferta, giornata, tipologia) VALUES ('AMMA FA', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia');\n";
   }
-
   if ($i == 7 && !empty($data[7])) {
     $girone = $data[$i];
+    $i++;
   } else {
     $girone = null;
   }
-  $i++;
 
   if (!empty($data[$i])) {
     // Aggiorniamo la giornata
