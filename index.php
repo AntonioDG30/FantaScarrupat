@@ -105,35 +105,39 @@
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" align="center">
-                        <img src="img/logo.png" height="80%" width="80%">
+                        <img src="img/logo.png" height="100%" width="100%">
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="mb-4">La nostra storia</h1>
-                    <p class="mb-4">La Lega Fantascarrupat ha origine nel lontano 2016
-                      da un gruppo di 6 ragazzi con età compresa tra i 15 e i 16 anni
-                      e tutti con la stessa passione: il calcio.</p>
-                    <p class="mb-4">Ragazzi che frequentavano la stessa scuola ("ITI & LS F. Giordani" a Caserta)
-                      ed utilizzavano lo stesso bus per raggiungerla, ed è proprio in quest'ultimo
-                      che è nata l'idea della Lega e non solo, l'autobus della ditta "Castaldo" è stata
-                      la sede per i successivi anni del nostro gioco, dei nostri litigi e degli sfottò.</p>
+                    <h1 class="mb-4">La Nostra Storia</h1>
+                    <p class="mb-4">Nel lontano 2016, da un nucleo di sei giovani impavidi, dalla mente fervida di passione calcistica,
+                      sorse un'idea destinata a plasmare il loro destino e a cementare un legame indissolubile.
+                      Giovani ardimentosi, con età compresa tra i 15 e i 16 anni, affrontavano insieme i banchi della scuola,
+                      una piccola istituzione chiamata "ITI & LS F. Giordani" a Caserta.
+                      Ma non era solo l'istruzione a unirli; era il calcio, una fiamma che ardeva nei loro cuori,
+                      che li spinse oltre il semplice compito di studenti.</p>
+                    <p class="mb-4">Fu su un mezzo di trasporto, un modesto autobus della ditta "Castaldo", che
+                      il destino tessé la trama della loro epopea. L'autobus, grigio e anonimo agli occhi dei più,
+                      divenne il loro santuario, il palcoscenico delle loro gesta e dei loro battibecchi. Era lì che
+                      nacque la Lega FantaScarrupat, una congrega di amici uniti da un'unica passione, un rifugio sicuro
+                      e caloroso che li accolse durante gli anni burrascosi delle superiori.</p>
 
                   <div class="d-flex align-items-center text-black mb-3">
                     <div class="btn-sm-square bg-blu text-primary rounded-circle me-3">
                       <i class="fa fa-check" style="color: white;"></i>
                     </div>
-                    <span>Diam dolor diam ipsum et tempor sit</span>
-                  </div>
-                  <div class="d-flex align-items-center text-black mb-3">
-                  <div class="btn-sm-square bg-blu text-primary rounded-circle me-3">
-                    <i class="fa fa-check" style="color: white;"></i>
-                    </div>
-                    <span>Diam dolor diam ipsum et tempor sit</span>
+                    <span><strong>Passione</strong>: La nostra lega è alimentata dalla pura passione per il calcio</span>
                   </div>
                   <div class="d-flex align-items-center text-black mb-3">
                     <div class="btn-sm-square bg-blu text-primary rounded-circle me-3">
                       <i class="fa fa-check" style="color: white;"></i>
                     </div>
-                    <span>Diam dolor diam ipsum et tempor sit</span>
+                    <span><strong>Amicizia</strong>: È il collante che tiene insieme la Lega Fantascarrupat</span>
+                  </div>
+                  <div class="d-flex align-items-center text-black mb-3">
+                    <div class="btn-sm-square bg-blu text-primary rounded-circle me-3">
+                      <i class="fa fa-check" style="color: white;"></i>
+                    </div>
+                    <span><strong>Innovazione</strong>: Siamo sempre in cerca di nuove idee e soluzioni</span>
                   </div>
                   <div class="row g-4 pt-3">
                     <div class="col-sm-6">
@@ -188,7 +192,7 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-4">I nostri servizi</h1>
+                    <h1 class="mb-4">I Nostri Servizi</h1>
                     <p class="mb-4">Esplora la nostra sezione Servizi, il cuore del nostro sito di fantacalcio.
                       Troverai il regolamento ufficiale, l'albo d'oro dei campioni, i partecipanti e una
                       fotogallery emozionante. Benvenuto nel mondo del fantacalcio, dove ogni dettaglio
