@@ -20,6 +20,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="img/icon.svg" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -33,6 +34,15 @@
 </head>
 
 <body>
+    <?php
+          global $conn;
+          include 'php/connectionDB.php';
+
+          // Verifica la connessione
+          if ($conn->connect_error) {
+            die("Connessione fallita: " . $conn->connect_error);
+          }
+    ?>
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -41,41 +51,9 @@
         </div>
     </div>
     <!-- Spinner End -->
-
-
-    <!-- Navbar Start -->
-    <div class="container-fluid sticky-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark p-0">
-                <a href="index.html" class="navbar-brand">
-                    <img src="img/logo_scritta_mini.png">
-                </a>
-                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <div class="nav-item dropdown">
-                          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Chi siamo</a>
-                          <div class="dropdown-menu bg-light mt-2">
-                            <a href="feature.html" class="dropdown-item">La nostra storia</a>
-                            <a href="team.html" class="dropdown-item">Partecipanti</a>
-                            <a href="team.html" class="dropdown-item">Foto Gallery</a>
-                          </div>
-                        </div>
-                        <a href="service.html" class="nav-item nav-link">Regolamento</a>
-                        <a href="project.html" class="nav-item nav-link">Albo d'oro</a>
-                        <a href="contact.html" class="nav-item nav-link">Contatti</a>
-                    </div>
-                    <butaton type="button" class="btn text-white p-0 d-none d-lg-block" data-bs-toggle="modal"
-                        data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
+    <?php
+      include 'navbar.html';
+    ?>
 
 
     <!-- Hero Start -->
@@ -126,8 +104,8 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                        <img src="img/logo.png">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" align="center">
+                        <img src="img/logo.png" height="80%" width="80%">
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">La nostra storia</h1>
@@ -162,8 +140,18 @@
                       <div class="d-flex rounded p-3" style="background: rgba(256, 256, 256, 0.1);">
                         <i class="fa fa-users fa-3x text-black"></i>
                         <div class="ms-3">
-                          <h2 class="text-black mb-0" data-toggle="counter-up">9999</h2>
-                          <p class="text-black mb-0">Happy Clients</p>
+                          <h2 class="text-black mb-0" data-toggle="counter-up">
+                            <?php
+                              $query = "SELECT COUNT(nome_fantasquadra) FROM fantasquadra";
+                              $result = $conn->query($query);
+                              if ($result) {
+                                $row = $result->fetch_assoc();
+                                $count = $row['COUNT(nome_fantasquadra)'];
+                                echo $count;
+                              }
+                            ?>
+                          </h2>
+                          <p class="text-black mb-0">Fantallenatori storici</p>
                         </div>
                       </div>
                     </div>
@@ -171,8 +159,18 @@
                       <div class="d-flex rounded p-3" style="background: rgba(256, 256, 256, 0.1);">
                         <i class="fa fa-check fa-3x text-black"></i>
                         <div class="ms-3">
-                          <h2 class="text-black mb-0" data-toggle="counter-up">9999</h2>
-                          <p class="text-black mb-0">Project Complete</p>
+                          <h2 class="text-black mb-0" data-toggle="counter-up">
+                            <?php
+                              $query = "SELECT COUNT(id_competizione_disputata) FROM competizione_disputata";
+                              $result = $conn->query($query);
+                              if ($result) {
+                                $row = $result->fetch_assoc();
+                                $count = $row['COUNT(id_competizione_disputata)'];
+                                echo $count;
+                              }
+                            ?>
+                          </h2>
+                          <p class="text-black mb-0">Competizioni disputate</p>
                         </div>
                       </div>
                     </div>
@@ -190,12 +188,12 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Our Services</div>
-                    <h1 class="mb-4">Our Excellent AI Solutions for Your Business</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                        amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                        clita duo justo et tempor eirmod magna dolore erat amet</p>
-                    <a class="btn btn-primary rounded-pill px-4" href="">Read More</a>
+                    <h1 class="mb-4">I nostri servizi</h1>
+                    <p class="mb-4">Esplora la nostra sezione Servizi, il cuore del nostro sito di fantacalcio.
+                      Troverai il regolamento ufficiale, l'albo d'oro dei campioni, i partecipanti e una
+                      fotogallery emozionante. Benvenuto nel mondo del fantacalcio, dove ogni dettaglio
+                      conta per una stagione di gioco indimenticabile!
+                    </p>
                 </div>
                 <div class="col-lg-7">
                     <div class="row g-4">
@@ -204,23 +202,24 @@
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                                     <div class="service-item d-flex flex-column justify-content-center text-center rounded">
                                         <div class="service-icon btn-square">
-                                            <i class="fa fa-robot fa-2x"></i>
+                                          <img src="img/regolamento.png" width="40%" height="50%">
                                         </div>
-                                        <h5 class="mb-3">Robotic Automation</h5>
-                                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
-                                            diam sed stet lorem.</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Read More</a>
+                                        <h5 class="mb-3">Regolamento</h5>
+                                        <p> Il fondamento del nostro gioco. Qui troverai tutte le regole ufficiali
+                                          che governano la nostra lega, garantendo una competizione equa
+                                          e appassionante per tutti i partecipant</p>
+                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
                                     </div>
                                 </div>
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
                                     <div class="service-item d-flex flex-column justify-content-center text-center rounded">
                                         <div class="service-icon btn-square">
-                                            <i class="fa fa-power-off fa-2x"></i>
+                                          <img src="img/partecipanti.png" width="70%" height="70%">
                                         </div>
-                                        <h5 class="mb-3">Machine learning</h5>
-                                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
-                                            diam sed stet lorem.</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Read More</a>
+                                        <h5 class="mb-3">Partecipanti</h5>
+                                        <p>La comunità che dà vita al gioco. Conosci i giocatori attuali e passati,
+                                          dai veterani ai nuovi arrivati, che si sfidano ogni anno per la gloria finale.</p>
+                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
                                     </div>
                                 </div>
                             </div>
@@ -230,23 +229,26 @@
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
                                     <div class="service-item d-flex flex-column justify-content-center text-center rounded">
                                         <div class="service-icon btn-square">
-                                            <i class="fa fa-graduation-cap fa-2x"></i>
+                                          <img src="img/albodoro.png" width="50%" height="50%">
                                         </div>
-                                        <h5 class="mb-3">Education & Science</h5>
-                                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
-                                            diam sed stet lorem.</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Read More</a>
+                                        <h5 class="mb-3">Albo D'Oro</h5>
+                                        <p>Una vetrina dei campioni. Scopri i vincitori delle passate stagioni,
+                                          i loro trionfi e le loro sfide più affincenti che li hanno portati alla gloria
+                                          eterna.</p>
+                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
                                     </div>
                                 </div>
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.7s">
                                     <div class="service-item d-flex flex-column justify-content-center text-center rounded">
                                         <div class="service-icon btn-square">
-                                            <i class="fa fa-brain fa-2x"></i>
+                                          <img src="img/galleria.png" width="50%" height="40%">
                                         </div>
-                                        <h5 class="mb-3">Predictive Analysis</h5>
-                                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
-                                            diam sed stet lorem.</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Read More</a>
+                                        <h5 class="mb-3">Foto Gallery</h5>
+                                        <p> Immagini che raccontano storie. Rivivi i momenti più emozionanti
+                                          e indimenticabili del nostro fantacalcio attraverso una collezione esclusiva
+                                          di fotografie che catturano l'essenza della competizione e
+                                          della passione per il calcio.</p>
+                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
                                     </div>
                                 </div>
                             </div>
@@ -260,6 +262,7 @@
 
 
     <!-- FAQs Start -->
+    <!--
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
@@ -405,74 +408,11 @@
             </div>
         </div>
     </div>
-    <!-- FAQs Start -->
+    -->
 
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 footer pt-5">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                    <a href="index.html" class="d-inline-block mb-3">
-                        <h1 class="text-white">AI<span class="text-primary">.</span>Tech</h1>
-                    </a>
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                        amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                        clita duo justo et tempor</p>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-                    <h5 class="text-white mb-4">Get In Touch</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
-                    <h5 class="text-white mb-4">Popular Link</h5>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Career</a>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
-                    <h5 class="text-white mb-4">Our Services</h5>
-                    <a class="btn btn-link" href="">Robotic Automation</a>
-                    <a class="btn btn-link" href="">Machine learning</a>
-                    <a class="btn btn-link" href="">Predictive Analysis</a>
-                    <a class="btn btn-link" href="">Data Science</a>
-                    <a class="btn btn-link" href="">Robot Technology</a>
-                </div>
-            </div>
-        </div>
-        <div class="container wow fadeIn" data-wow-delay="0.1s">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FAQs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+    <?php
+    include 'footer.html';
+    ?>
 
 
     <!-- Back to Top -->
@@ -490,6 +430,9 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <?php
+    $conn->close();
+    ?>
 </body>
 
 </html>
