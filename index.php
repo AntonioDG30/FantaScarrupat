@@ -67,8 +67,8 @@
                     <p class="text-white mb-4 animated slideInRight">Benvenuti nel mondo straordinario di Fantascarrupat,
                       dove la passione per il calcio si trasforma in una vera e propria leggenda! Esplora la nostra storia,
                       scopri quali sono state le sfide più affinchenti e chi è il campione in carica!</p>
-                    <a href="" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Partecipanti</a>
-                    <a href="" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contattaci</a>
+                    <a href="partecipanti.php" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Partecipanti</a>
+                    <a href="contattaci.php" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contattaci</a>
                 </div>
                 <div class="col-lg-6 align-self-end text-center text-lg-end">
                     <img class="img-fluid" src="img/player.png" alt="">
@@ -223,7 +223,7 @@
                                         <h5 class="mb-3">Partecipanti</h5>
                                         <p>La comunità che dà vita al gioco. Conosci i giocatori attuali e passati,
                                           dai veterani ai nuovi arrivati, che si sfidano ogni anno per la gloria finale.</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
+                                        <a class="btn px-3 mt-auto mx-auto" href="partecipanti.php">Approfondisci</a>
                                     </div>
                                 </div>
                             </div>

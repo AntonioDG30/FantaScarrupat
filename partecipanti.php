@@ -66,9 +66,8 @@
                     <h1><span class="text-color1">Fanta</span><span class="text-color2">Scarrupat</span></h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">About Us</li>
+                            <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Partecipanti</li>
                         </ol>
                     </nav>
                 </div>
@@ -103,64 +102,41 @@
 
 
     <!-- Partecipanti Start -->
-    <div class="container-fluid guide py-5">
-      <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-          <h5 class="section-title px-3">Lega FantaScarrupat</h5>
-          <h1 class="mb-0">Partecipanti Attuali</h1>
+    <div class="container-xxl py-5">
+      <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+          <div class="d-inline-block rounded-pill bg-secondary text-ball py-1 px-3 mb-3">Lega FantaScarrupat</div>
+          <h1 class="display-6 mb-5">Partecipanti Attuali</h1>
         </div>
         <div class="row g-4">
           <?php
-            $query = "SELECT * FROM fantasquadra WHERE flag_attuale = 1";
-            $result = $conn->query($query);
-            if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-          ?>
-          <div class="col-md-6 col-lg-3">
-            <div class="guide-item">
-              <div class="guide-img">
-                <div class="guide-img-efects">
-                  <img src="img/guide-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                </div>
-              </div>
-              <div class="guide-title text-center rounded-bottom p-4">
-                <div class="guide-title-inner">
-                  <h4 class="mt-3"><?php echo $row['fantaallenatore']; ?></h4>
-                  <p class="mb-0"><?php echo $row['nome_fantasquadra']; ?></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php
-              }
-            }
-          ?>
-        </div>
-      </div>
-
-      <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-          <h5 class="section-title px-3">Lega FantaScarrupat</h5>
-          <h1 class="mb-0">Partecipanti Passati</h1>
-        </div>
-        <div class="row g-4">
-          <?php
-          $query = "SELECT * FROM fantasquadra WHERE flag_attuale = 0";
+          $query = "SELECT * FROM fantasquadra WHERE flag_attuale = 1";
           $result = $conn->query($query);
           if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+              $nome_squadra = $row['nome_fantasquadra'];
               ?>
-              <div class="col-md-6 col-lg-3">
-                <div class="guide-item">
-                  <div class="guide-img">
-                    <div class="guide-img-efects">
-                      <img src="img/guide-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                    </div>
+              <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item position-relative rounded overflow-hidden">
+                  <div class="overflow-hidden">
+                    <img class="img-fluid" src="img/team-2.jpg" alt="">
                   </div>
-                  <div class="guide-title text-center rounded-bottom p-4">
-                    <div class="guide-title-inner">
-                      <h4 class="mt-3"><?php echo $row['fantaallenatore']; ?></h4>
-                      <p class="mb-0"><?php echo $row['nome_fantasquadra']; ?></p>
+                  <div class="team-text bg-light text-center p-4">
+                    <h5><?php echo $row['fantaallenatore']; ?></h5>
+                    <p class="text-primary"><?php echo $nome_squadra; ?></p>
+                    <div class="team-social text-center">
+                      <?php
+                      $query2 = "SELECT COUNT(id_competizione_disputata) AS count FROM competizione_disputata WHERE vincitore = '$nome_squadra'";
+                      $result2 = $conn->query($query2);
+                      if ($result2->num_rows > 0) {
+                        while($row2 = $result2->fetch_assoc()) {
+                          $count_vittorie = $row2['count'];
+                          ?>
+                          <p class="text-dark">Competizioni Vinte: <?php echo $count_vittorie; ?></p>
+                          <?php
+                        }
+                      }
+                      ?>
                     </div>
                   </div>
                 </div>
@@ -168,6 +144,52 @@
               <?php
             }
           }
+          ?>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-xxl py-5">
+      <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+          <h1 class="display-6 mb-5">Partecipanti Passati</h1>
+        </div>
+        <div class="row g-4">
+          <?php
+            $query = "SELECT * FROM fantasquadra WHERE flag_attuale = 0";
+            $result = $conn->query($query);
+              if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                  $nome_squadra = $row['nome_fantasquadra'];
+          ?>
+                  <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                      <div class="overflow-hidden">
+                        <img class="img-fluid" src="img/team-2.jpg" alt="">
+                      </div>
+                      <div class="team-text bg-light text-center p-4">
+                        <h5><?php echo $row['fantaallenatore']; ?></h5>
+                        <p class="text-primary"><?php echo $nome_squadra; ?></p>
+                        <div class="team-social text-center">
+                          <?php
+                            $query2 = "SELECT COUNT(id_competizione_disputata) AS count FROM competizione_disputata WHERE vincitore = '$nome_squadra'";
+                            $result2 = $conn->query($query2);
+                            if ($result2->num_rows > 0) {
+                              while($row2 = $result2->fetch_assoc()) {
+                                $count_vittorie = $row2['count'];
+                          ?>
+                                <p class="text-dark">Competizioni vinte: <?php echo $count_vittorie; ?></p>
+                          <?php
+                              }
+                            }
+                          ?>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          <?php
+                }
+              }
           ?>
         </div>
       </div>
