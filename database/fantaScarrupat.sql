@@ -81,6 +81,12 @@ CREATE TABLE partita_solitaria (
                                  FOREIGN KEY (id_competizione_disputata) REFERENCES competizione_disputata(id_competizione_disputata)
 );
 
+CREATE TABLE immagine (
+                        id_immagine INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                        nome_immagine VARCHAR(100) NOT NULL,
+                        descrizione_immagine VARCHAR(100) NOT NULL,
+                        flag_visibile VARCHAR(1) NOT NULL -- 1 = IMMAGINE DA VISUALIZZARE, 0 = IMMAGINE DA NON VISUALIZZARE
+);
 
 -- INSERIMENTO DATI
 INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
@@ -175,3 +181,12 @@ INSERT INTO tipologia_partita (tipologia)
 VALUES ('Semifinali');
 INSERT INTO tipologia_partita (tipologia)
 VALUES ('Finale');
+
+INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
+VALUES ('team-1.jpg', 'team numero 1', '1');
+INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
+VALUES ('team-2.jpg', 'team numero 2', '1');
+INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
+VALUES ('team-3.jpg', 'team numero 3', '0');
+INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
+VALUES ('team-4.jpg', 'team numero 4', '1');

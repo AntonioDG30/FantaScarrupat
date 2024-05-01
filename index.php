@@ -178,7 +178,7 @@
                         </div>
                       </div>
                     </div>
-                    <a class="btn btn-primary rounded-pill px-4 me-3" href="">Leggi di più</a>
+                    <a class="btn btn-primary rounded-pill px-4 me-3" href="storia.php">Leggi di più</a>
                   </div>
                 </div>
             </div>
@@ -252,7 +252,7 @@
                                           e indimenticabili del nostro fantacalcio attraverso una collezione esclusiva
                                           di fotografie che catturano l'essenza della competizione e
                                           della passione per il calcio.</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
+                                        <a class="btn px-3 mt-auto mx-auto" href="fotoGallery.php">Approfondisci</a>
                                     </div>
                                 </div>
                             </div>
