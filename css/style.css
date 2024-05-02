@@ -396,20 +396,20 @@ a:is(:hover, :focus) figcaption {
   display: block;
   margin: 0;
   padding: 13px 16px;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   border: 0;
   border-bottom: 1px solid #000000;
   border-radius: 0;
-  color: #000000;
+  color: #FFFFFF;
   transition: background-color 0.2s ease;
 }
 .faq-nav .nav-link:hover {
-  background-color: #ffc107;
+  background-color: #99cbff;
 }
 .faq-nav .nav-link.active {
   background-color: #FF6914;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.87);
+  color: white;
 }
 .faq-nav .nav-link:last-of-type {
   border-bottom-left-radius: 2px;
@@ -431,22 +431,25 @@ a:is(:hover, :focus) figcaption {
 .tab-content .card-header {
   padding: 15px 16px;
   border-radius: 0;
-  background-color: #FF6914;
+  background-color: var(--primary);
 }
-.tab-content .card-header h5 {
+.tab-content .card-header {
   margin: 0;
 }
-.tab-content .card-header h5 button {
+.tab-content .card-header button {
   display: block;
   width: 100%;
   padding: 0;
   border: 0;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.87);
+  color: white;
   text-align: left;
   white-space: normal;
 }
-.tab-content .card-header h5 button:hover, .tab-content .card-header h5 button:focus, .tab-content .card-header h5 button:active, .tab-content .card-header h5 button:hover:active {
+.tab-content .card-header h5 button:hover,
+.tab-content .card-header h5 button:focus,
+.tab-content .card-header h5 button:active,
+.tab-content .card-header h5 button:hover:active {
   text-decoration: none;
 }
 .tab-content .card-body p {
@@ -465,7 +468,8 @@ a:is(:hover, :focus) figcaption {
 }
 
 .card-body{
-  background: #ffc107;
+  background: #99cbff;
+  color: black;
 }
 
 /*** Navbar ***/
@@ -843,11 +847,9 @@ a:is(:hover, :focus) figcaption {
 .team-item {
     transition: .5s;
     border: 1px solid transparent;
-    transition: .5s;
 }
 
 .team-item:hover {
-
     border-color: var(--primary);
 }
 
