@@ -111,7 +111,7 @@ include 'navbar.html';
   </div>
 </div>
 <div class="gallery">
-  <ul>
+  <ul class="ul_gallery">
     <?php
       $query = "SELECT * FROM immagine WHERE flag_visibile = 1";
       $result = $conn->query($query);

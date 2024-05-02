@@ -262,9 +262,7 @@ h6,
   align-items: center;
 }
 
-
-
-ul {
+.ul_gallery {
   list-style: none;
   margin: 0px 100px 10px 100px;
   padding: 0;
@@ -272,7 +270,6 @@ ul {
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   max-width: 100%;
-
 }
 
 figure {
@@ -383,6 +380,93 @@ a:is(:hover, :focus) figcaption {
   }
 }
 
+
+
+
+/*** Regolamento ***/
+.faq-nav {
+  flex-direction: column;
+  margin: 0 0 32px;
+  border-radius: 2px;
+  border: 1px solid #000000;
+  box-shadow: 0 1px 5px var(--primary);
+}
+.faq-nav .nav-link {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 13px 16px;
+  background-color: var(--secondary);
+  border: 0;
+  border-bottom: 1px solid #000000;
+  border-radius: 0;
+  color: #000000;
+  transition: background-color 0.2s ease;
+}
+.faq-nav .nav-link:hover {
+  background-color: #ffc107;
+}
+.faq-nav .nav-link.active {
+  background-color: #FF6914;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+.faq-nav .nav-link:last-of-type {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom: 0;
+}
+.faq-nav .nav-link i.mdi {
+  margin-right: 5px;
+  font-size: 18px;
+  position: relative;
+}
+
+.tab-content {
+  box-shadow: 0 1px 5px var(--primary);
+}
+.tab-content .card {
+  border-radius: 0;
+}
+.tab-content .card-header {
+  padding: 15px 16px;
+  border-radius: 0;
+  background-color: #FF6914;
+}
+.tab-content .card-header h5 {
+  margin: 0;
+}
+.tab-content .card-header h5 button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  text-align: left;
+  white-space: normal;
+}
+.tab-content .card-header h5 button:hover, .tab-content .card-header h5 button:focus, .tab-content .card-header h5 button:active, .tab-content .card-header h5 button:hover:active {
+  text-decoration: none;
+}
+.tab-content .card-body p {
+  color: #000000;
+}
+.tab-content .card-body p:last-of-type {
+  margin: 0;
+}
+
+.accordion > .card:not(:first-child) {
+  border-top: 0;
+}
+
+.collapse.show .card-body {
+  border-bottom: 1px solid var(--primary);
+}
+
+.card-body{
+  background: #ffc107;
+}
 
 /*** Navbar ***/
 .sticky-top {
