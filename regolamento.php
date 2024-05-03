@@ -1051,7 +1051,48 @@ include 'navbar.html';
       </div>
     </div>
   </div>
+
+  <br>
+
+  <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+    <h1 class="display-6 mb-5">Download File</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-primary">
+        <tr>
+          <th>Type</th>
+          <th>Documento</th>
+          <th>Azione</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th><img class="img-fluid-table" src="img/pdf.png"></th>
+          <td>Regolamento Ufficiale</td>
+          <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+        </tr>
+        <tr>
+          <th><img class="img-fluid-table" src="img/pdf.png"></th>
+          <td>Modulo Scambio Giocatori</td>
+          <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+        </tr>
+        <tr>
+          <th><img class="img-fluid-table" src="img/pdf.png"></th>
+          <td>Modulo Richiesta Modifica Nome e/o Logo:</td>
+          <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
 </div>
+
 <!-- Regolamento End -->
 <br>
 
@@ -1073,6 +1114,20 @@ include 'footer.html';
 <script src="lib/counterup/counterup.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="https://unpkg.com/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script>
+  $('.upload').on('click touch', function(e) {
+
+    e.preventDefault();
+
+    var self = $(this);
+
+    self.addClass('loading');
+    setTimeout(function() {
+      self.removeClass('loading');
+    }, 4200)
+
+  });
+</script>
 
 
 <!-- Template Javascript -->
