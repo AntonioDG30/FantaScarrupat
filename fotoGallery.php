@@ -81,32 +81,11 @@ include 'navbar.html';
 <!-- Hero End -->
 
 
-<!-- Full Screen Search Start -->
-<div class="modal fade" id="searchModal" tabindex="-1">
-  <div class="modal-dialog modal-fullscreen">
-    <div class="modal-content" style="background: rgba(20, 24, 62, 0.7);">
-      <div class="modal-header border-0">
-        <button type="button" class="btn btn-square bg-white btn-close" data-bs-dismiss="modal"
-                aria-label="Close"></button>
-      </div>
-      <div class="modal-body d-flex align-items-center justify-content-center">
-        <div class="input-group" style="max-width: 600px;">
-          <input type="text" class="form-control bg-transparent border-light p-3"
-                 placeholder="Type search keyword">
-          <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Full Screen Search End -->
-
-
 <!-- Foto Gallery Start -->
 <div class="container-xxl py-5">
   <div class="container">
     <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-      <h1 class="display-6 mb-5">Partecipanti Passati</h1>
+      <h1 class="display-6 mb-5">Foto Gallery</h1>
     </div>
   </div>
 </div>
