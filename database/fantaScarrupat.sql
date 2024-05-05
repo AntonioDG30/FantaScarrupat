@@ -89,28 +89,28 @@ CREATE TABLE immagine (
 );
 
 -- INSERIMENTO DATI
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('AntFeud', 'Antonio Di Giorgio', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('FC Pocholoco', 'Pasquale Lupoli', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('FC LUKAND', 'Andrea Lucariello', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('Fc Ludopatici', 'Lorenzo Parolisi', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('Lambrate FC', 'Cristian Cecere', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('NAPOLETHANOS', 'Mario Castaldi', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('F.C. VOLANTE', 'Vincenzo Gervasio', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'Francesco Parolisi', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('Quadrato Team', 'Giuseppe Costanzo', '0');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('Mainz Na Gioia', 'Emanuele Torcia', '0');
-INSERT INTO fantasquadra (nome_fantasquadra, fantaallenatore, flag_attuale)
-VALUES ('FC Alastor', 'Antonio Guarino', '0');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('AntFeud', 'AntFeud.png', 'Antonio Di Giorgio', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('FC Pocholoco', 'Pocholoco.jpg', 'Pasquale Lupoli', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('FC LUKAND', 'FCLukand.jpeg', 'Andrea Lucariello', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('Fc Ludopatici', 'FCLudopatici.jpeg', 'Lorenzo Parolisi', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('Lambrate FC', 'LambrateFC.jpeg', 'Cristian Cecere', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('NAPOLETHANOS', 'Napolethanos.jpeg', 'Mario Castaldi', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('F.C. VOLANTE', 'FCVolante.png', 'Vincenzo Gervasio', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'FCAlastor.jpeg', 'Francesco Parolisi', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('Quadrato Team', 'FCAlastor.jpeg', 'Giuseppe Costanzo', '0');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('Mainz Na Gioia', 'FCAlastor.jpeg', 'Emanuele Torcia', '0');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
+VALUES ('FC Alastor', 'FCAlastor.jpeg', 'Antonio Guarino', '0');
 
 INSERT INTO tipologia_competizione (tipologia)
 VALUES ('A Calendario');
@@ -128,7 +128,7 @@ INSERT INTO tipologia_competizione (tipologia)
 VALUES ('Highlander');
 
 INSERT INTO competizione (nome_competizione, tipologia)
-VALUES ('7', 'A Calendario');
+VALUES ('Serie A', 'A Calendario');
 INSERT INTO competizione (nome_competizione, tipologia)
 VALUES ('Champions League', 'A Gruppi');
 INSERT INTO competizione (nome_competizione, tipologia)
@@ -139,19 +139,19 @@ INSERT INTO competizione (nome_competizione, tipologia)
 VALUES ('Formula 1', 'Formula Uno');
 
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('7', '2017', 'Quadrato Team');
+VALUES ('Serie A', '2017', 'Quadrato Team');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('7', '2018', 'Napolethanos');
+VALUES ('Serie A', '2018', 'Napolethanos');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('7', '2019', 'AntFeud');
+VALUES ('Serie A', '2019', 'AntFeud');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('7', '2020', 'AntFeud');
+VALUES ('Serie A', '2020', 'AntFeud');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('7', '2021', 'Mainz Na Gioia');
+VALUES ('Serie A', '2021', 'Mainz Na Gioia');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('7', '2022', 'FC LUKAND');
+VALUES ('Serie A', '2022', 'FC LUKAND');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('7', '2023', 'F.C. VOLANTE');
+VALUES ('Serie A', '2023', 'F.C. VOLANTE');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Champions League', '2019', 'FC Pocholoco');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
