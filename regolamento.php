@@ -1038,32 +1038,34 @@ include 'navbar.html';
   </div>
   <div class="row">
     <div class="col-md-12">
-      <table class="table">
-        <thead class="thead-primary">
-        <tr>
-          <th>Type</th>
-          <th>Documento</th>
-          <th>Azione</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th><img class="img-fluid-table" src="img/pdf.png"></th>
-          <td>Regolamento Ufficiale</td>
-          <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
-        </tr>
-        <tr>
-          <th><img class="img-fluid-table" src="img/pdf.png"></th>
-          <td>Modulo Scambio Giocatori</td>
-          <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
-        </tr>
-        <tr>
-          <th><img class="img-fluid-table" src="img/pdf.png"></th>
-          <td>Modulo Richiesta Modifica Nome e/o Logo:</td>
-          <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-primary">
+          <tr>
+            <th>Type</th>
+            <th>Documento</th>
+            <th>Azione</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th><img class="img-fluid-table" src="img/pdf.png"></th>
+            <td>Regolamento Ufficiale</td>
+            <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+          </tr>
+          <tr>
+            <th><img class="img-fluid-table" src="img/pdf.png"></th>
+            <td>Modulo Scambio Giocatori</td>
+            <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+          </tr>
+          <tr>
+            <th><img class="img-fluid-table" src="img/pdf.png"></th>
+            <td>Modulo Richiesta Modifica Nome e/o Logo:</td>
+            <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

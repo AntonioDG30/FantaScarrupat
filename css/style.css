@@ -470,7 +470,7 @@ a:is(:hover, :focus) figcaption {
   color: black;
 }
 
-/*** Tabella ***/
+/*** Tabelle, Classifica ***/
 .table {
   width: 50%;
   margin: 0 auto;
@@ -482,7 +482,7 @@ a:is(:hover, :focus) figcaption {
 }
 
 .table thead.thead-primary {
-  background: var(--primary); /* Sostituire con il colore primario desiderato */
+  background: var(--primary);
 }
 
 .table thead th {
@@ -520,6 +520,51 @@ a:is(:hover, :focus) figcaption {
   height: 50px;
   align-content: center;
 }
+
+.img-fluid-logo{
+  width: 80px;
+  height: 80px;
+  align-content: center;
+}
+.hidden-row {
+  display: none;
+}
+
+.toggle-icon {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #666;
+  transition: transform 0.3s;
+}
+
+.toggle-icon:hover {
+  color: #000;
+}
+
+.rotate {
+  transform: rotate(45deg);
+}
+
+@media screen and (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+
+  .table {
+    width: 100%;
+  }
+}
+
 
 
 /*** Albo D'Oro ***/
@@ -700,6 +745,7 @@ a:is(:hover, :focus) figcaption {
         opacity: 1;
     }
 }
+
 
 
 /*** Hero Header ***/
