@@ -21,6 +21,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
+
   <!-- Libraries Stylesheet -->
   <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -559,6 +560,7 @@ include 'footer.html';
 <script src="lib/waypoints/waypoints.min.js"></script>
 <script src="lib/counterup/counterup.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var toggles = document.querySelectorAll(".toggle-icon");
@@ -574,6 +576,7 @@ include 'footer.html';
   });
 </script>
 
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     var dettagliLinks = document.querySelectorAll('.dettagli-link');
@@ -584,26 +587,17 @@ include 'footer.html';
 
         var competizione = this.getAttribute('data-competizione');
         var anno = this.getAttribute('data-anno');
-
-        // Esegui la query utilizzando AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            var response = xhr.responseText;
-            if (response === "successo") {
-              // Se la query ha avuto successo, reindirizza alla pagina desiderata
-              window.location.href = "dettagliCompetizione.php?competizione=" + competizione + "&anno=" + anno;
-            } else {
-              // Se la query non ha prodotto risultati, mostra un alert
-              alert("Non ci sono corrispondenze tra competizioni disputate e partite disputate.");
-            }
-          }
-        };
-        xhr.open("GET", "php/controllaDettagliCompetizione.php?competizione=" + competizione + "&anno=" + anno, true);
-        xhr.send();
+        if (anno < 2023) {
+          swal("Dati non disponibili!", "Mi dispiace, ma per le competizioni antecedenti " +
+            "la stagione 2023/2024 non sono disponibili i dettagli!");
+        } else {
+           window.location.href = "dettagliCompetizione.php?competizione=" + competizione + "&anno=" + anno;
+        }
       });
     });
   });
+
+
 </script>
 
 
