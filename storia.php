@@ -36,7 +36,7 @@
 
     <?php
       global $conn;
-      include 'php/connectionDB.php';
+      include 'php/contVisual.php';
 
       // Verifica la connessione
       if ($conn->connect_error) {

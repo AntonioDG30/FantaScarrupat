@@ -35,13 +35,11 @@
 
 <body>
     <?php
-          global $conn;
-          include 'php/connectionDB.php';
+      global $conn;
+      global $active_users;
+      global $total_views;
 
-          // Verifica la connessione
-          if ($conn->connect_error) {
-            die("Connessione fallita: " . $conn->connect_error);
-          }
+      include 'php/contVisual.php';
     ?>
     <!-- Spinner Start -->
     <div id="spinner"

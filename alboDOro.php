@@ -36,13 +36,8 @@
 <body>
 
 <?php
-global $conn;
-include 'php/connectionDB.php';
-
-// Verifica la connessione
-if ($conn->connect_error) {
-  die("Connessione fallita: " . $conn->connect_error);
-}
+    global $conn;
+    include 'php/contVisual.php';
 ?>
 <!-- Spinner Start -->
 <div id="spinner"

@@ -88,6 +88,31 @@ CREATE TABLE immagine (
                         flag_visibile VARCHAR(1) NOT NULL -- 1 = IMMAGINE DA VISUALIZZARE, 0 = IMMAGINE DA NON VISUALIZZARE
 );
 
+CREATE TABLE sessions (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        ip_address VARCHAR(100),
+                        start_time DATETIME,
+                        last_activity DATETIME
+);
+
+CREATE TABLE daily_views (
+                           id INT AUTO_INCREMENT PRIMARY KEY,
+                           date DATE,
+                           ip_address VARCHAR(100)
+);
+
+CREATE TABLE page_views (
+                          id INT AUTO_INCREMENT PRIMARY KEY,
+                          date DATE,
+                          page_url VARCHAR(100),
+                          views INT DEFAULT 0
+);
+
+CREATE TABLE admin (
+                     email VARCHAR(100) PRIMARY KEY,
+                     password VARCHAR(100)
+);
+
 -- INSERIMENTO DATI
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
 VALUES ('AntFeud', 'AntFeud.png', 'Antonio Di Giorgio', '1');
