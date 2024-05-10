@@ -2441,14 +2441,6 @@ label {
   line-height: 1.2;
   color: #767676;
 }
-.sign-up__check {
-  text-align: center;
-  max-width: 424px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #767676;
-}
 .categories-table-img {
   margin-right: 26px;
 }
@@ -2458,7 +2450,7 @@ label {
   border-radius: 6px;
 }
 .darkmode {
-  background-color: #1363C6;
+  background-color: #11111d;
 }
 .darkmode .main-nav--bg {
   background-color: #161624;
@@ -2556,7 +2548,7 @@ label {
   background-color: #161624;
 }
 .darkmode .form-label {
-  color: #1363C6;
+  color: #d6d7e3;
 }
 .darkmode .form-input {
   background-color: #222235;
@@ -2568,9 +2560,6 @@ label {
 }
 .darkmode .sign-up__subtitle {
   color: #d6d7e3;
-}
-.darkmode .sign-up__check {
-  color: #ff0000;
 }
 .darkmode .new-page-content .ql-toolbar,
 .darkmode .new-page-content input {
@@ -3290,8 +3279,19 @@ label {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    -ms-flex-direction: column;
     flex-direction: column;
   }
+}
+.sign-up__check {
+  text-align: center;
+  max-width: 424px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #767676;
+}
+
+.darkmode .sign-up__check {
+  color: #ff0000;
 }
 /*# sourceMappingURL=style.min.css.map */
