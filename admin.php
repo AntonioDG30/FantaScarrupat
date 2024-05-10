@@ -517,12 +517,6 @@ if (!isset($_SESSION['user'])) {
             </div>
           </div>
           <div class="col-lg-3">
-            <article class="customers-wrapper">
-              <canvas id="customersChart" aria-label="Customers statistics" role="img"></canvas>
-              <!--              <p class="customers__title">New Customers <span>+958</span></p>
-              <p class="customers__date">28 Daily Avg.</p>
-              <picture><source srcset="./img/svg/customers.svg" type="image/webp"><img src="./img/svg/customers.svg" alt=""></picture> -->
-            </article>
             <article class="white-block">
               <div class="top-cat-title">
                 <h3>Top categories</h3>
@@ -619,14 +613,13 @@ if (!isset($_SESSION['user'])) {
     <footer class="footer">
       <div class="container footer--flex">
         <div class="footer-start">
-          <p>2021 © Elegant Dashboard - <a href="elegant-dashboard.com" target="_blank"
-                                           rel="noopener noreferrer">elegant-dashboard.com</a></p>
+          <p>
+            2024 FantaScarrupat -
+            <a href="http://fantascarrupat.altervista.org/" target="_blank" rel="noopener noreferrer">
+              fantascarrupat.altervista.org
+            </a>
+          </p>
         </div>
-        <ul class="footer-end">
-          <li><a href="##">About</a></li>
-          <li><a href="##">Support</a></li>
-          <li><a href="##">Puchase</a></li>
-        </ul>
       </div>
     </footer>
   </div>
