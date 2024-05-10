@@ -34,19 +34,13 @@ if (!isset($_SESSION['user'])) {
   <aside class="sidebar">
     <div class="sidebar-start">
       <div class="sidebar-head">
-        <a href="/" class="logo-wrapper" title="Home">
-          <span class="sr-only">Home</span>
-          <span class="icon logo" aria-hidden="true"></span>
+        <a href="admin.php" class="logo-wrapper" title="Home">
           <div class="logo-text">
-            <span class="logo-title">Elegant</span>
+            <span class="logo-title">FantaScarrupat</span>
             <span class="logo-subtitle">Dashboard</span>
           </div>
 
         </a>
-        <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
-          <span class="sr-only">Toggle menu</span>
-          <span class="icon menu-toggle" aria-hidden="true"></span>
-        </button>
       </div>
       <div class="sidebar-body">
         <ul class="sidebar-body-menu">
@@ -55,7 +49,7 @@ if (!isset($_SESSION['user'])) {
           </li>
           <li>
             <a class="show-cat-btn" href="##">
-              <span class="icon document" aria-hidden="true"></span>Posts
+              <span class="icon document" aria-hidden="true"></span>Competizioni
               <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -63,16 +57,16 @@ if (!isset($_SESSION['user'])) {
             </a>
             <ul class="cat-sub-menu">
               <li>
-                <a href="posts.html">All Posts</a>
+                <a href="gestisciCompetizioni.php">Gestisci Competizioni</a>
               </li>
               <li>
-                <a href="new-post.html">Add new post</a>
+                <a href="inserisciCompetizione.php">Inserisci Competizione</a>
               </li>
             </ul>
           </li>
           <li>
             <a class="show-cat-btn" href="##">
-              <span class="icon folder" aria-hidden="true"></span>Categories
+              <span class="icon folder" aria-hidden="true"></span>Foto Gallery
               <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -80,63 +74,21 @@ if (!isset($_SESSION['user'])) {
             </a>
             <ul class="cat-sub-menu">
               <li>
-                <a href="categories.html">All categories</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a class="show-cat-btn" href="##">
-              <span class="icon image" aria-hidden="true"></span>Media
-              <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-            </a>
-            <ul class="cat-sub-menu">
-              <li>
-                <a href="media-01.html">Media-01</a>
+                <a href="gestisciGallery.php">Gestisci Gallery</a>
               </li>
               <li>
-                <a href="media-02.html">Media-02</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a class="show-cat-btn" href="##">
-              <span class="icon paper" aria-hidden="true"></span>Pages
-              <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-            </a>
-            <ul class="cat-sub-menu">
-              <li>
-                <a href="pages.html">All pages</a>
-              </li>
-              <li>
-                <a href="new-page.html">Add new page</a>
+                <a href="inserisciFoto.php">Inserisci Foto</a>
               </li>
             </ul>
           </li>
           <li>
             <a href="php/logout.php">
-              <span class="icon message" aria-hidden="true"></span>
+              <span class="icon folder" aria-hidden="true"></span>
               Logout
             </a>
           </li>
         </ul>
       </div>
-    </div>
-    <div class="sidebar-footer">
-      <a href="##" class="sidebar-user">
-            <span class="sidebar-user-img">
-                <picture><source srcset="./img/avatar/avatar-illustrated-01.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-01.png" alt="User name"></picture>
-            </span>
-        <div class="sidebar-user-info">
-          <span class="sidebar-user__title">Nafisa Sh.</span>
-          <span class="sidebar-user__subtitle">Support manager</span>
-        </div>
-      </a>
     </div>
   </aside>
   <div class="main-wrapper">
@@ -144,104 +96,102 @@ if (!isset($_SESSION['user'])) {
     <nav class="main-nav--bg">
       <div class="container main-nav">
         <div class="main-nav-start">
-          <div class="search-wrapper">
-            <i data-feather="search" aria-hidden="true"></i>
-            <input type="text" placeholder="Enter keywords ..." required>
-          </div>
         </div>
         <div class="main-nav-end">
           <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
             <span class="sr-only">Toggle menu</span>
             <span class="icon menu-toggle--gray" aria-hidden="true"></span>
           </button>
-          <div class="lang-switcher-wrapper">
-            <button class="lang-switcher transparent-btn" type="button">
-              EN
-              <i data-feather="chevron-down" aria-hidden="true"></i>
-            </button>
-            <ul class="lang-menu dropdown">
-              <li><a href="##">English</a></li>
-              <li><a href="##">French</a></li>
-              <li><a href="##">Uzbek</a></li>
-            </ul>
-          </div>
           <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
             <span class="sr-only">Switch theme</span>
             <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
             <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
           </button>
-          <div class="notification-wrapper">
-            <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
-              <span class="sr-only">To messages</span>
-              <span class="icon notification active" aria-hidden="true"></span>
-            </button>
-            <ul class="users-item-dropdown notification-dropdown dropdown">
-              <li>
-                <a href="##">
-                  <div class="notification-dropdown-icon info">
-                    <i data-feather="check"></i>
-                  </div>
-                  <div class="notification-dropdown-text">
-                    <span class="notification-dropdown__title">System just updated</span>
-                    <span class="notification-dropdown__subtitle">The system has been successfully upgraded. Read more
-                  here.</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <div class="notification-dropdown-icon danger">
-                    <i data-feather="info" aria-hidden="true"></i>
-                  </div>
-                  <div class="notification-dropdown-text">
-                    <span class="notification-dropdown__title">The cache is full!</span>
-                    <span class="notification-dropdown__subtitle">Unnecessary caches take up a lot of memory space and
-                  interfere ...</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="##">
-                  <div class="notification-dropdown-icon info">
-                    <i data-feather="check" aria-hidden="true"></i>
-                  </div>
-                  <div class="notification-dropdown-text">
-                    <span class="notification-dropdown__title">New Subscriber here!</span>
-                    <span class="notification-dropdown__subtitle">A new subscriber has subscribed.</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a class="link-to-page" href="##">Go to Notifications page</a>
-              </li>
-            </ul>
-          </div>
           <div class="nav-user-wrapper">
-            <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
+            <button href="profilo.php" class="nav-user-btn dropdown-btn" title="My profile" type="button">
               <span class="sr-only">My profile</span>
               <span class="nav-user-img">
-            <picture><source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
-          </span>
+                <a href="profilo.php">
+                  <picture>
+                    <source srcset="./img/admin.jpeg" type="image/webp">
+                    <img src="./img/admin.jpeg" alt="User name">
+                  </picture>
+                </a>
+              </span>
             </button>
-            <ul class="users-item-dropdown nav-user-dropdown dropdown">
-              <li><a href="##">
-                  <i data-feather="user" aria-hidden="true"></i>
-                  <span>Profile</span>
-                </a></li>
-              <li><a href="##">
-                  <i data-feather="settings" aria-hidden="true"></i>
-                  <span>Account settings</span>
-                </a></li>
-              <li><a class="danger" href="##">
-                  <i data-feather="log-out" aria-hidden="true"></i>
-                  <span>Log out</span>
-                </a></li>
-            </ul>
           </div>
         </div>
       </div>
     </nav>
     <!-- ! Main -->
+    <?php
+      global $conn;
+      global $active_users;
+      global $total_views_current_month;
+      global $unique_visitors_current_month;
+      global $total_views_last_month;
+      global $unique_visitors_last_month;
+      global $total_views_percentage_change;
+      global $unique_visitors_percentage_change;
+      include 'php/connectionDB.php';
+
+      // Conteggio degli utenti attivi (utenti attualmente online)
+      $current_time_minus_one_minute = date("Y-m-d H:i:s", strtotime('-1 minute'));
+      $sql = "SELECT COUNT(*) AS active_users FROM sessions WHERE last_activity > '$current_time_minus_one_minute'";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $active_users = $row['active_users'];
+
+      // Visite totali del mese attuale
+      $sql_total_views_current_month = "SELECT SUM(views) AS total_views FROM page_views WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE())";
+      $result_total_views_current_month = $conn->query($sql_total_views_current_month);
+      $row_total_views_current_month = $result_total_views_current_month->fetch_assoc();
+      $total_views_current_month = $row_total_views_current_month['total_views'];
+
+      // Visite totali del mese precedente
+      $sql_total_views_last_month = "SELECT SUM(views) AS total_views FROM page_views WHERE MONTH(date) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(date) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
+      $result_total_views_last_month = $conn->query($sql_total_views_last_month);
+      $row_total_views_last_month = $result_total_views_last_month->fetch_assoc();
+      $total_views_last_month = $row_total_views_last_month['total_views'];
+
+      // Calcolo della percentuale di variazione delle visite totali
+      if ($total_views_last_month != 0) {
+        $total_views_percentage_change = (($total_views_current_month - $total_views_last_month) / $total_views_last_month) * 100;
+      } else {
+        if ($total_views_current_month != 0) {
+          $total_views_percentage_change = 100; // Aumento del 100% se il mese precedente ha avuto 0 visite
+        } else {
+          $total_views_percentage_change = 0; // Nessuna variazione se entrambi i mesi hanno avuto 0 visite
+        }
+      }
+
+
+    // Visitatori unici del mese attuale
+      $sql_unique_visitors_current_month = "SELECT COUNT(DISTINCT id) AS unique_visitors FROM daily_views WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE())";
+      $result_unique_visitors_current_month = $conn->query($sql_unique_visitors_current_month);
+      $row_unique_visitors_current_month = $result_unique_visitors_current_month->fetch_assoc();
+      $unique_visitors_current_month = $row_unique_visitors_current_month['unique_visitors'];
+
+      // Visitatori unici del mese precedente
+      $sql_unique_visitors_last_month = "SELECT COUNT(DISTINCT id) AS unique_visitors FROM daily_views WHERE MONTH(date) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(date) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
+      $result_unique_visitors_last_month = $conn->query($sql_unique_visitors_last_month);
+      $row_unique_visitors_last_month = $result_unique_visitors_last_month->fetch_assoc();
+      $unique_visitors_last_month = $row_unique_visitors_last_month['unique_visitors'];
+
+      // Calcolo della percentuale di variazione dei visitatori unici
+      if ($unique_visitors_last_month != 0) {
+        $unique_visitors_percentage_change = (($unique_visitors_current_month - $unique_visitors_last_month) / $unique_visitors_last_month) * 100;
+      } else {
+        if ($unique_visitors_current_month != 0) {
+          $unique_visitors_percentage_change = 100; // Aumento del 100% se il mese precedente ha avuto 0 visitatori unici
+        } else {
+          $unique_visitors_percentage_change = 0; // Nessuna variazione se entrambi i mesi hanno avuto 0 visitatori unici
+        }
+      }
+
+
+
+    ?>
     <main class="main users chart-page" id="skip-target">
       <div class="container">
         <h2 class="main-title">Dashboard</h2>
@@ -252,12 +202,33 @@ if (!isset($_SESSION['user'])) {
                 <i data-feather="bar-chart-2" aria-hidden="true"></i>
               </div>
               <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
+                <p class="stat-cards-info__num"><?php echo $total_views_current_month?></p>
                 <p class="stat-cards-info__title">Total visits</p>
                 <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit success">
-                    <i data-feather="trending-up" aria-hidden="true"></i>4.07%
-                  </span>
+                  <?php
+                    if ($total_views_percentage_change > 0) {
+                  ?>
+                    <span class="stat-cards-info__profit success">
+                      <i data-feather="trending-up" aria-hidden="true"></i>
+                      <?php echo $total_views_percentage_change?>%
+                    </span>
+                  <?php
+                    } else if ($total_views_percentage_change < 0) {
+                  ?>
+                    <span class="stat-cards-info__profit danger">
+                      <i data-feather="trending-down" aria-hidden="true"></i>
+                      <?php echo $total_views_percentage_change?>%
+                    </span>
+                  <?php
+                    } else {
+                  ?>
+                    <span class="stat-cards-info__profit warning">
+                      <i data-feather="trending-up" aria-hidden="true"></i>
+                      <?php echo $total_views_percentage_change?>%
+                    </span>
+                  <?php
+                    }
+                  ?>
                   Last month
                 </p>
               </div>
@@ -269,7 +240,7 @@ if (!isset($_SESSION['user'])) {
                 <i data-feather="file" aria-hidden="true"></i>
               </div>
               <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
+                <p class="stat-cards-info__num"><?php echo $unique_visitors_current_month?></p>
                 <p class="stat-cards-info__title">Total visits</p>
                 <p class="stat-cards-info__progress">
                   <span class="stat-cards-info__profit success">
@@ -286,7 +257,7 @@ if (!isset($_SESSION['user'])) {
                 <i data-feather="file" aria-hidden="true"></i>
               </div>
               <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
+                <p class="stat-cards-info__num"><?php echo $active_users?></p>
                 <p class="stat-cards-info__title">Total visits</p>
                 <p class="stat-cards-info__progress">
                   <span class="stat-cards-info__profit danger">

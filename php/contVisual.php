@@ -49,24 +49,4 @@
     $conn->query($sql);
   }
 
-  /*
-  // Conteggio degli utenti attivi (utenti attualmente online)
-  $current_time_minus_one_minute = date("Y-m-d H:i:s", strtotime('-1 minute'));
-  $sql = "SELECT COUNT(*) AS active_users FROM sessions WHERE last_activity > '$current_time_minus_one_minute'";
-  $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
-  $active_users = $row['active_users'];
-
-  // Conteggio delle visite totali per oggi
-  $sql = "SELECT SUM(views) AS total_views FROM page_views WHERE date = CURDATE()";
-  $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
-  $total_views = $row['total_views'];
-
-  // Conteggio dei visitatori unici
-  $sql = "SELECT COUNT(*) AS unique_visitors FROM daily_views WHERE date = CURDATE()";
-  $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
-  $unique_visitors = $row['unique_visitors'];
-  */
 ?>
