@@ -33,6 +33,10 @@
 </head>
 
 <body>
+    <div id="cookie-consent-popup" style="display: none;">
+      <p>Questo sito utilizza i cookie per garantire una migliore esperienza di navigazione. Clicca su Accetta per accettare l'utilizzo dei cookie.</p>
+      <button id="accept-cookie-btn">Accetta</button>
+    </div>
     <?php
       global $conn;
       global $active_users;
@@ -240,156 +244,6 @@
     </div>
     <!-- Service End -->
 
-
-    <!-- FAQs Start -->
-    <!--
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Popular FAQs</div>
-                <h1 class="mb-4">Frequently Asked Questions</h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                  <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <img src="img/logo.png">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="accordion" id="accordionFAQ2">
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.5s">
-                          <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                              Will you maintain my site for me?
-                            </button>
-                          </h2>
-                          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                               data-bs-parent="#accordionFAQ2">
-                            <div class="accordion-body">
-                              Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.5s">
-                          <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                              Will you maintain my site for me?
-                            </button>
-                          </h2>
-                          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                               data-bs-parent="#accordionFAQ2">
-                            <div class="accordion-body">
-                              Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.5s">
-                          <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                              Will you maintain my site for me?
-                            </button>
-                          </h2>
-                          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                               data-bs-parent="#accordionFAQ2">
-                            <div class="accordion-body">
-                              Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.5s">
-                          <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                              Will you maintain my site for me?
-                            </button>
-                          </h2>
-                          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                               data-bs-parent="#accordionFAQ2">
-                            <div class="accordion-body">
-                              Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.5s">
-                          <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                              Will you maintain my site for me?
-                            </button>
-                          </h2>
-                          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                               data-bs-parent="#accordionFAQ2">
-                            <div class="accordion-body">
-                              Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.5s">
-                          <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                              Will you maintain my site for me?
-                            </button>
-                          </h2>
-                          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                               data-bs-parent="#accordionFAQ2">
-                            <div class="accordion-body">
-                              Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.6s">
-                            <h2 class="accordion-header" id="headingSix">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                    I’m on a strict budget. Do you have any low cost options?
-                                </button>
-                            </h2>
-                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                                data-bs-parent="#accordionFAQ2">
-                                <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.7s">
-                            <h2 class="accordion-header" id="headingSeven">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                    Will you maintain my site for me?
-                                </button>
-                            </h2>
-                            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
-                                data-bs-parent="#accordionFAQ2">
-                                <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item wow fadeIn" data-wow-delay="0.8s">
-                            <h2 class="accordion-header" id="headingEight">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                    I’m on a strict budget. Do you have any low cost options?
-                                </button>
-                            </h2>
-                            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
-                                data-bs-parent="#accordionFAQ2">
-                                <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-
     <?php
     include 'footer.html';
     ?>
@@ -407,6 +261,48 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <script>
+      // Funzione per impostare un cookie di consenso
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+      // Funzione per mostrare il popup di accettazione dei cookie
+      function showCookieConsentPopup() {
+        var cookiePopup = document.getElementById('cookie-consent-popup');
+        cookiePopup.style.display = 'block';
+      }
+
+      // Funzione per nascondere il popup di accettazione dei cookie
+      function hideCookieConsentPopup() {
+        var cookiePopup = document.getElementById('cookie-consent-popup');
+        cookiePopup.style.display = 'none';
+      }
+
+      // Verifica se è già stato dato il consenso ai cookie
+      var consentGiven = document.cookie.indexOf('consent_cookie=true') !== -1;
+
+      // Se il consenso non è stato già dato, mostra il popup di accettazione dei cookie
+      if (!consentGiven) {
+        showCookieConsentPopup();
+      }
+
+      // Gestione del click sul pulsante di accettazione dei cookie
+      var acceptCookieBtn = document.getElementById('accept-cookie-btn');
+      acceptCookieBtn.addEventListener('click', function() {
+        // Imposta il cookie di consenso con una durata di 365 giorni
+        setCookie('consent_cookie', 'true', 365);
+        // Nascondi il popup di accettazione dei cookie
+        hideCookieConsentPopup();
+      });
+    </script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
