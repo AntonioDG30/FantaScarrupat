@@ -21,7 +21,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
+  <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
@@ -33,9 +33,11 @@
 </head>
 
 <body>
-    <div id="cookie-consent-popup" style="display: none;">
-      <p>Questo sito utilizza i cookie per garantire una migliore esperienza di navigazione. Clicca su Accetta per accettare l'utilizzo dei cookie.</p>
+    <div class="cookie-banner" id="cookie-consent-popup" style="display: none;">
+      <img src="img/cookie.png" class="img-cookie">
+      <p>Questo sito utilizza i cookie per garantire una migliore esperienza di navigazione. Utilizzando il nostro sito acconsenti all'uso dei cookie.</p>
       <button id="accept-cookie-btn">Accetta</button>
+      <button class="refuse" id="refuse-cookie-btn">Rifiuta</button>
     </div>
     <?php
       global $conn;
@@ -261,7 +263,6 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
     <script>
       // Funzione per impostare un cookie di consenso
       function setCookie(name, value, days) {
@@ -303,6 +304,9 @@
         hideCookieConsentPopup();
       });
     </script>
+
+
+
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

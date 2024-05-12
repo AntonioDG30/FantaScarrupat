@@ -13,6 +13,7 @@ if ($consent_given) {
   $page_url = $_SERVER['REQUEST_URI'];
 
   // Ottieni l'orario corrente
+  date_default_timezone_set('Europe/Rome');
   $current_time = date("Y-m-d H:i:s");
 
   // Anonimizza l'indirizzo IP
@@ -31,10 +32,6 @@ if ($consent_given) {
 
     // Verifica se la sessione è stata inattiva per più del tempo massimo consentito
     if (time() - $last_activity_time > $max_inactive_time) {
-      // Chiudi la sessione inattiva
-      $sql = "DELETE FROM sessions WHERE ip_address = '$anon_ip_address'";
-      $conn->query($sql);
-
       // Crea una nuova sessione
       $sql = "INSERT INTO sessions (ip_address, start_time, last_activity) VALUES ('$anon_ip_address', '$current_time', '$current_time')";
       $conn->query($sql);

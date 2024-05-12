@@ -950,3 +950,63 @@ a:is(:hover, :focus) figcaption {
     padding-right: 0;
     border-right: none;
 }
+
+/*** Cookie ***/
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f2f2f2;
+  color: #000000;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  z-index: 9999;
+}
+
+.img-cookie {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: auto;
+}
+
+.cookie-banner p {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.cookie-banner button {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.cookie-banner button.refuse {
+  background-color: #ccc;
+  color: #333;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 799px) {
+  .cookie-banner {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Riduce la larghezza del banner al 90% dello schermo */
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .cookie-banner {
+    left: auto;
+    right: 20px;
+  }
+}
+
