@@ -178,7 +178,7 @@ include 'navbar.html';
                       ?>
                       <tr>
                         <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
-                        <td class="fantasquadra"><?php echo $row["nome_fantasquadra"]?></td>
+                        <td><?php echo $row["nome_fantasquadra"]?></td>
                         <td><?php echo $row["fantaallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
@@ -261,7 +261,7 @@ include 'navbar.html';
                       ?>
                       <tr>
                         <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
-                        <td class="fantasquadra"><?php echo $row["nome_fantasquadra"]?></td>
+                        <td><?php echo $row["nome_fantasquadra"]?></td>
                         <td><?php echo $row["fantaallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
@@ -280,6 +280,7 @@ include 'navbar.html';
               </div>
             </div>
           </div>
+
         </div>
         <div id="CoppaItalia" class="tab-pane fade show p-0">
           <div class="row">
@@ -344,7 +345,7 @@ include 'navbar.html';
                       ?>
                       <tr>
                         <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
-                        <td class="fantasquadra"><?php echo $row["nome_fantasquadra"]?></td>
+                        <td><?php echo $row["nome_fantasquadra"]?></td>
                         <td><?php echo $row["fantaallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
@@ -428,7 +429,7 @@ include 'navbar.html';
                       ?>
                       <tr>
                         <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
-                        <td class="fantasquadra"><?php echo $row["nome_fantasquadra"]?></td>
+                        <td><?php echo $row["nome_fantasquadra"]?></td>
                         <td><?php echo $row["fantaallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
@@ -512,7 +513,7 @@ include 'navbar.html';
                       ?>
                       <tr>
                         <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
-                        <td class="fantasquadra"><?php echo $row["nome_fantasquadra"]?></td>
+                        <td><?php echo $row["nome_fantasquadra"]?></td>
                         <td><?php echo $row["fantaallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
@@ -591,25 +592,8 @@ include 'footer.html';
       });
     });
   });
-
-
 </script>
-<script>
-  window.onload = function() {
-    var fantasquadraElements = document.querySelectorAll('.fantasquadra');
-    fantasquadraElements.forEach(function(element) {
-      var parole = element.textContent.trim().split(" "); // Dividi la stringa in singole parole
-      var maxLength = 0;
-      parole.forEach(function(parola) {
-        maxLength = Math.max(maxLength, parola.length); // Trova la lunghezza massima delle parole
-      });
-      var cellWidth = element.offsetWidth; // larghezza della cella
-      var maxFontSize = cellWidth / (maxLength * 0.7); // Impostazione del limite massimo alla dimensione del font in base alla larghezza della cella e alla lunghezza massima delle parole
-      var fontSize = Math.min(10, maxFontSize); // Limita la dimensione del font a 10px
-      element.style.fontSize = fontSize + "px";
-    });
-  };
-</script>
+
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>

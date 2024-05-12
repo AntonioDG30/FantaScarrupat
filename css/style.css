@@ -562,19 +562,25 @@ a:is(:hover, :focus) figcaption {
   }
 }
 
-
-@media screen and (max-width: 400px) {
-  .img-fluid-logo {
-    width: 40px;
-    height: 40px;
-  }
-
+@media screen and (max-width: 450px) {
   .table tbody th,
   .table tbody td {
-    font-size: 10px;
+    font-size: 9px;
   }
-  .table thead th {
-    font-size: 10px;
+}
+
+@media screen and (max-width: 415px) {
+  .table tbody th,
+  .table tbody td {
+    font-size: 8px;
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+  .table tbody th,
+  .table tbody td {
+    font-size: 7px;
   }
 }
 
