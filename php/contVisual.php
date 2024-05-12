@@ -23,11 +23,12 @@ if ($consent_given) {
   $max_inactive_time = 1800; // 30 minuti
 
 // Verifica se esiste una sessione attiva per questo IP
-  $sql = "SELECT * FROM sessions WHERE ip_address = '$anon_ip_address'";
+  $sql = "SELECT * FROM sessions WHERE ip_address = '$anon_ip_address' ORDER BY last_activity DESC LIMIT 1";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     $session_row = $result->fetch_assoc();
+    $id_sessions = $session_row['id_sessions'];
     $last_activity_time = strtotime($session_row['last_activity']);
 
     // Verifica se la sessione è stata inattiva per più del tempo massimo consentito
@@ -37,7 +38,7 @@ if ($consent_given) {
       $conn->query($sql);
     } else {
       // Aggiorna l'orario dell'ultima attività della sessione attuale
-      $sql = "UPDATE sessions SET last_activity = '$current_time' WHERE ip_address = '$anon_ip_address'";
+      $sql = "UPDATE sessions SET last_activity = '$current_time' WHERE ip_address = '$anon_ip_address' AND id_sessions = '$id_sessions'";
       $conn->query($sql);
     }
   } else {
@@ -59,16 +60,6 @@ if ($consent_given) {
     $sql = "INSERT INTO page_views (date, page_url, views) VALUES (CURDATE(), '$page_url', 1)";
     $conn->query($sql);
   }
-
-  // Tracciamento dei visitatori unici
-  $sql = "SELECT * FROM daily_views WHERE date = CURDATE() AND ip_address = '$anon_ip_address'";
-  $result = $conn->query($sql);
-
-  if ($result->num_rows == 0) {
-    // Se questo IP non ha ancora visitato oggi, registra un nuovo visitatore unico
-    $sql = "INSERT INTO daily_views (date, ip_address) VALUES (CURDATE(), '$anon_ip_address')";
-    $conn->query($sql);
-  }
 } else {
   // Se il consenso non è stato dato, non tracciare le attività dell'utente
 }
@@ -77,7 +68,6 @@ if ($consent_given) {
 function anonymize_ip($ip) {
   // Applica l'hash crittografico SHA-256 all'indirizzo IP
   $hashed_ip = hash('sha256', $ip);
-
   return $hashed_ip;
 }
 ?>

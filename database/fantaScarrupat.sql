@@ -89,20 +89,14 @@ CREATE TABLE immagine (
 );
 
 CREATE TABLE sessions (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        id_sessions INT AUTO_INCREMENT PRIMARY KEY,
                         ip_address VARCHAR(100),
                         start_time DATETIME,
                         last_activity DATETIME
 );
 
-CREATE TABLE daily_views (
-                           id INT AUTO_INCREMENT PRIMARY KEY,
-                           date DATE,
-                           ip_address VARCHAR(100)
-);
-
 CREATE TABLE page_views (
-                          id INT AUTO_INCREMENT PRIMARY KEY,
+                          id_page_views INT AUTO_INCREMENT PRIMARY KEY,
                           date DATE,
                           page_url VARCHAR(100),
                           views INT DEFAULT 0
@@ -119,15 +113,15 @@ VALUES ('AntFeud', 'AntFeud.png', 'Antonio Di Giorgio', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
 VALUES ('FC Pocholoco', 'Pocholoco.jpg', 'Pasquale Lupoli', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('FC LUKAND', 'FCLukand.jpeg', 'Andrea Lucariello', '1');
+VALUES ('FC Lukand', 'FCLukand.jpeg', 'Andrea Lucariello', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
 VALUES ('Fc Ludopatici', 'FCLudopatici.jpeg', 'Lorenzo Parolisi', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
 VALUES ('Lambrate FC', 'LambrateFC.jpeg', 'Cristian Cecere', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('NAPOLETHANOS', 'Napolethanos.jpeg', 'Mario Castaldi', '1');
+VALUES ('Napolethanos', 'Napolethanos.jpeg', 'Mario Castaldi', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('F.C. VOLANTE', 'FCVolante.png', 'Vincenzo Gervasio', '1');
+VALUES ('F.C. Volante', 'FCVolante.png', 'Vincenzo Gervasio', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
 VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'FCAlastor.jpeg', 'Francesco Parolisi', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
@@ -174,17 +168,17 @@ VALUES ('Serie A', '2020', 'AntFeud');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Serie A', '2021', 'Mainz Na Gioia');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('Serie A', '2022', 'FC LUKAND');
+VALUES ('Serie A', '2022', 'FC Lukand');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('Serie A', '2023', 'F.C. VOLANTE');
+VALUES ('Serie A', '2023', 'F.C. Volante');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Champions League', '2019', 'FC Pocholoco');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Champions League', '2020', 'FC Pocholoco');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('Champions League', '2021', 'F.C. VOLANTE');
+VALUES ('Champions League', '2021', 'F.C. Volante');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('Champions League', '2022', 'FC LUKAND');
+VALUES ('Champions League', '2022', 'FC Lukand');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Champions League', '2023', 'Napolethanos');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
@@ -215,3 +209,7 @@ INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
 VALUES ('team-3.jpg', 'team numero 3', '0');
 INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
 VALUES ('team-4.jpg', 'team numero 4', '1');
+
+
+INSERT INTO admin (email, password)
+VALUES ('antonio.digi30@hotmail.com', SHA2('FantaScarrupat2024!', 256));

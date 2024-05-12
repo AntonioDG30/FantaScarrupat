@@ -1995,6 +1995,10 @@ label {
   background-color: rgba(75, 222, 151, 0.1);
   color: #4bde97;
 }
+.stat-cards-icon.danger {
+  background-color: rgba(242, 100, 100, 0.1);
+  color: #f26464;
+}
 .stat-cards-info__num {
   font-weight: 600;
   font-size: 18px;

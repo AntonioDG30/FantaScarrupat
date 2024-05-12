@@ -134,6 +134,7 @@ if (!isset($_SESSION['user'])) {
       global $total_views_percentage_change;
       global $unique_visitors_percentage_change;
       include 'php/connectionDB.php';
+      setlocale(LC_TIME, 'it_IT');
 
       // Conteggio degli utenti attivi (utenti attualmente online)
       $current_time_minus_one_minute = date("Y-m-d H:i:s", strtotime('-1 minute'));
@@ -142,38 +143,38 @@ if (!isset($_SESSION['user'])) {
       $row = $result->fetch_assoc();
       $active_users = $row['active_users'];
 
-      // Visite totali del mese attuale
-      $sql_total_views_current_month = "SELECT SUM(views) AS total_views FROM page_views WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE())";
-      $result_total_views_current_month = $conn->query($sql_total_views_current_month);
-      $row_total_views_current_month = $result_total_views_current_month->fetch_assoc();
-      $total_views_current_month = $row_total_views_current_month['total_views'];
+      // Pagine totali visitate del mese attuale
+      $sql_total_page_views_current_month = "SELECT SUM(views) AS total_page_views FROM page_views WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE())";
+      $result_total_page_views_current_month = $conn->query($sql_total_page_views_current_month);
+      $row_total_page_views_current_month = $result_total_page_views_current_month->fetch_assoc();
+      $total_page_views_current_month = $row_total_page_views_current_month['total_page_views'];
 
-      // Visite totali del mese precedente
-      $sql_total_views_last_month = "SELECT SUM(views) AS total_views FROM page_views WHERE MONTH(date) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(date) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
-      $result_total_views_last_month = $conn->query($sql_total_views_last_month);
-      $row_total_views_last_month = $result_total_views_last_month->fetch_assoc();
-      $total_views_last_month = $row_total_views_last_month['total_views'];
+      // Pagine totali visitate del mese precedente
+      $sql_total_page_views_last_month = "SELECT SUM(views) AS total_page_views FROM page_views WHERE MONTH(date) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(date) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
+      $result_total_page_views_last_month = $conn->query($sql_total_page_views_last_month);
+      $row_total_page_views_last_month = $result_total_page_views_last_month->fetch_assoc();
+      $total_page_views_last_month = $row_total_page_views_last_month['total_page_views'];
 
-      // Calcolo della percentuale di variazione delle visite totali
-      if ($total_views_last_month != 0) {
-        $total_views_percentage_change = (($total_views_current_month - $total_views_last_month) / $total_views_last_month) * 100;
+      // Calcolo della percentuale di variazione delle pagine totali visitate
+      if ($total_page_views_last_month != 0) {
+        $total_page_views_percentage_change = (($total_page_views_current_month - $total_page_views_last_month) / $total_page_views_last_month) * 100;
       } else {
-        if ($total_views_current_month != 0) {
-          $total_views_percentage_change = 100; // Aumento del 100% se il mese precedente ha avuto 0 visite
+        if ($total_page_views_current_month != 0) {
+          $total_page_views_percentage_change = 100; // Aumento del 100% se il mese precedente ha avuto 0 visite
         } else {
-          $total_views_percentage_change = 0; // Nessuna variazione se entrambi i mesi hanno avuto 0 visite
+          $total_page_views_percentage_change = 0; // Nessuna variazione se entrambi i mesi hanno avuto 0 visite
         }
       }
 
 
-    // Visitatori unici del mese attuale
-      $sql_unique_visitors_current_month = "SELECT COUNT(DISTINCT id) AS unique_visitors FROM daily_views WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE())";
+      // Visitatori unici del mese attuale
+      $sql_unique_visitors_current_month = "SELECT COUNT(DISTINCT ip_address) AS unique_visitors FROM sessions WHERE MONTH(start_time) = MONTH(CURDATE()) AND YEAR(start_time) = YEAR(CURDATE())";
       $result_unique_visitors_current_month = $conn->query($sql_unique_visitors_current_month);
       $row_unique_visitors_current_month = $result_unique_visitors_current_month->fetch_assoc();
       $unique_visitors_current_month = $row_unique_visitors_current_month['unique_visitors'];
 
       // Visitatori unici del mese precedente
-      $sql_unique_visitors_last_month = "SELECT COUNT(DISTINCT id) AS unique_visitors FROM daily_views WHERE MONTH(date) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(date) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
+      $sql_unique_visitors_last_month = "SELECT COUNT(DISTINCT ip_address) AS unique_visitors FROM sessions WHERE MONTH(start_time) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(start_time) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
       $result_unique_visitors_last_month = $conn->query($sql_unique_visitors_last_month);
       $row_unique_visitors_last_month = $result_unique_visitors_last_month->fetch_assoc();
       $unique_visitors_last_month = $row_unique_visitors_last_month['unique_visitors'];
@@ -189,8 +190,98 @@ if (!isset($_SESSION['user'])) {
         }
       }
 
+    // Visitatori totali del mese attuale
+    $sql_total_visit_current_month = "SELECT COUNT(ip_address) AS total_visit FROM sessions WHERE MONTH(start_time) = MONTH(CURDATE()) AND YEAR(start_time) = YEAR(CURDATE())";
+    $result_total_visit_current_month = $conn->query($sql_total_visit_current_month);
+    $row_total_visit_current_month = $result_total_visit_current_month->fetch_assoc();
+    $total_visit_current_month = $row_total_visit_current_month['total_visit'];
+
+    // Visitatori totali del mese precedente
+    $sql_total_visit_last_month = "SELECT COUNT(ip_address) AS total_visit FROM sessions WHERE MONTH(start_time) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(start_time) = YEAR(CURDATE() - INTERVAL 1 MONTH)";
+    $result_total_visit_last_month = $conn->query($sql_total_visit_last_month);
+    $row_total_visit_last_month = $result_total_visit_last_month->fetch_assoc();
+    $total_visit_last_month = $row_total_visit_last_month['total_visit'];
+
+    // Calcolo della percentuale di variazione dei visitatori totali
+    if ($total_visit_last_month != 0) {
+      $total_visit_percentage_change = (($total_visit_current_month - $total_visit_last_month) / $total_visit_last_month) * 100;
+    } else {
+      if ($total_visit_current_month != 0) {
+        $total_visit_percentage_change = 100;
+      } else {
+        $total_visit_percentage_change = 0;
+      }
+    }
 
 
+    // Creazione della tabella temporanea per il mese attuale
+    $sql_create_temp_table_current_month = "
+    CREATE TEMPORARY TABLE IF NOT EXISTS dates_table_current_month AS (
+        SELECT CURDATE() - INTERVAL (a.a + (10 * b.a)) DAY AS date_generated
+        FROM
+            (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS a
+            CROSS JOIN
+            (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS b
+        WHERE CURDATE() - INTERVAL (a.a + (10 * b.a)) DAY BETWEEN DATE_SUB(LAST_DAY(CURDATE()), INTERVAL DAY(LAST_DAY(CURDATE())) - 1 DAY) AND LAST_DAY(CURDATE())
+    );
+";
+    $conn->query($sql_create_temp_table_current_month);
+
+    // Query per calcolare la media dei visitatori unici per il mese attuale
+    $sql_media_visit_current_month = "
+    SELECT AVG(unique_visitors) AS media_visit
+    FROM (
+        SELECT d.date_generated, COUNT(DISTINCT s.ip_address) AS unique_visitors
+        FROM dates_table_current_month d
+        LEFT JOIN sessions s ON DATE(s.start_time) = d.date_generated
+        WHERE MONTH(d.date_generated) = MONTH(CURDATE()) AND YEAR(d.date_generated) = YEAR(CURDATE())
+        GROUP BY d.date_generated
+    ) AS daily_visitors_current_month;
+";
+
+    $result_media_visit_current_month = $conn->query($sql_media_visit_current_month);
+    $row_media_visit_current_month = $result_media_visit_current_month->fetch_assoc();
+    $media_visit_current_month = $row_media_visit_current_month['media_visit'];
+
+    // Creazione della tabella temporanea per il mese precedente
+    $sql_create_temp_table_last_month = "
+    CREATE TEMPORARY TABLE IF NOT EXISTS dates_table_last_month AS (
+        SELECT CURDATE() - INTERVAL (a.a + (10 * b.a)) DAY AS date_generated
+        FROM
+            (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS a
+            CROSS JOIN
+            (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS b
+        WHERE CURDATE() - INTERVAL (a.a + (10 * b.a)) DAY BETWEEN DATE_SUB(LAST_DAY(CURDATE() - INTERVAL 1 MONTH), INTERVAL DAY(LAST_DAY(CURDATE() - INTERVAL 1 MONTH)) - 1 DAY) AND LAST_DAY(CURDATE() - INTERVAL 1 MONTH)
+    );
+";
+    $conn->query($sql_create_temp_table_last_month);
+
+    // Query per calcolare la media dei visitatori unici per il mese precedente
+    $sql_media_visit_last_month = "
+    SELECT AVG(unique_visitors) AS media_visit
+    FROM (
+        SELECT d.date_generated, COUNT(DISTINCT s.ip_address) AS unique_visitors
+        FROM dates_table_last_month d
+        LEFT JOIN sessions s ON DATE(s.start_time) = d.date_generated
+        WHERE MONTH(d.date_generated) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(d.date_generated) = YEAR(CURDATE() - INTERVAL 1 MONTH)
+        GROUP BY d.date_generated
+    ) AS daily_visitors_last_month;
+";
+
+    $result_media_visit_last_month = $conn->query($sql_media_visit_last_month);
+    $row_media_visit_last_month = $result_media_visit_last_month->fetch_assoc();
+    $media_visit_last_month = $row_media_visit_last_month['media_visit'];
+
+    // Calcolo della percentuale di variazione dei media visitatori
+    if ($media_visit_last_month != 0) {
+      $media_visit_percentage_change = (($media_visit_current_month - $media_visit_last_month) / $media_visit_last_month) * 100;
+    } else {
+      if ($media_visit_current_month != 0) {
+        $media_visit_percentage_change = 100;
+      } else {
+        $media_visit_percentage_change = 0;
+      }
+    }
     ?>
     <main class="main users chart-page" id="skip-target">
       <div class="container">
@@ -198,91 +289,186 @@ if (!isset($_SESSION['user'])) {
         <div class="row stat-cards">
           <div class="col-md-6 col-xl-3">
             <article class="stat-cards-item">
-              <div class="stat-cards-icon primary">
-                <i data-feather="bar-chart-2" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num"><?php echo $total_views_current_month?></p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
+              <?php
+              if ($unique_visitors_percentage_change > 0) {
+              ?>
+              <div class="stat-cards-icon success">
+                <?php
+                } else if ($unique_visitors_percentage_change < 0) {
+                ?>
+                <div class="stat-cards-icon danger">
                   <?php
-                    if ($total_views_percentage_change > 0) {
+                  } else {
                   ?>
-                    <span class="stat-cards-info__profit success">
-                      <i data-feather="trending-up" aria-hidden="true"></i>
-                      <?php echo $total_views_percentage_change?>%
-                    </span>
+                  <div class="stat-cards-icon warning">
+                    <?php
+                    }
+                    ?>
+                    <i data-feather="bar-chart-2" aria-hidden="true"></i>
+                  </div>
+                  <div class="stat-cards-info">
+                    <p class="stat-cards-info__num"><?php echo $unique_visitors_current_month?></p>
+                    <p class="stat-cards-info__title">Visitatori Unici a <?PHP echo date('F');?></p></p>
+                    <p class="stat-cards-info__progress">
+                      <?php
+                      if ($unique_visitors_percentage_change > 0) {
+                      ?>
+                      <span class="stat-cards-info__profit success">
                   <?php
-                    } else if ($total_views_percentage_change < 0) {
+                  } else if ($unique_visitors_percentage_change < 0) {
                   ?>
                     <span class="stat-cards-info__profit danger">
-                      <i data-feather="trending-down" aria-hidden="true"></i>
-                      <?php echo $total_views_percentage_change?>%
+                  <?php
+                  } else {
+                  ?>
+                    <span class="stat-cards-info__profit warning">
+                  <?php
+                  }
+                  ?>
+                      <i data-feather="trending-up" aria-hidden="true"></i>
+                      <?php echo number_format($unique_visitors_percentage_change,2)?>%
                     </span>
+                    rispetto a <?PHP echo date('F', strtotime('last month'));?>
+                    </p>
+                  </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="stat-cards-item">
+              <?php
+                if ($total_visit_percentage_change > 0) {
+              ?>
+                <div class="stat-cards-icon success">
+              <?php
+                } else if ($total_visit_percentage_change < 0) {
+              ?>
+                <div class="stat-cards-icon danger">
+              <?php
+                } else {
+              ?>
+                <div class="stat-cards-icon warning">
+              <?php
+                }
+              ?>
+                  <i data-feather="bar-chart-2" aria-hidden="true"></i>
+                </div>
+              <div class="stat-cards-info">
+                <p class="stat-cards-info__num"><?php echo $total_visit_current_month?></p>
+                <p class="stat-cards-info__title">Visite totali a <?PHP echo date('F');?></p></p>
+                <p class="stat-cards-info__progress">
+                  <?php
+                    if ($total_visit_percentage_change > 0) {
+                  ?>
+                    <span class="stat-cards-info__profit success">
+                  <?php
+                    } else if ($total_visit_percentage_change < 0) {
+                  ?>
+                    <span class="stat-cards-info__profit danger">
                   <?php
                     } else {
                   ?>
                     <span class="stat-cards-info__profit warning">
-                      <i data-feather="trending-up" aria-hidden="true"></i>
-                      <?php echo $total_views_percentage_change?>%
-                    </span>
                   <?php
                     }
                   ?>
-                  Last month
+                      <i data-feather="trending-up" aria-hidden="true"></i>
+                      <?php echo number_format($total_visit_percentage_change,2)?>%
+                    </span>
+                    rispetto a <?PHP echo date('F', strtotime('last month'));?>
                 </p>
               </div>
             </article>
           </div>
           <div class="col-md-6 col-xl-3">
             <article class="stat-cards-item">
-              <div class="stat-cards-icon warning">
-                <i data-feather="file" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num"><?php echo $unique_visitors_current_month?></p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit success">
-                    <i data-feather="trending-up" aria-hidden="true"></i>0.24%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon purple">
-                <i data-feather="file" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num"><?php echo $active_users?></p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit danger">
-                    <i data-feather="trending-down" aria-hidden="true"></i>1.64%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
+              <?php
+              if ($total_page_views_percentage_change > 0) {
+              ?>
               <div class="stat-cards-icon success">
-                <i data-feather="feather" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit warning">
-                    <i data-feather="trending-up" aria-hidden="true"></i>0.00%
-                  </span>
-                  Last month
-                </p>
-              </div>
+                <?php
+                } else if ($total_page_views_percentage_change < 0) {
+                ?>
+                <div class="stat-cards-icon danger">
+                  <?php
+                  } else {
+                  ?>
+                  <div class="stat-cards-icon warning">
+                    <?php
+                    }
+                    ?>
+                    <i data-feather="file" aria-hidden="true"></i>
+                  </div>
+                  <div class="stat-cards-info">
+                    <p class="stat-cards-info__num"><?php echo $total_page_views_current_month?></p>
+                    <p class="stat-cards-info__title">Pagine totali visitate a <?PHP echo date('F');?></p></p>
+                    <p class="stat-cards-info__progress">
+                      <?php
+                      if ($total_page_views_percentage_change > 0) {
+                      ?>
+                      <span class="stat-cards-info__profit success">
+                  <?php
+                  } else if ($total_page_views_percentage_change < 0) {
+                  ?>
+                    <span class="stat-cards-info__profit danger">
+                  <?php
+                  } else {
+                  ?>
+                    <span class="stat-cards-info__profit warning">
+                  <?php
+                  }
+                  ?>
+                      <i data-feather="trending-up" aria-hidden="true"></i>
+                      <?php echo number_format($total_page_views_percentage_change,2)?>%
+                    </span>
+                    rispetto a <?PHP echo date('F', strtotime('last month'));?>
+                    </p>
+                  </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="stat-cards-item">
+              <?php
+              if ($media_visit_percentage_change > 0) {
+              ?>
+              <div class="stat-cards-icon success">
+                <?php
+                } else if ($media_visit_percentage_change < 0) {
+                ?>
+                <div class="stat-cards-icon danger">
+                  <?php
+                  } else {
+                  ?>
+                  <div class="stat-cards-icon warning">
+                    <?php
+                    }
+                    ?>
+                    <i data-feather="bar-chart-2" aria-hidden="true"></i>
+                  </div>
+                  <div class="stat-cards-info">
+                    <p class="stat-cards-info__num"><?php echo number_format($media_visit_current_month,2)?></p>
+                    <p class="stat-cards-info__title">Media visite giornaliere a <?PHP echo date('F');?></p></p>
+                    <p class="stat-cards-info__progress">
+                      <?php
+                      if ($media_visit_percentage_change > 0) {
+                      ?>
+                      <span class="stat-cards-info__profit success">
+                  <?php
+                  } else if ($media_visit_percentage_change < 0) {
+                  ?>
+                    <span class="stat-cards-info__profit danger">
+                  <?php
+                  } else {
+                  ?>
+                    <span class="stat-cards-info__profit warning">
+                  <?php
+                  }
+                  ?>
+                      <i data-feather="trending-up" aria-hidden="true"></i>
+                      <?php echo number_format($media_visit_percentage_change,2)?>%
+                    </span>
+                    rispetto a <?PHP echo date('F', strtotime('last month'));?>
+                    </p>
+                  </div>
             </article>
           </div>
         </div>
