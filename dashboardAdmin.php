@@ -387,12 +387,11 @@
             <div class="col-span-1 bg-white rounded-md dark:bg-darker">
               <!-- Card header -->
               <div class="p-4 border-b dark:border-primary">
-                <h4 style="color: white;">Utenti Attivi:</h4>
+                <h4 style="color: white;">
+                  Utenti Attivi:
+                  <span style="color: white;" id="usersCount">0</span>
+                </h4>
               </div>
-              <p class="p-4">
-                <span style="color: white;" id="usersCount">0</span>
-                <span style="color: white;">Utenti</span>
-              </p>
               <!-- Chart -->
               <div class="relative p-4">
                 <canvas id="activeUsersChart"></canvas>

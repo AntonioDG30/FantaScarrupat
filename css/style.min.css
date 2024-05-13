@@ -1062,7 +1062,7 @@ button.disabled:focus {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #eff0f6;
+  background-color: #4d85ff;
 }
 .ligt-circle-btn {
   -ms-flex-wrap: wrap;
@@ -1234,27 +1234,30 @@ button.disabled:focus {
 .dropdown a:hover {
   color: #2f49d1;
 }
+.table-cell {
+  position: relative;
+}
+.hidden-row {
+  display: none;
+}
+
 .badge-active,
 .badge-disabled,
 .badge-pending,
 .badge-success,
 .badge-trashed {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 1px;
   width: 85px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.67;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   border-radius: 100px;
   text-align: center;
 }
@@ -1594,7 +1597,7 @@ label {
 }
 .logo-subtitle,
 .logo-title {
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0.86px;
@@ -1683,7 +1686,7 @@ label {
   -webkit-transition: 0.3s all;
   -o-transition: 0.3s all;
   transition: 0.3s all;
-  background-color: #fff;
+  background-color: #0061f7;
 }
 .main-nav-end {
   display: -webkit-box;
@@ -3226,7 +3229,7 @@ label {
     margin-bottom: 20px;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: left;
     width: 100%;
   }
   .sort-bar {

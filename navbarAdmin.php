@@ -15,12 +15,22 @@ if (!isset($_SESSION['user'])) {
     <div class="sidebar-start">
       <div class="sidebar-head">
         <a href="dashboardAdmin.php" class="logo-wrapper" title="Home">
+          <span class="sr-only">Home</span>
+          <span class="icon logo" aria-hidden="true">
+            <img src="img/logo.png" height="50" width="50">
+          </span>
           <div class="logo-text">
-            <span class="logo-title">FantaScarrupat</span>
-            <span class="logo-subtitle">Dashboard</span>
+            <span class="logo-title">Dashboard</span>
+            <span class="logo-subtitle">FantaScarrupat</span>
           </div>
 
         </a>
+        <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+          <span class="sr-only">Toggle menu</span>
+          <span class="icon menu-toggle" aria-hidden="true">
+            <img src="img/menu.png">
+          </span>
+        </button>
       </div>
       <div class="sidebar-body">
         <ul class="sidebar-body-menu">
@@ -71,10 +81,10 @@ if (!isset($_SESSION['user'])) {
             </a>
             <ul class="cat-sub-menu">
               <li>
-                <a href="gestisciGallery.php">Gestisci Partecipanti</a>
+                <a href="gestisciPartecipanti.php">Gestisci Partecipanti</a>
               </li>
               <li>
-                <a href="inserisciFoto.php">Inserisci Partecipante</a>
+                <a href="inserisciPartecipanti.php">Inserisci Partecipante</a>
               </li>
             </ul>
           </li>
@@ -121,7 +131,9 @@ if (!isset($_SESSION['user'])) {
         <div class="main-nav-end">
           <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
             <span class="sr-only">Toggle menu</span>
-            <span class="icon menu-toggle--gray" aria-hidden="true"></span>
+            <span class="icon menu-toggle--gray" aria-hidden="true">
+              <img src="img/menu.png">
+            </span>
           </button>
           <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
             <span class="sr-only">Switch theme</span>
