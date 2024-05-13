@@ -555,24 +555,24 @@ a:is(:hover, :focus) figcaption {
 
   .table tbody th,
   .table tbody td {
-    font-size: 10px;
+    font-size: 12px;
   }
   .table thead th {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .table tbody th,
   .table tbody td {
-    font-size: 9px;
+    font-size: 11px;
   }
 }
 
 @media screen and (max-width: 415px) {
   .table tbody th,
   .table tbody td {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
@@ -580,7 +580,7 @@ a:is(:hover, :focus) figcaption {
 @media screen and (max-width: 350px) {
   .table tbody th,
   .table tbody td {
-    font-size: 7px;
+    font-size: 8px;
   }
 }
 

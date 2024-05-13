@@ -15,7 +15,7 @@
     if ($result->num_rows > 0) {
       session_start();
       $_SESSION['user'] = $result->fetch_assoc();
-      header("Location: ../admin.php");
+      header("Location: ../dashboardAdmin.php");
       exit();
     } else {
       // Se le credenziali sono errate, mostra un messaggio di errore

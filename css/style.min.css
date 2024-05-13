@@ -1362,7 +1362,7 @@ label {
 }
 .users-table table {
   width: 100%;
-  text-align: left;
+  text-align: center;
   border-collapse: collapse;
   -webkit-transition: none;
   -o-transition: none;
@@ -1400,6 +1400,7 @@ label {
   border-bottom: 1px solid #eee;
   padding-top: 15px;
   padding-bottom: 15px;
+  font-size: 18px;
 }
 .users-table td:first-child {
   padding-left: 20px;
