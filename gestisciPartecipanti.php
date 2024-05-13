@@ -20,7 +20,7 @@ include 'php/connectionDB.php';
 ?>
 <main class="main users chart-page" id="skip-target">
   <div class="container">
-    <h2 class="main-title">Gestisci Competizioni</h2>
+    <h2 class="main-title">Gestisci Partecipanti</h2>
     <div class="col-lg-12">
       <div class="users-table table-wrapper">
         <table class="posts-table">
@@ -58,7 +58,7 @@ include 'php/connectionDB.php';
                   } else {
                     ?>
                     <div class="table-cell">
-                      <span class="badge-pending">Passato</span>
+                      <span class="badge-trashed">Passato</span>
                     </div>
                     <?php
                   }
@@ -71,7 +71,7 @@ include 'php/connectionDB.php';
                           <i data-feather="more-horizontal" aria-hidden="true"></i>
                         </button>
                         <ul class="users-item-dropdown dropdown">
-                          <li><a href="#" class="mod" data-row="<?php echo $nome_fantasquadra?>>Edit</a></li>
+                          <li><a href="php/cambiaFlagPartecipante.php?nome_fantasquadra=<?php echo urlencode($nome_fantasquadra); ?>">Cambia Stato</a></li>
                           <li><a href="#" class="toggle-icon" data-row="<?php echo $hiddenRowId ?>">Rose</a></li>
                         </ul>
                       </span>

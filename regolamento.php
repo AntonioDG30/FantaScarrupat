@@ -68,12 +68,12 @@ include 'navbar.html';
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
             <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
-            <li class="breadcrumb-item text-white active" aria-current="page">Foto Gallery</li>
+            <li class="breadcrumb-item text-white active" aria-current="page">Regolamento</li>
           </ol>
         </nav>
       </div>
-      <div class="col-lg-6 align-self-end text-center text-lg-end">
-        <img class="img-fluid" src="img/hero-img.png" alt="" style="max-height: 300px;">
+      <div class="col-lg-5 align-self-end text-center text-lg-end">
+        <img class="img-fluid" src="img/player_mezzo_busto.png" alt="" style="max-height: 320px;">
       </div>
     </div>
   </div>

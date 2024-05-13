@@ -64,10 +64,13 @@ if (!isset($_SESSION['user'])) {
             </a>
             <ul class="cat-sub-menu">
               <li>
-                <a href="inserisciCalciatori.php">Inserisci Calciatori</a>
+                <a href="visualizzaCalciatori.php?page=1">Visualizza Calciatori</a>
               </li>
               <li>
-                <a href="inserisciRose.php">Inserisci Rose</a>
+                <a href="inserisciCalciatori.php?check=start">Inserisci Calciatori</a>
+              </li>
+              <li>
+                <a href="inserisciRose.php?check=start">Inserisci Rose</a>
               </li>
             </ul>
           </li>
@@ -101,7 +104,7 @@ if (!isset($_SESSION['user'])) {
                 <a href="gestisciGallery.php">Gestisci Gallery</a>
               </li>
               <li>
-                <a href="inserisciFoto.php">Inserisci Foto</a>
+                <a href="inserisciFoto.php?check=start">Inserisci Foto</a>
               </li>
             </ul>
           </li>

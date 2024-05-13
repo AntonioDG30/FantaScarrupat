@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user'])) {
+  header("Location: index.php");
+  exit;
+}
+
 // Importa connessione con il database
 global $conn;
 include 'connectionDB.php';

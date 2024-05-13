@@ -74,7 +74,7 @@
                     <a href="contact.html" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contattaci</a>
                 </div>
                 <div class="col-lg-6 align-self-end text-center text-lg-end">
-                    <img class="img-fluid" src="img/player.png" alt="">
+                    <img class="img-fluid" src="img/rovesciata2.png" alt="">
                 </div>
             </div>
         </div>
