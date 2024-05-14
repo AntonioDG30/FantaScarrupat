@@ -705,13 +705,13 @@ body {
   height: 49px;
 }
 .menu-toggle {
-  background-image: url(../img/svg/Bulk/Menu-toggle-white.svg);
+  background-image: url(../img/Menu-toggle-white.svg);
   width: 24px;
   height: 24px;
 }
 .home,
 .menu-toggle--gray {
-  background-image: url(../img/svg/Bulk/Menu-toggle-gray.svg);
+  background-image: url(../img/Menu-toggle-gray.svg);
   width: 24px;
   height: 24px;
 }
@@ -1377,7 +1377,8 @@ label {
 .users-table-info {
   line-height: 1.4;
   letter-spacing: -0.3px;
-  color: #767676;
+  color: #000000;
+  background-color: #0061f7;
 }
 .users-table table {
   width: 100%;
@@ -1390,7 +1391,8 @@ label {
 .users-table-info {
   height: 48px;
   border-bottom: 1.2px solid #dadbe4;
-  font-size: 14px;
+  font-size: 18px;
+  color: #eff0f6;
 }
 .users-table-info th {
   font-weight: 500;
@@ -1420,7 +1422,9 @@ label {
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 18px;
+  text-align: center;
 }
+
 .users-table td:first-child {
   padding-left: 20px;
 }
@@ -2553,10 +2557,11 @@ label {
 }
 .darkmode .users-table-info {
   border-bottom-color: transparent;
-  color: #eff0f6;
+  background-color: #2c2c42;
 }
 .darkmode .users-table td {
   background-color: #222235;
+  color: white;
   border-color: transparent;
 }
 .darkmode .users-table tbody tr:last-child .users-item-dropdown::before {
@@ -2632,7 +2637,7 @@ label {
   border-top-color: #222235;
 }
 .darkmode .menu-toggle--gray {
-  background-image: url(../img/svg/Bulk/Menu-toggle-white.svg);
+  background-image: url(../img/Menu-toggle-white.svg);
 }
 @media (min-width: 576px) {
   .container {
@@ -3323,3 +3328,96 @@ label {
   color: #ff0000;
 }
 /*# sourceMappingURL=style.min.css.map */
+
+
+/*** visualizza calciatori ***/
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+}
+
+.pagination a:hover {
+  background-color: #0056b3;
+}
+
+.pagination a.active,
+.pagination span.current-page {
+  background-color: #0056b3;
+  pointer-events: none;
+}
+
+.pagination span.current-page {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+/*** Visualizza Rose ***/
+.select-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.select-container label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.select-container select,
+.select-container button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.select-container button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.select-container button:hover {
+  background-color: #0056b3;
+}
+
+.team-year-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.darkmode .select-container,
+.darkmode .team-year-header {
+  color: white;
+}
+
+@media (min-width: 1000px) {
+  .select-container select,
+  .select-container button {
+    width: auto;
+  }
+}

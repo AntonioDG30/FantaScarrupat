@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegant Dashboard | Dashboard</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="./img/svg/logo.svg" type="image/x-icon">
+
     <!-- Custom styles -->
     <link rel="stylesheet" href="./css/style.min.css">
   </head>
@@ -26,6 +26,7 @@
             <table class="posts-table">
               <thead>
               <tr class="users-table-info">
+                <th>Foto</th>
                 <th>Nome</th>
                 <th>Descrizione</th>
                 <th>Visibilità</th>
@@ -42,6 +43,9 @@
                   $id_immagine = $row["id_immagine"];
                   ?>
                   <tr>
+                    <td>
+                      <img style="width: 80px; height: 80px;" src="img/<?php echo $row["nome_immagine"]?>" alt="logo">
+                    </td>
                     <td><?php echo $row["nome_immagine"]; ?></td>
                     <td><?php echo $row["descrizione_immagine"] ?></td>
                     <td>

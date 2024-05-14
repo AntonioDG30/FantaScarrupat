@@ -24,7 +24,7 @@
         <form class="sign-up-form form" action="php/insertRose.php" method="post" enctype="multipart/form-data">
           <label class="form-label-wrapper">
             <p class="form-label">File rose.csv</p>
-            <input class="form-input-file" type="file" id="fileRose" name="fileRose">
+            <input class="form-input-file" type="file" id="fileRose" name="fileRose" required>
           </label>
           <?php
             if ($_GET['check'] != null && $_GET['check'] != 'start') {

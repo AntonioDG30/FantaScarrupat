@@ -83,17 +83,23 @@ include 'php/connectionDB.php';
               <tr id="<?php echo $hiddenRowId ?>" class="hidden-row">
                 <?php
                 /*$query = "SELECT G.nome_giocatore, G.ruolo, G.squadra_reale, R.crediti_pagati, R.anno  FROM giocatore AS G, rosa AS R WHERE R.nome_fantasquadra = '$nome_fantasquadra' AND R.id_giocatore = G.id_giocatore ORDER BY anno DESC";*/
-                $query2 = "SELECT GROUP_CONCAT(DISTINCT CONCAT(' ', (anno) - 1), '/', anno) as anno
-                              FROM rosa WHERE nome_fantasquadra = '$nome_fantasquadra'
-                              ORDER BY anno DESC";
+                $query2 = "SELECT DISTINCT anno FROM rosa WHERE nome_fantasquadra = '$nome_fantasquadra' ORDER BY anno DESC";
                 $result2 = $conn->query($query2);
                 if ($result2->num_rows > 0) {
-                  while($row2 = $result2->fetch_assoc()) {
-                    ?>
-                    <td colspan="4"><?php echo $row2["anno"]?></td>
-                    <td colspan="1"><?php echo $nome_fantasquadra?></td>
+                  ?>
+                    <td colspan="5">
+                  <?php
+                    while($row2 = $result2->fetch_assoc()) {
+                      ?>
+                      <a href="visualizzaRose.php?team=<?php echo $nome_fantasquadra?>&year=<?php echo $row2["anno"]?>">
+                        <?php echo $row2["anno"]-1, '/',$row2["anno"] ?>
+                      </a>
+                      <?php
+                    }
+                      ?>
+                    </td>
                     <?php
-                  }
+
                 } else {
                   ?>
                   <td colspan="5">Nessuna rosa associata a questa squadra</td>

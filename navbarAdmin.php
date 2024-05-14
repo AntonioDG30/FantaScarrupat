@@ -28,7 +28,6 @@ if (!isset($_SESSION['user'])) {
         <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
           <span class="sr-only">Toggle menu</span>
           <span class="icon menu-toggle" aria-hidden="true">
-            <img src="img/menu.png">
           </span>
         </button>
       </div>
@@ -71,6 +70,9 @@ if (!isset($_SESSION['user'])) {
               </li>
               <li>
                 <a href="inserisciRose.php?check=start">Inserisci Rose</a>
+              </li>
+              <li>
+                <a href="visualizzaRose.php">Visualizza Rose</a>
               </li>
             </ul>
           </li>
@@ -135,7 +137,7 @@ if (!isset($_SESSION['user'])) {
           <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
             <span class="sr-only">Toggle menu</span>
             <span class="icon menu-toggle--gray" aria-hidden="true">
-              <img src="img/menu.png">
+
             </span>
           </button>
           <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">

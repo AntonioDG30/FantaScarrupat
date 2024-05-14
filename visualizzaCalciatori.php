@@ -11,45 +11,6 @@
   <!-- Custom styles -->
   <link rel="stylesheet" href="./css/style.min.css">
 
-  <style>
-    .pagination {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    .pagination a,
-    .pagination span {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 5px;
-      background-color: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      border: none;
-      text-align: center;
-    }
-
-    .pagination a:hover {
-      background-color: #0056b3;
-    }
-
-    .pagination a.active,
-    .pagination span.current-page {
-      background-color: #0056b3;
-      pointer-events: none;
-    }
-
-    .pagination span.current-page {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border-radius: 5px;
-    }
-  </style>
 </head>
 
 <body>
