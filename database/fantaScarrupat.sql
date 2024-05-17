@@ -37,7 +37,6 @@ CREATE TABLE tipologia_competizione (
 CREATE TABLE competizione (
                             nome_competizione VARCHAR(100) PRIMARY KEY NOT NULL,
                             tipologia VARCHAR(100) NOT NULL,
-                            logo VARCHAR(100),
                             FOREIGN KEY (tipologia) REFERENCES tipologia_competizione(tipologia)
 );
 
@@ -45,7 +44,7 @@ CREATE TABLE competizione_disputata (
                                       id_competizione_disputata INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                                       nome_competizione VARCHAR(100) NOT NULL,
                                       anno INT NOT NULL,
-                                      vincitore VARCHAR(100) NOT NULL,
+                                      vincitore VARCHAR(100),
                                       FOREIGN KEY (nome_competizione) REFERENCES competizione(nome_competizione),
                                       FOREIGN KEY (vincitore) REFERENCES fantasquadra(nome_fantasquadra)
 );
@@ -105,7 +104,10 @@ CREATE TABLE page_views (
 
 CREATE TABLE admin (
                      email VARCHAR(100) PRIMARY KEY,
-                     password VARCHAR(100)
+                     password VARCHAR(100),
+                     nome VARCHAR(100),
+                     cognome VARCHAR(100),
+                     data_nascita date
 );
 
 -- INSERIMENTO DATI
@@ -212,5 +214,5 @@ INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
 VALUES ('team-4.jpg', 'team numero 4', '1');
 
 
-INSERT INTO admin (email, password)
-VALUES ('antonio.digi30@hotmail.com', SHA2('FantaScarrupat2024!', 256));
+INSERT INTO admin (email, password, nome, cognome, data_nascita)
+VALUES ('antonio.digi30@hotmail.com', SHA2('FantaScarrupat2024!', 256), 'Antonio', 'Di Giorgio', '2000-12-05');
