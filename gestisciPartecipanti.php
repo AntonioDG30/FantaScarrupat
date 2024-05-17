@@ -44,9 +44,9 @@ include 'php/connectionDB.php';
               $nome_fantasquadra = $row["nome_fantasquadra"];
               ?>
               <tr>
-                <td><?php echo $row["fantaallenatore"]?></td>
+                <td><?php echo $row["fantallenatore"]?></td>
                 <td><?php echo $nome_fantasquadra?></td>
-                <td><img style="width: 80px; height: 80px;" src="img/fanta/<?php echo $row["scudetto"]?>" alt="logo"></td>
+                <td><img style="width: 80px; height: 80px;" src="img/scudetti/<?php echo $row["scudetto"]?>" alt="logo"></td>
                 <td>
                   <?php
                   if ($row["flag_attuale"]) {

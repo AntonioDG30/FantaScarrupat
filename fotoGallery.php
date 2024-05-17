@@ -102,7 +102,7 @@ include 'navbar.html';
       <li>
         <a href="#" class="gallery-link">
           <figure>
-            <img src='img/<?php echo $nome_immagine ?>' alt='<?php $descrizione_immagine ?>'>
+            <img style="width: 350px; height: 400px;" src='img/fotoGallery/<?php echo $nome_immagine ?>' alt='<?php $descrizione_immagine ?>'>
             <figcaption><?php echo $descrizione_immagine ?></figcaption>
           </figure>
         </a>

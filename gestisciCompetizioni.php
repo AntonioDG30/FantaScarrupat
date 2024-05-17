@@ -44,13 +44,13 @@
                   <?php echo $row["nome_competizione"]?>
                 </td>
                 <td>
-                  <img style="width: 80px; height: 80px;" src="img/fanta/<?php echo $row["scudetto"]?>" alt="logo">
+                  <img style="width: 80px; height: 80px;" src="img/scudetti/<?php echo $row["scudetto"]?>" alt="logo">
                 </td>
                 <td>
                   <?php echo $row["nome_fantasquadra"]?>
                 </td>
                 <td>
-                    <?php echo $row["fantaallenatore"]?>
+                    <?php echo $row["fantallenatore"]?>
                 </td>
                 <td>
                   <?php echo $row["anno"]?>

@@ -15,7 +15,8 @@ CREATE TABLE giocatore (
 CREATE TABLE fantasquadra (
                             nome_fantasquadra VARCHAR(100) PRIMARY KEY NOT NULL,
                             scudetto VARCHAR(100),
-                            fantaallenatore VARCHAR(100) NOT NULL,
+                            fantallenatore VARCHAR(100) NOT NULL,
+                            immagine_fantallenatore VARCHAR(100) NOT NULL,
                             flag_attuale VARCHAR(1) NOT NULL -- 1 = FANTASQUADRA ATTUALE, 0 = FANTASQUADRA PASSATA
 );
 
@@ -108,28 +109,28 @@ CREATE TABLE admin (
 );
 
 -- INSERIMENTO DATI
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('AntFeud', 'AntFeud.png', 'Antonio Di Giorgio', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('FC Pocholoco', 'Pocholoco.jpg', 'Pasquale Lupoli', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('FC Lukand', 'FCLukand.jpeg', 'Andrea Lucariello', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('Fc Ludopatici', 'FCLudopatici.jpeg', 'Lorenzo Parolisi', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('Lambrate FC', 'LambrateFC.jpeg', 'Cristian Cecere', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('Napolethanos', 'Napolethanos.jpeg', 'Mario Castaldi', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('F.C. Volante', 'FCVolante.png', 'Vincenzo Gervasio', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'FCAlastor.jpeg', 'Francesco Parolisi', '1');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('Quadrato Team', 'FCAlastor.jpeg', 'Giuseppe Costanzo', '0');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('Mainz Na Gioia', 'FCAlastor.jpeg', 'Emanuele Torcia', '0');
-INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantaallenatore, flag_attuale)
-VALUES ('FC Alastor', 'FCAlastor.jpeg', 'Antonio Guarino', '0');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('AntFeud', 'AntFeud.png', 'Antonio Di Giorgio', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('FC Pocholoco', 'Pocholoco.jpg', 'Pasquale Lupoli', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('FC Lukand', 'FCLukand.jpeg', 'Andrea Lucariello', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('Fc Ludopatici', 'FCLudopatici.jpeg', 'Lorenzo Parolisi', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('Lambrate FC', 'LambrateFC.jpeg', 'Cristian Cecere', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('Napolethanos', 'Napolethanos.jpeg', 'Mario Castaldi', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('F.C. Volante', 'FCVolante.png', 'Vincenzo Gervasio', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'FCAlastor.jpeg', 'Francesco Parolisi', 'team-2.jpg', '1');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('Quadrato Team', 'FCAlastor.jpeg', 'Giuseppe Costanzo', 'team-2.jpg', '0');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('Mainz Na Gioia', 'FCAlastor.jpeg', 'Emanuele Torcia', 'team-2.jpg', '0');
+INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
+VALUES ('FC Alastor', 'FCAlastor.jpeg', 'Antonio Guarino', 'team-2.jpg', '0');
 
 INSERT INTO tipologia_competizione (tipologia)
 VALUES ('A Calendario');

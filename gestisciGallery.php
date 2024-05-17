@@ -44,7 +44,7 @@
                   ?>
                   <tr>
                     <td>
-                      <img style="width: 80px; height: 80px;" src="img/<?php echo $row["nome_immagine"]?>" alt="logo">
+                      <img style="width: 80px; height: 80px;" src="img/fotoGallery/<?php echo $row["nome_immagine"]?>" alt="logo">
                     </td>
                     <td><?php echo $row["nome_immagine"]; ?></td>
                     <td><?php echo $row["descrizione_immagine"] ?></td>

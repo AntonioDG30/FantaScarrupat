@@ -98,10 +98,10 @@
               <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item position-relative rounded overflow-hidden">
                   <div class="overflow-hidden">
-                    <img class="img-fluid-personal" src="img/team-2.jpg" alt="">
+                    <img class="img-fluid-personal" src="img/partecipanti/<?php echo $row["immagine_fantallenatore"]?>" alt=" Errore Recupero Foto Fantallenatore">
                   </div>
                   <div class="team-text bg-light text-center p-4">
-                    <h5><?php echo $row['fantaallenatore']; ?></h5>
+                    <h5><?php echo $row['fantallenatore']; ?></h5>
                     <p class="text-primary"><?php echo $nome_squadra; ?></p>
                     <div class="team-social text-center">
                       <?php
@@ -144,10 +144,10 @@
                   <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item position-relative rounded overflow-hidden">
                       <div class="overflow-hidden">
-                        <img class="img-fluid-personal" src="img/team-2.jpg" alt="">
+                        <img class="img-fluid-personal" src="img/partecipanti/<?php echo $row["immagine_fantallenatore"]?>" alt=" Errore Recupero Foto Fantallenatore">
                       </div>
                       <div class="team-text bg-light text-center p-4">
-                        <h5><?php echo $row['fantaallenatore']; ?></h5>
+                        <h5><?php echo $row['fantallenatore']; ?></h5>
                         <p class="text-primary"><?php echo $nome_squadra; ?></p>
                         <div class="team-social text-center">
                           <?php

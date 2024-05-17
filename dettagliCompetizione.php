@@ -149,7 +149,7 @@ include 'navbar.html';
         <div id="Classifica" class="tab-pane fade show p-0 active">
           <div class="row">
             <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantaallenatore, C.nome_competizione FROM competizione_disputata as C,
+            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Serie A' ORDER BY C.anno DESC";
             $result = $conn->query($query);
             if ($result->num_rows > 0) {
@@ -163,13 +163,13 @@ include 'navbar.html';
                           <?PHP echo $row["anno"]-1 ?>/<?PHP echo $row["anno"]?>
                         </h4>
                       </div>
-                      <img class="img-fluid" src="img/fanta/<?PHP echo$row["scudetto"]?>" alt="">
+                      <img class="img-fluid" src="img/scudetti/<?PHP echo$row["scudetto"]?>" alt="">
                       <div class="descVin">
                         <h4>
                           <?PHP echo $row["nome_fantasquadra"]?>
                         </h4>
                         <h6>
-                          <?PHP echo $row["fantaallenatore"]?>
+                          <?PHP echo $row["fantallenatore"]?>
                         </h6>
                       </div>
                     </div>
@@ -200,7 +200,7 @@ include 'navbar.html';
                   </thead>
                   <tbody>
                   <?php
-                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantaallenatore,
+                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantallenatore,
                           GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
                           FROM competizione_disputata as C, fantasquadra AS F
                           WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Serie A'
@@ -210,9 +210,9 @@ include 'navbar.html';
                     while($row = $result->fetch_assoc()) {
                       ?>
                       <tr>
-                        <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
+                        <th><img class="img-fluid-logo" src="img/scudetti/<?php echo $row["scudetto"]?>"></th>
                         <td><?php echo $row["nome_fantasquadra"]?></td>
-                        <td><?php echo $row["fantaallenatore"]?></td>
+                        <td><?php echo $row["fantallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
                       </tr>
@@ -234,7 +234,7 @@ include 'navbar.html';
         <div id="Tabellone" class="tab-pane fade show p-0">
           <div class="row">
             <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantaallenatore, C.nome_competizione FROM competizione_disputata as C,
+            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Champions League' ORDER BY C.anno DESC";
             $result = $conn->query($query);
             if ($result->num_rows > 0) {
@@ -248,13 +248,13 @@ include 'navbar.html';
                           <?PHP echo $row["anno"]-1 ?>/<?PHP echo $row["anno"]?>
                         </h4>
                       </div>
-                      <img class="img-fluid" src="img/fanta/<?PHP echo$row["scudetto"]?>" alt="">
+                      <img class="img-fluid" src="img/scudetti/<?PHP echo$row["scudetto"]?>" alt="">
                       <div class="descVin">
                         <h4>
                           <?PHP echo $row["nome_fantasquadra"]?>
                         </h4>
                         <h6>
-                          <?PHP echo $row["fantaallenatore"]?>
+                          <?PHP echo $row["fantallenatore"]?>
                         </h6>
                       </div>
                     </div>
@@ -283,7 +283,7 @@ include 'navbar.html';
                   </thead>
                   <tbody>
                   <?php
-                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantaallenatore,
+                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantallenatore,
                           GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
                           FROM competizione_disputata as C, fantasquadra AS F
                           WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Champions League'
@@ -293,9 +293,9 @@ include 'navbar.html';
                     while($row = $result->fetch_assoc()) {
                       ?>
                       <tr>
-                        <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
+                        <th><img class="img-fluid-logo" src="img/scudetti/<?php echo $row["scudetto"]?>"></th>
                         <td><?php echo $row["nome_fantasquadra"]?></td>
-                        <td><?php echo $row["fantaallenatore"]?></td>
+                        <td><?php echo $row["fantallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
                       </tr>
@@ -317,7 +317,7 @@ include 'navbar.html';
         <div id="Calendario" class="tab-pane fade show p-0">
           <div class="row">
             <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantaallenatore, C.nome_competizione FROM competizione_disputata as C,
+            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Coppa Italia' ORDER BY C.anno DESC";
             $result = $conn->query($query);
             if ($result->num_rows > 0) {
@@ -331,13 +331,13 @@ include 'navbar.html';
                           <?PHP echo $row["anno"]-1 ?>/<?PHP echo $row["anno"]?>
                         </h4>
                       </div>
-                      <img class="img-fluid" src="img/fanta/<?PHP echo$row["scudetto"]?>" alt="">
+                      <img class="img-fluid" src="img/scudetti/<?PHP echo$row["scudetto"]?>" alt="">
                       <div class="descVin">
                         <h4>
                           <?PHP echo $row["nome_fantasquadra"]?>
                         </h4>
                         <h6>
-                          <?PHP echo $row["fantaallenatore"]?>
+                          <?PHP echo $row["fantallenatore"]?>
                         </h6>
                       </div>
                     </div>
@@ -366,7 +366,7 @@ include 'navbar.html';
                   </thead>
                   <tbody>
                   <?php
-                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantaallenatore,
+                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantallenatore,
                           GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
                           FROM competizione_disputata as C, fantasquadra AS F
                           WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Coppa Italia'
@@ -376,9 +376,9 @@ include 'navbar.html';
                     while($row = $result->fetch_assoc()) {
                       ?>
                       <tr>
-                        <th><img class="img-fluid-logo" src="img/fanta/<?php echo $row["scudetto"]?>"></th>
+                        <th><img class="img-fluid-logo" src="img/scudetti/<?php echo $row["scudetto"]?>"></th>
                         <td><?php echo $row["nome_fantasquadra"]?></td>
-                        <td><?php echo $row["fantaallenatore"]?></td>
+                        <td><?php echo $row["fantallenatore"]?></td>
                         <td><?php echo $row["vittorie"]?></td>
                         <td><span class="toggle-icon">+</span></td>
                       </tr>

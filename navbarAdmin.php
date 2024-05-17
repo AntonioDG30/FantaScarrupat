@@ -49,7 +49,7 @@ if (!isset($_SESSION['user'])) {
                 <a href="gestisciCompetizioni.php">Gestisci Competizioni</a>
               </li>
               <li>
-                <a href="inserisciCompetizione.php">Inserisci Competizione</a>
+                <a href="inserisciCompetizione.php?check=start">Inserisci Competizione</a>
               </li>
             </ul>
           </li>
@@ -89,7 +89,7 @@ if (!isset($_SESSION['user'])) {
                 <a href="gestisciPartecipanti.php">Gestisci Partecipanti</a>
               </li>
               <li>
-                <a href="inserisciPartecipanti.php">Inserisci Partecipante</a>
+                <a href="inserisciPartecipanti.php?check=start">Inserisci Partecipante</a>
               </li>
             </ul>
           </li>

@@ -12,7 +12,7 @@
 
   $id_immagine = $_GET['id_immagine'];
 
-  $sql = "UPDATE immagine SET flag_visibile = NOT flag_visibile WHERE id_immagine = 'id_immagine'";
+  $sql = "UPDATE immagine SET flag_visibile = NOT flag_visibile WHERE id_immagine = '$id_immagine'";
   $conn->query($sql);
 
   header("Location: ../gestisciGallery.php");
