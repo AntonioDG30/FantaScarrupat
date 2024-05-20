@@ -173,14 +173,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   }
 
+  // Calcola e aggiorna il vincitore della competizione
+  calcolaVincitoreCompetizione($id_competizione_disputata, $nome_competizione);
+
   echo "Competizione inserita correttamente.";
-  header("Location: ../inserisciNuovaCompetizione.php?check=Competizione inserita correttamente.");
+  header("Location: ../gestisciCompetizioni.php");
   exit;
 }
 
 function estraiValori($data, $i)
 {
-  global $giornata, $tipologia, $conn, $girone;
+  global $giornata, $tipologia, $conn, $girone, $id_competizione_disputata;
 
   if ($i == 1 && !empty($data[0])) {
     $girone = $data[0];
@@ -203,17 +206,19 @@ function estraiValori($data, $i)
 
   // Prepara e esegui la query SQL per l'inserimento dei dati
   if (!empty($girone)) {
-    $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia, girone) VALUES ('AMMA FA', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia', '$girone')";
+    $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia, girone) VALUES ('$id_competizione_disputata', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia', '$girone')";
   } else {
-    $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia) VALUES ('AMMA FA', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia')";
+    $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia) VALUES ('$id_competizione_disputata', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia')";
   }
   if ($conn->query($query) === FALSE) {
     echo "Errore durante l'inserimento della partita: " . $conn->error;
     exit;
   }
 
-  if ($i == 7 && !empty($data[7])) {
-    $girone = $data[$i];
+  if ($i == 7) {
+    if (!empty($data[7])) {
+      $girone = $data[$i];
+    }
     $i++;
   } else {
     $girone = null;
@@ -235,9 +240,9 @@ function estraiValori($data, $i)
 
     // Prepara e esegui la query SQL per l'inserimento dei dati
     if (!empty($girone)) {
-      $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia, girone) VALUES ('AMMA FA', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia', '$girone')";
+      $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia, girone) VALUES ('$id_competizione_disputata', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia', '$girone')";
     } else {
-      $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia) VALUES ('AMMA FA', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia')";
+      $query = "INSERT INTO partita_avvessario (id_competizione_disputata, nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta, punteggio_casa, punteggio_trasferta, giornata, tipologia) VALUES ('$id_competizione_disputata', '$nome_fantasquadra_casa', '$nome_fantasquadra_trasferta', '$gol_casa', '$gol_trasferta', '$punti_casa', '$punti_trasferta', '$giornata', '$tipologia')";
     }
     if ($conn->query($query) === FALSE) {
       echo "Errore durante l'inserimento della partita: " . $conn->error;
@@ -245,6 +250,84 @@ function estraiValori($data, $i)
     }
 
     $giornata = $giornata - 1;
+  }
+}
+
+// Funzione per calcolare il vincitore della competizione
+function calcolaVincitoreCompetizione($id_competizione_disputata, $nome_competizione) {
+  global $conn;
+
+  // Recupera le informazioni sulla competizione
+  $query = "SELECT c.tipologia FROM competizione_disputata cd
+            JOIN competizione c ON cd.nome_competizione = c.nome_competizione
+            WHERE cd.id_competizione_disputata = '$id_competizione_disputata'";
+  $result = $conn->query($query);
+
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $tipologia = $row['tipologia'];
+
+    if ($tipologia == 'A Calendario') {
+      // Calcolo dei punti per le competizioni a calendario
+      $query = "SELECT squadra,
+                SUM(punti) AS totale_punti,
+                SUM(punteggio_totale_casa + punteggio_totale_trasferta) AS totale_punteggio_effettuato
+                FROM (
+                          SELECT nome_fantasquadra_casa AS squadra,
+                                 SUM(CASE WHEN gol_casa > gol_trasferta THEN 3
+                                          WHEN gol_casa = gol_trasferta THEN 1
+                                          ELSE 0 END) AS punti,
+                                 SUM(punteggio_casa) AS punteggio_totale_casa,
+                                 0 AS punteggio_totale_trasferta
+                          FROM partita_avvessario
+                          WHERE id_competizione_disputata = '$id_competizione_disputata'
+                          GROUP BY nome_fantasquadra_casa
+                          UNION ALL
+                          SELECT nome_fantasquadra_trasferta AS squadra,
+                                 SUM(CASE WHEN gol_trasferta > gol_casa THEN 3
+                                          WHEN gol_trasferta = gol_casa THEN 1
+                                          ELSE 0 END) AS punti,
+                                 0 AS punteggio_totale_casa,
+                                 SUM(punteggio_trasferta) AS punteggio_totale_trasferta
+                          FROM partita_avvessario
+                          WHERE id_competizione_disputata = '$id_competizione_disputata'
+                          GROUP BY nome_fantasquadra_trasferta
+                      ) AS totali
+                GROUP BY squadra
+                ORDER BY totale_punti DESC, totale_punteggio_effettuato DESC
+                LIMIT 1
+                ";
+      $result = $conn->query($query);
+
+      if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $vincitore = $row['squadra'];
+      }
+    } else {
+      // Calcolo del vincitore per le competizioni a gruppi o eliminazione diretta
+      $query = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta
+                FROM partita_avvessario
+                WHERE id_competizione_disputata = '$id_competizione_disputata' AND tipologia = 'Finale' LIMIT 1";
+      $result = $conn->query($query);
+
+      if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row['gol_casa'] > $row['gol_trasferta']) {
+          $vincitore = $row['nome_fantasquadra_casa'];
+        } else {
+          $vincitore = $row['nome_fantasquadra_trasferta'];
+        }
+      }
+    }
+
+    // Aggiorna la tabella competizione_disputata con il vincitore
+    if (isset($vincitore)) {
+      $query = "UPDATE competizione_disputata SET vincitore = '$vincitore' WHERE id_competizione_disputata = '$id_competizione_disputata'";
+      if ($conn->query($query) === FALSE) {
+        echo "Errore durante l'aggiornamento del vincitore della competizione: " . $conn->error;
+        exit;
+      }
+    }
   }
 }
 ?>
