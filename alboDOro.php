@@ -116,14 +116,14 @@ include 'navbar.html';
         <div id="SerieA" class="tab-pane fade show p-0 active">
           <div class="row">
             <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
+            $query = "SELECT C.id_competizione_disputata, C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Serie A' ORDER BY C.anno DESC";
             $result = $conn->query($query);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
                 ?>
                 <div class="col-lg-3 col-md-6">
-                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
+                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["id_competizione_disputata"]?>" data-anno="<?php echo $row["anno"]; ?>">
                     <div class="single-unique-product">
                       <div class="descAnno">
                         <h4>
@@ -201,14 +201,14 @@ include 'navbar.html';
         <div id="ChampionsLeague" class="tab-pane fade show p-0">
           <div class="row">
             <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
+            $query = "SELECT C.id_competizione_disputata, C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Champions League' ORDER BY C.anno DESC";
             $result = $conn->query($query);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
                 ?>
                 <div class="col-lg-3 col-md-6">
-                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
+                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["id_competizione_disputata"]?>" data-anno="<?php echo $row["anno"]; ?>">
                     <div class="single-unique-product">
                       <div class="descAnno">
                         <h4>
@@ -285,14 +285,14 @@ include 'navbar.html';
         <div id="CoppaItalia" class="tab-pane fade show p-0">
           <div class="row">
             <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
+            $query = "SELECT C.id_competizione_disputata, C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Coppa Italia' ORDER BY C.anno DESC";
             $result = $conn->query($query);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
                 ?>
                 <div class="col-lg-3 col-md-6">
-                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
+                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["id_competizione_disputata"]?>" data-anno="<?php echo $row["anno"]; ?>">
                     <div class="single-unique-product">
                       <div class="descAnno">
                         <h4>
@@ -368,14 +368,14 @@ include 'navbar.html';
         <div id="BattleRoyale" class="tab-pane fade show p-0">
           <div class="row">
             <?php
-              $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
+              $query = "SELECT C.id_competizione_disputata, C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Battle Royale' ORDER BY C.anno DESC";
               $result = $conn->query($query);
               if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
             ?>
             <div class="col-lg-3 col-md-6">
-              <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
+              <a href="#" class="dettagli-link" data-competizione="<?php echo $row["id_competizione_disputata"]?>" data-anno="<?php echo $row["anno"]; ?>">
                 <div class="single-unique-product">
                   <div class="descAnno">
                     <h4>
@@ -452,15 +452,14 @@ include 'navbar.html';
         <div id="Formula1" class="tab-pane fade show p-0">
           <div class="row">
             <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
+            $query = "SELECT C.id_competizione_disputata, C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
               fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Formula 1' ORDER BY C.anno DESC";
             $result = $conn->query($query);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
                 ?>
                 <div class="col-lg-3 col-md-6">
-                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
-
+                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["id_competizione_disputata"]?>" data-anno="<?php echo $row["anno"]; ?>">
                     <div class="single-unique-product">
                       <div class="descAnno">
                         <h4>
@@ -581,13 +580,13 @@ include 'footer.html';
       link.addEventListener('click', function(event) {
         event.preventDefault();
 
-        var competizione = this.getAttribute('data-competizione');
+        var id_competizione = this.getAttribute('data-competizione');
         var anno = this.getAttribute('data-anno');
         if (anno < 2023) {
           swal("Dati non disponibili!", "Mi dispiace, ma per le competizioni antecedenti " +
             "la stagione 2023/2024 non sono disponibili i dettagli!");
         } else {
-           window.location.href = "dettagliCompetizione.php?competizione=" + competizione + "&anno=" + anno;
+           window.location.href = "dettagliCompetizione.php?id_competizione=" + id_competizione;
         }
       });
     });

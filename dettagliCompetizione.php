@@ -37,12 +37,8 @@
 
 <?php
 global $conn;
-global $competizione;
-global $anno;
-global $tipologia_competizione;
-$competizione = $_GET['competizione'];;
-$anno = $_GET['anno'];
-
+global $id_competizione;
+$id_competizione = $_GET['id_competizione'];;
 include 'php/connectionDB.php';
 
 // Verifica la connessione
@@ -50,15 +46,27 @@ if ($conn->connect_error) {
   die("Connessione fallita: " . $conn->connect_error);
 }
 
-$query = "SELECT tipologia FROM competizione
+$query1 = "SELECT * FROM competizione_disputata WHERE id_competizione_disputata = $id_competizione";
+$result1 = $conn->query($query1);
+if ($result1->num_rows > 0) {
+  while ($row1 = $result1->fetch_assoc()) {
+    $nome_competizione = $row1['nome_competizione'];
+    $anno = $row1['anno'];
+    $vincitore = $row1['vincitore'];
+  }
+
+  $query2 = "SELECT tipologia FROM competizione
                  WHERE nome_competizione IN (SELECT nome_competizione FROM competizione_disputata
-                                              WHERE nome_competizione = '$competizione')";
-$result = $conn->query($query);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $tipologia_competizione = $row["tipologia"];
+                                              WHERE nome_competizione = '$nome_competizione')";
+  $result2 = $conn->query($query2);
+  if ($result2->num_rows > 0) {
+    while ($row2 = $result2->fetch_assoc()) {
+      $tipologia_competizione = $row2["tipologia"];
+    }
   }
 }
+
+
 
 ?>
 
@@ -105,7 +113,7 @@ include 'navbar.html';
   <div class="container py-5">
     <div class="mx-auto text-center mb-5" style="max-width: 900px;">
       <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-        <h1 class="display-6 mb-5"><?php echo $competizione, " ", $anno-1, "/", $anno; ?></h1>
+        <h1 class="display-6 mb-5"><?php echo $nome_competizione, " ", $anno-1, "/", $anno; ?></h1>
       </div>
     </div>
     <div class="tab-class text-center">
@@ -147,82 +155,142 @@ include 'navbar.html';
       </ul>
       <div class="tab-content">
         <div id="Classifica" class="tab-pane fade show p-0 active">
-          <div class="row">
-            <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
-              fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Serie A' ORDER BY C.anno DESC";
-            $result = $conn->query($query);
-            if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                ?>
-                <div class="col-lg-3 col-md-6">
-                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
-                    <div class="single-unique-product">
-                      <div class="descAnno">
-                        <h4>
-                          <?PHP echo $row["anno"]-1 ?>/<?PHP echo $row["anno"]?>
-                        </h4>
-                      </div>
-                      <img class="img-fluid" src="img/scudetti/<?PHP echo$row["scudetto"]?>" alt="">
-                      <div class="descVin">
-                        <h4>
-                          <?PHP echo $row["nome_fantasquadra"]?>
-                        </h4>
-                        <h6>
-                          <?PHP echo $row["fantallenatore"]?>
-                        </h6>
-                      </div>
-                    </div>
-                  </a>
-                </div>
+          <?php
 
-                <?php
+          if ($tipologia_competizione == "A Calendario") {
+            // Query per selezionare tutte le partite disputate
+            $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
+            punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione";
+
+            generaClassifica();
+          } else if ($tipologia_competizione == "A Gruppi") {
+            $sql1 = "SELECT DISTINCT girone from partita_avvessario WHERE id_competizione_disputata = $id_competizione";
+            $result1 = $conn->query($sql1);
+            if ($result1->num_rows > 0) {
+              while ($row1 = $result1->fetch_assoc()) {
+                $girone = $row1["girone"];
+                if ($girone != "NULL") {
+                $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
+                        punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario
+                        WHERE id_competizione_disputata = $id_competizione AND girone = $girone";
+                generaClassifica();
+                }
               }
             }
-            ?>
-          </div>
+          }
 
-          <br>
-          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-6 mb-5">Palmares</h1>
-          </div>
+          function generaClassifica() {
+          global $conn, $sql;
+          $result = $conn->query($sql);
+
+          $classifica = array();
+
+          if ($result->num_rows > 0) {
+            // Loop attraverso ogni partita
+            while($row = $result->fetch_assoc()) {
+              $casa = $row['nome_fantasquadra_casa'];
+              $trasferta = $row['nome_fantasquadra_trasferta'];
+              $gol_casa = $row['gol_casa'];
+              $gol_trasferta = $row['gol_trasferta'];
+              $punteggio_casa = $row['punteggio_casa'];
+              $punteggio_trasferta = $row['punteggio_trasferta'];
+
+              // Casa
+              if (!isset($classifica[$casa])) {
+                $classifica[$casa] = [
+                  'punti' => 0,
+                  'punteggio_totale' => 0,
+                  'gol_fatti' => 0,
+                  'gol_subiti' => 0,
+                  'vittorie' => 0,
+                  'sconfitte' => 0,
+                  'pareggi' => 0
+                ];
+              }
+              $classifica[$casa]['punteggio_totale'] += $punteggio_casa;
+              $classifica[$casa]['gol_fatti'] += $gol_casa;
+              $classifica[$casa]['gol_subiti'] += $gol_trasferta;
+              if ($gol_casa > $gol_trasferta) {
+                $classifica[$casa]['vittorie']++;
+                $classifica[$casa]['punti'] += 3;
+              } elseif ($gol_trasferta > $gol_casa) {
+                $classifica[$casa]['sconfitte']++;
+              } else {
+                $classifica[$casa]['pareggi']++;
+                $classifica[$casa]['punti'] += 1;
+              }
+
+              // Trasferta
+              if (!isset($classifica[$trasferta])) {
+                $classifica[$trasferta] = [
+                  'punti' => 0,
+                  'punteggio_totale' => 0,
+                  'gol_fatti' => 0,
+                  'gol_subiti' => 0,
+                  'vittorie' => 0,
+                  'sconfitte' => 0,
+                  'pareggi' => 0
+                ];
+              }
+              $classifica[$trasferta]['punteggio_totale'] += $punteggio_trasferta;
+              $classifica[$trasferta]['gol_fatti'] += $gol_trasferta;
+              $classifica[$trasferta]['gol_subiti'] += $gol_casa;
+              if ($gol_trasferta > $gol_casa) {
+                $classifica[$trasferta]['vittorie']++;
+                $classifica[$trasferta]['punti'] += 3;
+              } elseif ($gol_casa > $gol_trasferta) {
+                $classifica[$trasferta]['sconfitte']++;
+              } else {
+                $classifica[$trasferta]['pareggi']++;
+                $classifica[$trasferta]['punti'] += 1;
+              }
+            }
+
+            // Ordina la classifica in ordine decrescente di punti totali
+            uasort($classifica, function($a, $b) {
+              return $b['punti'] - $a['punti'];
+            });
+          }
+
+
+
+          ?>
+
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
                 <table class="table">
                   <thead class="thead-primary">
                   <tr>
-                    <th colspan="2">FantaSquadra</th>
-                    <th>Allenatore</th>
+                    <th>Posizione</th>
+                    <th>FantaSquadra</th>
+                    <th>Punti</th>
                     <th>Vittorie</th>
-                    <th>Estendi</th>
+                    <th>Pareggi</th>
+                    <th>Sconfitte</th>
+                    <th>Gol Fatti</th>
+                    <th>Gol Subiti</th>
+                    <th>Punteggio Totale</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php
-                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantallenatore,
-                          GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
-                          FROM competizione_disputata as C, fantasquadra AS F
-                          WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Serie A'
-                          GROUP BY F.nome_fantasquadra ORDER BY vittorie DESC";
-                  $result = $conn->query($query);
-                  if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                      ?>
-                      <tr>
-                        <th><img class="img-fluid-logo" src="img/scudetti/<?php echo $row["scudetto"]?>"></th>
-                        <td><?php echo $row["nome_fantasquadra"]?></td>
-                        <td><?php echo $row["fantallenatore"]?></td>
-                        <td><?php echo $row["vittorie"]?></td>
-                        <td><span class="toggle-icon">+</span></td>
-                      </tr>
-                      <tr class="hidden-row">
-                        <td colspan="5">
-                          <?php echo $row["anni_vittoria"]?>
-                        </td>
-                      </tr>
-                      <?php
-                    }
+                  $posizione = 1;
+                  foreach ($classifica as $squadra => $stats) {
+                    ?>
+                    <tr>
+                      <td><?php echo $posizione; ?></td>
+                      <td><?php echo $squadra; ?></td>
+                      <td><?php echo $stats['punti']; ?></td>
+                      <td><?php echo $stats['vittorie']; ?></td>
+                      <td><?php echo $stats['pareggi']; ?></td>
+                      <td><?php echo $stats['sconfitte']; ?></td>
+                      <td><?php echo $stats['gol_fatti']; ?></td>
+                      <td><?php echo $stats['gol_subiti']; ?></td>
+                      <td><?php echo $stats['punteggio_totale']; ?></td>
+                    </tr>
+                    <?php
+                    $posizione++;
                   }
                   ?>
                   </tbody>
@@ -230,45 +298,12 @@ include 'navbar.html';
               </div>
             </div>
           </div>
+
+          <?php
+}
+          ?>
         </div>
         <div id="Tabellone" class="tab-pane fade show p-0">
-          <div class="row">
-            <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
-              fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Champions League' ORDER BY C.anno DESC";
-            $result = $conn->query($query);
-            if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                ?>
-                <div class="col-lg-3 col-md-6">
-                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
-                    <div class="single-unique-product">
-                      <div class="descAnno">
-                        <h4>
-                          <?PHP echo $row["anno"]-1 ?>/<?PHP echo $row["anno"]?>
-                        </h4>
-                      </div>
-                      <img class="img-fluid" src="img/scudetti/<?PHP echo$row["scudetto"]?>" alt="">
-                      <div class="descVin">
-                        <h4>
-                          <?PHP echo $row["nome_fantasquadra"]?>
-                        </h4>
-                        <h6>
-                          <?PHP echo $row["fantallenatore"]?>
-                        </h6>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <?php
-              }
-            }
-            ?>
-          </div>
-          <br>
-          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-6 mb-5">Palmares</h1>
-          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
@@ -315,43 +350,6 @@ include 'navbar.html';
           </div>
         </div>
         <div id="Calendario" class="tab-pane fade show p-0">
-          <div class="row">
-            <?php
-            $query = "SELECT C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
-              fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Coppa Italia' ORDER BY C.anno DESC";
-            $result = $conn->query($query);
-            if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                ?>
-                <div class="col-lg-3 col-md-6">
-                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["nome_competizione"]?>" data-anno="<?php echo $row["anno"]; ?>">
-                    <div class="single-unique-product">
-                      <div class="descAnno">
-                        <h4>
-                          <?PHP echo $row["anno"]-1 ?>/<?PHP echo $row["anno"]?>
-                        </h4>
-                      </div>
-                      <img class="img-fluid" src="img/scudetti/<?PHP echo$row["scudetto"]?>" alt="">
-                      <div class="descVin">
-                        <h4>
-                          <?PHP echo $row["nome_fantasquadra"]?>
-                        </h4>
-                        <h6>
-                          <?PHP echo $row["fantallenatore"]?>
-                        </h6>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <?php
-              }
-            }
-            ?>
-          </div>
-          <br>
-          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-6 mb-5">Palmares</h1>
-          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
