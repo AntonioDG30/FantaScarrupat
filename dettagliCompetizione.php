@@ -38,6 +38,7 @@
 <?php
 global $conn;
 global $id_competizione;
+global $tipologia_competizione;
 $id_competizione = $_GET['id_competizione'];;
 include 'php/connectionDB.php';
 
@@ -158,29 +159,26 @@ include 'navbar.html';
           <?php
 
           if ($tipologia_competizione == "A Calendario") {
-            // Query per selezionare tutte le partite disputate
             $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
             punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione";
-
             generaClassifica();
           } else if ($tipologia_competizione == "A Gruppi") {
-            $sql1 = "SELECT DISTINCT girone from partita_avvessario WHERE id_competizione_disputata = $id_competizione";
-            $result1 = $conn->query($sql1);
-            if ($result1->num_rows > 0) {
-              while ($row1 = $result1->fetch_assoc()) {
-                $girone = $row1["girone"];
-                if ($girone != "NULL") {
+            $sql = "SELECT DISTINCT girone from partita_avvessario WHERE id_competizione_disputata = $id_competizione AND girone IS NOT NULL";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                $girone = $row["girone"];
                 $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
                         punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario
-                        WHERE id_competizione_disputata = $id_competizione AND girone = $girone";
+                        WHERE id_competizione_disputata = $id_competizione AND girone = '$girone'";
                 generaClassifica();
-                }
+
               }
             }
           }
 
           function generaClassifica() {
-          global $conn, $sql;
+          global $conn, $sql, $tipologia_competizione, $tipologia_competizione, $girone;
           $result = $conn->query($sql);
 
           $classifica = array();
@@ -251,9 +249,15 @@ include 'navbar.html';
               return $b['punti'] - $a['punti'];
             });
           }
+          ?>
 
-
-
+          <?php
+            global $tipologia_competizione;
+            if ($tipologia_competizione == "A Gruppi" ) {
+          ?>
+              <h3>Girone <?php echo $girone ?> </h3>
+          <?php
+            }
           ?>
 
           <div class="row">
@@ -271,6 +275,7 @@ include 'navbar.html';
                     <th>Gol Fatti</th>
                     <th>Gol Subiti</th>
                     <th>Punteggio Totale</th>
+
                   </tr>
                   </thead>
                   <tbody>
