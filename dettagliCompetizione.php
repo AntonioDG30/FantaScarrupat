@@ -160,7 +160,7 @@ include 'navbar.html';
           <?php
             if ($tipologia_competizione == "A Calendario") {
               $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
-              punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione";
+              punteggio_casa, punteggio_trasferta, tipologia FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione";
               generaClassifica();
             } else if ($tipologia_competizione == "A Gruppi") {
               $sql = "SELECT DISTINCT girone from partita_avvessario WHERE id_competizione_disputata = $id_competizione AND girone IS NOT NULL";
@@ -168,9 +168,7 @@ include 'navbar.html';
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                   $girone = $row["girone"];
-                  $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
-                          punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario
-                          WHERE id_competizione_disputata = $id_competizione AND girone = '$girone'";
+                  $sql = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione AND girone = '$girone'";
                   generaClassifica();
 
                 }
@@ -310,82 +308,36 @@ include 'navbar.html';
         </div>
         <div id="Tabellone" class="tab-pane fade show p-0">
           <div class="bracket">
-            <section class="round quarterfinals">
-              <div class="winners">
-                <div class="matchups">
-                  <div class="matchup">
-                    <div class="participants">
-                      <div class="participant winner"><span>Uno</span></div>
-                      <div class="participant"><span>Ocho</span></div>
-                    </div>
-                  </div>
-                  <div class="matchup">
-                    <div class="participants">
-                      <div class="participant"><span>Dos</span></div>
-                      <div class="participant winner"><span>Siete</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="connector">
-                  <div class="merger"></div>
-                  <div class="line"></div>
-                </div>
-              </div>
-              <div class="winners">
-                <div class="matchups">
-                  <div class="matchup">
-                    <div class="participants">
-                      <div class="participant"><span>Treis</span></div>
-                      <div class="participant winner"><span>Seis</span></div>
-                    </div>
-                  </div>
-                  <div class="matchup">
-                    <div class="participants">
-                      <div class="participant"><span>Cuatro</span></div>
-                      <div class="participant winner"><span>Cinco</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="connector">
-                  <div class="merger"></div>
-                  <div class="line"></div>
-                </div>
-              </div>
-            </section>
-            <section class="round semifinals">
-              <div class="winners">
-                <div class="matchups">
-                  <div class="matchup">
-                    <div class="participants">
-                      <div class="participant winner"><span>Uno</span></div>
-                      <div class="participant"><span>Dos</span></div>
-                    </div>
-                  </div>
-                  <div class="matchup">
-                    <div class="participants">
-                      <div class="participant winner"><span>Seis</span></div>
-                      <div class="participant"><span>Cinco</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="connector">
-                  <div class="merger"></div>
-                  <div class="line"></div>
-                </div>
-              </div>
-            </section>
-            <section class="round finals">
-              <div class="winners">
-                <div class="matchups">
-                  <div class="matchup">
-                    <div class="participants">
-                      <div class="participant winner"><span>Uno</span></div>
-                      <div class="participant"><span>Seis</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+          <?php
+          if ($tipologia_competizione == "A Gruppi") {
+            // Fetch matches data
+            $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = 17 ORDER BY id_partita, tipologia;";
+            $result = $conn->query($query);
+
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                $matches[] = array(
+                  'id_partita' => $row['id_partita'],
+                  'tipologia' => $row['tipologia'],
+                  'nome_fantasquadra_casa' => $row['nome_fantasquadra_casa'],
+                  'nome_fantasquadra_trasferta' => $row['nome_fantasquadra_trasferta'],
+                  'punteggio_casa' => $row['punteggio_casa'],
+                  'punteggio_trasferta' => $row['punteggio_trasferta']
+                );
+
+              }
+            } else {
+              echo 'Nessuna partita trovata.';
+            }
+
+            foreach ($matches as $match) {
+              if ($match['tipologia'] == "Fase a Gironi") {
+                print_r($match);
+                echo "<br>";
+              }
+            }
+          }
+          ?>
           </div>
         </div>
         <div id="Calendario" class="tab-pane fade show p-0">
