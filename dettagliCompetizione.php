@@ -31,6 +31,7 @@
 
   <!-- Template Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/TabelloneTorneo.css" rel="stylesheet">
 </head>
 
 <body>
@@ -123,7 +124,7 @@ include 'navbar.html';
           if ($tipologia_competizione == "A Calendario") {
         ?>
         <li class="nav-item">
-          <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#SerieA">
+          <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#Classifica">
             <span class="text-dark" style="width: 150px;">Classifica</span>
           </a>
         </li>
@@ -157,98 +158,97 @@ include 'navbar.html';
       <div class="tab-content">
         <div id="Classifica" class="tab-pane fade show p-0 active">
           <?php
+            if ($tipologia_competizione == "A Calendario") {
+              $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
+              punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione";
+              generaClassifica();
+            } else if ($tipologia_competizione == "A Gruppi") {
+              $sql = "SELECT DISTINCT girone from partita_avvessario WHERE id_competizione_disputata = $id_competizione AND girone IS NOT NULL";
+              $result = $conn->query($sql);
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  $girone = $row["girone"];
+                  $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
+                          punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario
+                          WHERE id_competizione_disputata = $id_competizione AND girone = '$girone'";
+                  generaClassifica();
 
-          if ($tipologia_competizione == "A Calendario") {
-            $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
-            punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione";
-            generaClassifica();
-          } else if ($tipologia_competizione == "A Gruppi") {
-            $sql = "SELECT DISTINCT girone from partita_avvessario WHERE id_competizione_disputata = $id_competizione AND girone IS NOT NULL";
+                }
+              }
+            }
+
+            function generaClassifica() {
+            global $conn, $sql, $tipologia_competizione, $tipologia_competizione, $girone;
             $result = $conn->query($sql);
+
+            $classifica = array();
+
             if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                $girone = $row["girone"];
-                $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
-                        punteggio_casa, punteggio_trasferta, tipologia, girone FROM partita_avvessario
-                        WHERE id_competizione_disputata = $id_competizione AND girone = '$girone'";
-                generaClassifica();
+              // Loop attraverso ogni partita
+              while($row = $result->fetch_assoc()) {
+                $casa = $row['nome_fantasquadra_casa'];
+                $trasferta = $row['nome_fantasquadra_trasferta'];
+                $gol_casa = $row['gol_casa'];
+                $gol_trasferta = $row['gol_trasferta'];
+                $punteggio_casa = $row['punteggio_casa'];
+                $punteggio_trasferta = $row['punteggio_trasferta'];
 
+                // Casa
+                if (!isset($classifica[$casa])) {
+                  $classifica[$casa] = [
+                    'punti' => 0,
+                    'punteggio_totale' => 0,
+                    'gol_fatti' => 0,
+                    'gol_subiti' => 0,
+                    'vittorie' => 0,
+                    'sconfitte' => 0,
+                    'pareggi' => 0
+                  ];
+                }
+                $classifica[$casa]['punteggio_totale'] += $punteggio_casa;
+                $classifica[$casa]['gol_fatti'] += $gol_casa;
+                $classifica[$casa]['gol_subiti'] += $gol_trasferta;
+                if ($gol_casa > $gol_trasferta) {
+                  $classifica[$casa]['vittorie']++;
+                  $classifica[$casa]['punti'] += 3;
+                } elseif ($gol_trasferta > $gol_casa) {
+                  $classifica[$casa]['sconfitte']++;
+                } else {
+                  $classifica[$casa]['pareggi']++;
+                  $classifica[$casa]['punti'] += 1;
+                }
+
+                // Trasferta
+                if (!isset($classifica[$trasferta])) {
+                  $classifica[$trasferta] = [
+                    'punti' => 0,
+                    'punteggio_totale' => 0,
+                    'gol_fatti' => 0,
+                    'gol_subiti' => 0,
+                    'vittorie' => 0,
+                    'sconfitte' => 0,
+                    'pareggi' => 0
+                  ];
+                }
+                $classifica[$trasferta]['punteggio_totale'] += $punteggio_trasferta;
+                $classifica[$trasferta]['gol_fatti'] += $gol_trasferta;
+                $classifica[$trasferta]['gol_subiti'] += $gol_casa;
+                if ($gol_trasferta > $gol_casa) {
+                  $classifica[$trasferta]['vittorie']++;
+                  $classifica[$trasferta]['punti'] += 3;
+                } elseif ($gol_casa > $gol_trasferta) {
+                  $classifica[$trasferta]['sconfitte']++;
+                } else {
+                  $classifica[$trasferta]['pareggi']++;
+                  $classifica[$trasferta]['punti'] += 1;
+                }
               }
+
+              // Ordina la classifica in ordine decrescente di punti totali
+              uasort($classifica, function($a, $b) {
+                return $b['punti'] - $a['punti'];
+              });
             }
-          }
-
-          function generaClassifica() {
-          global $conn, $sql, $tipologia_competizione, $tipologia_competizione, $girone;
-          $result = $conn->query($sql);
-
-          $classifica = array();
-
-          if ($result->num_rows > 0) {
-            // Loop attraverso ogni partita
-            while($row = $result->fetch_assoc()) {
-              $casa = $row['nome_fantasquadra_casa'];
-              $trasferta = $row['nome_fantasquadra_trasferta'];
-              $gol_casa = $row['gol_casa'];
-              $gol_trasferta = $row['gol_trasferta'];
-              $punteggio_casa = $row['punteggio_casa'];
-              $punteggio_trasferta = $row['punteggio_trasferta'];
-
-              // Casa
-              if (!isset($classifica[$casa])) {
-                $classifica[$casa] = [
-                  'punti' => 0,
-                  'punteggio_totale' => 0,
-                  'gol_fatti' => 0,
-                  'gol_subiti' => 0,
-                  'vittorie' => 0,
-                  'sconfitte' => 0,
-                  'pareggi' => 0
-                ];
-              }
-              $classifica[$casa]['punteggio_totale'] += $punteggio_casa;
-              $classifica[$casa]['gol_fatti'] += $gol_casa;
-              $classifica[$casa]['gol_subiti'] += $gol_trasferta;
-              if ($gol_casa > $gol_trasferta) {
-                $classifica[$casa]['vittorie']++;
-                $classifica[$casa]['punti'] += 3;
-              } elseif ($gol_trasferta > $gol_casa) {
-                $classifica[$casa]['sconfitte']++;
-              } else {
-                $classifica[$casa]['pareggi']++;
-                $classifica[$casa]['punti'] += 1;
-              }
-
-              // Trasferta
-              if (!isset($classifica[$trasferta])) {
-                $classifica[$trasferta] = [
-                  'punti' => 0,
-                  'punteggio_totale' => 0,
-                  'gol_fatti' => 0,
-                  'gol_subiti' => 0,
-                  'vittorie' => 0,
-                  'sconfitte' => 0,
-                  'pareggi' => 0
-                ];
-              }
-              $classifica[$trasferta]['punteggio_totale'] += $punteggio_trasferta;
-              $classifica[$trasferta]['gol_fatti'] += $gol_trasferta;
-              $classifica[$trasferta]['gol_subiti'] += $gol_casa;
-              if ($gol_trasferta > $gol_casa) {
-                $classifica[$trasferta]['vittorie']++;
-                $classifica[$trasferta]['punti'] += 3;
-              } elseif ($gol_casa > $gol_trasferta) {
-                $classifica[$trasferta]['sconfitte']++;
-              } else {
-                $classifica[$trasferta]['pareggi']++;
-                $classifica[$trasferta]['punti'] += 1;
-              }
-            }
-
-            // Ordina la classifica in ordine decrescente di punti totali
-            uasort($classifica, function($a, $b) {
-              return $b['punti'] - $a['punti'];
-            });
-          }
           ?>
 
           <?php
@@ -309,49 +309,83 @@ include 'navbar.html';
           ?>
         </div>
         <div id="Tabellone" class="tab-pane fade show p-0">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class="thead-primary">
-                  <tr>
-                    <th colspan="2">FantaSquadra</th>
-                    <th>Allenatore</th>
-                    <th>Vittorie</th>
-                    <th>Estendi</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <?php
-                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantallenatore,
-                          GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
-                          FROM competizione_disputata as C, fantasquadra AS F
-                          WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Champions League'
-                          GROUP BY F.nome_fantasquadra ORDER BY vittorie DESC";
-                  $result = $conn->query($query);
-                  if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                      ?>
-                      <tr>
-                        <th><img class="img-fluid-logo" src="img/scudetti/<?php echo $row["scudetto"]?>"></th>
-                        <td><?php echo $row["nome_fantasquadra"]?></td>
-                        <td><?php echo $row["fantallenatore"]?></td>
-                        <td><?php echo $row["vittorie"]?></td>
-                        <td><span class="toggle-icon">+</span></td>
-                      </tr>
-                      <tr class="hidden-row">
-                        <td colspan="5">
-                          <?php echo $row["anni_vittoria"]?>
-                        </td>
-                      </tr>
-                      <?php
-                    }
-                  }
-                  ?>
-                  </tbody>
-                </table>
+          <div class="bracket">
+            <section class="round quarterfinals">
+              <div class="winners">
+                <div class="matchups">
+                  <div class="matchup">
+                    <div class="participants">
+                      <div class="participant winner"><span>Uno</span></div>
+                      <div class="participant"><span>Ocho</span></div>
+                    </div>
+                  </div>
+                  <div class="matchup">
+                    <div class="participants">
+                      <div class="participant"><span>Dos</span></div>
+                      <div class="participant winner"><span>Siete</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="connector">
+                  <div class="merger"></div>
+                  <div class="line"></div>
+                </div>
               </div>
-            </div>
+              <div class="winners">
+                <div class="matchups">
+                  <div class="matchup">
+                    <div class="participants">
+                      <div class="participant"><span>Treis</span></div>
+                      <div class="participant winner"><span>Seis</span></div>
+                    </div>
+                  </div>
+                  <div class="matchup">
+                    <div class="participants">
+                      <div class="participant"><span>Cuatro</span></div>
+                      <div class="participant winner"><span>Cinco</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="connector">
+                  <div class="merger"></div>
+                  <div class="line"></div>
+                </div>
+              </div>
+            </section>
+            <section class="round semifinals">
+              <div class="winners">
+                <div class="matchups">
+                  <div class="matchup">
+                    <div class="participants">
+                      <div class="participant winner"><span>Uno</span></div>
+                      <div class="participant"><span>Dos</span></div>
+                    </div>
+                  </div>
+                  <div class="matchup">
+                    <div class="participants">
+                      <div class="participant winner"><span>Seis</span></div>
+                      <div class="participant"><span>Cinco</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="connector">
+                  <div class="merger"></div>
+                  <div class="line"></div>
+                </div>
+              </div>
+            </section>
+            <section class="round finals">
+              <div class="winners">
+                <div class="matchups">
+                  <div class="matchup">
+                    <div class="participants">
+                      <div class="participant winner"><span>Uno</span></div>
+                      <div class="participant"><span>Seis</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
         <div id="Calendario" class="tab-pane fade show p-0">
