@@ -308,38 +308,89 @@ include 'navbar.html';
         </div>
         <div id="Tabellone" class="tab-pane fade show p-0">
           <div class="bracket">
-          <?php
-          if ($tipologia_competizione == "A Gruppi") {
-            // Fetch matches data
-            $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = 17 ORDER BY id_partita, tipologia;";
-            $result = $conn->query($query);
+            <?php
+            if ($tipologia_competizione == "A Gruppi") {
+              $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = 17 ORDER BY id_partita, tipologia;";
+              $result = $conn->query($query);
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                $matches[] = array(
-                  'id_partita' => $row['id_partita'],
-                  'tipologia' => $row['tipologia'],
-                  'nome_fantasquadra_casa' => $row['nome_fantasquadra_casa'],
-                  'nome_fantasquadra_trasferta' => $row['nome_fantasquadra_trasferta'],
-                  'punteggio_casa' => $row['punteggio_casa'],
-                  'punteggio_trasferta' => $row['punteggio_trasferta']
-                );
+              // Array per memorizzare le partite suddivise per tipologia
+              $matches_by_type = array();
 
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  $match = array(
+                    'id_partita' => $row['id_partita'],
+                    'tipologia' => $row['tipologia'],
+                    'nome_fantasquadra_casa' => $row['nome_fantasquadra_casa'],
+                    'nome_fantasquadra_trasferta' => $row['nome_fantasquadra_trasferta'],
+                    'gol_casa' => $row['gol_casa'],
+                    'gol_trasferta' => $row['gol_trasferta']
+                  );
+
+                  // Filtra solo le tipologie di interesse
+                  if (in_array($row['tipologia'], ['Quarti di Finale', 'Semifinali', 'Finale'])) {
+                    // Identificare le partite di andata e ritorno
+                    $key = $row['nome_fantasquadra_casa'] . '-' . $row['nome_fantasquadra_trasferta'];
+                    $reverse_key = $row['nome_fantasquadra_trasferta'] . '-' . $row['nome_fantasquadra_casa'];
+
+                    if (!isset($matches_by_type[$row['tipologia']][$key]) && !isset($matches_by_type[$row['tipologia']][$reverse_key])) {
+                      $matches_by_type[$row['tipologia']][$key] = array(
+                        'nome_fantasquadra_casa' => $row['nome_fantasquadra_casa'],
+                        'nome_fantasquadra_trasferta' => $row['nome_fantasquadra_trasferta'],
+                        'gol_casa' => 0,
+                        'gol_trasferta' => 0
+                      );
+                    }
+
+                    if (isset($matches_by_type[$row['tipologia']][$key])) {
+                      $matches_by_type[$row['tipologia']][$key]['gol_casa'] += $row['gol_casa'];
+                      $matches_by_type[$row['tipologia']][$key]['gol_trasferta'] += $row['gol_trasferta'];
+                    } else {
+                      $matches_by_type[$row['tipologia']][$reverse_key]['gol_casa'] += $row['gol_trasferta'];
+                      $matches_by_type[$row['tipologia']][$reverse_key]['gol_trasferta'] += $row['gol_casa'];
+                    }
+                  }
+                }
+              } else {
+                echo 'Nessuna partita trovata.';
               }
-            } else {
-              echo 'Nessuna partita trovata.';
+              ?>
+              <div class="bracket">
+                <?php foreach ($matches_by_type as $type => $matches) { ?>
+                  <section class="round <?php echo strtolower(str_replace(' ', '', $type)); ?>">
+                    <div class="winners">
+                      <div class="matchups">
+                        <?php foreach ($matches as $match) { ?>
+                          <div class="matchup">
+                            <div class="participants">
+                              <div class="participant<?php if ($match['gol_casa'] > $match['gol_trasferta']) echo ' winner'; ?>">
+                                <span><?php echo $match['nome_fantasquadra_casa']; ?></span>
+                                <span><?php echo $match['gol_casa']; ?></span>
+                              </div>
+                              <div class="participant<?php if ($match['gol_casa'] < $match['gol_trasferta']) echo ' winner'; ?>">
+                                <span><?php echo $match['nome_fantasquadra_trasferta']; ?></span>
+                                <span><?php echo $match['gol_trasferta']; ?></span>
+                              </div>
+                            </div>
+                          </div>
+                        <?php } ?>
+                      </div>
+                      <?php if ($type != 'Finale') { ?>
+                        <div class="connector">
+                          <div class="merger"></div>
+                          <div class="line"></div>
+                        </div>
+                      <?php } ?>
+                    </div>
+                  </section>
+                <?php } ?>
+              </div>
+              <?php
             }
-
-            foreach ($matches as $match) {
-              if ($match['tipologia'] == "Fase a Gironi") {
-                print_r($match);
-                echo "<br>";
-              }
-            }
-          }
-          ?>
+            ?>
           </div>
         </div>
+
         <div id="Calendario" class="tab-pane fade show p-0">
           <div class="row">
             <div class="col-md-12">

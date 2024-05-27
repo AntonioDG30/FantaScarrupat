@@ -13,6 +13,24 @@
     --color-border: #c0c0c8;
 }
 
+.participant {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.participant span:first-child {
+  flex: 1;
+  text-align: left;
+}
+.participant span:last-child {
+  flex: 0;
+  text-align: right;
+  width: 30px;
+}
+.winner {
+  font-weight: bold;
+}
+
 /* Bracket */
 .bracket {
   overflow-x: auto; /* Abilita lo scrolling orizzontale */

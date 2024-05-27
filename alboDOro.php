@@ -582,7 +582,7 @@ include 'footer.html';
 
         var id_competizione = this.getAttribute('data-competizione');
         var anno = this.getAttribute('data-anno');
-        if (anno < 2023) {
+        if (anno < 2024) {
           swal("Dati non disponibili!", "Mi dispiace, ma per le competizioni antecedenti " +
             "la stagione 2023/2024 non sono disponibili i dettagli!");
         } else {
