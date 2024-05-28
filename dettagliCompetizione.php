@@ -32,6 +32,7 @@
   <!-- Template Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/TabelloneTorneo.css" rel="stylesheet">
+  <link href="css/CalendarioPartite.css" rel="stylesheet">
 </head>
 
 <body>
@@ -310,7 +311,7 @@ include 'navbar.html';
           <div class="bracket">
             <?php
             if ($tipologia_competizione == "A Gruppi") {
-              $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = 17 ORDER BY id_partita, tipologia;";
+              $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione ORDER BY id_partita, tipologia;";
               $result = $conn->query($query);
 
               // Array per memorizzare le partite suddivise per tipologia
@@ -392,49 +393,51 @@ include 'navbar.html';
         </div>
 
         <div id="Calendario" class="tab-pane fade show p-0">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class="thead-primary">
-                  <tr>
-                    <th colspan="2">FantaSquadra</th>
-                    <th>Allenatore</th>
-                    <th>Vittorie</th>
-                    <th>Estendi</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <?php
-                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantallenatore,
-                          GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
-                          FROM competizione_disputata as C, fantasquadra AS F
-                          WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Coppa Italia'
-                          GROUP BY F.nome_fantasquadra ORDER BY vittorie DESC";
-                  $result = $conn->query($query);
-                  if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                      ?>
-                      <tr>
-                        <th><img class="img-fluid-logo" src="img/scudetti/<?php echo $row["scudetto"]?>"></th>
-                        <td><?php echo $row["nome_fantasquadra"]?></td>
-                        <td><?php echo $row["fantallenatore"]?></td>
-                        <td><?php echo $row["vittorie"]?></td>
-                        <td><span class="toggle-icon">+</span></td>
-                      </tr>
-                      <tr class="hidden-row">
-                        <td colspan="5">
-                          <?php echo $row["anni_vittoria"]?>
-                        </td>
-                      </tr>
-                      <?php
-                    }
-                  }
-                  ?>
-                  </tbody>
-                </table>
+          <div class="calendar">
+            <?php
+            $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione ORDER BY giornata, id_partita;";
+            $result = $conn->query($query);
+
+            $matches_by_day = array();
+
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                $match = array(
+                  'id_partita' => $row['id_partita'],
+                  'giornata' => $row['giornata'],
+                  'nome_fantasquadra_casa' => $row['nome_fantasquadra_casa'],
+                  'nome_fantasquadra_trasferta' => $row['nome_fantasquadra_trasferta'],
+                  'gol_casa' => $row['gol_casa'],
+                  'gol_trasferta' => $row['gol_trasferta']
+                );
+
+                if (!isset($matches_by_day[$row['giornata']])) {
+                  $matches_by_day[$row['giornata']] = array();
+                }
+
+                $matches_by_day[$row['giornata']][] = $match;
+              }
+            } else {
+              echo 'Nessuna partita trovata.';
+            }
+            ?>
+
+            <?php foreach ($matches_by_day as $giornata => $matches) { ?>
+              <div class="giornata">
+                <div class="giornata-header">
+                  Giornata <?php echo $giornata; ?>
+                </div>
+                <div class="partite">
+                  <?php foreach ($matches as $match) { ?>
+                    <div class="partita">
+                      <div class="team-name"><a href="dettagliRose.php?nome_fantasquadra=<?php echo urlencode($match['nome_fantasquadra_casa']);?>&anno=<?php echo $anno; ?>"><?php echo $match['nome_fantasquadra_casa']; ?></a></div>
+                      <div class="match-info"><?php echo $match['gol_casa']; ?> - <?php echo $match['gol_trasferta']; ?></div>
+                      <div class="team-name"><a href="dettagliRose.php?nome_fantasquadra=<?php echo urlencode($match['nome_fantasquadra_trasferta']);?>&anno=<?php echo $anno; ?>"><?php echo $match['nome_fantasquadra_trasferta']; ?></a></div>
+                    </div>
+                  <?php } ?>
+                </div>
               </div>
-            </div>
+            <?php } ?>
           </div>
         </div>
       </div>

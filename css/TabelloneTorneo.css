@@ -11,6 +11,11 @@
     --color-community: #dc563f;
     --color-release: #60c645;
     --color-border: #c0c0c8;
+
+    --primary: #1363C6;
+    --secondary: #15ACE1;
+    --light: #F4F7FE;
+    --dark: #14183E;
 }
 
 .participant {
@@ -74,8 +79,8 @@
 }
 
 .bracket .round .winners > div.matchups .matchup .participants .participant.winner {
-  color: var(--color-release);
-  border-color: var(--color-release);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 .bracket .round .winners > div.matchups .matchup .participants .participant.loser {
