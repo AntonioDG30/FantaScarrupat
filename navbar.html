@@ -5,38 +5,103 @@
   <title></title>
 </head>
 <body>
-<!-- Navbar Start -->
-<div class="container-fluid sticky-top">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark p-0">
-      <a href="index.php" class="navbar-brand">
-        <h1><span class="text-color1">Fanta</span><span class="text-color2">Scarrupat</span></h1>
-      </a>
-      <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
-              data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto">
-          <a href="index.php" class="nav-item nav-link active">Home</a>
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Chi siamo</a>
-            <div class="dropdown-menu bg-light mt-2">
-              <a href="storia.php" class="dropdown-item">La Nostra Storia</a>
-              <a href="partecipanti.php" class="dropdown-item">Partecipanti</a>
-              <a href="fotoGallery.php" class="dropdown-item">Foto Gallery</a>
+  <!-- Coockie Start -->
+  <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/iubenda_cs.js"/>
+  <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/tcf/stub-v2.js"/>
+  <script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
+  <script>
+    (_iub=self._iub||[]).csConfiguration={
+      cookiePolicyId: 25338369,
+      siteId: 3651820,
+      localConsentDomain: 'fantascarrupat.altervista.org',
+      timeoutLoadConfiguration: 30000,
+      lang: 'it',
+      enableTcf: true,
+      tcfVersion: 2,
+      tcfPurposes: {
+        "2": "consent_only",
+        "3": "consent_only",
+        "4": "consent_only",
+        "5": "consent_only",
+        "6": "consent_only",
+        "7": "consent_only",
+        "8": "consent_only",
+        "9": "consent_only",
+        "10": "consent_only"
+      },
+      invalidateConsentWithoutLog: true,
+      googleAdditionalConsentMode: true,
+      consentOnContinuedBrowsing: false,
+      banner: {
+        position: "top",
+        acceptButtonDisplay: true,
+        customizeButtonDisplay: true,
+        closeButtonDisplay: true,
+        closeButtonRejects: true,
+        fontSizeBody: "14px",
+      }
+    };
+
+    // Funzione per eseguire contVisual.php dopo l'accettazione del consenso
+    function executeContVisual() {
+      // Esegui una richiesta AJAX per eseguire contVisual.php
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "php/contVisual.php", true);
+      xhr.send();
+    }
+
+    // Verifica se è già stato dato il consenso ai cookie
+    var consentGiven = document.cookie.indexOf('consent_cookie=true') !== -1;
+
+    // Se il consenso non è stato già dato, mostra il banner di accettazione dei cookie
+    if (!consentGiven) {
+      _iub.cs.showBanner();
+    }
+
+    // Gestione del click sul pulsante di accettazione dei cookie
+    _iub.cs.addEventListener('consentGiven', function () {
+      // Imposta il cookie di consenso con una durata di 365 giorni
+      document.cookie = 'consent_cookie=true; expires=' + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+      // Esegui contVisual.php
+      executeContVisual();
+    });
+  </script>
+  <script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script>
+
+  <!-- Coockie End -->
+
+  <!-- Navbar Start -->
+  <div class="container-fluid sticky-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark p-0">
+        <a href="index.php" class="navbar-brand">
+          <h1><span class="text-color1">Fanta</span><span class="text-color2">Scarrupat</span></h1>
+        </a>
+        <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto">
+            <a href="index.php" class="nav-item nav-link active">Home</a>
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Chi siamo</a>
+              <div class="dropdown-menu bg-light mt-2">
+                <a href="storia.php" class="dropdown-item">La Nostra Storia</a>
+                <a href="partecipanti.php" class="dropdown-item">Partecipanti</a>
+                <a href="fotoGallery.php" class="dropdown-item">Foto Gallery</a>
+              </div>
             </div>
+            <a href="regolamento.php" class="nav-item nav-link">Regolamento</a>
+            <a href="alboDOro.php" class="nav-item nav-link">Albo D'Oro</a>
+            <a href="contattaci.php?check=true" class="nav-item nav-link">Contatti</a>
+            <a href="login.php?check=false" class="nav-item nav-link">Admin</a>
           </div>
-          <a href="regolamento.php" class="nav-item nav-link">Regolamento</a>
-          <a href="alboDOro.php" class="nav-item nav-link">Albo D'Oro</a>
-          <a href="contattaci.php?check=true" class="nav-item nav-link">Contatti</a>
-          <a href="login.php?check=false" class="nav-item nav-link">Admin</a>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </div>
-</div>
-<!-- Navbar End -->
+  <!-- Navbar End -->
 
 </body>
 </html>

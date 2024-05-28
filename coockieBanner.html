@@ -1,0 +1,61 @@
+<link rel="preload" as="script" href="https://cdn.iubenda.com/cs/iubenda_cs.js"/>
+<link rel="preload" as="script" href="https://cdn.iubenda.com/cs/tcf/stub-v2.js"/>
+<script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
+<script>
+  (_iub=self._iub||[]).csConfiguration={
+    cookiePolicyId: 25338369,
+    siteId: 3651820,
+    localConsentDomain: 'fantascarrupat.altervista.org',
+    timeoutLoadConfiguration: 30000,
+    lang: 'it',
+    enableTcf: true,
+    tcfVersion: 2,
+    tcfPurposes: {
+      "2": "consent_only",
+      "3": "consent_only",
+      "4": "consent_only",
+      "5": "consent_only",
+      "6": "consent_only",
+      "7": "consent_only",
+      "8": "consent_only",
+      "9": "consent_only",
+      "10": "consent_only"
+    },
+    invalidateConsentWithoutLog: true,
+    googleAdditionalConsentMode: true,
+    consentOnContinuedBrowsing: false,
+    banner: {
+      position: "top",
+      acceptButtonDisplay: true,
+      customizeButtonDisplay: true,
+      closeButtonDisplay: true,
+      closeButtonRejects: true,
+      fontSizeBody: "14px",
+    }
+  };
+
+  // Funzione per eseguire contVisual.php dopo l'accettazione del consenso
+  function executeContVisual() {
+    // Esegui una richiesta AJAX per eseguire contVisual.php
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "php/contVisual.php", true);
+    xhr.send();
+  }
+
+  // Verifica se è già stato dato il consenso ai cookie
+  var consentGiven = document.cookie.indexOf('consent_cookie=true') !== -1;
+
+  // Se il consenso non è stato già dato, mostra il banner di accettazione dei cookie
+  if (!consentGiven) {
+    _iub.cs.showBanner();
+  }
+
+  // Gestione del click sul pulsante di accettazione dei cookie
+  _iub.cs.addEventListener('consentGiven', function () {
+    // Imposta il cookie di consenso con una durata di 365 giorni
+    document.cookie = 'consent_cookie=true; expires=' + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+    // Esegui contVisual.php
+    executeContVisual();
+  });
+</script>
+<script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script>

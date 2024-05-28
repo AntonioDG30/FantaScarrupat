@@ -32,12 +32,6 @@
 </head>
 
 <body>
-    <div class="cookie-banner" id="cookie-consent-popup" style="display: none;">
-      <img src="img/cookie.png" class="img-cookie">
-      <p>Questo sito utilizza i cookie per garantire una migliore esperienza di navigazione. Utilizzando il nostro sito acconsenti all'uso dei cookie.</p>
-      <button id="accept-cookie-btn">Accetta</button>
-      <button class="refuse" id="refuse-cookie-btn">Rifiuta</button>
-    </div>
     <?php
       global $conn;
       global $active_users;
@@ -262,47 +256,6 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script>
-      // Funzione per impostare un cookie di consenso
-      function setCookie(name, value, days) {
-        var expires = "";
-        if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-          expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-      }
-
-      // Funzione per mostrare il popup di accettazione dei cookie
-      function showCookieConsentPopup() {
-        var cookiePopup = document.getElementById('cookie-consent-popup');
-        cookiePopup.style.display = 'block';
-      }
-
-      // Funzione per nascondere il popup di accettazione dei cookie
-      function hideCookieConsentPopup() {
-        var cookiePopup = document.getElementById('cookie-consent-popup');
-        cookiePopup.style.display = 'none';
-      }
-
-      // Verifica se è già stato dato il consenso ai cookie
-      var consentGiven = document.cookie.indexOf('consent_cookie=true') !== -1;
-
-      // Se il consenso non è stato già dato, mostra il popup di accettazione dei cookie
-      if (!consentGiven) {
-        showCookieConsentPopup();
-      }
-
-      // Gestione del click sul pulsante di accettazione dei cookie
-      var acceptCookieBtn = document.getElementById('accept-cookie-btn');
-      acceptCookieBtn.addEventListener('click', function() {
-        // Imposta il cookie di consenso con una durata di 365 giorni
-        setCookie('consent_cookie', 'true', 365);
-        // Nascondi il popup di accettazione dei cookie
-        hideCookieConsentPopup();
-      });
-    </script>
 
 
 

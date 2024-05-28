@@ -28,5 +28,7 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="sweetalert" level="application" />
     <orderEntry type="library" name="chart.js" level="application" />
+    <orderEntry type="library" name="stub-v2" level="application" />
+    <orderEntry type="library" name="iubenda_cs" level="application" />
   </component>
 </module>
