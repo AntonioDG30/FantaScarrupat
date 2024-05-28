@@ -1,0 +1,36 @@
+/* Stile personalizzato per la tabella della classifica */
+.classifica-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.classifica-table th,
+.classifica-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.classifica-table th {
+  background-color: #007bff;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.classifica-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+.classifica-table tbody tr:nth-child(odd) {
+  background-color: #dee2e6;
+}
+
+.classifica-table tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Aggiungi effetto di transizione per l'hover */
+.classifica-table tbody tr {
+  transition: background-color 0.3s;
+}

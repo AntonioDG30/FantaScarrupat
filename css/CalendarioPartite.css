@@ -49,21 +49,32 @@
 .partita:hover {
   background-color: #e9ecef;
 }
-.team-name {
+.team-name,
+.team-name-trasf {
   flex: 1;
-  text-align: left;
   font-size: 16px;
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.team-name a {
+
+.team-name {
+  text-align: left;
+}
+
+.team-name-trasf {
+  text-align: right;
+
+}
+.team-name a,
+.team-name-trasf a{
   color: inherit;
   text-decoration: none;
   transition: color 0.3s ease;
 }
-.team-name a:hover {
+.team-name a:hover,
+.team-name-trasf a:hover {
   color: #007bff;
 }
 .team-score {
@@ -79,4 +90,23 @@
   font-size: 16px;
   font-weight: 500;
   width: 70px;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  .giornata {
+    width: 45%;
+  }
+
+  .team-name,
+  .team-name-trasf {
+    font-size: 14px;
+    white-space: normal;
+  }
+}
+@media screen and (max-width: 576px) {
+  .giornata {
+    width: 100%;
+  }
+
 }
