@@ -1010,3 +1010,12 @@ a:is(:hover, :focus) figcaption {
   }
 }
 
+
+.message_check {
+  text-align: center;
+  max-width: 424px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #767676;
+}

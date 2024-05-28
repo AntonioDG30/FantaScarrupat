@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="utf-8">
-  <title>AI.Tech - Artificial Intelligence HTML Template</title>
+  <title>FantaScarrupat</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
   <!-- Favicon -->
-  <link href="img/favicon.ico" rel="icon">
+  <link href="img/favicon.png" rel="icon">
 
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,11 +37,6 @@
 <?php
 global $conn;
 include 'php/contVisual.php';
-
-// Verifica la connessione
-if ($conn->connect_error) {
-  die("Connessione fallita: " . $conn->connect_error);
-}
 ?>
 <!-- Spinner Start -->
 <div id="spinner"
@@ -1056,12 +1051,12 @@ include 'navbar.html';
           <tr>
             <th><img class="img-fluid-table" src="img/pdf.png"></th>
             <td>Modulo Scambio Giocatori</td>
-            <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+            <td><a href="file/Contratto_Scambi_Giocatori.docx" download="Contratto_Scambi_Giocatori" class="btn btn-primary">Download</a></td>
           </tr>
           <tr>
             <th><img class="img-fluid-table" src="img/pdf.png"></th>
             <td>Modulo Richiesta Modifica Nome e/o Logo:</td>
-            <td><a href="file/Regolamento_Ufficiale.pdf" download="Regolamento_Ufficiale" class="btn btn-primary">Download</a></td>
+            <td><a href="file/Richiesta_Cambio_Nome_Logo.docx" download="Richiesta_Cambio_Nome_Logo" class="btn btn-primary">Download</a></td>
           </tr>
           </tbody>
         </table>

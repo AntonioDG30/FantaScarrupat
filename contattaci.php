@@ -29,19 +29,12 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/ClassificaCompetizione.css" rel="stylesheet">
 </head>
 
 <body>
-
     <?php
-      global $conn;
-      global $nome_fantasquadra;
-      global $anno;
-      $nome_fantasquadra = $_GET['nome_fantasquadra'];
-      $anno = $_GET['anno'];
-      include 'php/contVisual.php';
-
+    global $conn;
+    include 'php/contVisual.php';
     ?>
     <!-- Spinner Start -->
     <div id="spinner"
@@ -52,10 +45,11 @@
     </div>
     <!-- Spinner End -->
 
+
+
     <?php
     include 'navbar.html';
     ?>
-
 
 
     <!-- Hero Start -->
@@ -63,13 +57,11 @@
         <div class="container pt-5">
             <div class="row g-5 pt-5">
                 <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
-                    <h1><span class="text-color1">Fanta</span><span class="text-color2">Scarrupat</span></h1>
+                    <h1 class="display-4 text-white mb-4 animated slideInRight">Contattaci</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
-                          <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
-                          <li class="breadcrumb-item"><a class="text-white" href="alboDOro.php">Albo D'Oro</a></li>
-                          <li class="breadcrumb-item"><a class="text-white" href="dettagliCompetizione.php">Dettagli Competizione</a></li>
-                          <li class="breadcrumb-item text-white active" aria-current="page">Dettagli Rosa</li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Contattaci</li>
                         </ol>
                     </nav>
                 </div>
@@ -81,67 +73,68 @@
     </div>
     <!-- Hero End -->
 
-    <!-- Dettagli Rosa Start -->
-    <div class="container-fluid destination py-5">
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
       <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 700px;">
-            <h1 class="display-6 mb-5">Rosa <?php echo $nome_fantasquadra, " del ", $anno?></h1>
-          </div>
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+          <h1 class="mb-4">Contattaci</h1>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="table-responsive">
-              <table class="classifica-table">
-                <thead>
-                <tr>
-                  <th>Ruolo</th>
-                  <th>Nome Giocatore</th>
-                  <th>Squadra Reale</th>
-                  <th>Crediti Spesi</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                  $query = "SELECT R.nome_fantasquadra, R.crediti_pagati, G.nome_giocatore, G.squadra_reale, G.ruolo
-                                  FROM rosa AS R, giocatore AS G
-                                  WHERE R.id_giocatore = G.id_giocatore
-                                  AND R.nome_fantasquadra = '$nome_fantasquadra'
-                                  AND R.anno = '$anno'
-                                  ORDER BY G.ruolo DESC";
-                  $result = $conn->query($query);
-
-                  $matches_by_day = array();
-
-                  if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                ?>
-                      <tr>
-                        <td><?php echo $row['ruolo']; ?></td>
-                        <td><?php echo $row['nome_giocatore']; ?></td>
-                        <td><?php echo $row['squadra_reale']; ?></td>
-                        <td><?php echo $row['crediti_pagati']; ?></td>
-                      </tr>
-                <?php
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <p class="text-center mb-4">Se necessiti di maggiorni informazioni o hai delle curiosità, contattaci!</p>
+            <div class="wow fadeIn" data-wow-delay="0.3s">
+              <form action="php/email.php" method="POST">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il tuo nome" required>
+                      <label for="name">Nome</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua Email" required>
+                      <label for="email">Email</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="subject" name="subject" placeholder="Inserisci l'oggetto del messaggio" required>
+                      <label for="subject">Oggetto</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <textarea class="form-control" placeholder="Inserisci il tuo messaggio" id="message" name="message" style="height: 150px" required></textarea>
+                      <label for="message">Messaggio</label>
+                    </div>
+                  </div>
+                  <?php
+                    if ($_GET['check'] != null && $_GET['check'] != 'true') {
+                  ?>
+                      <br>
+                      <p class="text-center mb-4"><?php echo $_GET['check']?></p>
+                  <?php ;
                     }
-                  } else {
-                    echo "Nessun giocatore trovato per questa rosa";
-                  }
-                ?>
-                </tbody>
-              </table>
+                  ?>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100 py-3" type="submit">Invia Messaggio</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Dettagli Rosa End -->
 
+    <!-- Contact End -->
 
     <?php
     include 'footer.html';
     ?>
-
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>

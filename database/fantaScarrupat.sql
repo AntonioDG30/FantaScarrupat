@@ -124,13 +124,13 @@ VALUES ('Lambrate FC', 'LambrateFC.jpeg', 'Cristian Cecere', 'team-2.jpg', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
 VALUES ('Napolethanos', 'Napolethanos.jpeg', 'Mario Castaldi', 'team-2.jpg', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
-VALUES ('F.C. Volante', 'FCVolante.png', 'Vincenzo Gervasio', 'team-2.jpg', '1');
+VALUES ('FC Volante', 'FCVolante.png', 'Vincenzo Gervasio', 'team-2.jpg', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
-VALUES ('F.C. VEDIAMOLANNOPROSSIMO', 'FCAlastor.jpeg', 'Francesco Parolisi', 'team-2.jpg', '1');
+VALUES ('Ingegneri del Goal', 'IngegneriDelGoal.png', 'Francesco Parolisi', 'team-2.jpg', '1');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
-VALUES ('Quadrato Team', 'FCAlastor.jpeg', 'Giuseppe Costanzo', 'team-2.jpg', '0');
+VALUES ('Quadrato Team', 'QuadratoTeam.png', 'Giuseppe Costanzo', 'team-2.jpg', '0');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
-VALUES ('Mainz Na Gioia', 'FCAlastor.jpeg', 'Emanuele Torcia', 'team-2.jpg', '0');
+VALUES ('Mainz Na Gioia', 'MainzNaGioia.jpeg', 'Emanuele Torcia', 'team-2.jpg', '0');
 INSERT INTO fantasquadra (nome_fantasquadra, scudetto, fantallenatore, immagine_fantallenatore, flag_attuale)
 VALUES ('FC Alastor', 'FCAlastor.jpeg', 'Antonio Guarino', 'team-2.jpg', '0');
 
@@ -173,13 +173,13 @@ VALUES ('Serie A', '2021', 'Mainz Na Gioia');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Serie A', '2022', 'FC Lukand');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('Serie A', '2023', 'F.C. Volante');
+VALUES ('Serie A', '2023', 'FC Volante');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Champions League', '2019', 'FC Pocholoco');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Champions League', '2020', 'FC Pocholoco');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
-VALUES ('Champions League', '2021', 'F.C. Volante');
+VALUES ('Champions League', '2021', 'FC Volante');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
 VALUES ('Champions League', '2022', 'FC Lukand');
 INSERT INTO competizione_disputata (nome_competizione, anno, vincitore)
@@ -212,7 +212,3 @@ INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
 VALUES ('team-3.jpg', 'team numero 3', '0');
 INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
 VALUES ('team-4.jpg', 'team numero 4', '1');
-
-
-INSERT INTO admin (email, password, nome, cognome, data_nascita)
-VALUES ('antonio.digi30@hotmail.com', SHA2('FantaScarrupat2024!', 256), 'Antonio', 'Di Giorgio', '2000-12-05');

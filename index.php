@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>AI.Tech - Artificial Intelligence HTML Template</title>
+    <title>FantaScarrupat</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,10 +70,10 @@
                       dove la passione per il calcio si trasforma in una vera e propria leggenda! Esplora la nostra storia,
                       scopri quali sono state le sfide più affinchenti e chi è il campione in carica!</p>
                     <a href="partecipanti.php" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Partecipanti</a>
-                    <a href="contact.html" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contattaci</a>
+                    <a href="contattaci.php?check=true" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contattaci</a>
                 </div>
                 <div class="col-lg-6 align-self-end text-center text-lg-end">
-                    <img class="img-fluid" src="img/rovesciata2.png" alt="">
+                    <img class="img-fluid" src="img/rovesciata.png" alt="">
                 </div>
             </div>
         </div>
@@ -194,7 +193,7 @@
                                         <p> Il fondamento del nostro gioco. Qui troverai tutte le regole ufficiali
                                           che governano la nostra lega, garantendo una competizione equa
                                           e appassionante per tutti i partecipant</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
+                                        <a class="btn px-3 mt-auto mx-auto" href="regolamento.php">Approfondisci</a>
                                     </div>
                                 </div>
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
@@ -221,7 +220,7 @@
                                         <p>Una vetrina dei campioni. Scopri i vincitori delle passate stagioni,
                                           i loro trionfi e le loro sfide più affincenti che li hanno portati alla gloria
                                           eterna.</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="">Approfondisci</a>
+                                        <a class="btn px-3 mt-auto mx-auto" href="alboDOro.php">Approfondisci</a>
                                     </div>
                                 </div>
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.7s">

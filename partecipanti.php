@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>AI.Tech - Artificial Intelligence HTML Template</title>
+    <title>FantaScarrupat</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,10 +37,6 @@
       global $conn;
       include 'php/contVisual.php';
 
-      // Verifica la connessione
-      if ($conn->connect_error) {
-        die("Connessione fallita: " . $conn->connect_error);
-      }
     ?>
     <!-- Spinner Start -->
     <div id="spinner"
@@ -72,7 +67,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 align-self-end text-center text-lg-end">
-                    <img class="img-fluid" src="img/hero-img.png" alt="" style="max-height: 300px;">
+                    <img class="img-fluid" src="img/player_mezzo_busto.png" alt="" style="max-height: 300px;">
                 </div>
             </div>
         </div>
