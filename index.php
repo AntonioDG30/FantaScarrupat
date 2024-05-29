@@ -62,7 +62,7 @@
                     </h1>
                     <p class="text-white mb-4 animated slideInRight">Benvenuti nel mondo straordinario di Fantascarrupat,
                       dove la passione per il calcio si trasforma in una vera e propria leggenda! Esplora la nostra storia,
-                      scopri quali sono state le sfide più affinchenti e chi è il campione in carica!</p>
+                      scopri quali sono state le sfide più affascinanti e chi è il campione in carica!</p>
                     <a href="partecipanti.php" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Partecipanti</a>
                     <a href="contattaci.php?check=true" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contattaci</a>
                 </div>
@@ -85,11 +85,11 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">La Nostra Storia</h1>
                     <p class="mb-4">Nel lontano 2016, da un nucleo di sei giovani impavidi, dalla mente fervida di passione calcistica,
-                      sorse un'idea destinata a plasmare il loro destino e a cementare un legame indissolubile.
+                      sorse un'idea destinata a plasmare il loro destino e a instaurare un legame indissolubile.
                       Giovani ardimentosi, con età compresa tra i 15 e i 16 anni, affrontavano insieme i banchi della scuola,
                       una piccola istituzione chiamata "ITI & LS F. Giordani" a Caserta.
                       Ma non era solo l'istruzione a unirli; era il calcio, una fiamma che ardeva nei loro cuori,
-                      che li spinse oltre il semplice compito di studenti.</p>
+                      che li spinse oltre il semplice ruolo di studenti.</p>
                     <p class="mb-4">Fu su un mezzo di trasporto, un modesto autobus della ditta "Castaldo", che
                       il destino tessé la trama della loro epopea. L'autobus, grigio e anonimo agli occhi dei più,
                       divenne il loro santuario, il palcoscenico delle loro gesta e dei loro battibecchi. Era lì che

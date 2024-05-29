@@ -1,4 +1,6 @@
 <?php
+require '../vendor/autoload.php'; // Utilizza Composer (raccomandato)
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Recupera i dati del form
   $name = htmlspecialchars(trim($_POST['name']));
@@ -19,16 +21,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     "Oggetto: $subject\n\n".
     "Messaggio:\n$message\n";
 
-  // Intestazioni email
-  $headers = 'From: "' . $name . '" <' . $email . '>';
+  // Configurazione SendGrid
+  $sendgrid_api_key = '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';
+  $email = new \SendGrid\Mail\Mail();
+  $email->setFrom("antonio.digi30@hotmail.com", $name); // Mittente impostato come stesso indirizzo
+  $email->setSubject($email_subject);
+  $email->addTo($to);
+  $email->addContent("text/plain", $email_body);
 
-  // Invia l'email
-  if (mail($to, $email_subject, $email_body, $headers)) {
-    // Reindirizza a una pagina di ringraziamento o mostra un messaggio di successo
-    header("Location: ../contattaci.php?check=Messaggio inviato con successo!");
-  } else {
-    // Mostra un messaggio di errore
-    header("Location: ../contattaci.php?check=Errore nell'invio del messaggio. Riprova più tardi.");
+  $sendgrid = new \SendGrid($sendgrid_api_key);
+
+  try {
+    $response = $sendgrid->send($email);
+    if ($response->statusCode() == 202) {
+      // Reindirizza a una pagina di ringraziamento o mostra un messaggio di successo
+      header("Location: ../contattaci.php?check=Messaggio inviato con successo!");
+    } else {
+      // Mostra un messaggio di errore
+      header("Location: ../contattaci.php?check=Errore nell'invio del messaggio. Riprova più tardi.");
+    }
+  } catch (Exception $e) {
+    // Mostra un messaggio di errore con dettagli sull'eccezione
+    $error_message = $e->getMessage();
+    echo "Errore durante l'invio dell'email: $error_message";
   }
 } else {
   // Mostra un messaggio di errore se il metodo non è POST
