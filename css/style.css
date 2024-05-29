@@ -247,6 +247,17 @@ h6,
   left: 0;
 }
 
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+
+  .timeline .days .day .events .date {
+    text-align: left;
+    font-size: 18px;
+    white-space: normal;
+  }
+}
+
+
 
 
 /*** Gallery ***/
