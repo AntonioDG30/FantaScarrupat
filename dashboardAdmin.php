@@ -374,7 +374,14 @@
                 <li>
                   <a href="<?php echo $row["page_url"]?>">
                     <div class="top-cat-list__title">
-                      <?php echo  pathinfo(basename($row["page_url"]), PATHINFO_FILENAME); ?> <span><?php echo $row["views"]?></span>
+                      <?php
+                        if (pathinfo(basename($row["page_url"]), PATHINFO_FILENAME) != null) {
+                          echo  pathinfo(basename($row["page_url"]), PATHINFO_FILENAME);
+                        } else {
+                          echo "index";
+                        }
+                      ?>
+                      <span><?php echo $row["views"]?></span>
                     </div>
                   </a>
                 </li>
