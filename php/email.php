@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $message = htmlspecialchars(trim($_POST['message']));
 
   // Imposta l'email del destinatario
-  $to = "antonio.digi30@hotmail.com";
+  $to = "fantascarrupat@gmail.com";
 
   // Imposta l'oggetto dell'email
   $email_subject = "Nuovo messaggio da: $name";
@@ -22,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     "Messaggio:\n$message\n";
 
   // Configurazione SendGrid
-  $sendgrid_api_key = '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';
+  $sendgrid_api_key = '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';
   $email = new \SendGrid\Mail\Mail();
-  $email->setFrom("antonio.digi30@hotmail.com", $name); // Mittente impostato come stesso indirizzo
+  $email->setFrom("fantascarrupat@gmail.com", $name); // Mittente impostato come stesso indirizzo
   $email->setSubject($email_subject);
   $email->addTo($to);
   $email->addContent("text/plain", $email_body);
