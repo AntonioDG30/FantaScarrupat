@@ -793,7 +793,6 @@ a:is(:hover, :focus) figcaption {
 /*** Hero Header ***/
 .hero-header {
     margin-top: -75px;
-    background: url(../img/bg-hero.png) center center no-repeat;
     background-size: cover;
 }
 
@@ -870,7 +869,6 @@ a:is(:hover, :focus) figcaption {
 
 /*** Feature ***/
 .feature {
-    background: url(../img/bg-hero.png) center center no-repeat;
     background-size: cover;
 }
 

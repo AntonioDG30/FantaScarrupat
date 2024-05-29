@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-  <!-- Coockie Start -->
   <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/iubenda_cs.js"/>
   <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/tcf/stub-v2.js"/>
   <script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
@@ -39,36 +34,14 @@
         closeButtonDisplay: true,
         closeButtonRejects: true,
         fontSizeBody: "14px",
-      }
-    };
-
-    // Funzione per eseguire contVisual.php dopo l'accettazione del consenso
-    function executeContVisual() {
-      // Esegui una richiesta AJAX per eseguire contVisual.php
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "php/contVisual.php", true);
-      xhr.send();
+      },
     }
-
-    // Verifica se è già stato dato il consenso ai cookie
-    var consentGiven = document.cookie.indexOf('consent_cookie=true') !== -1;
-
-    // Se il consenso non è stato già dato, mostra il banner di accettazione dei cookie
-    if (!consentGiven) {
-      _iub.cs.showBanner();
-    }
-
-    // Gestione del click sul pulsante di accettazione dei cookie
-    _iub.cs.addEventListener('consentGiven', function () {
-      // Imposta il cookie di consenso con una durata di 365 giorni
-      document.cookie = 'consent_cookie=true; expires=' + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
-      // Esegui contVisual.php
-      executeContVisual();
-    });
   </script>
   <script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script>
-
-  <!-- Coockie End -->
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
 
   <!-- Navbar Start -->
   <div class="container-fluid sticky-top">

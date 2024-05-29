@@ -30,5 +30,8 @@
     <orderEntry type="library" name="chart.js" level="application" />
     <orderEntry type="library" name="stub-v2" level="application" />
     <orderEntry type="library" name="iubenda_cs" level="application" />
+    <orderEntry type="library" name="3651820" level="application" />
+    <orderEntry type="library" name="safe-tcf-v2" level="application" />
+    <orderEntry type="library" name="stub" level="application" />
   </component>
 </module>

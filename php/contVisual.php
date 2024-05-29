@@ -2,8 +2,11 @@
 global $conn;
 include 'php/connectionDB.php';
 
-// Verifica se il consenso ai cookie è stato dato utilizzando il sistema Iubenda
-$consent_given = isset($_COOKIE['_iub_cs-saved-consent']) && $_COOKIE['_iub_cs-saved-consent'] !== '';
+
+
+// Verifica il consenso degli utenti
+$cookie_data = json_decode($_COOKIE['_iub_cs-25338369'], true);
+$consent_given = isset($cookie_data['consent']) && $cookie_data['consent'] === true;
 
 if ($consent_given) {
   // Ottieni l'indirizzo IP del visitatore
@@ -22,7 +25,7 @@ if ($consent_given) {
   // Tempo massimo di inattività (in secondi)
   $max_inactive_time = 1800; // 30 minuti
 
-  // Verifica se esiste una sessione attiva per questo IP
+// Verifica se esiste una sessione attiva per questo IP
   $sql = "SELECT * FROM sessions WHERE ip_address = '$anon_ip_address' ORDER BY last_activity DESC LIMIT 1";
   $result = $conn->query($sql);
 
@@ -60,6 +63,13 @@ if ($consent_given) {
     $sql = "INSERT INTO page_views (date, page_url, views) VALUES (CURDATE(), '$page_url', 1)";
     $conn->query($sql);
   }
+} else {
+  ?>
+    <script>
+      console.log("Consenso ai cookie non dato non dato");
+    </script>
+  <?php
+
 }
 
 // Funzione per anonimizzare l'indirizzo IP

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bootstrap, bootstrap-icons, chart.js, font-awesome, iubenda_cs, jquery, stub-v2, sweetalert}" />
+    <file url="PROJECT" libraries="{3651820, bootstrap, bootstrap-icons, chart.js, font-awesome, iubenda_cs, jquery, safe-tcf-v2, stub, stub-v2, sweetalert}" />
   </component>
 </project>
