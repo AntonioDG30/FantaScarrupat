@@ -205,10 +205,6 @@ INSERT INTO tipologia_partita (tipologia)
 VALUES ('Finale');
 
 INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
-VALUES ('team-1.jpg', 'team numero 1', '1');
+VALUES ('Asta_2019.jpg', 'Asta 2019', '1');
 INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
-VALUES ('team-2.jpg', 'team numero 2', '1');
-INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
-VALUES ('team-3.jpg', 'team numero 3', '0');
-INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
-VALUES ('team-4.jpg', 'team numero 4', '1');
+VALUES ('Asta_2023.jpg', 'Asta 2019', '1');
