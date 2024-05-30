@@ -207,4 +207,4 @@ VALUES ('Finale');
 INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
 VALUES ('Asta_2019.jpg', 'Asta 2019', '1');
 INSERT INTO immagine (nome_immagine, descrizione_immagine, flag_visibile)
-VALUES ('Asta_2023.jpg', 'Asta 2019', '1');
+VALUES ('Asta_2023.jpg', 'Asta 2023', '1');
