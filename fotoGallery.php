@@ -88,7 +88,7 @@ include 'navbar.html';
 <div class="gallery">
   <ul class="ul_gallery">
     <?php
-      $query = "SELECT * FROM immagine WHERE flag_visibile = 1";
+      $query = "SELECT * FROM immagine WHERE flag_visibile = 1  ORDER BY id_immagine DESC";
       $result = $conn->query($query);
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
