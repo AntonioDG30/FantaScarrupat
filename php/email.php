@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     "Messaggio:\n$message\n";
 
   // Configurazione SendGrid
-  $sendgrid_api_key = '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';
+  $sendgrid_api_key = '';
   $email = new \SendGrid\Mail\Mail();
   $email->setFrom("fantascarrupat@gmail.com", $name); // Mittente impostato come stesso indirizzo
   $email->setSubject($email_subject);
