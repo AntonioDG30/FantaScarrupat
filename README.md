@@ -60,4 +60,4 @@ Feel free to explore the code, customize it, and adapt it to your own fantasy le
 
 ## License
 
-This project is licensed under the MIT License and HTML Cotex License. See the [LICENSE](LICENSE.txt) file for more details.
+This project is licensed under the MIT License and HTML Codex License. See the [LICENSE](LICENSE.txt) file for more details.
