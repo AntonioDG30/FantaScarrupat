@@ -199,17 +199,17 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "2.1.0",
-            "version_normalized": "2.1.0.0",
+            "version": "2.1.1",
+            "version_normalized": "2.1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "dbed77bd3a0f68f96c0dd68ad4499d5674fecc3e"
+                "reference": "4e58d8ae1502d7f22af9e4cfeb2d645e243dec4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/dbed77bd3a0f68f96c0dd68ad4499d5674fecc3e",
-                "reference": "dbed77bd3a0f68f96c0dd68ad4499d5674fecc3e",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/4e58d8ae1502d7f22af9e4cfeb2d645e243dec4e",
+                "reference": "4e58d8ae1502d7f22af9e4cfeb2d645e243dec4e",
                 "shasum": ""
             },
             "require": {
@@ -254,7 +254,7 @@
                 "mpdf/mpdf": "Option for rendering PDF with PDF Writer",
                 "tecnickcom/tcpdf": "Option for rendering PDF with PDF Writer"
             },
-            "time": "2024-05-11T04:17:56+00:00",
+            "time": "2024-09-29T07:06:46+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -300,7 +300,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/2.1.0"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/2.1.1"
             },
             "install-path": "../phpoffice/phpspreadsheet"
         },
