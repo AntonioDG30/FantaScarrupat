@@ -148,6 +148,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $objPHPExcel = IOFactory::load($file_path);
   $sheet = $objPHPExcel->getActiveSheet();
 
+  // Inizializziamo gli elementi delle partite globali
+  $giornata = -1;
+  $tipologia = 'Calendario';
+  $girone = null;
 
   if ($competizione == 'NBA') {
     $file_calendario2 = $_FILES['fileClaendario2'];
@@ -175,10 +179,6 @@ function leggiFileExcel($sheet, $id_competizione_disputata, $nomiSquadre, $tipol
 
   global $giornata, $tipologia, $conn, $girone, $id_competizione_disputata;
 
-  // Inizializziamo gli elementi delle partite globali
-  $giornata = -1;
-  $tipologia = 'Calendario';
-  $girone = null;
 
   // Itera sulle righe del foglio di lavoro
   foreach ($sheet->getRowIterator() as $indice => $row) {
