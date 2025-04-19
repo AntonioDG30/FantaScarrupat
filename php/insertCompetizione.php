@@ -31,16 +31,19 @@ function upload_file($file, $path) {
     if (in_array($file_ext, $allowed_exts) && in_array($file_mime, $allowed_mimes)) {
       if ($file_size <= $max_size) {
         $original_name = pathinfo($file_name, PATHINFO_FILENAME);
-        $counter = 1;
-        $nome_finale = $original_name . '.' . $file_ext;
 
-        while (true) {
-          if (!file_exists($path . $nome_finale)) {
-            break;
-          } else {
-            $nome_finale = $original_name . '_' . $counter . '.' . $file_ext;
-            $counter++;
-          }
+        // Calcolo degli anni
+        $anno_attuale = date('Y');
+        $anno_precedente = $anno_attuale - 1;
+
+        // Genera nome con anni
+        $base_name = $original_name . "_{$anno_precedente}_{$anno_attuale}";
+        $counter = 1;
+        $nome_finale = $base_name . '.' . $file_ext;
+
+        while (file_exists($path . $nome_finale)) {
+          $nome_finale = $base_name . '_' . $counter . '.' . $file_ext;
+          $counter++;
         }
 
         $file_dest = $path . $nome_finale;
@@ -88,6 +91,7 @@ function upload_file($file, $path) {
     exit;
   }
 }
+
 
 // Verifica se il form è stato inviato
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -140,15 +144,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   }
 
-  // Carica il file Excel
+  // Carica i file Excel
   $objPHPExcel = IOFactory::load($file_path);
   $sheet = $objPHPExcel->getActiveSheet();
+
+
+  if ($competizione == 'NBA') {
+    $file_calendario2 = $_FILES['fileClaendario2'];
+    $file_path2 = upload_file($file_calendario2, '../file/');
+
+    $objPHPExcel2 = IOFactory::load($file_path2);
+    $sheet2 = $objPHPExcel2->getActiveSheet();
+
+    leggiFileExcel($sheet, $id_competizione_disputata, $nomiSquadre, $tipologia_partita, $competizione);
+    leggiFileExcel($sheet2, $id_competizione_disputata, $nomiSquadre, $tipologia_partita, $competizione);
+
+  } else {
+    leggiFileExcel($sheet, $id_competizione_disputata, $nomiSquadre, $tipologia_partita, $competizione);
+  }
+
+  // Calcola e aggiorna il vincitore della competizione
+  calcolaVincitoreCompetizione($id_competizione_disputata, $nome_competizione);
+
+  echo "Competizione inserita correttamente.";
+  header("Location: ../gestisciCompetizioni.php");
+  exit;
+}
+
+function leggiFileExcel($sheet, $id_competizione_disputata, $nomiSquadre, $tipologia_partita, $competizione) {
+
+  global $giornata, $tipologia, $conn, $girone, $id_competizione_disputata;
 
   // Inizializziamo gli elementi delle partite globali
   $giornata = -1;
   $tipologia = 'Calendario';
   $girone = null;
-  $sql = '';
 
   // Itera sulle righe del foglio di lavoro
   foreach ($sheet->getRowIterator() as $indice => $row) {
@@ -172,13 +202,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       continue;
     }
   }
-
-  // Calcola e aggiorna il vincitore della competizione
-  calcolaVincitoreCompetizione($id_competizione_disputata, $nome_competizione);
-
-  echo "Competizione inserita correttamente.";
-  header("Location: ../gestisciCompetizioni.php");
-  exit;
 }
 
 function estraiValori($data, $i)
