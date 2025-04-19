@@ -97,6 +97,11 @@ include 'navbar.html';
           </a>
         </li>
         <li class="nav-item">
+          <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#NBA">
+            <span class="text-dark" style="width: 150px;">NBA</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#CoppaItalia">
             <span class="text-dark" style="width: 150px;">Coppa Italia</span>
           </a>
@@ -254,6 +259,90 @@ include 'navbar.html';
                           GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
                           FROM competizione_disputata as C, fantasquadra AS F
                           WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'Champions League'
+                          GROUP BY F.nome_fantasquadra ORDER BY vittorie DESC";
+                  $result = $conn->query($query);
+                  if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                      ?>
+                      <tr>
+                        <th><img class="img-fluid-logo" src="img/scudetti/<?php echo $row["scudetto"]?>"></th>
+                        <td><?php echo $row["nome_fantasquadra"]?></td>
+                        <td><?php echo $row["fantallenatore"]?></td>
+                        <td><?php echo $row["vittorie"]?></td>
+                        <td><span class="toggle-icon">+</span></td>
+                      </tr>
+                      <tr class="hidden-row">
+                        <td colspan="5">
+                          <?php echo $row["anni_vittoria"]?>
+                        </td>
+                      </tr>
+                      <?php
+                    }
+                  }
+                  ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div id="NBA" class="tab-pane fade show p-0">
+          <div class="row">
+            <?php
+            $query = "SELECT C.id_competizione_disputata, C.anno, F.nome_fantasquadra, F.scudetto, F.fantallenatore, C.nome_competizione FROM competizione_disputata as C,
+              fantasquadra AS F WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'NBA' ORDER BY C.anno DESC";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {
+                ?>
+                <div class="col-lg-3 col-md-6">
+                  <a href="#" class="dettagli-link" data-competizione="<?php echo $row["id_competizione_disputata"]?>" data-anno="<?php echo $row["anno"]; ?>">
+                    <div class="single-unique-product">
+                      <div class="descAnno">
+                        <h4>
+                          <?PHP echo $row["anno"]-1 ?>/<?PHP echo $row["anno"]?>
+                        </h4>
+                      </div>
+                      <img class="img-fluid" src="img/scudetti/<?PHP echo$row["scudetto"]?>" alt="">
+                      <div class="descVin">
+                        <h4>
+                          <?PHP echo $row["nome_fantasquadra"]?>
+                        </h4>
+                        <h6>
+                          <?PHP echo $row["fantallenatore"]?>
+                        </h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <?php
+              }
+            }
+            ?>
+          </div>
+          <br>
+          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-6 mb-5">Palmares</h1>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="thead-primary">
+                  <tr>
+                    <th colspan="2">FantaSquadra</th>
+                    <th>Allenatore</th>
+                    <th>Vittorie</th>
+                    <th>Estendi</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php
+                  $query = "SELECT COUNT(id_competizione_disputata) as vittorie, F.nome_fantasquadra, F.scudetto, F.fantallenatore,
+                          GROUP_CONCAT(DISTINCT CONCAT(' ', (C.anno) - 1), '/', C.anno) AS anni_vittoria
+                          FROM competizione_disputata as C, fantasquadra AS F
+                          WHERE F.nome_fantasquadra = C.vincitore AND nome_competizione = 'NBA'
                           GROUP BY F.nome_fantasquadra ORDER BY vittorie DESC";
                   $result = $conn->query($query);
                   if ($result->num_rows > 0) {
