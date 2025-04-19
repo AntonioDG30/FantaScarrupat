@@ -12,9 +12,12 @@
     function mostraNuovaCompetizione() {
       var competizioneSelezionata = document.getElementById("competizione").value;
       var nuovaCompetizioneDiv = document.getElementById("nuova_competizione");
+      var NbaCompetizioneDiv = document.getElementById("nba_competizione");
 
       if (competizioneSelezionata === "nuova_competizione") {
         nuovaCompetizioneDiv.style.display = "block";
+      } else if (competizioneSelezionata === "NBA") {
+        NbaCompetizioneDiv.style.display = "block";
       } else {
         nuovaCompetizioneDiv.style.display = "none";
       }
@@ -46,7 +49,7 @@ $anno_result = $conn->query($anno_query);
     <h2 class="main-title">Inserisci Nuova Competizione</h2>
     <form class="sign-up-form form" action="php/insertCompetizione.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
       <label class="form-label-wrapper">
-        <p class="form-label">Tipologia Competizione</p>
+        <p class="form-label">Competizione</p>
         <select id="competizione" name="competizione" onchange="mostraNuovaCompetizione()">
           <?php
           if ($competizioni_result->num_rows > 0) {
@@ -65,7 +68,7 @@ $anno_result = $conn->query($anno_query);
           <input class="form-input" type="text" name="nomeCompetizione" placeholder="Inserisci Nome Competizione">
         </label>
         <label class="form-label-wrapper">
-          <p class="form-label">Tipologia Competizione</p>
+          <p class="form-label">Competizione</p>
           <select id="tipologia" name="tipologia">
             <?php
             if ($tipologie_result->num_rows > 0) {
@@ -82,6 +85,13 @@ $anno_result = $conn->query($anno_query);
         <p class="form-label">File Calendario</p>
         <input class="form-input-file" type="file" id="fileClaendario" name="fileClaendario" required>
       </label>
+      <div id="nba_competizione" style="display:none;">
+      	<br>
+        <label class="form-label-wrapper">
+          <p class="form-label">File Calendario 2</p>
+          <input class="form-input-file" type="file" id="fileClaendario2" name="fileClaendario2" required>
+        </label>
+      </div>
       <?php
       if (isset($_GET['check']) && $_GET['check'] != 'start') {
         ?>
