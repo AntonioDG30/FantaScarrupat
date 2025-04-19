@@ -39,37 +39,33 @@
 <body>
 
 <?php
-global $conn;
-global $id_competizione;
-global $tipologia_competizione;
-global $anno;
-$id_competizione = $_GET['id_competizione'];;
-include 'php/contVisual.php';
+  global $conn;
+  global $id_competizione;
+  global $tipologia_competizione;
+  global $anno;
+  $id_competizione = $_GET['id_competizione'];;
+  include 'php/contVisual.php';
 
-$query1 = "SELECT * FROM competizione_disputata WHERE id_competizione_disputata = $id_competizione";
-$result1 = $conn->query($query1);
-if ($result1->num_rows > 0) {
-  while ($row1 = $result1->fetch_assoc()) {
-    $nome_competizione = $row1['nome_competizione'];
-    $anno = $row1['anno'];
-    $vincitore = $row1['vincitore'];
-  }
+  $query1 = "SELECT * FROM competizione_disputata WHERE id_competizione_disputata = $id_competizione";
+  $result1 = $conn->query($query1);
+  if ($result1->num_rows > 0) {
+    while ($row1 = $result1->fetch_assoc()) {
+      $nome_competizione = $row1['nome_competizione'];
+      $anno = $row1['anno'];
+      $vincitore = $row1['vincitore'];
+    }
 
-  $query2 = "SELECT tipologia FROM competizione
-                 WHERE nome_competizione IN (SELECT nome_competizione FROM competizione_disputata
-                                              WHERE nome_competizione = '$nome_competizione')";
-  $result2 = $conn->query($query2);
-  if ($result2->num_rows > 0) {
-    while ($row2 = $result2->fetch_assoc()) {
-      $tipologia_competizione = $row2["tipologia"];
+    $query2 = "SELECT tipologia FROM competizione
+                  WHERE nome_competizione IN (SELECT nome_competizione FROM competizione_disputata
+                                                WHERE nome_competizione = '$nome_competizione')";
+    $result2 = $conn->query($query2);
+    if ($result2->num_rows > 0) {
+      while ($row2 = $result2->fetch_assoc()) {
+        $tipologia_competizione = $row2["tipologia"];
+      }
     }
   }
-}
-
-
-
 ?>
-
 
 <!-- Spinner Start -->
 <div id="spinner"
@@ -133,7 +129,7 @@ include 'navbar.html';
           </a>
         </li>
         <?php
-          } else if ($tipologia_competizione == "A Gruppi") {
+          } else if ($tipologia_competizione == "A Gruppi" || $tipologia_competizione == "Mista") {
         ?>
         <li class="nav-item">
           <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#Classifica">
@@ -157,9 +153,9 @@ include 'navbar.html';
       <div class="tab-content">
         <div id="Classifica" class="tab-pane fade show p-0 active">
           <?php
-          if ($tipologia_competizione == "A Calendario") {
+          if ($tipologia_competizione == "A Calendario" || $tipologia_competizione == "Mista") {
             $sql = "SELECT nome_fantasquadra_casa, nome_fantasquadra_trasferta, gol_casa, gol_trasferta,
-    punteggio_casa, punteggio_trasferta, tipologia FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione";
+    punteggio_casa, punteggio_trasferta, tipologia FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione AND tipologia = 'Calendario' ORDER BY id_partita;";
             generaClassifica();
           } else if ($tipologia_competizione == "A Gruppi") {
             $sql = "SELECT DISTINCT girone from partita_avvessario WHERE id_competizione_disputata = $id_competizione AND girone IS NOT NULL";
@@ -248,7 +244,7 @@ include 'navbar.html';
           ?>
           <?php
           global $tipologia_competizione;
-          if ($tipologia_competizione == "A Gruppi" ) {
+          if ($tipologia_competizione == "A Gruppi") {
             ?>
             <h3>Girone <?php echo $girone ?> </h3>
             <?php
@@ -319,7 +315,7 @@ include 'navbar.html';
         <div id="Tabellone" class="tab-pane fade show p-0">
           <div class="bracket">
             <?php
-            if ($tipologia_competizione == "A Gruppi") {
+            if ($tipologia_competizione == "A Gruppi" || $tipologia_competizione == "Mista") {
               $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione ORDER BY id_partita, tipologia;";
               $result = $conn->query($query);
 
@@ -338,7 +334,7 @@ include 'navbar.html';
                   );
 
                   // Filtra solo le tipologie di interesse
-                  if (in_array($row['tipologia'], ['Quarti di Finale', 'Semifinali', 'Finale'])) {
+                  if (in_array($row['tipologia'], ['Quarti', 'Semifinali', 'Finale'])) {
                     // Identificare le partite di andata e ritorno
                     $key = $row['nome_fantasquadra_casa'] . '-' . $row['nome_fantasquadra_trasferta'];
                     $reverse_key = $row['nome_fantasquadra_trasferta'] . '-' . $row['nome_fantasquadra_casa'];
@@ -429,9 +425,7 @@ include 'navbar.html';
             <?php
             $query = "SELECT * FROM partita_avvessario WHERE id_competizione_disputata = $id_competizione ORDER BY giornata, id_partita;";
             $result = $conn->query($query);
-
             $matches_by_day = array();
-
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 $match = array(
@@ -442,18 +436,15 @@ include 'navbar.html';
                   'gol_casa' => $row['gol_casa'],
                   'gol_trasferta' => $row['gol_trasferta']
                 );
-
                 if (!isset($matches_by_day[$row['giornata']])) {
                   $matches_by_day[$row['giornata']] = array();
                 }
-
                 $matches_by_day[$row['giornata']][] = $match;
               }
             } else {
               echo 'Nessuna partita trovata.';
             }
             ?>
-
             <?php foreach ($matches_by_day as $giornata => $matches) { ?>
               <div class="giornata">
                 <div class="giornata-header">
@@ -478,11 +469,9 @@ include 'navbar.html';
 </div>
 <!-- Albo D'Oro End -->
 
-
 <?php
 include 'footer.html';
 ?>
-
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
@@ -505,21 +494,22 @@ include 'footer.html';
 
       toggle.addEventListener("click", function() {
         hiddenRow.classList.toggle("hidden-row");
+
         icon.classList.toggle("rotate");
       });
     });
   });
-</script>
 
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
     var dettagliLinks = document.querySelectorAll('.dettagli-link');
 
     dettagliLinks.forEach(function(link) {
       link.addEventListener('click', function(event) {
         event.preventDefault();
-
         var competizione = this.getAttribute('data-competizione');
         var anno = this.getAttribute('data-anno');
         if (anno < 2023) {
@@ -531,13 +521,10 @@ include 'footer.html';
       });
     });
   });
-
-
 </script>
-
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
 </body>
-
 </html>
+
