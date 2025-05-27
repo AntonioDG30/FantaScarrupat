@@ -13,15 +13,23 @@
       var competizioneSelezionata = document.getElementById("competizione").value;
       var nuovaCompetizioneDiv = document.getElementById("nuova_competizione");
       var NbaCompetizioneDiv = document.getElementById("nba_competizione");
+      var fileCalendario2 = document.getElementById("fileClaendario2");
 
       if (competizioneSelezionata === "nuova_competizione") {
         nuovaCompetizioneDiv.style.display = "block";
+        NbaCompetizioneDiv.style.display = "none";
+        fileCalendario2.required = false;
       } else if (competizioneSelezionata === "NBA") {
+        nuovaCompetizioneDiv.style.display = "none";
         NbaCompetizioneDiv.style.display = "block";
+        fileCalendario2.required = true;
       } else {
         nuovaCompetizioneDiv.style.display = "none";
+        NbaCompetizioneDiv.style.display = "none";
+        fileCalendario2.required = false;
       }
     }
+
 
     function validateForm() {
       console.log("Form submitted");
