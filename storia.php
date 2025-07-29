@@ -195,6 +195,17 @@
           </div>
         </li>
 
+        <li class="day">
+          <div class="events">
+            <p>
+              Abbiamo rivisto il metodo di formazione della rosa introducendo
+              32 parametri: ciascun giocatore ne pesca due a sorte e deve
+              rispettarli durante le aste, rendendo il meccanismo più dinamico e coinvolgente.
+            </p>
+            <div class="date">Stagione 2025/2026</div>
+          </div>
+        </li>
+
       <div class="year year--end">
         <div class="inner">
           <span>
