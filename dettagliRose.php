@@ -86,7 +86,7 @@
       <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
           <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 700px;">
-            <h1 class="display-6 mb-5">Rosa <?php echo $nome_fantasquadra, " del ", $anno?></h1>
+            <h1 class="display-6 mb-5">Rosa <?php echo $nome_fantasquadra, " della stagione ", $anno-1, "/", $anno?></h1>
           </div>
         </div>
         <div class="row">
@@ -103,9 +103,10 @@
                 </thead>
                 <tbody>
                 <?php
-                  $query = "SELECT R.nome_fantasquadra, R.crediti_pagati, G.nome_giocatore, G.squadra_reale, G.ruolo
-                                  FROM rosa AS R, giocatore AS G
-                                  WHERE R.id_giocatore = G.id_giocatore
+                  $query = "SELECT R.nome_fantasquadra, D.crediti_pagati, G.nome_giocatore, G.squadra_reale, G.ruolo
+                                  FROM rosa AS R, giocatore AS G, dettagli_rosa AS D
+                                  WHERE D.id_giocatore = G.id_giocatore
+                                  AND R.id_rosa = D.id_rosa
                                   AND R.nome_fantasquadra = '$nome_fantasquadra'
                                   AND R.anno = '$anno'
                                   ORDER BY G.ruolo DESC";
@@ -125,8 +126,11 @@
                 <?php
                     }
                   } else {
-                    echo "Nessun giocatore trovato per questa rosa";
-                  }
+                    ?>
+                    <tr>
+                      <td colspan="4"><?php echo "Nessun giocatore trovato per questa rosa"; ?></td>
+                    </tr>
+                  <?php                  }
                 ?>
                 </tbody>
               </table>
@@ -134,6 +138,61 @@
           </div>
         </div>
       </div>
+
+
+      <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 700px;">
+            <h1 class="display-6 mb-5">Parametri che ha rispettato la rosa <?php echo $nome_fantasquadra?></h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="classifica-table">
+                <thead>
+                <tr>
+                  <th>Numero Parametro</th>
+                  <th>Descrizione Parametro</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+
+                $query = "SELECT PR.numero_parametro, PR.testo_parametro
+                                  FROM parametri_rosa AS PR, parametri_utilizzati AS PU, rosa AS R
+                                  WHERE PU.id_parametro = PR.id_parametro
+                                  AND PU.id_rosa  = R.id_rosa
+                                  AND R.nome_fantasquadra = '$nome_fantasquadra'
+                                  AND R.anno = '$anno'";
+                $result = $conn->query($query);
+
+                $matches_by_day = array();
+
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <tr>
+                      <td><?php echo $row['numero_parametro']; ?></td>
+                      <td><?php echo $row['testo_parametro']; ?></td>
+                    </tr>
+                    <?php
+                  }
+                } else {
+                  ?>
+                <tr>
+                  <td colspan="2"><?php echo "Nessun parametro trovato per questa rosa"; ?></td>
+                </tr>
+                <?php
+                }
+                ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <!-- Dettagli Rosa End -->
 

@@ -52,15 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           if (move_uploaded_file($file_tmp, $file_dest)) {
             return $nome_finale;
           } else {
-            header("Location: ../inserisciNuovoPartecipante.php?check=Errore durante lo spostamento del file caricato.");
+            header("Location: ../inserisciPartecipanti.php?check=Errore durante lo spostamento del file caricato.");
             exit;
           }
         } else {
-          header("Location: ../inserisciNuovoPartecipante.php?check=Il file caricato supera la dimensione massima consentita di 2MB.");
+          header("Location: ../inserisciPartecipanti.php?check=Il file caricato supera la dimensione massima consentita di 2MB.");
           exit;
         }
       } else {
-        header("Location: ../inserisciNuovoPartecipante.php?check=Tipo di file non supportato. Sono permessi solo JPG, JPEG, PNG, e GIF.");
+        header("Location: ../inserisciPartecipanti.php?check=Tipo di file non supportato. Sono permessi solo JPG, JPEG, PNG, e GIF.");
         exit;
       }
     } else {
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $error_msg = "Si è verificato un errore durante l'upload del file.";
           break;
       }
-      header("Location: ../inserisciNuovoPartecipante.php?check=$error_msg");
+      header("Location: ../inserisciPartecipanti.php?check=$error_msg");
       exit;
     }
   }
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: ../gestisciPartecipanti.php");
     exit;
   } else {
-    header("Location: ../inserisciNuovoPartecipante.php?check=Errore durante l'inserimento dei dati nel database: " . $conn->error);
+    header("Location: ../inserisciPartecipanti.php?check=Errore durante l'inserimento dei dati nel database: " . $conn->error);
     exit;
   }
 }

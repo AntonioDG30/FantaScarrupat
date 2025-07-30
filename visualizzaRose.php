@@ -31,13 +31,23 @@ if ($years_result->num_rows > 0) {
 }
 
 // Esegui la query per ottenere i giocatori della squadra selezionata per l'anno selezionato
-$query = "SELECT R.nome_fantasquadra, R.crediti_pagati, G.nome_giocatore, G.squadra_reale, G.ruolo
-          FROM rosa AS R, giocatore AS G
-          WHERE R.id_giocatore = G.id_giocatore
-          AND R.nome_fantasquadra = '$current_team'
-          AND R.anno = '$current_year'
-          ORDER BY G.ruolo DESC";
+$query = "SELECT R.nome_fantasquadra, D.crediti_pagati, G.nome_giocatore, G.squadra_reale, G.ruolo
+              FROM rosa AS R, giocatore AS G, dettagli_rosa AS D
+              WHERE D.id_giocatore = G.id_giocatore
+              AND R.id_rosa = D.id_rosa
+              AND R.nome_fantasquadra = '$current_team'
+              AND R.anno = '$current_year'
+              ORDER BY G.ruolo DESC";
 $result = $conn->query($query);
+
+// Esegui la query per ottenere i giocatori della squadra selezionata per l'anno selezionato
+$query2 = "SELECT PR.numero_parametro, PR.testo_parametro
+              FROM parametri_rosa AS PR, parametri_utilizzati AS PU, rosa AS R
+              WHERE PU.id_parametro = PR.id_parametro
+              AND PU.id_rosa  = R.id_rosa
+              AND R.nome_fantasquadra = '$current_team'
+              AND R.anno = '$current_year'";
+$result2 = $conn->query($query2);
 ?>
 
 <!DOCTYPE html>
@@ -124,6 +134,47 @@ include 'navbarAdmin.php';
             }
           } else {
             echo "<tr><td colspan='4'>Nessun giocatore trovato per questa squadra e anno.</td></tr>";
+          }
+          ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="team-year-header">
+      <?php
+      if ($current_team && $current_year) {
+        echo "Parametri della rosa ", htmlspecialchars($current_team);
+      } else {
+        echo "Seleziona una squadra e un anno";
+      }
+      ?>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="users-table table-wrapper">
+        <table class="posts-table">
+          <thead>
+          <tr class="users-table-info">
+            <th>Numero Parametro</th>
+            <th>Descrizione Parametro</th>
+          </tr>
+          </thead>
+          <tbody id="table-body">
+          <?php
+          // Popola la tabella con i risultati ottenuti dalla query
+          if ($result2->num_rows > 0) {
+            while ($row2 = $result2->fetch_assoc()) {
+              ?>
+              <tr>
+                <td><?php echo $row2["numero_parametro"]; ?></td>
+                <td><?php echo $row2["testo_parametro"] ?></td>
+              </tr>
+              <?php
+            }
+          } else {
+            echo "<tr><td colspan='2'>Nessun parametro trovato per questa squadra e anno.</td></tr>";
           }
           ?>
           </tbody>

@@ -69,10 +69,16 @@ if (!isset($_SESSION['user'])) {
                 <a href="inserisciCalciatori.php?check=start">Inserisci Calciatori</a>
               </li>
               <li>
-                <a href="inserisciRose.php?check=start">Inserisci Rose</a>
+                <a href="gestisciParametri.php">Gestisci Parametri</a>
+              </li>
+              <li>
+                <a href="inserisciParametri.php?check=start">Inserisci Parametri</a>
               </li>
               <li>
                 <a href="visualizzaRose.php">Visualizza Rose</a>
+              </li>
+              <li>
+                <a href="inserisciRose.php?check=start">Inserisci Rose</a>
               </li>
             </ul>
           </li>
