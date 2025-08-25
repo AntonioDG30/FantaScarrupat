@@ -210,7 +210,7 @@
         <div class="inner">
           <span>
             <?php
-              if(date("n") > 8)
+              if(date("n") > 7)
               {
                 $anno = date("Y") + 1;
               } else
