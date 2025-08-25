@@ -173,7 +173,10 @@ class LaTeXParser {
         $rows = preg_split('/\\\\\\\\\s*/', trim($body), -1, PREG_SPLIT_NO_EMPTY);
 
         // 4) filtro eventuali righe ancora “vuote”
-        $rows = array_filter($rows, fn($r) => trim($r) !== '');
+        $rows = array_filter($rows, function ($r) {
+          return trim($r) !== '';
+        });
+
 
         // 5) cerco la riga header (la prima che contiene \textbf)
         $headerIdx = null;
