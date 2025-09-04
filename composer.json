@@ -1,6 +1,6 @@
 {
     "require": {
-        "phpoffice/phpspreadsheet": "2.1.8",
+        "phpoffice/phpspreadsheet": "2.1.12",
         "sendgrid/sendgrid": "~7"
     }
 }
