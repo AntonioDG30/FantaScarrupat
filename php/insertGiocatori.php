@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header("Location: index.php");
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+  header("Location: ../Admin.php?tab=dashboard");
   exit;
 }
 
@@ -23,7 +23,7 @@ if (isset($_FILES['fileCalciatori'])) {
 
     // Check if the file has been opened correctly
     if (!$handle) {
-      header("Location: ../inserisciCalciatori.php?check=Impossibile aprire il file CSV");
+      header("Location: ../Admin.php?tab=calciatori&check=Impossibile aprire il file CSV.");
       exit;
     }
 
@@ -48,7 +48,7 @@ if (isset($_FILES['fileCalciatori'])) {
       // Check that the necessary columns exist
       if (!isset($row[0]) || !isset($row[2]) || !isset($row[3]) || !isset($row[9])) {
         fclose($handle);
-        header("Location: ../inserisciCalciatori.php?check=Il file CSV non contiene le colonne richieste");
+        header("Location: ../Admin.php?tab=calciatori&check=Il file CSV non contiene le colonne richieste.");
         exit;
       }
 
@@ -61,7 +61,7 @@ if (isset($_FILES['fileCalciatori'])) {
       // Ensure codice_fantacalcio is an integer
       if (!is_numeric($codice_fantacalcio)) {
         fclose($handle);
-        header("Location: ../inserisciCalciatori.php?check=Valore non valido per codice_fantacalcio: $codice_fantacalcio");
+        header("Location: ../Admin.php?tab=calciatori&check=Valore non valido per codice_fantacalcio: $codice_fantacalcio");
         exit;
       }
 
@@ -75,7 +75,7 @@ if (isset($_FILES['fileCalciatori'])) {
         $stmt = $conn->prepare($sql_command);
         if (!$stmt) {
           fclose($handle);
-          header("Location: ../inserisciCalciatori.php?check=Errore nella preparazione della query: " . $conn->error);
+          header("Location: ../Admin.php?tab=calciatori&check=Errore nella preparazione della query: " . $conn->error);
           exit;
         }
         $stmt->execute();
@@ -84,8 +84,7 @@ if (isset($_FILES['fileCalciatori'])) {
 
     // Close the file
     fclose($handle);
-
-    header("Location: ../visualizzaCalciatori.php?page=1");
+    header("Location: ../Admin.php?tab=calciatori&check=Calciatori importati con successo");
     exit;
   } else {
     // Handle upload errors
@@ -115,7 +114,7 @@ if (isset($_FILES['fileCalciatori'])) {
         $error_message = "Si è verificato un errore durante l'upload del file.";
         break;
     }
-    header("Location: ../inserisciCalciatori.php?check=$error_message");
+    header("Location: ../Admin.php?tab=calciatori&check=$error_message");
     exit;
   }
 }

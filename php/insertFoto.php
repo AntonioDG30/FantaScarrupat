@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header("Location: ../index.php");
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+  header("Location: ../Admin.php?tab=dashboard");
   exit;
 }
 
@@ -63,22 +63,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Esegui la query
             if ($conn->query($sql_insert) === TRUE) {
-              header("Location: ../gestisciGallery.php");
+              header("Location: ../Admin.php?tab=gallery&check=Foto caricata con successo");
               exit;
             } else {
-              header("Location: ../inserisciImmagini.php?check=Errore durante l'inserimento dei dati nel database: " . $conn->error);
+              header("Location: ../Admin.php?tab=gallery&check=Errore durante l'inserimento dei dati nel database: " . $conn->error);
               exit;
             }
           } else {
-            header("Location: ../inserisciImmagini.php?check=Errore durante lo spostamento del file caricato.");
+            header("Location: ../Admin.php?tab=gallery&check=Errore durante lo spostamento del file caricato.");
             exit;
           }
         } else {
-          header("Location: ../inserisciImmagini.php?check=Il file caricato supera la dimensione massima consentita di 2MB.");
+          header("Location: ../Admin.php?tab=gallery&check=Il file caricato supera la dimensione massima consentita di 2MB.");
           exit;
         }
       } else {
-        header("Location: ../inserisciImmagini.php?check=Tipo di file non supportato. Sono permessi solo JPG, JPEG, PNG, e GIF.");
+        header("Location: ../Admin.php?tab=gallery&check=Tipo di file non supportato. Sono permessi solo JPG, JPEG, PNG, e GIF.");
         exit;
       }
     } else {
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $error_msg = "Si è verificato un errore durante l'upload del file.";
           break;
       }
-      header("Location: ../inserisciImmagini.php?check=$error_msg");
+      header("Location: ../Admin.php?tab=gallery&check=$error_msg");
       exit;
     }
   }

@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header("Location: ../index.php");
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+  header("Location: ../Admin.php?tab=dashboard");
   exit;
 }
 
@@ -51,15 +51,15 @@ function upload_file($file, $path) {
         if (move_uploaded_file($file_tmp, $file_dest)) {
           return $file_dest;
         } else {
-          header("Location: ../inserisciNuovaCompetizione.php?check=Errore durante lo spostamento del file caricato.");
+          header("Location: ../Admin.php?tab=competizioni&check=Errore durante lo spostamento del file caricato.");
           exit;
         }
       } else {
-        header("Location: ../inserisciNuovaCompetizione.php?check=Il file caricato supera la dimensione massima consentita di 2MB.");
+        header("Location: ../Admin.php?tab=competizioni&check=Il file caricato supera la dimensione massima consentita di 2MB.");
         exit;
       }
     } else {
-      header("Location: ../inserisciNuovaCompetizione.php?check=Tipo di file non supportato. Sono permessi solo XLSX, XLS.");
+      header("Location: ../Admin.php?tab=competizioni&check=Tipo di file non supportato. Sono permessi solo XLSX, XLS.");
       exit;
     }
   } else {
@@ -87,7 +87,7 @@ function upload_file($file, $path) {
         $error_msg = "Si è verificato un errore durante l'upload del file.";
         break;
     }
-    header("Location: ../inserisciNuovaCompetizione.php?check=$error_msg");
+    header("Location: ../Admin.php?tab=competizioni&check==$error_msg");
     exit;
   }
 }
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Inserisci la nuova competizione
     $sql_new_competizione = "INSERT INTO competizione (nome_competizione, tipologia) VALUES ('$nome_competizione', '$tipologia')";
     if ($conn->query($sql_new_competizione) === FALSE) {
-      header("Location: ../inserisciNuovaCompetizione.php?check=Errore durante l'inserimento della nuova competizione: " . $conn->error);
+      header("Location: ../Admin.php?tab=competizioni&check=Errore durante l'inserimento della nuova competizione: " . $conn->error);
       exit;
     }
   } else {
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Query per inserire la competizione disputata
   $sql_competizione_disputata = "INSERT INTO competizione_disputata (nome_competizione, anno) VALUES ('$nome_competizione', '$anno')";
   if ($conn->query($sql_competizione_disputata) === FALSE) {
-    header("Location: ../inserisciNuovaCompetizione.php?check=Errore durante l'inserimento della competizione disputata: " . $conn->error);
+    header("Location: ../Admin.php?tab=competizioni&check=Errore durante l'inserimento della competizione disputata: " . $conn->error);
     exit;
   }
   $id_competizione_disputata = $conn->insert_id;
@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   calcolaVincitoreCompetizione($id_competizione_disputata, $nome_competizione);
 
   echo "Competizione inserita correttamente.";
-  header("Location: ../gestisciCompetizioni.php");
+  header("Location: ../Admin.php?tab=competizioni&check=Competizione inserita con successo");
   exit;
 }
 

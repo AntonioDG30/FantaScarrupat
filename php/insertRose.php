@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header("Location: index.php");
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+  header("Location: ../Admin.php?tab=dashboard");
   exit;
 }
 
@@ -23,7 +23,7 @@ if (isset($_FILES['fileRose'])) {
 
     // Controllo se il file è stato aperto correttamente
     if (!$handle) {
-      header("Location: ../inserisciRose.php?check=Impossibile aprire il file CSV");
+      header("Location: ../Admin.php?tab=rose&check=Impossibile aprire il file CSV");
       exit;
     }
 
@@ -136,10 +136,10 @@ if (isset($_FILES['fileRose'])) {
         if ($conn->query($sql_insert2) === TRUE) {
           header("Location: ../impostaParametri.php?check=start&anno=" . $anno);
         } else {
-          header("Location: ../inserisciRose.php?check=Errore durante l'inserimento dei giocatori nella tabella rosa.");
+          header("Location: ../Admin.php?tab=rose&check=Errore durante l'inserimento dei giocatori nella tabella rosa.");
         }
       } else {
-        header("Location: ../visualizzaRose.php");
+        header("Location: ../Admin.php?tab=rose&anno_param=" . $anno . "&check=Rose importate con successo");
       }
     }
 
@@ -149,28 +149,28 @@ if (isset($_FILES['fileRose'])) {
     // Gestione degli errori di upload
     switch ($file_error) {
       case UPLOAD_ERR_INI_SIZE:
-        header("Location: ../inserisciRose.php?check=Il file caricato supera la dimensione massima consentita.");
+        header("Location: ../Admin.php?tab=rose&check=Il file caricato supera la dimensione massima consentita.");
         exit;
       case UPLOAD_ERR_FORM_SIZE:
-        header("Location: ../inserisciRose.php?check=Il file caricato supera la dimensione massima consentita nel form HTML.");
+        header("Location: ../Admin.php?tab=rose&check=Il file caricato supera la dimensione massima consentita nel form HTML.");
         exit;
       case UPLOAD_ERR_PARTIAL:
-        header("Location: ../inserisciRose.php?check=Il file è stato caricato solo parzialmente.");
+        header("Location: ../Admin.php?tab=rose&check=Il file è stato caricato solo parzialmente.");
         exit;
       case UPLOAD_ERR_NO_FILE:
-        header("Location: ../inserisciRose.php?check=Nessun file è stato caricato.");
+        header("Location: ../Admin.php?tab=rose&check=Nessun file è stato caricato.");
         exit;
       case UPLOAD_ERR_NO_TMP_DIR:
-        header("Location: ../inserisciRose.php?check=Manca una cartella temporanea.");
+        header("Location: ../Admin.php?tab=rose&check=Manca una cartella temporanea.");
         exit;
       case UPLOAD_ERR_CANT_WRITE:
-        header("Location: ../inserisciRose.php?check=Impossibile scrivere il file sul disco.");
+        header("Location: ../Admin.php?tab=rose&check=Impossibile scrivere il file sul disco.");
         exit;
       case UPLOAD_ERR_EXTENSION:
-        header("Location: ../inserisciRose.php?check=Un'estensione PHP ha bloccato l'upload del file.");
+        header("Location: ../Admin.php?tab=rose&check=Un'estensione PHP ha bloccato l'upload del file.");
         exit;
       default:
-        header("Location: ../inserisciRose.php?check=Si è verificato un errore durante l'upload del file.");
+        header("Location: ../Admin.php?tab=rose&check=Si è verificato un errore durante l'upload del file.");
         exit;
     }
   }

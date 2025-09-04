@@ -1,30 +1,24 @@
 /**
- * Admin Panel JavaScript - Refactored
- * Sistema unificato per gestione pannello amministrativo
+ * Admin Panel JavaScript
+ * Gestisce tutte le funzionalità del pannello amministrativo
  */
 
 class AdminPanel {
     constructor() {
-        this.csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+        this.currentTab = null;
         this.charts = {};
         this.dataTables = {};
-        this.statsInterval = null;
         this.init();
     }
     
     init() {
         this.initTheme();
         this.initSidebar();
-        this.initTabs();
+        this.initDataTables();
+        this.initCharts();
         this.initForms();
         this.initActions();
-        this.initDataTables();
-        
-        // Inizializza in base al tab attivo
-        const activeTab = new URLSearchParams(window.location.search).get('tab') || 'dashboard';
-        if (activeTab === 'dashboard') {
-            this.initDashboard();
-        }
+        this.initTabs();
     }
     
     /**
@@ -38,181 +32,43 @@ class AdminPanel {
     }
     
     /**
-     * Gestione sidebar responsive
+     * Gestisce la sidebar responsive
      */
     initSidebar() {
-        // Mobile menu toggle
-        const createMobileToggle = () => {
-            if (window.innerWidth <= 1024) {
-                let toggle = document.querySelector('.menu-toggle');
-                if (!toggle) {
-                    toggle = document.createElement('button');
-                    toggle.className = 'menu-toggle';
-                    toggle.innerHTML = '<span class="material-icons">menu</span>';
-                    document.body.appendChild(toggle);
-                    
-                    toggle.addEventListener('click', () => {
-                        const sidebar = document.querySelector('.admin-sidebar');
-                        sidebar?.classList.toggle('active');
-                        
-                        let overlay = document.querySelector('.sidebar-overlay');
-                        if (!overlay) {
-                            overlay = document.createElement('div');
-                            overlay.className = 'sidebar-overlay';
-                            document.body.appendChild(overlay);
-                            overlay.addEventListener('click', () => {
-                                sidebar?.classList.remove('active');
-                                overlay.classList.remove('active');
-                            });
-                        }
-                        overlay.classList.toggle('active');
-                    });
-                }
-            }
-        };
+        // Toggle sidebar mobile
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<span class="material-icons">menu</span>';
         
-        createMobileToggle();
-        window.addEventListener('resize', createMobileToggle);
-    }
-    
-    /**
-     * Inizializza tabs
-     */
-    initTabs() {
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const tabId = btn.dataset.tab;
-                const container = btn.closest('.admin-main');
-                
-                // Rimuovi active da tutti
-                container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Aggiungi active al cliccato
-                btn.classList.add('active');
-                const content = document.getElementById(tabId);
-                if (content) {
-                    content.classList.add('active');
-                    
-                    // Reinizializza DataTable se necessario
-                    const table = content.querySelector('table[id$="Table"]');
-                    if (table && !$.fn.DataTable.isDataTable(table)) {
-                        this.initDataTable(table.id);
-                    }
-                }
-            });
-        });
-    }
-    
-    /**
-     * Inizializza tutti i form con gestione AJAX
-     */
-    initForms() {
-        // Form Calciatori
-        const formCalciatori = document.getElementById('formCalciatori');
-        if (formCalciatori) {
-            formCalciatori.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(formCalciatori);
-                formData.append('action', 'uploadCalciatori');
-                formData.append('csrf_token', this.csrfToken);
-                
-                await this.submitFormAjax(formData, 'Calciatori caricati con successo');
-            });
-        }
-        
-        // Form Partecipante
-        const formPartecipante = document.getElementById('formPartecipante');
-        if (formPartecipante) {
-            formPartecipante.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(formPartecipante);
-                formData.append('action', 'addPartecipante');
-                formData.append('csrf_token', this.csrfToken);
-                
-                await this.submitFormAjax(formData, 'Partecipante aggiunto con successo');
-            });
-        }
-        
-        // Form Parametro
-        const formParametro = document.getElementById('formParametro');
-        if (formParametro) {
-            formParametro.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(formParametro);
-                formData.append('action', 'addParametro');
-                formData.append('csrf_token', this.csrfToken);
-                
-                await this.submitFormAjax(formData, 'Parametro aggiunto con successo');
-            });
-        }
-        
-        // Form Foto
-        const formFoto = document.getElementById('formFoto');
-        if (formFoto) {
-            formFoto.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(formFoto);
-                formData.append('action', 'uploadFoto');
-                formData.append('csrf_token', this.csrfToken);
-                
-                await this.submitFormAjax(formData, 'Foto caricata con successo');
-            });
-        }
-        
-        // Preview immagini
-        document.querySelectorAll('input[type="file"]').forEach(input => {
-            input.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    this.previewImage(file, e.target);
-                }
-            });
-        });
-    }
-    
-    /**
-     * Inizializza azioni (toggle, delete, etc)
-     */
-    initActions() {
-        // Toggle Partecipante
-        document.addEventListener('click', async (e) => {
-            if (e.target.closest('.toggle-partecipante')) {
-                const btn = e.target.closest('.toggle-partecipante');
-                const nome = btn.dataset.nome;
-                
-                const formData = new FormData();
-                formData.append('action', 'togglePartecipante');
-                formData.append('csrf_token', this.csrfToken);
-                formData.append('nome', nome);
-                
-                await this.submitFormAjax(formData, 'Stato aggiornato');
-            }
+        if (window.innerWidth <= 1024) {
+            document.body.appendChild(menuToggle);
             
-            // Toggle Parametro
-            if (e.target.closest('.toggle-parametro')) {
-                const btn = e.target.closest('.toggle-parametro');
-                const id = btn.dataset.id;
+            menuToggle.addEventListener('click', () => {
+                const sidebar = document.querySelector('.admin-sidebar');
+                sidebar.classList.toggle('active');
                 
-                const formData = new FormData();
-                formData.append('action', 'toggleParametro');
-                formData.append('csrf_token', this.csrfToken);
-                formData.append('id', id);
+                // Overlay per chiudere sidebar su mobile
+                let overlay = document.querySelector('.sidebar-overlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.className = 'sidebar-overlay';
+                    document.body.appendChild(overlay);
+                }
+                overlay.classList.toggle('active');
                 
-                await this.submitFormAjax(formData, 'Visibilità aggiornata');
-            }
-            
-            // Toggle Foto
-            if (e.target.closest('.toggle-foto')) {
-                const btn = e.target.closest('.toggle-foto');
-                const id = btn.dataset.id;
-                
-                const formData = new FormData();
-                formData.append('action', 'toggleFoto');
-                formData.append('csrf_token', this.csrfToken);
-                formData.append('id', id);
-                
-                await this.submitFormAjax(formData, 'Visibilità aggiornata');
+                overlay.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            });
+        }
+        
+        // Evidenzia menu attivo
+        const currentPath = window.location.search;
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            if (item.href && item.href.includes(currentPath)) {
+                item.classList.add('active');
             }
         });
     }
@@ -221,56 +77,7 @@ class AdminPanel {
      * Inizializza DataTables
      */
     initDataTables() {
-        const commonConfig = {
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/it-IT.json'
-            },
-            pageLength: 25,
-            responsive: true,
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'pdf']
-        };
-        
-        // Calciatori
-        if (document.getElementById('calciatoriTable')) {
-            this.dataTables.calciatori = $('#calciatoriTable').DataTable({
-                ...commonConfig,
-                order: [[0, 'desc'], [1, 'asc']]
-            });
-        }
-        
-        // Partecipanti
-        if (document.getElementById('partecipantiTable')) {
-            this.dataTables.partecipanti = $('#partecipantiTable').DataTable({
-                ...commonConfig,
-                columnDefs: [{ orderable: false, targets: -1 }]
-            });
-        }
-        
-        // Parametri
-        if (document.getElementById('parametriTable')) {
-            this.dataTables.parametri = $('#parametriTable').DataTable({
-                ...commonConfig,
-                order: [[0, 'asc']],
-                columnDefs: [{ orderable: false, targets: -1 }]
-            });
-        }
-        
-        // Gallery
-        if (document.getElementById('galleryTable')) {
-            this.dataTables.gallery = $('#galleryTable').DataTable({
-                ...commonConfig,
-                columnDefs: [
-                    { orderable: false, targets: [0, -1] }
-                ]
-            });
-        }
-    }
-    
-    /**
-     * Inizializza DataTable specifica
-     */
-    initDataTable(tableId) {
+        // Configurazione comune per tutte le tabelle
         const commonConfig = {
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/it-IT.json'
@@ -279,244 +86,88 @@ class AdminPanel {
             responsive: true
         };
         
-        const table = document.getElementById(tableId);
-        if (table && !$.fn.DataTable.isDataTable(table)) {
-            $(table).DataTable(commonConfig);
-        }
-    }
-    
-    /**
-     * Inizializza dashboard con statistiche e grafici
-     */
-    async initDashboard() {
-        await this.loadStats();
-        this.initCharts();
-        this.loadActivityLog();
-        
-        // Update periodico stats
-        this.statsInterval = setInterval(() => {
-            this.updateActiveUsers();
-            this.updateTopPages();
-        }, 5000);
-        
-        // Cleanup on page change
-        window.addEventListener('beforeunload', () => {
-            if (this.statsInterval) {
-                clearInterval(this.statsInterval);
-            }
-        });
-    }
-    
-    /**
-     * Carica log attività
-     */
-    loadActivityLog() {
-        const logContainer = document.getElementById('activityLog');
-        if (!logContainer) return;
-        
-        const logs = JSON.parse(localStorage.getItem('adminActivityLog') || '[]');
-        const recentLogs = logs.slice(-10).reverse();
-        
-        if (recentLogs.length === 0) {
-            logContainer.innerHTML = '<p class="text-muted text-center">Nessuna attività recente</p>';
-            return;
-        }
-        
-        logContainer.innerHTML = recentLogs.map(log => `
-            <div class="log-entry p-2 border-bottom">
-                <div class="d-flex justify-content-between">
-                    <strong>${log.action}</strong>
-                    <small class="text-muted">${new Date(log.timestamp).toLocaleString('it-IT')}</small>
-                </div>
-                <small class="text-muted">${log.details || ''} - ${log.user}</small>
-            </div>
-        `).join('');
-    }
-    
-    /**
-     * Pulisci log attività
-     */
-    clearActivityLog() {
-        if (confirm('Eliminare tutto il log attività?')) {
-            localStorage.removeItem('adminActivityLog');
-            this.loadActivityLog();
-            this.showMessage('Log attività pulito', 'success');
-        }
-    }
-    
-    /**
-     * Update top pages
-     */
-    async updateTopPages() {
-        try {
-            const formData = new FormData();
-            formData.append('action', 'getStats');
-            formData.append('csrf_token', this.csrfToken);
-            
-            const response = await fetch('admin.php', {
-                method: 'POST',
-                body: formData
+        // Tabella Calciatori
+        if (document.getElementById('calciatoriTable')) {
+            this.dataTables.calciatori = $('#calciatoriTable').DataTable({
+                ...commonConfig,
+                order: [[1, 'asc']],
+                columnDefs: [
+                    { orderable: false, targets: -1 }
+                ]
             });
-            
-            const data = await response.json();
-            if (data.success && data.stats.topPages) {
-                const container = document.getElementById('topPagesToday');
-                if (container) {
-                    container.innerHTML = data.stats.topPages.slice(0, 5).map(page => `
-                        <div class="d-flex justify-content-between align-items-center p-2 border-bottom">
-                            <small>${page.page_url.split('/').pop() || 'Home'}</small>
-                            <span class="badge badge-info">${page.views}</span>
-                        </div>
-                    `).join('');
+        }
+        
+        // Tabella Partecipanti - GESTIONE SPECIALE per righe nascoste
+        if (document.getElementById('partecipantiTable')) {
+            // Prima rimuovi temporaneamente le righe nascoste dal DOM
+            const hiddenRows = [];
+            $('#partecipantiTable tbody tr').each(function() {
+                if ($(this).attr('id') && $(this).attr('id').startsWith('rose-row-')) {
+                    hiddenRows.push({
+                        element: $(this).detach(),
+                        prevRow: $(this).prev()
+                    });
                 }
-            }
-        } catch (error) {
-            console.error('Errore update top pages:', error);
-        }
-    }
-    
-    /**
-     * Export database
-     */
-    async exportDatabase() {
-        if (!confirm('Vuoi esportare il backup completo del database?')) return;
-        
-        this.showMessage('Preparazione backup in corso...', 'info');
-        
-        try {
-            const formData = new FormData();
-            formData.append('action', 'exportDatabase');
-            formData.append('csrf_token', this.csrfToken);
-            
-            const response = await fetch('admin.php', {
-                method: 'POST',
-                body: formData
             });
             
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `backup_${new Date().toISOString().split('T')[0]}.sql`;
-                a.click();
-                URL.revokeObjectURL(url);
-                
-                this.showMessage('Backup database completato', 'success');
-                this.logActivity('Backup database', 'Export completato');
-            }
-        } catch (error) {
-            console.error('Errore export database:', error);
-            this.showMessage('Errore durante il backup', 'danger');
-        }
-    }
-    
-    /**
-     * Log attività
-     */
-    logActivity(action, details = '') {
-        const log = {
-            action,
-            details,
-            timestamp: new Date().toISOString(),
-            user: document.querySelector('.user-name')?.textContent || 'Admin'
-        };
-        
-        const logs = JSON.parse(localStorage.getItem('adminActivityLog') || '[]');
-        logs.push(log);
-        
-        // Mantieni solo ultimi 100 log
-        if (logs.length > 100) logs.shift();
-        localStorage.setItem('adminActivityLog', JSON.stringify(logs));
-        
-        // Aggiorna vista se siamo nella dashboard
-        if (window.location.search.includes('dashboard') || !window.location.search.includes('tab')) {
-            this.loadActivityLog();
-        }
-    }
-    
-    /**
-     * Carica statistiche
-     */
-    async loadStats() {
-        try {
-            const formData = new FormData();
-            formData.append('action', 'getStats');
-            formData.append('csrf_token', this.csrfToken);
-            
-            const response = await fetch('admin.php', {
-                method: 'POST',
-                body: formData
+            // Inizializza DataTable senza le righe nascoste
+            this.dataTables.partecipanti = $('#partecipantiTable').DataTable({
+                ...commonConfig,
+                columnDefs: [
+                    { orderable: false, targets: [4, 5] }
+                ]
             });
             
-            const data = await response.json();
-            if (data.success) {
-                this.renderStats(data.stats);
-                window.visitorsData = data.stats.visitors;
-            }
-        } catch (error) {
-            console.error('Errore caricamento stats:', error);
+            // Reinserisci le righe nascoste dopo l'inizializzazione
+            hiddenRows.forEach(item => {
+                item.prevRow.after(item.element);
+            });
+        }
+        
+        // Tabella Competizioni
+        if (document.getElementById('competizioniTable')) {
+            this.dataTables.competizioni = $('#competizioniTable').DataTable({
+                ...commonConfig,
+                order: [[4, 'desc']]
+            });
+        }
+        
+        // Tabella Gallery
+        if (document.getElementById('galleryTable')) {
+            this.dataTables.gallery = $('#galleryTable').DataTable({
+                ...commonConfig,
+                columnDefs: [
+                    { orderable: false, targets: [0, -1] }
+                ]
+            });
+        }
+        
+        // Tabella Parametri
+        if (document.getElementById('parametriTable')) {
+            this.dataTables.parametri = $('#parametriTable').DataTable({
+                ...commonConfig,
+                order: [[0, 'asc']],
+                columnDefs: [
+                    { orderable: false, targets: -1 }
+                ]
+            });
         }
     }
     
     /**
-     * Renderizza statistiche
-     */
-    renderStats(stats) {
-        const statsGrid = document.getElementById('statsGrid');
-        if (!statsGrid) return;
-        
-        const monthName = new Date().toLocaleDateString('it-IT', { month: 'long' });
-        
-        statsGrid.innerHTML = `
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <span class="material-icons">people</span>
-                </div>
-                <div class="stat-value">${stats.uniqueVisitors.toLocaleString()}</div>
-                <div class="stat-label">Visitatori Unici ${monthName}</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <span class="material-icons">visibility</span>
-                </div>
-                <div class="stat-value">${stats.totalViews.toLocaleString()}</div>
-                <div class="stat-label">Pagine Visitate</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <span class="material-icons">equalizer</span>
-                </div>
-                <div class="stat-value">${stats.avgDaily}</div>
-                <div class="stat-label">Media Giornaliera</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <span class="material-icons">trending_up</span>
-                </div>
-                <div class="stat-value" id="activeUsersCard">0</div>
-                <div class="stat-label">Utenti Attivi Ora</div>
-            </div>
-        `;
-    }
-    
-    /**
-     * Inizializza grafici
+     * Inizializza i grafici della dashboard
      */
     initCharts() {
         // Grafico visitatori
         const visitorsCtx = document.getElementById('visitorsChart');
-        if (visitorsCtx && window.visitorsData) {
+        if (visitorsCtx) {
             this.charts.visitors = new Chart(visitorsCtx, {
                 type: 'line',
                 data: {
                     labels: this.getLast30Days(),
                     datasets: [{
-                        label: 'Visitatori',
-                        data: window.visitorsData,
+                        label: 'Visitatori giornalieri',
+                        data: window.visitorsData || [],
                         backgroundColor: 'rgba(59, 130, 246, 0.1)',
                         borderColor: 'rgba(59, 130, 246, 1)',
                         borderWidth: 2,
@@ -528,7 +179,9 @@ class AdminPanel {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false },
+                        legend: {
+                            display: false
+                        },
                         tooltip: {
                             mode: 'index',
                             intersect: false,
@@ -542,10 +195,14 @@ class AdminPanel {
                     scales: {
                         y: {
                             beginAtZero: true,
-                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
                         },
                         x: {
-                            grid: { display: false }
+                            grid: {
+                                display: false
+                            }
                         }
                     }
                 }
@@ -571,113 +228,147 @@ class AdminPanel {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false }
+                        legend: {
+                            display: false
+                        }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
-                            ticks: { stepSize: 1 }
+                            ticks: {
+                                stepSize: 1
+                            }
                         }
                     }
                 }
             });
             
-            // Primo update
+            // Update periodico utenti attivi
             this.updateActiveUsers();
+            setInterval(() => this.updateActiveUsers(), 5000);
         }
     }
     
     /**
-     * Aggiorna utenti attivi
+     * Inizializza la gestione form
      */
-    async updateActiveUsers() {
-        try {
-            const formData = new FormData();
-            formData.append('action', 'getActiveUsers');
-            formData.append('csrf_token', this.csrfToken);
-            
-            const response = await fetch('admin.php', {
-                method: 'POST',
-                body: formData
-            });
-            
-            const data = await response.json();
-            if (data.success) {
-                // Update contatori
-                const counter = document.getElementById('activeUsersCount');
-                const card = document.getElementById('activeUsersCard');
-                if (counter) counter.textContent = data.activeUsers;
-                if (card) card.textContent = data.activeUsers;
-                
-                // Update grafico
-                if (this.charts.activeUsers) {
-                    const chart = this.charts.activeUsers;
-                    const time = new Date().toLocaleTimeString('it-IT', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-                    
-                    chart.data.labels.push(time);
-                    chart.data.datasets[0].data.push(data.activeUsers);
-                    
-                    // Mantieni solo ultimi 10 valori
-                    if (chart.data.labels.length > 10) {
-                        chart.data.labels.shift();
-                        chart.data.datasets[0].data.shift();
-                    }
-                    
-                    chart.update();
+    initForms() {
+        // Preview immagini
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    this.previewImage(file, e.target);
                 }
-            }
-        } catch (error) {
-            console.error('Errore update utenti attivi:', error);
+            });
+        });
+        
+        // Validazione form
+        document.querySelectorAll('.admin-form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                if (!this.validateForm(form)) {
+                    e.preventDefault();
+                    this.showMessage('Compila tutti i campi richiesti', 'danger');
+                }
+            });
+        });
+        
+        // Form competizioni dinamico
+        const competizioneSelect = document.getElementById('competizione');
+        if (competizioneSelect) {
+            competizioneSelect.addEventListener('change', (e) => {
+                const nuovaCompDiv = document.getElementById('nuova_competizione');
+                const nbaDiv = document.getElementById('nba_competizione');
+                
+                if (e.target.value === 'nuova_competizione') {
+                    nuovaCompDiv.style.display = 'block';
+                    nbaDiv.style.display = 'none';
+                } else if (e.target.value === 'NBA') {
+                    nuovaCompDiv.style.display = 'none';
+                    nbaDiv.style.display = 'block';
+                } else {
+                    nuovaCompDiv.style.display = 'none';
+                    nbaDiv.style.display = 'none';
+                }
+            });
         }
     }
     
     /**
-     * Submit form con AJAX
+     * Inizializza azioni (toggle visibilità, elimina, etc)
      */
-    async submitFormAjax(formData, successMessage = 'Operazione completata') {
-        const submitBtn = event.submitter;
-        const originalText = submitBtn.innerHTML;
-        
-        try {
-            // Loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Caricamento...';
-            
-            const response = await fetch('admin.php', {
-                method: 'POST',
-                body: formData
+    initActions() {
+        // Toggle visibilità 
+        document.querySelectorAll('.toggle-visibility').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const type = btn.dataset.type;
+                const id = btn.dataset.id;
+                this.toggleVisibility(type, id);
             });
-            
-            const data = await response.json();
-            
-            if (data.success) {
-                this.showMessage(data.message || successMessage, 'success');
+        });
+        
+        // Elimina
+        document.querySelectorAll('.delete-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm('Sei sicuro di voler eliminare questo elemento?')) {
+                    const type = btn.dataset.type;
+                    const id = btn.dataset.id;
+                    this.deleteItem(type, id);
+                }
+            });
+        });
+        
+        // Mostra rose partecipante - FIX per DataTables
+        document.querySelectorAll('.show-rose').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const rowId = btn.dataset.row;
+                const row = document.getElementById(rowId);
                 
-                // Reset form se necessario
-                const form = submitBtn.closest('form');
-                if (form) form.reset();
-                
-                // Reload DataTable se nella stessa pagina
-                setTimeout(() => {
-                    const activeTab = document.querySelector('.tab-content.active');
-                    const table = activeTab?.querySelector('table[id$="Table"]');
-                    if (table) {
-                        location.reload();
+                if (row) {
+                    // Toggle visibilità della riga
+                    const isVisible = row.style.display !== 'none';
+                    row.style.display = isVisible ? 'none' : 'table-row';
+                    
+                    // Aggiorna testo bottone
+                    btn.textContent = isVisible ? 'Mostra rose' : 'Nascondi rose';
+                    
+                    // Se DataTable è attivo, aggiorna il redraw
+                    if (this.dataTables.partecipanti) {
+                        // Forza un redraw della tabella dopo il toggle
+                        setTimeout(() => {
+                            this.dataTables.partecipanti.draw(false);
+                        }, 100);
                     }
-                }, 1500);
-            } else {
-                this.showMessage(data.message || 'Errore durante l\'operazione', 'danger');
-            }
-        } catch (error) {
-            console.error('Errore:', error);
-            this.showMessage('Errore di rete', 'danger');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalText;
-        }
+                }
+            });
+        });
+    }
+    
+    /**
+     * Inizializza tabs
+     */
+    initTabs() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Rimuovi active da tutti
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Aggiungi active al cliccato
+                btn.classList.add('active');
+                const tabId = btn.dataset.tab;
+                const tabContent = document.getElementById(tabId);
+                if (tabContent) {
+                    tabContent.classList.add('active');
+                }
+            });
+        });
     }
     
     /**
@@ -689,19 +380,119 @@ class AdminPanel {
             let preview = input.parentElement.querySelector('.img-preview-container');
             if (!preview) {
                 preview = document.createElement('div');
-                preview.className = 'img-preview-container mt-3';
+                preview.className = 'img-preview-container';
                 input.parentElement.appendChild(preview);
             }
-            preview.innerHTML = `
-                <img src="${e.target.result}" class="img-fluid rounded" 
-                     style="max-width: 200px; max-height: 200px; border: 2px solid var(--border-color);">
-            `;
+            preview.innerHTML = `<img src="${e.target.result}" class="img-preview-large" />`;
         };
         reader.readAsDataURL(file);
     }
     
     /**
-     * Ottieni ultimi 30 giorni per grafici
+     * Valida form
+     */
+    validateForm(form) {
+        let isValid = true;
+        form.querySelectorAll('[required]').forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+        return isValid;
+    }
+    
+    /**
+     * Toggle visibilità elemento
+     */
+    async toggleVisibility(type, id) {
+        try {
+            const response = await fetch(`php/cambiaFlag${type}.php?id_${type.toLowerCase()}=${id}`, {
+                headers: {
+                    'X-CSRF-Token': csrfToken
+                }
+            });
+            
+            if (response.ok) {
+                this.showMessage('Visibilità aggiornata con successo', 'success');
+                setTimeout(() => location.reload(), 1500);
+            } else {
+                this.showMessage('Errore durante l\'aggiornamento', 'danger');
+            }
+        } catch (error) {
+            console.error('Errore:', error);
+            this.showMessage('Errore di rete', 'danger');
+        }
+    }
+    
+    /**
+     * Elimina elemento
+     */
+    async deleteItem(type, id) {
+        try {
+            const response = await fetch(`php/delete${type}.php`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': csrfToken
+                },
+                body: JSON.stringify({ id: id })
+            });
+            
+            if (response.ok) {
+                this.showMessage('Elemento eliminato con successo', 'success');
+                setTimeout(() => location.reload(), 1500);
+            } else {
+                this.showMessage('Errore durante l\'eliminazione', 'danger');
+            }
+        } catch (error) {
+            console.error('Errore:', error);
+            this.showMessage('Errore di rete', 'danger');
+        }
+    }
+    
+    /**
+     * Aggiorna utenti attivi
+     */
+    async updateActiveUsers() {
+        try {
+            const response = await fetch('php/getActiveUsers.php');
+            const data = await response.json();
+            
+            if (this.charts.activeUsers && data.activeUsers) {
+                const chart = this.charts.activeUsers;
+                const timestamp = new Date().toLocaleTimeString('it-IT', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Aggiungi nuovo dato
+                chart.data.labels.push(timestamp);
+                chart.data.datasets[0].data.push(data.activeUsers);
+                
+                // Mantieni solo gli ultimi 10 valori
+                if (chart.data.labels.length > 10) {
+                    chart.data.labels.shift();
+                    chart.data.datasets[0].data.shift();
+                }
+                
+                chart.update();
+                
+                // Aggiorna contatore
+                const counter = document.getElementById('activeUsersCount');
+                if (counter) {
+                    counter.textContent = data.activeUsers;
+                }
+            }
+        } catch (error) {
+            console.error('Errore aggiornamento utenti attivi:', error);
+        }
+    }
+    
+    /**
+     * Ottieni ultimi 30 giorni
      */
     getLast30Days() {
         const days = [];
@@ -720,232 +511,62 @@ class AdminPanel {
     }
     
     /**
-     * Mostra messaggio toast
+     * Mostra messaggio
      */
     showMessage(message, type = 'info') {
-        // Rimuovi messaggi esistenti
-        document.querySelectorAll('.admin-toast').forEach(t => t.remove());
-        
-        const toast = document.createElement('div');
-        toast.className = `admin-toast alert alert-${type} alert-dismissible fade show`;
-        toast.style.cssText = `
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            min-width: 300px;
-            z-index: 9999;
-            animation: slideInRight 0.3s ease;
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
+            <span class="material-icons">${this.getAlertIcon(type)}</span>
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         `;
         
+        const container = document.querySelector('.admin-main');
+        container.insertBefore(alertDiv, container.firstChild);
+        
+        // Rimuovi automaticamente dopo 5 secondi
+        setTimeout(() => {
+            alertDiv.classList.remove('show');
+            setTimeout(() => alertDiv.remove(), 150);
+        }, 5000);
+    }
+    
+    /**
+     * Ottieni icona per tipo di alert
+     */
+    getAlertIcon(type) {
         const icons = {
             success: 'check_circle',
             danger: 'error',
             warning: 'warning',
             info: 'info'
         };
-        
-        toast.innerHTML = `
-            <div class="d-flex align-items-center">
-                <span class="material-icons me-2">${icons[type] || icons.info}</span>
-                <span class="flex-grow-1">${message}</span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        `;
-        
-        document.body.appendChild(toast);
-        
-        // Auto rimozione dopo 5 secondi
-        setTimeout(() => {
-            toast.classList.remove('show');
-            setTimeout(() => toast.remove(), 150);
-        }, 5000);
+        return icons[type] || icons.info;
     }
 }
 
-// ===== FUNZIONALITÀ EXTRA =====
-class AdminFeatures {
-    constructor(adminPanel) {
-        this.admin = adminPanel;
-        this.initExtraFeatures();
-    }
+// Inizializza quando DOM è pronto
+document.addEventListener('DOMContentLoaded', () => {
+    const adminPanel = new AdminPanel();
+    window.adminPanel = adminPanel;
     
-    initExtraFeatures() {
-        this.initSearchFilters();
-        this.initBulkOperations();
-        this.initExportButtons();
-        this.initKeyboardShortcuts();
-        this.initActivityLog();
-    }
-    
-    /**
-     * Ricerca globale e filtri
-     */
-    initSearchFilters() {
-        // Aggiungi barra di ricerca globale
-        const searchBar = `
-            <div class="global-search" style="position: fixed; top: 80px; right: 20px; z-index: 100;">
-                <input type="text" id="globalSearch" class="form-control" 
-                       placeholder="Cerca..." style="width: 250px; background: var(--card-bg);">
-            </div>
-        `;
+    // Export data functions
+    window.exportData = (format, type) => {
+        const table = adminPanel.dataTables[type];
+        if (!table) return;
         
-        if (document.querySelector('.admin-main')) {
-            document.querySelector('.admin-main').insertAdjacentHTML('afterbegin', searchBar);
-            
-            document.getElementById('globalSearch')?.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                this.performGlobalSearch(query);
-            });
+        const data = table.data().toArray();
+        
+        if (format === 'csv') {
+            exportToCSV(data, `${type}_${Date.now()}.csv`);
+        } else if (format === 'xlsx') {
+            exportToExcel(data, `${type}_${Date.now()}.xlsx`);
         }
-    }
+    };
     
-    performGlobalSearch(query) {
-        if (query.length < 2) return;
-        
-        // Cerca nelle tabelle visibili
-        document.querySelectorAll('.admin-table tbody tr').forEach(row => {
-            const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(query) ? '' : 'none';
-        });
-    }
-    
-    /**
-     * Operazioni bulk
-     */
-    initBulkOperations() {
-        // Aggiungi checkbox alle tabelle
-        document.querySelectorAll('.admin-table table').forEach(table => {
-            const thead = table.querySelector('thead tr');
-            const tbody = table.querySelector('tbody');
-            
-            if (thead && tbody) {
-                // Aggiungi checkbox header
-                const th = document.createElement('th');
-                th.innerHTML = '<input type="checkbox" class="bulk-select-all">';
-                thead.insertBefore(th, thead.firstChild);
-                
-                // Aggiungi checkbox a ogni riga
-                tbody.querySelectorAll('tr').forEach(row => {
-                    const td = document.createElement('td');
-                    td.innerHTML = '<input type="checkbox" class="bulk-select-item">';
-                    row.insertBefore(td, row.firstChild);
-                });
-            }
-        });
-        
-        // Gestisci select all
-        document.querySelectorAll('.bulk-select-all').forEach(checkbox => {
-            checkbox.addEventListener('change', (e) => {
-                const table = e.target.closest('table');
-                table.querySelectorAll('.bulk-select-item').forEach(item => {
-                    item.checked = e.target.checked;
-                });
-                this.updateBulkActions();
-            });
-        });
-        
-        // Gestisci singoli checkbox
-        document.querySelectorAll('.bulk-select-item').forEach(checkbox => {
-            checkbox.addEventListener('change', () => this.updateBulkActions());
-        });
-    }
-    
-    updateBulkActions() {
-        const selected = document.querySelectorAll('.bulk-select-item:checked').length;
-        
-        if (selected > 0) {
-            if (!document.querySelector('.bulk-actions-bar')) {
-                const bar = `
-                    <div class="bulk-actions-bar" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
-                         background: var(--card-bg); padding: 1rem 2rem; border-radius: var(--radius-xl); 
-                         box-shadow: var(--shadow-xl); display: flex; gap: 1rem; align-items: center; z-index: 1000;">
-                        <span><strong id="bulkCount">${selected}</strong> elementi selezionati</span>
-                        <button class="btn-primary btn-sm" onclick="adminPanel.features.bulkExport()">
-                            <span class="material-icons">download</span> Esporta
-                        </button>
-                        <button class="btn-danger btn-sm" onclick="adminPanel.features.bulkDelete()">
-                            <span class="material-icons">delete</span> Elimina
-                        </button>
-                        <button class="btn-secondary btn-sm" onclick="adminPanel.features.clearSelection()">
-                            <span class="material-icons">clear</span> Annulla
-                        </button>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', bar);
-            } else {
-                document.getElementById('bulkCount').textContent = selected;
-            }
-        } else {
-            document.querySelector('.bulk-actions-bar')?.remove();
-        }
-    }
-    
-    clearSelection() {
-        document.querySelectorAll('.bulk-select-item, .bulk-select-all').forEach(cb => cb.checked = false);
-        this.updateBulkActions();
-    }
-    
-    bulkExport() {
-        const selected = document.querySelectorAll('.bulk-select-item:checked');
-        const data = [];
-        
-        selected.forEach(checkbox => {
-            const row = checkbox.closest('tr');
-            const cells = Array.from(row.cells).slice(1).map(cell => cell.textContent);
-            data.push(cells);
-        });
-        
-        this.downloadCSV(data, 'export.csv');
-        this.admin.showMessage('Dati esportati con successo', 'success');
-    }
-    
-    bulkDelete() {
-        if (confirm(`Eliminare ${document.querySelectorAll('.bulk-select-item:checked').length} elementi?`)) {
-            this.admin.showMessage('Elementi eliminati', 'success');
-            this.clearSelection();
-            setTimeout(() => location.reload(), 1000);
-        }
-    }
-    
-    /**
-     * Bottoni export
-     */
-    initExportButtons() {
-        document.querySelectorAll('.card-header').forEach(header => {
-            const table = header.parentElement.querySelector('table');
-            if (table && !header.querySelector('.export-btn')) {
-                const btn = document.createElement('button');
-                btn.className = 'btn-secondary btn-sm export-btn';
-                btn.innerHTML = '<span class="material-icons">download</span> Export';
-                btn.onclick = () => this.exportTable(table);
-                
-                const titleEl = header.querySelector('.card-title');
-                if (titleEl) {
-                    header.style.display = 'flex';
-                    header.style.justifyContent = 'space-between';
-                    header.appendChild(btn);
-                }
-            }
-        });
-    }
-    
-    exportTable(table) {
-        const data = [];
-        
-        // Headers
-        const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent);
-        data.push(headers);
-        
-        // Rows
-        table.querySelectorAll('tbody tr').forEach(row => {
-            const cells = Array.from(row.cells).map(cell => cell.textContent);
-            data.push(cells);
-        });
-        
-        this.downloadCSV(data, 'table-export.csv');
-    }
-    
-    downloadCSV(data, filename) {
+    // CSV export
+    window.exportToCSV = (data, filename) => {
         const csv = data.map(row => row.join(',')).join('\n');
         const blob = new Blob([csv], { type: 'text/csv' });
         const url = URL.createObjectURL(blob);
@@ -954,99 +575,12 @@ class AdminFeatures {
         a.download = filename;
         a.click();
         URL.revokeObjectURL(url);
-    }
-    
-    /**
-     * Keyboard shortcuts
-     */
-    initKeyboardShortcuts() {
-        document.addEventListener('keydown', (e) => {
-            // Ctrl/Cmd + S = Save
-            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-                e.preventDefault();
-                const activeForm = document.querySelector('.tab-content.active form');
-                if (activeForm) {
-                    const submitBtn = activeForm.querySelector('button[type="submit"]');
-                    submitBtn?.click();
-                }
-            }
-            
-            // Ctrl/Cmd + F = Focus search
-            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-                e.preventDefault();
-                document.getElementById('globalSearch')?.focus();
-            }
-            
-            // ESC = Clear selection
-            if (e.key === 'Escape') {
-                this.clearSelection();
-            }
-            
-            // Alt + 1-7 = Navigate tabs
-            if (e.altKey && e.key >= '1' && e.key <= '7') {
-                e.preventDefault();
-                const menuItems = document.querySelectorAll('.menu-item');
-                const index = parseInt(e.key) - 1;
-                if (menuItems[index]) {
-                    menuItems[index].click();
-                }
-            }
-        });
-    }
-    
-    /**
-     * Activity Log
-     */
-    initActivityLog() {
-        // Intercetta tutte le azioni
-        const originalSubmit = this.admin.submitFormAjax.bind(this.admin);
-        this.admin.submitFormAjax = async (...args) => {
-            const result = await originalSubmit(...args);
-            this.logActivity('Form inviato', args[1]);
-            return result;
-        };
-    }
-    
-    logActivity(action, details) {
-        const log = {
-            action,
-            details,
-            timestamp: new Date().toISOString(),
-            user: document.querySelector('.user-name')?.textContent || 'Admin'
-        };
-        
-        // Salva in localStorage
-        const logs = JSON.parse(localStorage.getItem('adminActivityLog') || '[]');
-        logs.push(log);
-        
-        // Mantieni solo ultimi 100 log
-        if (logs.length > 100) logs.shift();
-        localStorage.setItem('adminActivityLog', JSON.stringify(logs));
-        
-        console.log('Activity logged:', log);
-    }
-}
-
-// Inizializza quando DOM è pronto
-document.addEventListener('DOMContentLoaded', () => {
-    window.adminPanel = new AdminPanel();
-    window.adminPanel.features = new AdminFeatures(window.adminPanel);
+    };
 });
 
-// CSS per animazioni toast
+// Aggiungi overlay per sidebar mobile
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
     .sidebar-overlay {
         display: none;
         position: fixed;
@@ -1066,10 +600,44 @@ style.textContent = `
         margin-top: 1rem;
     }
     
-    .spinner-border-sm {
-        width: 1rem;
-        height: 1rem;
-        border-width: 0.2em;
+    .img-preview-large {
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: var(--radius-lg);
+        border: 2px solid var(--border-color);
+    }
+    
+    .is-invalid {
+        border-color: var(--error-color) !important;
+    }
+    
+    .btn-close {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        line-height: 1;
+        color: currentColor;
+        opacity: 0.5;
+        margin-left: auto;
+        cursor: pointer;
+    }
+    
+    .btn-close:hover {
+        opacity: 1;
+    }
+    
+    /* Fix per righe nascoste in DataTables */
+    #partecipantiTable tbody tr[id^="rose-row-"] {
+        background: var(--surface-secondary) !important;
+    }
+    
+    #partecipantiTable tbody tr[id^="rose-row-"] td {
+        padding: 0 !important;
+    }
+    
+    #partecipantiTable tbody tr[id^="rose-row-"] .bg-light {
+        background: var(--surface-secondary) !important;
+        border: 1px solid var(--border-color);
     }
 `;
 document.head.appendChild(style);

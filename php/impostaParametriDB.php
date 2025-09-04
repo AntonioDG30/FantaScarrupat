@@ -2,24 +2,24 @@
 // Backend per elaborare l'inserimento dei parametri selezionati
 
 session_start();
-if (!isset($_SESSION['user'])) {
-  header('Location: ../index.php');
+
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+  header("Location: ../Admin.php?tab=dashboard");
   exit;
 }
-
 global $conn;
 require_once 'connectionDB.php';
 
 // Controllo del metodo di richiesta
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  header('Location: ../gestisciRose.php?check=Metodo non consentito');
+  header("Location: ../Admin.php?tab=parametri&check=Metodo non consentito");
   exit;
 }
 
 // Recupera e valida i parametri inviati
 // Expected: $_POST['parametro'][id_rosa] = array(1 => id_parametro1, 2 => id_parametro2)
 if (empty($_POST['parametro']) || !is_array($_POST['parametro'])) {
-  header('Location: ../inserisciRose.php?check=Dati parametri mancanti');
+  header("Location: ../Admin.php?tab=parametri&check=Dati parametri mancanti");
   exit;
 }
 
@@ -59,12 +59,12 @@ try {
   // Commit
   $conn->commit();
 
-  header('Location: ../visualizzaRose.php');
+  header("Location: ../Admin.php?tab=rose&check=Parametri salvati con successo");
   exit;
 
 } catch (Exception $e) {
   $conn->rollback();
   error_log('Errore parametri_utilizzati: ' . $e->getMessage());
-  header('Location: ../inserisciRose.php?check=Errore durante il salvataggio parametri');
+  header("Location: ../Admin.php?tab=parametri&check=Errore durante il salvataggio parametri");
   exit;
 }

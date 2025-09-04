@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header("Location: ../index.php");
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+  header("Location: ../Admin.php?tab=dashboard");
   exit;
 }
 
@@ -21,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   // Esegui la query
   if ($conn->query($sql_insert) === TRUE) {
-    header("Location: ../gestisciParametri.php");
+    header("Location: ../Admin.php?tab=parametri&check=Parametro inserito con successo");
     exit;
   } else {
-    header("Location: ../inserisciParametro.php?check=Errore durante l'inserimento dei dati nel database: " . $conn->error);
+    header("Location: ../Admin.php?tab=parametri&check=Errore durante l'inserimento dei dati nel database: " . $conn->error);
     exit;
   }
 }

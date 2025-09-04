@@ -251,7 +251,7 @@ try {
 
                     <!-- Admin Panel (Solo per Admin) -->
                     <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
-                    <a href="<?= url('dashboardAdmin.php') ?>" class="module-card admin-only fade-in-up">
+                    <a href="<?= url('Admin.php') ?>" class="module-card admin-only fade-in-up">
                         <div class="module-icon-container admin-icon-container">
                             <span class="material-icons module-icon">admin_panel_settings</span>
                         </div>

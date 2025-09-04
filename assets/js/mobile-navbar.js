@@ -360,7 +360,7 @@ class MobileNavbar {
         const avatarClass = isMobile ? 'user-avatar-mobile' : 'user-avatar';
         const detailsClass = isMobile ? 'user-details-mobile' : 'user-details';
         const avatarHtml = user.avatar_url
-            ? `<img src="${user.avatar_url}" alt="" class="${avatarClass}" />`
+            ? `<img src="img/partecipanti/${user.avatar_url}" alt="" class="${avatarClass}" />`
             : `<div class="${avatarClass}">${(user.name || 'U').charAt(0).toUpperCase()}</div>`;
 
         return `
@@ -763,8 +763,8 @@ class MobileNavbar {
             }
 
             .user-avatar {
-                width: 32px;
-                height: 32px;
+                width: 45px;
+                height: 45px;
                 border-radius: 50%;
                 background: var(--primary-color, #3b82f6);
                 color: white;

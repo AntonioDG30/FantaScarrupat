@@ -1,0 +1,850 @@
+/* ===== ADMIN SECTIONS STYLES ===== */
+/* Stili specifici per le sezioni admin - CONTRASTO MIGLIORATO */
+
+/* Dashboard Styles */
+.dashboard-charts {
+    margin-top: 2rem;
+}
+
+.chart-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    min-height: 300px;
+    position: relative;
+}
+
+.top-pages-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.top-page-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 2px solid var(--border-color);  /* Bordo più spesso */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.top-page-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+}
+
+.page-rank {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+}
+
+.page-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.page-url {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;  /* Aumentato per migliore leggibilità */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-views {
+    font-size: 0.9rem;  /* Aumentato */
+    color: var(--text-secondary);
+    font-weight: 500;  /* Aggiunto peso */
+    margin-top: 0.25rem;
+}
+
+.page-bar {
+    width: 100px;
+    height: 8px;  /* Aumentata altezza */
+    background: var(--surface-secondary);
+    border-radius: 4px;
+    margin-left: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.page-bar-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 3px;
+    transition: width 1s ease;
+}
+
+.recent-activity {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 2px solid var(--border-color);  /* Bordo più spesso */
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.activity-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.activity-title {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;  /* Aumentato */
+}
+
+.activity-desc {
+    color: var(--text-primary);  /* Cambiato da text-secondary per migliore visibilità */
+    font-size: 0.95rem;  /* Aumentato */
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.activity-meta {
+    font-size: 0.85rem;  /* Aumentato */
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.no-data {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);  /* Migliorato contrasto */
+}
+
+.no-data .material-icons {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;  /* Aumentata opacità */
+    color: var(--text-muted);
+}
+
+.no-data p {
+    font-size: 1.1rem;
+    font-weight: 600;  /* Aumentato peso */
+    color: var(--text-secondary);
+}
+
+/* Partecipanti Styles */
+.participant-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border-color);
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.team-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.team-name {
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.team-badge {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.rose-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.rose-count {
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.last-year {
+    color: var(--text-secondary);
+    font-weight: 500;  /* Aggiunto peso */
+    font-size: 0.85rem;
+}
+
+.coach-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.rose-details {
+    background: var(--surface-secondary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 0.5rem;
+    border: 2px solid var(--border-light);
+}
+
+.rose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.rose-card {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.rose-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.rose-card h6 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.rose-card .rose-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-primary);  /* Migliorato contrasto */
+    font-weight: 600;
+}
+
+/* Calciatori Styles */
+.badge-role {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+/* Migliorati i colori dei badge con migliore contrasto */
+.badge-p { 
+    background: linear-gradient(135deg, #f59e0b, #d97706); 
+    color: white; 
+    border-color: #d97706;
+}
+.badge-d { 
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8); 
+    color: white; 
+    border-color: #1d4ed8;
+}
+.badge-c { 
+    background: linear-gradient(135deg, #10b981, #059669); 
+    color: white; 
+    border-color: #059669;
+}
+.badge-a { 
+    background: linear-gradient(135deg, #ef4444, #dc2626); 
+    color: white; 
+    border-color: #dc2626;
+}
+
+.player-name {
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.usage-count {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.credits-avg {
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--success-color);
+    font-size: 1rem;
+}
+
+/* Parametri Styles */
+.param-number {
+    font-weight: 800;  /* Aumentato peso */
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 2rem;
+    text-align: center;
+}
+
+.param-description {
+    max-width: 300px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.usage-badge {
+    background: var(--success-bg);
+    color: var(--success-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;  /* Aumentato peso */
+    border: 1px solid var(--success-color);
+}
+
+.associations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.association-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);  /* Bordo più spesso */
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.association-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.association-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.association-header h5 {
+    margin: 0;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.year-badge {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-weight: 700;  /* Aumentato peso */
+    font-size: 0.9rem;
+}
+
+.association-params {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.param-tag {
+    background: var(--success-bg);
+    color: var(--success-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    font-weight: 700;  /* Aumentato peso */
+    font-size: 0.9rem;
+    border: 2px solid var(--success-color);
+}
+
+.no-params {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-weight: 600;  /* Aggiunto peso */
+}
+
+/* Rose Styles */
+.filter-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filter-controls .form-select {
+    min-width: 150px;
+    font-weight: 600;
+}
+
+.players-count {
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.credits-total {
+    font-weight: 700;
+    color: var(--success-color);
+    font-size: 1rem;
+}
+
+/* Gallery Styles */
+.view-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-view {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--border-color);  /* Bordo più spesso */
+    background: var(--card-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+}
+
+.btn-view.active,
+.btn-view:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.gallery-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.gallery-item {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);  /* Bordo più spesso */
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.gallery-item.hidden {
+    opacity: 0.6;
+    filter: grayscale(50%);
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.gallery-item-image {
+    position: relative;
+    aspect-ratio: 16/12;
+    overflow: hidden;
+}
+
+.gallery-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-item-image img {
+    transform: scale(1.05);
+}
+
+.gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);  /* Aumentata opacità */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+}
+
+.gallery-item-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.gallery-item-actions .action-btn {
+    width: 50px;
+    height: 50px;
+    background: white;
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.gallery-item-actions .action-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.gallery-item-info {
+    padding: 1.5rem;
+}
+
+.gallery-item-info h5 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.gallery-item-info p {
+    color: var(--text-primary);  /* Migliorato contrasto */
+    font-size: 0.95rem;  /* Aumentato */
+    margin: 0 0 1rem 0;
+    line-height: 1.5;  /* Migliorato */
+    font-weight: 500;
+}
+
+.gallery-item-status {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.description-text {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-primary);  /* Migliorato contrasto */
+    font-weight: 500;
+}
+
+/* Competizioni Styles */
+.competition-name {
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.winner-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--text-primary);
+}
+
+.trophy-icon {
+    color: #fbbf24;
+    font-size: 1.3rem !important;  /* Aumentato */
+}
+
+.matches-count {
+    font-weight: 700;  /* Aumentato peso */
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.hall-of-fame-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.fame-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);  /* Bordo più spesso */
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.fame-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    opacity: 0.9;  /* Aumentata opacità */
+}
+
+.fame-card.rank-1::before { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+.fame-card.rank-2::before { background: linear-gradient(90deg, #9ca3af, #6b7280); }
+.fame-card.rank-3::before { background: linear-gradient(90deg, #cd7c2f, #92400e); }
+
+.fame-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.fame-rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.fame-rank .gold { color: #fbbf24; font-size: 3rem !important; }
+.fame-rank .silver { color: #9ca3af; font-size: 2.5rem !important; }
+.fame-rank .bronze { color: #cd7c2f; font-size: 2rem !important; }
+
+.rank-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.fame-info h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;  /* Aumentato peso */
+    color: var(--text-primary);
+    font-size: 1.2rem;
+}
+
+.victories {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-weight: 700;  /* Aumentato peso */
+    font-size: 0.9rem;
+}
+
+.fame-competitions {
+    font-size: 0.95rem;  /* Aumentato */
+    color: var(--text-primary);  /* Migliorato contrasto */
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Modal per vista completa immagine */
+.image-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);  /* Aumentata opacità */
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.image-modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 3px solid white;  /* Aggiunto bordo */
+}
+
+.image-modal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 50px;  /* Aumentato */
+    height: 50px;  /* Aumentato */
+    background: rgba(0, 0, 0, 0.8);  /* Aumentata opacità */
+    color: white;
+    border: 2px solid white;  /* Aggiunto bordo */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.image-modal-close:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Dark Mode Specific Fixes */
+[data-theme="dark"] .page-url,
+[data-theme="dark"] .activity-title,
+[data-theme="dark"] .team-name,
+[data-theme="dark"] .player-name,
+[data-theme="dark"] .competition-name,
+[data-theme="dark"] .fame-info h4,
+[data-theme="dark"] .gallery-item-info h5,
+[data-theme="dark"] .association-header h5 {
+    color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .activity-desc,
+[data-theme="dark"] .page-views,
+[data-theme="dark"] .gallery-item-info p,
+[data-theme="dark"] .fame-competitions,
+[data-theme="dark"] .description-text {
+    color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .activity-meta,
+[data-theme="dark"] .last-year,
+[data-theme="dark"] .no-params {
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .top-page-item,
+[data-theme="dark"] .activity-item,
+[data-theme="dark"] .rose-card,
+[data-theme="dark"] .association-card,
+[data-theme="dark"] .gallery-item,
+[data-theme="dark"] .fame-card {
+    border-color: rgba(71,85,105,0.8) !important;
+}
+
+[data-theme="dark"] .rose-details {
+    border-color: rgba(71,85,105,0.6) !important;
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+    .top-page-item,
+    .activity-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .page-rank,
+    .activity-icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .page-bar {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+    
+    .gallery-grid-view {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    
+    .associations-grid,
+    .rose-grid,
+    .hall-of-fame-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .fame-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .view-controls {
+        justify-content: center;
+    }
+    
+    .participant-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .param-number {
+        font-size: 1rem;
+    }
+}
