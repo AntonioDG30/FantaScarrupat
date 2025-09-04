@@ -1,0 +1,52 @@
+{
+    "current_year": "2025-26",
+    "last_year": "2024-25",
+    "neopromosse": [
+        "Cremonese",
+        "Sassuolo",
+        "Pisa"
+    ],
+    "squadre_media": [
+        "Como",
+        "Torino",
+        "Udinese",
+        "Genoa",
+        "Verona",
+        "Parma",
+        "Cagliari",
+        "Lecce"
+    ],
+    "squadre_50ga": [
+        "Como",
+        "Udinese",
+        "Verona",
+        "Parma",
+        "Cagliari",
+        "Lecce",
+        "Empoli",
+        "Venezia",
+        "Monza"
+    ],
+    "team_ga_last": {
+        "Napoli": 27,
+        "Inter": 35,
+        "Atalanta": 37,
+        "Juventus": 35,
+        "Roma": 35,
+        "Fiorentina": 41,
+        "Lazio": 49,
+        "Milan": 43,
+        "Bologna": 47,
+        "Como": 52,
+        "Torino": 45,
+        "Udinese": 56,
+        "Genoa": 49,
+        "Verona": 66,
+        "Parma": 58,
+        "Cagliari": 56,
+        "Lecce": 58,
+        "Empoli": 59,
+        "Venezia": 56,
+        "Monza": 69
+    }
+}

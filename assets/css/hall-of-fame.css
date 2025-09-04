@@ -1,0 +1,658 @@
+/**
+ * Stili specifici per Hall of Fame.
+ * Definisco qui i layout per trofei, statistiche e storico competizioni.
+ */
+
+/* Main container specifico per Hall of Fame */
+.main-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--background-color) 0%, rgba(74, 144, 226, 0.03) 100%);
+}
+
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/**
+ * Hero header con statistiche reali dal database.
+ * Uso gradiente brand per impatto visivo.
+ */
+.hero-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: var(--radius-2xl);
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: translate(30%, -30%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+/**
+ * Grid per le statistiche nel hero.
+ * Auto-fit per responsive senza media query.
+ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: var(--transition-normal);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.2);
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    line-height: 1.2;
+}
+
+/**
+ * Layout principale a due colonne per trofei + sidebar.
+ * Su mobile diventa stack verticale.
+ */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/**
+ * Sezione trofei con dati reali dal database.
+ * Grid responsive per le card dei trofei.
+ */
+.trophies-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.trophies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/**
+ * Card singolo trofeo con effetti hover.
+ * Uso colori diversi per tipo trofeo (oro, argento, speciale).
+ */
+.trophy-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-2xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.trophy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: opacity 0.3s ease;
+}
+
+.trophy-card.gold::before { 
+    background: linear-gradient(90deg, #ffd700, #ffed4e); 
+    opacity: 1; 
+}
+
+.trophy-card.silver::before { 
+    background: linear-gradient(90deg, #c0c0c0, #e8e8e8); 
+    opacity: 1; 
+}
+
+.trophy-card.special::before { 
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
+    opacity: 1; 
+}
+
+.trophy-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-2xl);
+}
+
+.trophy-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.trophy-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.trophy-icon.gold { 
+    background: linear-gradient(135deg, #ffd700, #ffed4e); 
+}
+
+.trophy-icon.silver { 
+    background: linear-gradient(135deg, #c0c0c0, #e8e8e8); 
+    color: var(--text-primary); 
+}
+
+.trophy-icon.special { 
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); 
+}
+
+.trophy-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.trophy-season {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.trophy-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.trophy-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.trophy-points {
+    background: var(--surface-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+}
+
+/**
+ * Card per storico competizioni con scroll verticale.
+ * Mostro fino a 4 elementi visibili, poi scroll.
+ */
+.competitions-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.competitions-header {
+    background: var(--table-header-bg);
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/**
+ * Toolbar con controlli filtri per lo storico.
+ * Layout grid responsive per i controlli.
+ */
+.comp-toolbar {
+    padding: 1rem 2rem 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .comp-toolbar {
+        grid-template-columns: 1fr 1fr 1fr auto;
+        align-items: center;
+    }
+}
+
+.comp-count {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+/**
+ * Grid delle card competizioni con filtri applicabili.
+ * Auto-fill responsive per ottimizzare lo spazio.
+ */
+.comp-grid {
+    padding: 1.25rem 2rem 2rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.comp-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    overflow: hidden;
+}
+
+.comp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/**
+ * Indicatori visivi per tipo competizione.
+ * Bordo colorato per campionato vs knockout.
+ */
+.comp-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 6px;
+    opacity: 0.9;
+}
+
+.comp-card.type-campionato::before {
+    background: linear-gradient(180deg, #60a5fa, #3b82f6);
+}
+
+.comp-card.type-knockout::before {
+    background: linear-gradient(180deg, #f59e0b, #ef4444);
+}
+
+/**
+ * Stile speciale per competizioni vinte.
+ * Border verde e ombra per evidenziare i successi.
+ */
+.comp-card.is-winner {
+    border-color: rgba(34, 197, 94, 0.4);
+    box-shadow: 0 8px 30px rgba(34, 197, 94, 0.12);
+}
+
+/**
+ * Ribbon per indicare vittoria.
+ * Triangolo CSS in alto a destra con trofeo.
+ */
+.comp-card .ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 48px solid #22c55e;
+    border-left: 48px solid transparent;
+}
+
+.comp-card .ribbon::after {
+    content: "🏆";
+    position: absolute;
+    top: -40px;
+    right: 6px;
+    font-size: 18px;
+    color: #fff;
+}
+
+/**
+ * Layout header della card competizione.
+ * Icona + titolo + punteggio allineati.
+ */
+.comp-head {
+    display: flex;
+    gap: 0.9rem;
+    padding: 1.1rem 1.2rem 0 1.2rem;
+    align-items: flex-start;
+}
+
+.comp-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.comp-title {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    line-height: 1.05;
+}
+
+.comp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.2rem;
+}
+
+/**
+ * Chip per metadati competizione.
+ * Stato, tipo, stagione con colori differenziati.
+ */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 0.28rem 0.55rem;
+    border-radius: 999px;
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.chip.status.completed {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.35);
+    color: #22c55e;
+}
+
+.chip.status.ongoing {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.35);
+    color: var(--primary-color);
+}
+
+.chip.status.pending {
+    background: rgba(156, 163, 175, 0.12);
+    border-color: rgba(156, 163, 175, 0.35);
+    color: #9ca3af;
+}
+
+/**
+ * Sezione punteggi nella card competizione.
+ * Allineamento a destra con formattazione enfatica.
+ */
+.comp-points {
+    margin-left: auto;
+    text-align: right;
+    padding-right: 1.2rem;
+}
+
+.comp-points .value {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.comp-points .label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/**
+ * Footer della card con posizione e statistiche.
+ * Layout flexbox per allineamento ottimale.
+ */
+.comp-body {
+    padding: 0.8rem 1.2rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+/**
+ * Badge per posizione finale nella competizione.
+ * Colori diversi per vittoria, piazzamento, fase.
+ */
+.pos-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 0.9rem;
+    background: var(--hover-bg);
+    color: var(--text-primary);
+    padding: 0.5rem 0.7rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+}
+
+.pos-badge.win {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.35);
+}
+
+.pos-badge.stage {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.35);
+}
+
+.pos-badge.place {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.35);
+}
+
+.comp-numbers {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.comp-numbers b {
+    color: var(--text-primary);
+}
+
+/**
+ * Controlli toolbar compatti per mobile.
+ * Override delle dimensioni standard per spazio limitato.
+ */
+.comp-toolbar .form-select,
+.comp-toolbar .form-check-input {
+    height: 36px;
+    width: auto;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+.comp-toolbar .form-check-label {
+    font-size: 0.9rem;
+    margin-left: 0.25rem;
+}
+
+.is-hidden {
+    display: none !important;
+}
+
+/**
+ * Statistiche avanzate nella sidebar.
+ * Grid compatto per mostrare metriche calcolate.
+ */
+.enhanced-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.enhanced-stat-card {
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition-normal);
+}
+
+.enhanced-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    background: var(--hover-bg);
+}
+
+.enhanced-stat-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.enhanced-stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/**
+ * Stato vuoto quando non ci sono dati.
+ * Layout centrato con icona e messaggio esplicativo.
+ */
+.empty-trophies {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+}
+
+.empty-trophies .material-icons {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/**
+ * Indicatore di stato dati caricati.
+ * Posizione fixed per feedback continuo all'utente.
+ */
+.data-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/**
+ * Responsive design per mobile e tablet.
+ * Progressive enhancement da mobile-first.
+ */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .trophies-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .competition-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .page-container {
+        padding: 1rem;
+    }
+}
+
+/**
+ * Animazioni per elementi in entrata.
+ * Uso intersection observer per trigger efficiente.
+ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition-slow);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -1,0 +1,37 @@
+{
+    "operation": "Loading from cache",
+    "step": 3,
+    "total": 3,
+    "percent": 100,
+    "label": "Dati caricati dalla cache (\u2264 24h)",
+    "started_at": 1756982463,
+    "updated_at": 1756982463,
+    "error": null,
+    "completed": true,
+    "log": [
+        {
+            "step": 1,
+            "label": "Lettura cache valida...",
+            "ts": 1756982463,
+            "metadata": []
+        },
+        {
+            "step": 2,
+            "label": "Ripristino sessione...",
+            "ts": 1756982463,
+            "metadata": []
+        },
+        {
+            "step": 3,
+            "label": "Cache caricata con successo",
+            "ts": 1756982463,
+            "metadata": []
+        },
+        {
+            "step": 3,
+            "label": "Dati caricati dalla cache (\u2264 24h)",
+            "ts": 1756982463,
+            "metadata": []
+        }
+    ]
+}

@@ -1,0 +1,578 @@
+/**
+ * Stili specifici per la pagina profilo utente.
+ * Definisco qui layout hero, form avanzati e statistiche dettagliate.
+ */
+
+/* Qui creo il layout principale con sfondo sfumato */
+.main-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--background-color) 0%, rgba(74, 144, 226, 0.03) 100%);
+    position: relative;
+}
+
+/* Qui aggiungo pattern decorativi di sfondo */
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Qui definisco il container principale responsive */
+.profile-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Qui creo il hero header con dati reali utente */
+.profile-hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: var(--radius-2xl);
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Qui aggiungo elemento decorativo per profondità */
+.profile-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Qui definisco l'avatar grande del profilo */
+.profile-avatar-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    border: 4px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    font-weight: 800;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+/* Qui creo la griglia delle statistiche hero con dati reali */
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.hero-stat {
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: var(--transition-normal);
+}
+
+.hero-stat:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.hero-stat-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.hero-stat-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    line-height: 1.2;
+}
+
+/* Qui definisco la griglia del contenuto principale */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Qui creo le card del profilo con effetti avanzati */
+.profile-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-2xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+/* Qui aggiungo la barra superiore colorata */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-2xl);
+}
+
+.profile-card:hover::before {
+    opacity: 1;
+}
+
+/* Qui definisco l'header delle card con icone */
+.card-header-enhanced {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-icon-enhanced {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-xl);
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+.card-title-enhanced {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.card-subtitle-enhanced {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Qui creo i form group migliorati */
+.form-group-enhanced {
+    margin-bottom: 2rem;
+}
+
+.form-label-enhanced {
+    color: var(--text-primary);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.form-control-enhanced,
+.form-select-enhanced {
+    background: var(--input-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-xl);
+    transition: var(--transition-normal);
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+}
+
+.form-control-enhanced:focus,
+.form-select-enhanced:focus {
+    background: var(--input-focus-bg);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.form-control-enhanced:disabled,
+.form-select-enhanced:disabled {
+    background: var(--surface-secondary);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.form-text-enhanced {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.form-text-disabled {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Qui creo i bottoni migliorati con effetti */
+.btn-enhanced {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--radius-xl);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Qui aggiungo l'effetto shimmer ai bottoni */
+.btn-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-enhanced:hover::before {
+    left: 100%;
+}
+
+.btn-primary-enhanced {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary-enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    color: white;
+}
+
+.btn-secondary-enhanced {
+    background: var(--surface-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary-enhanced:hover {
+    background: var(--hover-bg);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Qui definisco gli alert migliorati */
+.alert-enhanced {
+    border: none;
+    border-radius: var(--radius-xl);
+    padding: 1.25rem 1.75rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+}
+
+.alert-success-enhanced {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(16, 185, 129, 0.1));
+    color: #22c55e;
+    border-left: 4px solid #22c55e;
+}
+
+.alert-danger-enhanced {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1));
+    color: #ef4444;
+    border-left: 4px solid #ef4444;
+}
+
+/* Qui creo il toggle switch migliorato */
+.toggle-enhanced {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 35px;
+}
+
+.toggle-enhanced input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider-enhanced {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--border-color);
+    transition: 0.4s;
+    border-radius: 35px;
+}
+
+.toggle-slider-enhanced:before {
+    position: absolute;
+    content: "";
+    height: 27px;
+    width: 27px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+}
+
+.toggle-enhanced input:checked + .toggle-slider-enhanced {
+    background: var(--gradient-primary);
+}
+
+.toggle-enhanced input:checked + .toggle-slider-enhanced:before {
+    transform: translateX(35px);
+}
+
+/* Qui creo l'indicatore forza password */
+.password-strength-enhanced {
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 0.75rem;
+}
+
+.password-strength-fill-enhanced {
+    height: 100%;
+    width: 0%;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.strength-weak { 
+    background: #ef4444; 
+    width: 25%; 
+}
+
+.strength-fair { 
+    background: #f97316; 
+    width: 50%; 
+}
+
+.strength-good { 
+    background: #eab308; 
+    width: 75%; 
+}
+
+.strength-strong { 
+    background: #22c55e; 
+    width: 100%; 
+}
+
+/* Qui creo la griglia delle statistiche dettagliate */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card-enhanced {
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition-normal);
+}
+
+.stat-card-enhanced:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    background: var(--hover-bg);
+}
+
+.stat-card-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Qui creo i badge utente con stili avanzati */
+.user-badge-enhanced {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* Qui gestisco responsive per tablet e mobile */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .profile-card {
+        padding: 2rem;
+    }
+    
+    .card-header-enhanced {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-container {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Qui creo le animazioni di entrata */
+.animate-slide-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-slide-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.floating-gentle {
+    animation: floatGentle 8s ease-in-out infinite;
+}
+
+@keyframes floatGentle {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-5px) rotate(1deg); 
+    }
+    50% { 
+        transform: translateY(-10px) rotate(0deg); 
+    }
+    75% { 
+        transform: translateY(-5px) rotate(-1deg); 
+    }
+}
+
+/* Qui definisco gli stili per la sezione parametri ruota */
+.table th {
+    border-bottom: 2px solid rgba(255, 152, 0, 0.2) !important;
+    padding: 1rem 0.75rem !important;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    padding: 1rem 0.75rem !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.03), rgba(245, 124, 0, 0.01)) !important;
+    transform: translateX(4px);
+    box-shadow: inset 4px 0 0 rgba(255, 152, 0, 0.3);
+}
+
+/* Qui gestisco responsive per mobile sulla tabella */
+@media (max-width: 768px) {
+    .table th, .table td {
+        padding: 0.75rem 0.5rem !important;
+        font-size: 0.85rem;
+    }
+    
+    .table th:nth-child(3), .table td:nth-child(3) {
+        display: none; /* Nascondo data su mobile */
+    }
+}

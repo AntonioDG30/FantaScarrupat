@@ -1,0 +1,378 @@
+/* **STILI SPECIFICI CHECKMYTEAM - VERSIONE COMPATTA** */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* **SELETTORE CRITERI** */
+    .criteria-selector {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+    
+    .criteria-header {
+      background: var(--table-header-bg);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .criteria-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .criteria-body {
+      padding: 16px;
+    }
+    
+    .criteria-select-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .criteria-select-wrapper {
+      flex: 1;
+    }
+    
+    .criteria-select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--input-bg);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      height: 40px;
+    }
+    
+    .criteria-select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px var(--primary-shadow);
+    }
+    
+    .btn-add-criteria {
+      padding: 8px 16px;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-normal);
+      height: 40px;
+      font-size: 0.9rem;
+    }
+    
+    .btn-add-criteria:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-add-criteria:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* **CRITERI SELEZIONATI** */
+    .selected-criteria {
+      margin-top: 12px;
+    }
+    
+    .selected-criteria h4 {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+    
+    .selected-criteria-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .selected-criteria-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--success-bg);
+      border: 2px solid var(--success-color);
+      border-radius: 8px;
+      transition: var(--transition-normal);
+    }
+    
+    .criteria-info {
+      flex: 1;
+    }
+    
+    .criteria-name {
+      font-weight: 700;
+      color: var(--success-color);
+      margin-bottom: 2px;
+      font-size: 0.9rem;
+    }
+    
+    .criteria-squad-count {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    
+    .criteria-squad-count.loading {
+      color: var(--warning-color);
+    }
+    
+    .btn-remove-criteria {
+      background: none;
+      border: none;
+      color: var(--error-color);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      transition: var(--transition-fast);
+    }
+    
+    .btn-remove-criteria:hover {
+      background: var(--error-bg);
+    }
+    
+    .btn-remove-criteria .material-icons {
+      font-size: 18px;
+    }
+
+    /* **SEZIONE ROSA** */
+    .squad-section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+    
+    .squad-header {
+      background: var(--table-header-bg);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .squad-body {
+      padding: 16px;
+    }
+    
+    .role-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .role-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .role-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .role-P .role-header { 
+      background: rgba(255, 152, 0, 0.1); 
+      color: #FF9800; 
+      border-left: 3px solid #FF9800; 
+    }
+    .role-D .role-header { 
+      background: rgba(76, 175, 80, 0.1); 
+      color: #4CAF50; 
+      border-left: 3px solid #4CAF50; 
+    }
+    .role-C .role-header { 
+      background: rgba(33, 150, 243, 0.1); 
+      color: #2196F3; 
+      border-left: 3px solid #2196F3; 
+    }
+    .role-A .role-header { 
+      background: rgba(244, 67, 54, 0.1); 
+      color: #F44336; 
+      border-left: 3px solid #F44336; 
+    }
+    
+    /* **LAYOUT VERTICALE COMPATTO PER LE SELECT** */
+    .role-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .player-slot {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px 12px;
+      border: 2px solid var(--border-light);
+      border-radius: 8px;
+      background: var(--input-bg);
+      transition: var(--transition-normal);
+    }
+    
+    .player-slot:hover {
+      border-color: var(--border-color);
+    }
+    
+    .player-slot.has-selection {
+      border-color: var(--primary-color);
+      background: var(--primary-shadow);
+    }
+    
+    .player-select {
+      width: 100%;
+      min-height: 38px;
+    }
+    
+    .player-criteria {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      padding: 6px 10px;
+      background: var(--surface-secondary);
+      border-radius: 6px;
+      min-height: 28px;
+      display: flex;
+      align-items: center;
+      line-height: 1.3;
+    }
+    
+    .player-criteria.has-matches {
+      background: var(--success-bg);
+      color: var(--success-color);
+      font-weight: 600;
+    }
+    
+    .player-criteria.no-matches {
+      background: var(--surface-secondary);
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    
+    .criteria-matches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    
+    .criteria-match-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 6px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* **TOM SELECT OVERRIDES** */
+    .ts-control {
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      min-height: 48px;
+      padding: 8px 12px;
+    }
+
+    [data-theme="dark"] .ts-control {
+      color: #0f172a;
+    }
+    
+    .ts-control:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px var(--primary-shadow);
+    }
+    
+    .ts-dropdown {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .ts-dropdown .option {
+      color: var(--text-primary);
+      padding: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .ts-dropdown .option:hover,
+    .ts-dropdown .option.active {
+      background: var(--hover-bg);
+    }
+    
+    .ts-dropdown .option.selected {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* **RESPONSIVE** */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 10px;
+        gap: 16px;
+      }
+      
+      .criteria-select-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .btn-add-criteria {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* **STATI VUOTI** */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-secondary);
+    }
+    
+    .empty-state .material-icons {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    /* NAV full-bleed dentro main-container (identico a FindPlayerByParametri) */
+    .main-container > nav.navbar{
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      width: 100vw;
+      border-radius: 0;
+      padding-left: max(env(safe-area-inset-left), 16px);
+      padding-right: max(env(safe-area-inset-right), 16px);
+      margin-top: -20px;
+      margin-bottom: 20px;
+    }
