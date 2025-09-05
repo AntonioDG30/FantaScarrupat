@@ -1,6 +1,5 @@
-
 <?php
-// admin-sections/parametri.php
+// admin-sections/parametri.php - ENHANCED VERSION
 try {
     $stmt = $conn->prepare("
         SELECT p.*, 
@@ -12,6 +11,12 @@ try {
     ");
     $stmt->execute();
     $parametri = $stmt->fetchAll();
+    
+    // Lista tutti i parametri per il modal di editing
+    $stmt = $conn->prepare("SELECT * FROM parametri_rosa ORDER BY numero_parametro ASC");
+    $stmt->execute();
+    $tuttiParametri = $stmt->fetchAll();
+    
 } catch (Exception $e) {
     $error = "Errore nel recupero parametri: " . $e->getMessage();
 }
@@ -91,9 +96,23 @@ try {
                                     </a>
                                     <button class="action-btn edit-param" 
                                             data-id="<?= $p['id_parametro'] ?>"
-                                            title="Modifica">
+                                            data-numero="<?= $p['numero_parametro'] ?>"
+                                            data-testo="<?= htmlspecialchars($p['testo_parametro']) ?>"
+                                            title="Modifica parametro">
                                         <span class="material-icons">edit</span>
                                     </button>
+                                    <button class="action-btn view-usage" 
+                                            data-id="<?= $p['id_parametro'] ?>"
+                                            title="Vedi utilizzi">
+                                        <span class="material-icons">analytics</span>
+                                    </button>
+                                    <?php if ($p['utilizzi'] == 0): ?>
+                                    <button class="action-btn delete-param" 
+                                            data-id="<?= $p['id_parametro'] ?>"
+                                            title="Elimina parametro">
+                                        <span class="material-icons">delete</span>
+                                    </button>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>
@@ -141,7 +160,7 @@ try {
     </div>
 </div>
 
-<!-- Associazioni -->
+<!-- Associazioni - ENHANCED VERSION -->
 <div id="associazioni" class="tab-content">
     <div class="admin-card">
         <div class="card-header">
@@ -149,13 +168,20 @@ try {
                 <span class="material-icons">link</span>
                 Associazioni Parametri-Rose
             </h3>
+            <div class="btn-group">
+                <button class="btn-modern btn-gradient-2" onclick="window.adminPanel.refreshAssociations()">
+                    <span class="material-icons">refresh</span>
+                    Aggiorna
+                </button>
+            </div>
         </div>
         
         <?php
         try {
             $stmt = $conn->prepare("
                 SELECT r.nome_fantasquadra, r.anno, r.id_rosa,
-                       GROUP_CONCAT(p.numero_parametro ORDER BY p.numero_parametro) as parametri_associati
+                       GROUP_CONCAT(p.numero_parametro ORDER BY p.numero_parametro) as parametri_associati,
+                       GROUP_CONCAT(p.id_parametro ORDER BY p.numero_parametro) as parametri_ids
                 FROM rosa r
                 LEFT JOIN parametri_utilizzati pu ON r.id_rosa = pu.id_rosa
                 LEFT JOIN parametri_rosa p ON pu.id_parametro = p.id_parametro
@@ -173,6 +199,17 @@ try {
         <div class="associations-grid">
             <?php foreach ($associazioni as $a): ?>
                 <div class="association-card">
+                    <div class="association-actions">
+                        <button class="association-edit-btn" 
+                                data-rosa-id="<?= $a['id_rosa'] ?>"
+                                data-rosa-name="<?= htmlspecialchars($a['nome_fantasquadra']) ?>"
+                                data-rosa-year="<?= $a['anno'] ?>"
+                                data-current-params="<?= htmlspecialchars($a['parametri_ids'] ?? '') ?>"
+                                title="Modifica associazioni">
+                            <span class="material-icons">edit</span>
+                        </button>
+                    </div>
+                    
                     <div class="association-header">
                         <h5><?= htmlspecialchars($a['nome_fantasquadra']) ?></h5>
                         <span class="year-badge"><?= $a['anno'] ?></span>
@@ -180,7 +217,7 @@ try {
                     <div class="association-params">
                         <?php if ($a['parametri_associati']): ?>
                             <?php foreach (explode(',', $a['parametri_associati']) as $param): ?>
-                                <span class="param-tag"><?= $param ?></span>
+                                <span class="param-tag"><?= trim($param) ?></span>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <span class="no-params">Nessun parametro associato</span>
@@ -192,86 +229,96 @@ try {
     </div>
 </div>
 
-<style>
-.param-number {
-    font-weight: 700;
-    color: var(--primary-color);
-    font-size: 1.1rem;
-}
+<!-- Modal per Editing Associazioni -->
+<div id="associationModal" class="association-modal" style="display: none;">
+    <div class="association-modal-content">
+        <div class="association-modal-header">
+            <h3 class="association-modal-title">Modifica Associazioni Parametri</h3>
+            <button class="association-modal-close" onclick="window.adminPanel.closeAssociationModal()">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        
+        <form id="associationForm" class="association-form">
+            <input type="hidden" id="rosaId" name="rosaId">
+            
+            <div class="association-form-group">
+                <div class="association-form-label">Rosa:</div>
+                <div id="rosaInfo" class="rosa-info"></div>
+            </div>
+            
+            <div class="association-form-group">
+                <div class="association-form-label">Parametri Disponibili:</div>
+                <div class="association-checkboxes" id="parametriCheckboxes">
+                    <?php foreach ($tuttiParametri as $param): ?>
+                        <div class="association-checkbox-item">
+                            <input type="checkbox" 
+                                   id="param_<?= $param['id_parametro'] ?>" 
+                                   name="parametri[]" 
+                                   value="<?= $param['id_parametro'] ?>">
+                            <label for="param_<?= $param['id_parametro'] ?>" class="association-checkbox-label">
+                                <strong><?= $param['numero_parametro'] ?></strong> - <?= htmlspecialchars($param['testo_parametro']) ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            
+            <div class="association-form-actions">
+                <button type="button" class="btn-secondary" onclick="window.adminPanel.closeAssociationModal()">
+                    <span class="material-icons">close</span>
+                    Annulla
+                </button>
+                <button type="submit" class="btn-modern btn-gradient-1">
+                    <span class="material-icons">save</span>
+                    Salva Associazioni
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
-.param-description {
-    max-width: 300px;
-    line-height: 1.4;
-}
+<!-- Modal per Editing Parametro -->
+<div id="editParametroModal" class="association-modal" style="display: none;">
+    <div class="association-modal-content">
+        <div class="association-modal-header">
+            <h3 class="association-modal-title">Modifica Parametro</h3>
+            <button class="association-modal-close" onclick="window.adminPanel.closeEditParametroModal()">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        
+        <form id="editParametroForm" class="association-form">
+            <input type="hidden" id="editParametroId" name="parametroId">
+            
+            <div class="association-form-group">
+                <label class="association-form-label">Numero Parametro *</label>
+                <input type="number" id="editNumeroParametro" name="numeroParametro" 
+                       class="form-control" min="1" required>
+            </div>
+            
+            <div class="association-form-group">
+                <label class="association-form-label">Descrizione *</label>
+                <textarea id="editTestoParametro" name="testoParametro" 
+                          class="form-control" rows="3" required></textarea>
+            </div>
+            
+            <div class="association-form-actions">
+                <button type="button" class="btn-secondary" onclick="window.adminPanel.closeEditParametroModal()">
+                    <span class="material-icons">close</span>
+                    Annulla
+                </button>
+                <button type="submit" class="btn-modern btn-gradient-1">
+                    <span class="material-icons">save</span>
+                    Salva Modifiche
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
-.usage-badge {
-    background: var(--glass-bg);
-    padding: 0.25rem 0.5rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-}
-
-.associations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-.association-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.association-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--glass-shadow);
-}
-
-.association-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.association-header h5 {
-    margin: 0;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.year-badge {
-    background: var(--gradient-primary);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.875rem;
-}
-
-.association-params {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.param-tag {
-    background: var(--success-bg);
-    color: var(--success-color);
-    padding: 0.25rem 0.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    border: 1px solid var(--success-color);
-}
-
-.no-params {
-    color: var(--text-muted);
-    font-style: italic;
-}
-</style>
+<script>
+// Passa i dati dei parametri al JavaScript per le funzionalità avanzate
+window.parametriData = <?= json_encode($tuttiParametri) ?>;
+window.associazioniData = <?= json_encode($associazioni) ?>;
+</script>

@@ -1,5 +1,5 @@
 <?php
-// admin-sections/calciatori.php
+// admin-sections/calciatori.php - PULITO
 try {
     $stmt = $conn->prepare("
         SELECT g.*, COUNT(dr.id_rosa) as utilizzi,
@@ -186,65 +186,7 @@ try {
     </div>
 </div>
 
-<style>
-.badge-role {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-}
-
-.badge-p { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
-.badge-d { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
-.badge-c { background: linear-gradient(135deg, #10b981, #059669); color: white; }
-.badge-a { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
-
-.player-name {
-    font-weight: 600;
-}
-
-.usage-count {
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-.credits-avg {
-    font-weight: 600;
-    color: var(--success-color);
-}
-</style>
-
 <script>
-// Chart per distribuzione ruoli
-document.addEventListener('DOMContentLoaded', function() {
-    const rolesData = <?= json_encode($statsRuoli) ?>;
-    const ctx = document.getElementById('rolesChart');
-    
-    if (ctx && Object.keys(rolesData).length > 0) {
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: Object.keys(rolesData),
-                datasets: [{
-                    data: Object.values(rolesData),
-                    backgroundColor: [
-                        'rgba(245, 158, 11, 0.8)',
-                        'rgba(59, 130, 246, 0.8)', 
-                        'rgba(16, 185, 129, 0.8)',
-                        'rgba(239, 68, 68, 0.8)'
-                    ],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-    }
-});
+// Passa dati per chart ruoli
+window.rolesData = <?= json_encode($statsRuoli) ?>;
 </script>

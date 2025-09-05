@@ -1,5 +1,5 @@
 <?php
-// admin-sections/partecipanti.php
+// admin-sections/partecipanti.php - PULITO
 try {
     $stmt = $conn->prepare("
         SELECT f.*, 
@@ -285,89 +285,3 @@ try {
         </div>
     </div>
 </div>
-
-<style>
-.participant-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatar-placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.team-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.team-name {
-    font-weight: 600;
-}
-
-.team-badge {
-    width: 24px;
-    height: 24px;
-}
-
-.rose-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.rose-count {
-    font-weight: 600;
-}
-
-.last-year {
-    color: var(--text-muted);
-}
-
-.rose-details {
-    background: var(--surface-secondary);
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin: 0.5rem;
-}
-
-.rose-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.rose-card {
-    background: var(--card-bg);
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.rose-card h6 {
-    margin: 0 0 0.5rem 0;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.rose-card .rose-stats {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-</style>
-

@@ -1,7 +1,5 @@
 <?php
-// Dashboard - Statistiche generali
-
-// Recupera statistiche
+// admin-sections/dashboard.php - PULITO
 try {
     // Contatori principali
     $stmt = $conn->prepare("SELECT COUNT(*) as count FROM giocatore");
@@ -267,7 +265,7 @@ try {
 </div>
 
 <script>
-// Passa i dati PHP a JavaScript
+// Passa i dati PHP a JavaScript per i charts
 window.dashboardData = {
     visitorsData: <?= json_encode(array_reverse(array_column($dailyVisitors ?? [], 'daily_views'))) ?>,
     visitorsLabels: <?= json_encode(array_reverse(array_map(function($item) { 

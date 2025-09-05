@@ -1,5 +1,5 @@
 <?php
-// admin-sections/rose.php
+// admin-sections/rose.php - PULITO
 try {
     $stmt = $conn->prepare("
         SELECT r.*, f.fantallenatore,
@@ -208,61 +208,3 @@ try {
         </div>
     </div>
 </div>
-
-<style>
-.filter-controls {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.filter-controls .form-select {
-    min-width: 150px;
-}
-
-.team-name {
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.year-badge {
-    background: var(--gradient-primary);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.875rem;
-}
-
-.players-count {
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-.credits-total {
-    font-weight: 600;
-    color: var(--success-color);
-}
-
-.credits-avg {
-    font-weight: 500;
-    color: var(--text-secondary);
-}
-</style>
-
-<script>
-// Filtro per anno
-document.addEventListener('DOMContentLoaded', function() {
-    const yearFilter = document.getElementById('yearFilter');
-    if (yearFilter && window.adminPanel && window.adminPanel.dataTables.rose) {
-        yearFilter.addEventListener('change', function() {
-            const selectedYear = this.value;
-            if (selectedYear) {
-                window.adminPanel.dataTables.rose.column(2).search(selectedYear).draw();
-            } else {
-                window.adminPanel.dataTables.rose.column(2).search('').draw();
-            }
-        });
-    }
-});
-</script>

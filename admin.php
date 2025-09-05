@@ -186,7 +186,14 @@ if ($isAjax) {
                         <span>Gallery</span>
                     </a>
                 </div>
-
+                
+                <!-- Sidebar Footer -->
+                <div class="sidebar-footer">
+                    <div class="version-info">
+                        <small>Admin Panel v2.0</small>
+                        <small>FantaScarrupat <?= date('Y') ?></small>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab Content Area -->
@@ -248,7 +255,7 @@ if ($isAjax) {
     <!-- Custom Scripts -->
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/session-monitor.js"></script>
-    <script src="assets/js/admin-enhanced.js"></script>
+    <script src="assets/js/admin.js"></script>
     
     <!-- Global Configuration -->
     <script>
@@ -273,8 +280,6 @@ if ($isAjax) {
                 });
             }
         });
-        
-
         
         // Performance monitoring
         window.addEventListener('load', function() {
