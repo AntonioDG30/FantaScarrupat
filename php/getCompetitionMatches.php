@@ -1,5 +1,5 @@
 <?php
-// ================== php/getCompetitionMatches.php (#5) ==================
+// ================== php/getCompetitionMatches.php - CORRECTED ==================
 declare(strict_types=1);
 require_once __DIR__ . '/../auth/require_login.php';
 require_once __DIR__ . '/../config/config.php';
@@ -32,12 +32,22 @@ try {
         throw new Exception('Competizione non trovata');
     }
     
-    // Partite della competizione
+    // Partite della competizione - NOMI COLONNE CORRETTI
     $stmt = $conn->prepare("
-        SELECT pa.squadra_casa, pa.squadra_ospite, pa.data_partita, pa.risultato
+        SELECT 
+            pa.nome_fantasquadra_casa as squadra_casa,
+            pa.nome_fantasquadra_trasferta as squadra_ospite, 
+            pa.giornata,
+            pa.tipologia,
+            pa.girone,
+            pa.gol_casa,
+            pa.gol_trasferta,
+            pa.punteggio_casa,
+            pa.punteggio_trasferta,
+            CONCAT(pa.gol_casa, ' - ', pa.gol_trasferta) as risultato
         FROM partita_avvessario pa
         WHERE pa.id_competizione_disputata = ?
-        ORDER BY pa.data_partita ASC
+        ORDER BY pa.giornata ASC, pa.tipologia ASC
     ");
     $stmt->execute([$competitionId]);
     $partite = $stmt->fetchAll();

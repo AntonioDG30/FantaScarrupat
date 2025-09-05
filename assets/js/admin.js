@@ -632,52 +632,73 @@ class EnhancedAdminPanel {
             responsive: true,
             dom: '<"top"f>rt<"bottom"lp><"clear">',
             drawCallback: function() {
-                this.api().rows().every(function() {
-                    $(this.node()).addClass('modern-row');
-                });
+                // FIX: Gestione sicura delle righe
+                try {
+                    this.api().rows().every(function() {
+                        const node = this.node();
+                        if (node) {
+                            $(node).addClass('modern-row');
+                        }
+                    });
+                } catch (e) {
+                    console.warn('Errore drawCallback DataTable:', e);
+                }
             }
         };
         
-        // Tabella Calciatori
-        if (document.getElementById('calciatoriTable')) {
-            this.dataTables.calciatori = $('#calciatoriTable').DataTable({
-                ...commonConfig,
-                order: [[1, 'asc']],
-                columnDefs: [
-                    { orderable: false, targets: -1 }
-                ]
-            });
-        }
-        
-        // Tabella Partecipanti con gestione righe nascoste
+        // Tabella Partecipanti con gestione migliorata righe nascoste
         if (document.getElementById('partecipantiTable')) {
             const hiddenRows = [];
-            $('#partecipantiTable tbody tr').each(function() {
-                if ($(this).attr('id') && $(this).attr('id').startsWith('rose-row-')) {
-                    hiddenRows.push({
-                        element: $(this).detach(),
-                        prevRow: $(this).prev()
-                    });
-                }
-            });
             
-            this.dataTables.partecipanti = $('#partecipantiTable').DataTable({
-                ...commonConfig,
-                columnDefs: [
-                    { orderable: false, targets: [4, 5] }
-                ]
-            });
-            
-            hiddenRows.forEach(item => {
-                item.prevRow.after(item.element);
-            });
+            // FIX: Gestione sicura delle righe nascoste
+            try {
+                $('#partecipantiTable tbody tr').each(function() {
+                    const id = $(this).attr('id');
+                    if (id && id.startsWith('rose-row-')) {
+                        const prevRow = $(this).prev();
+                        if (prevRow.length > 0) {
+                            hiddenRows.push({
+                                element: $(this).detach(),
+                                prevRow: prevRow
+                            });
+                        }
+                    }
+                });
+                
+                this.dataTables.partecipanti = $('#partecipantiTable').DataTable({
+                    ...commonConfig,
+                    columnDefs: [
+                        { orderable: false, targets: [4, 5] }
+                    ]
+                });
+                
+                // Reinserisci le righe nascoste
+                hiddenRows.forEach(item => {
+                    if (item.prevRow && item.element) {
+                        item.prevRow.after(item.element);
+                    }
+                });
+                
+            } catch (e) {
+                console.error('Errore inizializzazione DataTable partecipanti:', e);
+            }
         }
         
-        // Altre tabelle
-        ['competizioni', 'gallery', 'parametri', 'rose'].forEach(type => {
+        // Altre tabelle con gestione errori
+        ['competizioni', 'gallery', 'parametri', 'rose', 'calciatori'].forEach(type => {
             const tableEl = document.getElementById(`${type}Table`);
             if (tableEl) {
-                this.dataTables[type] = $(`#${type}Table`).DataTable(commonConfig);
+                try {
+                    this.dataTables[type] = $(`#${type}Table`).DataTable({
+                        ...commonConfig,
+                        ...(type === 'calciatori' && {
+                            order: [[1, 'asc']],
+                            columnDefs: [{ orderable: false, targets: -1 }]
+                        })
+                    });
+                } catch (e) {
+                    console.error(`Errore inizializzazione DataTable ${type}:`, e);
+                }
             }
         });
     }
@@ -1358,9 +1379,16 @@ Object.assign(EnhancedAdminPanel.prototype, {
         const isVisible = row.style.display !== 'none';
         row.style.display = isVisible ? 'none' : 'table-row';
         
+        // FIX: Controllo che l'icona esista prima di modificarla
         const icon = btn.querySelector('.material-icons');
-        icon.textContent = isVisible ? 'expand_more' : 'expand_less';
-        btn.title = isVisible ? 'Mostra rose' : 'Nascondi rose';
+        if (icon) {
+            icon.textContent = isVisible ? 'expand_more' : 'expand_less';
+        }
+        
+        // FIX: Aggiorna il title solo se il button ha la proprietà title
+        if (btn.hasAttribute('title')) {
+            btn.title = isVisible ? 'Mostra rose' : 'Nascondi rose';
+        }
         
         // Aggiorna DataTable se presente
         if (this.dataTables.partecipanti) {
@@ -1418,8 +1446,8 @@ Object.assign(EnhancedAdminPanel.prototype, {
                             <div class="rose-card">
                                 <h6>Anno ${rosa.anno}</h6>
                                 <div class="rose-stats">
-                                    <span>${rosa.num_giocatori} giocatori</span>
-                                    <span>${rosa.crediti_totali.toLocaleString()} crediti</span>
+                                    <span>${rosa.num_giocatori || 0} giocatori</span>
+                                    <span>${rosa.crediti_totali ? rosa.crediti_totali.toLocaleString() : '0'} crediti</span>
                                 </div>
                             </div>
                         `).join('')}
@@ -1431,9 +1459,15 @@ Object.assign(EnhancedAdminPanel.prototype, {
         // Inserisci dopo la riga corrente
         currentRow.insertAdjacentElement('afterend', newRow);
         
-        // Aggiorna il pulsante
+        // Aggiorna il pulsante - FIX: Assicura che l'icona esista
         btn.dataset.row = rowId;
-        const icon = btn.querySelector('.material-icons');
+        let icon = btn.querySelector('.material-icons');
+        if (!icon) {
+            // Crea l'icona se non esiste
+            icon = document.createElement('span');
+            icon.className = 'material-icons';
+            btn.appendChild(icon);
+        }
         icon.textContent = 'expand_less';
         btn.title = 'Nascondi rose';
     },
@@ -1872,17 +1906,30 @@ Object.assign(EnhancedAdminPanel.prototype, {
         `;
         
         data.partite.forEach(p => {
-            const dataPartita = p.data_partita ? new Date(p.data_partita).toLocaleDateString('it-IT') : 'Data da definire';
+            // FIX: Gestisce campi che potrebbero essere null/undefined
+            const squadraCasa = p.squadra_casa || 'TBD';
+            const squadraOspite = p.squadra_ospite || 'TBD';
+            const risultato = p.risultato || `${p.gol_casa || 0} - ${p.gol_trasferta || 0}`;
+            const giornata = p.giornata || 'N/A';
+            const tipologia = p.tipologia || '';
+            const girone = p.girone ? ` (${p.girone})` : '';
+            
             html += `
                 <div class="match-item">
                     <div class="match-header">
                         <div class="match-teams">
-                            <strong>${p.squadra_casa}</strong> vs <strong>${p.squadra_ospite}</strong>
+                            <strong>${squadraCasa}</strong> vs <strong>${squadraOspite}</strong>
                         </div>
-                        <div class="match-date">${dataPartita}</div>
+                        <div class="match-meta">
+                            <span>Giornata ${giornata}</span>
+                            ${tipologia ? `<span>${tipologia}${girone}</span>` : ''}
+                        </div>
                     </div>
                     <div class="match-result">
-                        ${p.risultato || 'Da giocare'}
+                        <strong>${risultato}</strong>
+                    </div>
+                    <div class="match-scores">
+                        <small>Punteggi: ${p.punteggio_casa || 0} - ${p.punteggio_trasferta || 0}</small>
                     </div>
                 </div>
             `;
@@ -1936,17 +1983,32 @@ Object.assign(EnhancedAdminPanel.prototype, {
         
         let html = `
             <div class="stats-content">
+                <div class="stats-summary">
+                    <h4>${data.nome_competizione || 'Competizione'} - Anno ${data.anno || 'N/A'}</h4>
+                </div>
                 <div class="stats-grid">
         `;
         
-        Object.entries(data.stats || {}).forEach(([key, value]) => {
-            html += `
-                <div class="stat-item">
-                    <div class="stat-label">${key}</div>
-                    <div class="stat-value">${value}</div>
-                </div>
-            `;
-        });
+        if (data.stats && typeof data.stats === 'object') {
+            Object.entries(data.stats).forEach(([key, value]) => {
+                // FIX: Formatta i valori in modo sicuro
+                let displayValue = value;
+                if (typeof value === 'number') {
+                    displayValue = key.toLowerCase().includes('media') ? 
+                        value.toFixed(2) : 
+                        value.toLocaleString();
+                } else if (value === null || value === undefined) {
+                    displayValue = 'N/A';
+                }
+                
+                html += `
+                    <div class="stat-item">
+                        <div class="stat-label">${key}</div>
+                        <div class="stat-value">${displayValue}</div>
+                    </div>
+                `;
+            });
+        }
         
         html += `
                 </div>
@@ -2097,6 +2159,8 @@ Object.assign(EnhancedAdminPanel.prototype, {
      * Utility Methods
      */
     setButtonLoading(btn, isLoading) {
+        if (!btn) return; // FIX: Controlla che il button esista
+        
         if (isLoading) {
             btn.classList.add('loading');
             btn.disabled = true;
