@@ -418,7 +418,7 @@ if ($debug && $data_loaded) {
                                 Hall of Fame
                             </h1>
                             <p class="hero-subtitle">
-                                <?= $data_loaded ? 'Le tue statistiche ' : 'Statistiche in caricamento' ?> nella Lega FantaScarruoat dal 2024/2025
+                                <?= $data_loaded ? 'Le tue statistiche ' : 'Statistiche in caricamento' ?> nella Lega FantaScarruoat dal 2023/2024
                             </p>
                             <div class="d-flex align-items-center gap-2">
                                 <span class="material-icons">account_circle</span>
@@ -433,15 +433,15 @@ if ($debug && $data_loaded) {
                             <div class="stats-grid">
                                 <div class="stat-card">
                                     <span class="stat-value" data-count="<?= $user_stats['trophies_won'] ?>"><?= $user_stats['trophies_won'] ?></span>
-                                    <div class="stat-label">Trofei Vinti dal 2024/2025</div>
+                                    <div class="stat-label">Trofei Vinti dal 2023/2024</div>
                                 </div>
                                 <div class="stat-card">
                                     <span class="stat-value" data-count="<?= $user_stats['total_competitions'] ?>"><?= $user_stats['total_competitions'] ?></span>
-                                    <div class="stat-label">Competizioni Disputate dal 2024/2025</div>
+                                    <div class="stat-label">Competizioni Disputate dal 2023/2024</div>
                                 </div>
                                 <div class="stat-card">
                                     <span class="stat-value" data-count="<?= (int)$user_stats['total_points'] ?>"><?= number_format($user_stats['total_points'], 0) ?></span>
-                                    <div class="stat-label">Punti Totali dal 2024/2025</div>
+                                    <div class="stat-label">Punti Totali dal 2023/2024</div>
                                 </div>
                                 <div class="stat-card">
                                     <span class="stat-value"><?= $user_stats['best_season'] ?></span>
@@ -449,11 +449,11 @@ if ($debug && $data_loaded) {
                                 </div>
                                 <div class="stat-card">
                                     <span class="stat-value" data-count="<?= $user_stats['total_matches'] ?>"><?= $user_stats['total_matches'] ?></span>
-                                    <div class="stat-label">Partite Totali dal 2024/2025</div>
+                                    <div class="stat-label">Partite Totali dal 2023/2024</div>
                                 </div>
                                 <div class="stat-card">
                                     <span class="stat-value"><?= number_format($user_stats['avg_points_per_match'], 1) ?></span>
-                                    <div class="stat-label">Media per Partita dal 2024/2025</div>
+                                    <div class="stat-label">Media per Partita dal 2023/2024</div>
                                 </div>
                             </div>
                         </div>
