@@ -61,26 +61,63 @@ function debounce(func, wait) {
   };
 }
 
-// ===== BOOTSTRAP & DATA LOADING =====
+// ===== NUOVA LOGICA ADMIN/NON-ADMIN per CheckMyTeam =====
 async function initializeApp() {
   try {
-    if (window.ProgressManager) {
-      ProgressManager.show('empty');
-    } else {
-      showLoading('Inizializzazione...');
+    // Verifica status cache e tipo utente
+    const statusResponse = await fetch('api/data.php?action=cache_status', {
+      headers: { 'X-CSRF-Token': csrfToken }
+    });
+    
+    if (!statusResponse.ok) {
+      throw new Error(`HTTP ${statusResponse.status}: ${statusResponse.statusText}`);
     }
+    
+    const statusData = await statusResponse.json();
+    
+    if (!statusData.success) {
+      throw new Error('Errore verifica cache: ' + (statusData.error || 'Sconosciuto'));
+    }
+    
+    const isAdmin = statusData.is_admin;
+    const cacheStatus = statusData.cache_status;
+    
+    if (!isAdmin) {
+      // NON-ADMIN: controlla solo esistenza cache
+      if (!cacheStatus.exists) {
+        showCacheMissingOverlay();
+        return;
+      } else {
+        // Cache presente: carica normalmente
+        await loadDataForNonAdmin();
+        await buildInterface();
+        markDataAsLoaded();
+        showMessage('Applicazione pronta', 'success');
+        return;
+      }
+    } else {
+      // ADMIN: mostra banner informativo e procedi normalmente
+      showAdminCacheBanner(cacheStatus);
+      
+      // Logica originale per admin
+      if (window.ProgressManager) {
+        ProgressManager.show('empty');
+      } else {
+        showLoading('Inizializzazione...');
+      }
 
-    await loadData();
-    await buildInterface();
-    
-    if (window.ProgressManager) {
-      ProgressManager.forceComplete();
-    } else {
-      hideLoading();
+      await loadData();
+      await buildInterface();
+      
+      if (window.ProgressManager) {
+        ProgressManager.forceComplete();
+      } else {
+        hideLoading();
+      }
+      
+      markDataAsLoaded();
+      showMessage('Applicazione pronta', 'success');
     }
-    
-    markDataAsLoaded();
-    showMessage('Applicazione pronta', 'success');
     
   } catch (error) {
     console.error('Initialization error:', error);
@@ -91,10 +128,204 @@ async function initializeApp() {
       hideLoading();
     }
     
-    showMessage('Errore di inizializzazione: ' + error.message, 'danger');
+    if (error.message === 'cache_missing_non_admin') {
+      showCacheMissingOverlay();
+    } else {
+      showMessage('Errore di inizializzazione: ' + error.message, 'danger');
+    }
   }
 }
 
+// Nuove funzioni per gestione admin/non-admin
+async function loadDataForNonAdmin() {
+  try {
+    // Carica direttamente dalla cache senza controlli TTL
+    const response = await fetch('api/checkteam.php?action=bootstrap', {
+      headers: { 'X-CSRF-Token': csrfToken }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.success) {
+      if (data.error === 'cache_missing_non_admin') {
+        throw new Error('cache_missing_non_admin');
+      } else {
+        throw new Error(data.error || 'Errore nel caricamento dati');
+      }
+    }
+    
+    // Popola lo stato
+    appState.playersData = data.players;
+    appState.playersByRole = data.playersByRole;
+    appState.criteriaList = data.criteriaList;
+    
+  } catch (error) {
+    console.error('LoadDataForNonAdmin error:', error);
+    throw error;
+  }
+}
+
+function showCacheMissingOverlay() {
+  if (window.ProgressManager) {
+    ProgressManager.showNonAdminBlock();
+  } else {
+    // Fallback overlay semplice
+    const overlay = document.createElement('div');
+    overlay.id = 'cacheMissingOverlay';
+    overlay.style.cssText = `
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8); z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
+    `;
+    overlay.innerHTML = `
+      <div style="
+        background: var(--card-bg, white); 
+        padding: 40px; 
+        border-radius: 16px; 
+        text-align: center; 
+        max-width: 400px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      ">
+        <span class="material-icons" style="
+          font-size: 64px; 
+          color: var(--warning-color, #f59e0b); 
+          margin-bottom: 24px; 
+          display: block;
+        ">info</span>
+        <h2 style="
+          margin: 0 0 16px 0; 
+          color: var(--text-primary, #1a1a1a);
+          font-size: 1.5rem;
+          font-weight: 700;
+        ">Cache assente</h2>
+        <p style="
+          margin: 0 0 24px 0; 
+          color: var(--text-secondary, #6b7280);
+          line-height: 1.5;
+        ">I dati della cache non sono disponibili.<br>Contatta l'amministratore per rigenerare la cache.</p>
+        <button onclick="location.reload()" style="
+          padding: 12px 24px; 
+          background: var(--primary-color, #3b82f6); 
+          color: white; 
+          border: none; 
+          border-radius: 8px; 
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">
+          Aggiorna pagina
+        </button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    
+    // Blocca scroll della pagina
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function showAdminCacheBanner(cacheStatus) {
+  // Controlla se banner già mostrato/dismisso in questa sessione
+  if (sessionStorage.getItem('admin_cache_banner_dismissed') === 'true') {
+    return;
+  }
+  
+  // Rimuovi banner esistente se presente
+  const existingBanner = document.getElementById('adminCacheBanner');
+  if (existingBanner) {
+    existingBanner.remove();
+  }
+  
+  const banner = document.createElement('div');
+  banner.id = 'adminCacheBanner';
+  banner.style.cssText = `
+    position: fixed; 
+    top: 80px; 
+    left: 0; 
+    right: 0; 
+    z-index: 999;
+    background: var(--info-bg, rgba(59, 130, 246, 0.1)); 
+    border-bottom: 1px solid var(--info-color, #3b82f6);
+    padding: 12px 24px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  `;
+  
+  let content = `<div style="display: flex; align-items: center; gap: 12px;">`;
+  content += `<span class="material-icons" style="color: var(--info-color, #3b82f6);">info</span>`;
+  
+  if (cacheStatus.exists) {
+    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
+    content += `Cache presente (età: ${cacheStatus.age_formatted || 'sconosciuta'})`;
+    content += `</span>`;
+    
+    if (cacheStatus.suggestion) {
+      content += `<span style="
+        margin-left: 16px; 
+        padding: 4px 12px; 
+        background: var(--warning-bg, rgba(245, 158, 11, 0.1)); 
+        color: var(--warning-color, #d97706);
+        border-radius: 6px; 
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid var(--warning-color, #d97706);
+      ">${cacheStatus.suggestion}</span>`;
+    }
+  } else {
+    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
+    content += `Cache assente - usa i comandi navbar per rigenerare`;
+    content += `</span>`;
+  }
+  
+  content += `</div>`;
+  content += `<button onclick="dismissAdminBanner()" style="
+    background: none; 
+    border: none; 
+    cursor: pointer;
+    color: var(--text-secondary, #6b7280);
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  " onmouseover="this.style.background='var(--hover-bg, rgba(0,0,0,0.05))'" onmouseout="this.style.background='none'">`;
+  content += `<span class="material-icons">close</span></button>`;
+  
+  banner.innerHTML = content;
+  document.body.appendChild(banner);
+  
+  // Auto-dismiss dopo 10 secondi se non c'è suggestion
+  if (!cacheStatus.suggestion) {
+    setTimeout(() => {
+      if (document.getElementById('adminCacheBanner')) {
+        dismissAdminBanner();
+      }
+    }, 10000);
+  }
+}
+
+function dismissAdminBanner() {
+  const banner = document.getElementById('adminCacheBanner');
+  if (banner) {
+    banner.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(-100%)';
+    
+    setTimeout(() => {
+      banner.remove();
+    }, 300);
+    
+    sessionStorage.setItem('admin_cache_banner_dismissed', 'true');
+  }
+}
+
+// ===== DATA LOADING (logica originale per admin) =====
 async function loadData() {
   const response = await fetch('api/checkteam.php?action=bootstrap', {
     headers: { 'X-CSRF-Token': csrfToken }
@@ -240,7 +471,7 @@ function bindEvents() {
   // Add criteria button
   document.getElementById('btnAddCriteria').addEventListener('click', addSelectedCriteria);
   
-  // Cache controls
+  // Cache controls (solo per admin)
   document.getElementById('btnCacheInfo')?.addEventListener('click', getCacheInfo);
   document.getElementById('btnForceRefresh')?.addEventListener('click', forceRefreshData);
 }
@@ -463,7 +694,7 @@ function markDataAsLoaded() {
   }
 }
 
-// ===== CACHE FUNCTIONS =====
+// ===== CACHE FUNCTIONS (solo per admin) =====
 async function getCacheInfo() {
   try {
     const response = await fetch('api/data.php?action=cache_info', {
@@ -505,5 +736,6 @@ async function forceRefreshData() {
   }
 }
 
-// Make removeSelectedCriteria globally accessible
+// Make functions globally accessible
 window.removeSelectedCriteria = removeSelectedCriteria;
+window.dismissAdminBanner = dismissAdminBanner;

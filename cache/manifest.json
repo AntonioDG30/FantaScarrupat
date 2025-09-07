@@ -1,8 +1,8 @@
 {
     "version": "1",
-    "built_at": 1757281597,
+    "built_at": 1757288707,
     "inputs_hash": "dd6663fadc4f44b774f90334c9b6c116",
-    "forced": false,
+    "forced": true,
     "total_players": 533,
     "api_teams": 20,
     "effective_nationalities": 533

@@ -632,6 +632,8 @@ window.ProgressManager = (function(){
     }
   }
 
+  
+
   // API pubblica
   return {
     show,
@@ -640,7 +642,35 @@ window.ProgressManager = (function(){
     updateCacheStatus, 
     addLogEntry,
     forceComplete,  
-    isActive: () => isActive
+    isActive: () => isActive,
+    showNonAdminBlock: function() {
+      if (!overlay) init();
+      
+      isActive = true;
+      overlay.style.display = 'flex';
+      
+      // Modifica contenuto per non-admin
+      const modal = overlay.querySelector('.progress-modal');
+      modal.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+          <span class="material-icons" style="font-size: 64px; color: var(--warning-color); margin-bottom: 24px;">info</span>
+          <h2 style="margin-bottom: 16px; color: var(--text-primary);">Cache assente</h2>
+          <p style="margin-bottom: 24px; color: var(--text-secondary);">
+            I dati della cache non sono disponibili.<br>
+            Contatta l'amministratore per rigenerare la cache.
+          </p>
+          <button onclick="location.reload()" style="
+            padding: 12px 24px; background: var(--primary-color); 
+            color: white; border: none; border-radius: 8px; cursor: pointer;
+          ">
+            Aggiorna pagina
+          </button>
+        </div>
+      `;
+      
+      // Rimuovi possibilità di chiudere
+      overlay.style.pointerEvents = 'auto';
+    }
   };
 })();
 

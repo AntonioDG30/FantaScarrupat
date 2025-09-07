@@ -370,4 +370,58 @@ class Cache
         return sprintf('%dh %dm', $h, $m);
     }
 
+    /**
+     * Verifica solo esistenza cache (per non-admin)
+     */
+    public static function existsOnly(): bool
+    {
+        if (!isset(self::$cacheDir)) {
+            self::init();
+        }
+        
+        $manifest = self::getManifest();
+        return $manifest !== null && isset($manifest['built_at']);
+    }
+
+    /**
+     * Status cache personalizzato per tipo utente
+     */
+    public static function getStatusForUser(bool $isAdmin): array
+    {
+        if (!isset(self::$cacheDir)) {
+            self::init();
+        }
+        
+        $manifest = self::getManifest();
+        $exists = $manifest !== null && isset($manifest['built_at']);
+        
+        if (!$exists) {
+            return [
+                'exists' => false,
+                'last_build_at' => null,
+                'age_seconds' => null,
+                'age_formatted' => null,
+                'suggestion' => $isAdmin ? 'Cache assente - rigenerare dai comandi navbar' : null
+            ];
+        }
+        
+        $builtAt = $manifest['built_at'];
+        $ageSeconds = time() - $builtAt;
+        
+        $result = [
+            'exists' => true,
+            'last_build_at' => date('Y-m-d H:i:s', $builtAt),
+            'age_seconds' => $ageSeconds,
+            'age_formatted' => self::formatDuration($ageSeconds)
+        ];
+        
+        // Solo admin vedono età e suggerimenti
+        if ($isAdmin) {
+            $result['suggestion'] = $ageSeconds > 86400 ? // 24 ore
+                'Cache più vecchia di 24h: valutare rigenerazione' : null;
+        }
+        
+        return $result;
+    }
+
 }

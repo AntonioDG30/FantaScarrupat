@@ -31,9 +31,42 @@ define('CACHE_PATH', BASE_PATH . '/.cache');
 // UI Configuration
 define('USE_REACT_MUI', true);
 
+
+function getCurrentSeason() {
+    $currentYear = (int)date('Y');
+    $currentMonth = (int)date('n');
+    
+    // Se siamo prima di luglio, la stagione è iniziata l'anno precedente
+    if ($currentMonth < 7) {
+        $startYear = $currentYear - 1;
+        $endYear = $currentYear;
+    } else {
+        // Da luglio in poi, la stagione inizia quest'anno
+        $startYear = $currentYear;
+        $endYear = $currentYear + 1;
+    }
+    
+    return $startYear . '-' . substr((string)$endYear, 2);
+}
+
+function getLastSeason() {
+    $currentYear = (int)date('Y');
+    $currentMonth = (int)date('n');
+    
+    if ($currentMonth < 7) {
+        $startYear = $currentYear - 2;
+        $endYear = $currentYear - 1;
+    } else {
+        $startYear = $currentYear - 1;
+        $endYear = $currentYear;
+    }
+    
+    return $startYear . '-' . substr((string)$endYear, 2);
+}
+
 // Season Configuration
-define('CURRENT_SEASON', '2025-26');
-define('LAST_SEASON', '2024-25');
+define('CURRENT_SEASON', getCurrentSeason());
+define('LAST_SEASON', getLastSeason());
 
 // Security
 define('CSRF_TOKEN_NAME', 'csrf_token');

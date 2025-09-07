@@ -1,5 +1,4 @@
-
-// Funzione url() per compatibilità
+// Funzione url() per compatibilità 
 function url(path) {
     const basePath = '<?= getProjectBasePath() ?>';
     return basePath + path.replace(/^\/+/, '');
@@ -25,7 +24,7 @@ const criteriaList = {
   '1':'Under 23 (al 1° luglio)','2':'Over 32 (al 1° luglio)',
   '3':'Prima stagione in Serie A','4':'Più di 200 presenze in Serie A',
   '5':'Giocatori sudamericani','6':'Giocatori africani','7':'Europei non italiani',
-  '8':'Squadre neopromosse (dinamico)','9':'Squadre 10°–17° scorsa stagione',
+  '8':'Squadre neopromosse (dinamico)','9':'Squadre 10°—17° scorsa stagione',
   '10':'Portieri squadre con GA ≥ 50','11':'Difensori con almeno 1 gol',
   '12':'Centrocampisti con almeno 3 assist','13':'Attaccanti con massimo 5 gol',
   '14':'Meno di 10 presenze','15':'Media voto < 6','16':'Quotazione ≤ 6','17':'Quotazione ≤ 3',
@@ -66,79 +65,112 @@ function showMessage(msg,type='info'){
   },2600);
 }
 
-// ===== VERSIONE SEMPLIFICATA: UI sempre sincronizzata con backend =====
+// ===== NUOVA LOGICA ADMIN/NON-ADMIN =====
 let currentPollingInterval = null;
 
 async function loadData(forceRefresh = false) {
   try {
-    const statusCheck = await fetch('status/progress.php', {
-      cache: 'no-cache',
-      headers: { 'Cache-Control': 'no-cache' }
+    // Prima verifica lo status della cache e il tipo utente
+    const statusResponse = await fetch('api/data.php?action=cache_status', {
+      headers: { 'X-CSRF-Token': csrfToken }
     });
     
-    if (statusCheck.ok) {
-      const statusData = await statusCheck.json();
-      if (statusData.operation_active) {
-        // console.log('Joining existing operation');
-        
-        if (window.ProgressManager) {
-          ProgressManager.show(statusData.cache_state);
-        }
-        
-        disableInterface();
-        startContinuousPolling();
-        
-        let message = 'Operazione in corso';
-        if (statusData.job_info && !statusData.job_info.started_by_me) {
-          message += ' (avviata da altro utente)';
-        }
-        showMessage(message, 'info');
+    if (!statusResponse.ok) {
+      throw new Error(`HTTP ${statusResponse.status}`);
+    }
+    
+    const statusData = await statusResponse.json();
+    
+    if (!statusData.success) {
+      showMessage('Errore verifica cache: ' + (statusData.error || 'Sconosciuto'), 'danger');
+      return;
+    }
+    
+    const isAdmin = statusData.is_admin;
+    const cacheStatus = statusData.cache_status;
+    
+    if (!isAdmin) {
+      // NON-ADMIN: controlla solo esistenza cache
+      if (!cacheStatus.exists) {
+        showCacheMissingOverlay();
+        return;
+      } else {
+        // Cache presente: carica normalmente senza controlli TTL
+        await loadDataForNonAdmin();
         return;
       }
-    }
-
-    // Clear progress state prima di iniziare
-    try {
-      const clearUrl = new URL('api/data.php', window.location.href);
-      clearUrl.searchParams.set('action', 'clear_progress');
-      await fetch(clearUrl, {
-        headers: { 'X-CSRF-Token': csrfToken }
+    } else {
+      // ADMIN: mostra banner informativo e procedi con logica esistente
+      showAdminCacheBanner(cacheStatus);
+      
+      // Resto della logica esistente per admin (dal codice originale)
+      const progressCheck = await fetch('status/progress.php', {
+        cache: 'no-cache',
+        headers: { 'Cache-Control': 'no-cache' }
       });
-    } catch (e) {
-      console.warn('Could not clear previous progress:', e);
-    }
-    
-    // Mostra progress e disabilita UI
-    if (window.ProgressManager) {
-      ProgressManager.show('checking');
-    } else {
-      showLoading('Avvio operazione...');
-    }
-    
-    disableInterface();
-    startContinuousPolling();
-    
-    await new Promise(resolve => setTimeout(resolve, 200));
-    
-    // Avvia load operation
-    const url = new URL('api/data.php', window.location.href);
-    url.searchParams.set('action', 'load');
-    
-    const headers = { 'X-CSRF-Token': csrfToken };
-    if (forceRefresh) {
-      headers['X-Force-Refresh'] = '1';
-    }
-    
-    const response = await fetch(url, { headers });
-    const data = await response.json();
-    
-    if (data.success) {
-      // console.log('Load initiated, polling will handle completion');
-    } else {
-      stopContinuousPolling();
-      hideLoadingIndicators();
-      enableInterface();
-      showMessage(data.error || 'Errore nel caricamento', 'danger');
+      
+      if (progressCheck.ok) {
+        const progressData = await progressCheck.json();
+        if (progressData.operation_active) {
+          if (window.ProgressManager) {
+            ProgressManager.show(progressData.cache_state);
+          }
+          
+          disableInterface();
+          startContinuousPolling();
+          
+          let message = 'Operazione in corso';
+          if (progressData.job_info && !progressData.job_info.started_by_me) {
+            message += ' (avviata da altro utente)';
+          }
+          showMessage(message, 'info');
+          return;
+        }
+      }
+
+      // Clear progress state prima di iniziare
+      try {
+        const clearUrl = new URL('api/data.php', window.location.href);
+        clearUrl.searchParams.set('action', 'clear_progress');
+        await fetch(clearUrl, {
+          headers: { 'X-CSRF-Token': csrfToken }
+        });
+      } catch (e) {
+        console.warn('Could not clear previous progress:', e);
+      }
+      
+      // Mostra progress e disabilita UI
+      if (window.ProgressManager) {
+        ProgressManager.show('checking');
+      } else {
+        showLoading('Avvio operazione...');
+      }
+      
+      disableInterface();
+      startContinuousPolling();
+      
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // Avvia load operation per admin
+      const url = new URL('api/data.php', window.location.href);
+      url.searchParams.set('action', 'load');
+      
+      const headers = { 'X-CSRF-Token': csrfToken };
+      if (forceRefresh) {
+        headers['X-Force-Refresh'] = '1';
+      }
+      
+      const response = await fetch(url, { headers });
+      const data = await response.json();
+      
+      if (data.success) {
+        console.log('Load initiated, polling will handle completion');
+      } else {
+        stopContinuousPolling();
+        hideLoadingIndicators();
+        enableInterface();
+        showMessage(data.error || 'Errore nel caricamento', 'danger');
+      }
     }
     
   } catch (e) {
@@ -150,6 +182,237 @@ async function loadData(forceRefresh = false) {
   }
 }
 
+// Nuova funzione per caricamento admin (simile a non-admin ma con controlli diversi)
+async function loadDataForAdmin() {
+  try {
+    showLoading('Caricamento dati dalla cache...');
+    
+    const response = await fetch('api/data.php?action=load', {
+      headers: { 'X-CSRF-Token': csrfToken }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      markDataAsLoaded();
+      enableInterface();
+      
+      let successMessage = 'Dati caricati con successo';
+      if (data.cache_info && data.cache_info.age_formatted) {
+        successMessage += ` (cache età: ${data.cache_info.age_formatted})`;
+      }
+      showMessage(successMessage, 'success');
+    } else {
+      showMessage(data.error || 'Errore nel caricamento', 'danger');
+    }
+  } catch (e) {
+    showMessage('Errore di rete: ' + e.message, 'danger');
+    console.error('LoadDataForAdmin error:', e);
+  } finally {
+    hideLoading();
+  }
+}
+
+// Nuove funzioni per gestione admin/non-admin
+async function loadDataForNonAdmin() {
+  try {
+    showLoading('Caricamento dati dalla cache...');
+    
+    const response = await fetch('api/data.php?action=load', {
+      headers: { 'X-CSRF-Token': csrfToken }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      markDataAsLoaded();
+      enableInterface();
+      
+      let successMessage = 'Dati caricati con successo';
+      if (data.cache_info && data.cache_info.age_formatted) {
+        successMessage += ` (cache età: ${data.cache_info.age_formatted})`;
+      }
+      showMessage(successMessage, 'success');
+    } else {
+      if (data.error === 'cache_missing_non_admin') {
+        showCacheMissingOverlay();
+      } else {
+        showMessage(data.error || 'Errore nel caricamento', 'danger');
+      }
+    }
+  } catch (e) {
+    showMessage('Errore di rete: ' + e.message, 'danger');
+    console.error('LoadDataForNonAdmin error:', e);
+  } finally {
+    hideLoading();
+  }
+}
+
+function showCacheMissingOverlay() {
+  if (window.ProgressManager) {
+    ProgressManager.showNonAdminBlock();
+  } else {
+    // Fallback overlay semplice
+    const overlay = document.createElement('div');
+    overlay.id = 'cacheMissingOverlay';
+    overlay.style.cssText = `
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8); z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
+    `;
+    overlay.innerHTML = `
+      <div style="
+        background: var(--card-bg, white); 
+        padding: 40px; 
+        border-radius: 16px; 
+        text-align: center; 
+        max-width: 400px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      ">
+        <span class="material-icons" style="
+          font-size: 64px; 
+          color: var(--warning-color, #f59e0b); 
+          margin-bottom: 24px; 
+          display: block;
+        ">info</span>
+        <h2 style="
+          margin: 0 0 16px 0; 
+          color: var(--text-primary, #1a1a1a);
+          font-size: 1.5rem;
+          font-weight: 700;
+        ">Cache assente</h2>
+        <p style="
+          margin: 0 0 24px 0; 
+          color: var(--text-secondary, #6b7280);
+          line-height: 1.5;
+        ">I dati della cache non sono disponibili.<br>Contatta l'amministratore per rigenerare la cache.</p>
+        <button onclick="location.reload()" style="
+          padding: 12px 24px; 
+          background: var(--primary-color, #3b82f6); 
+          color: white; 
+          border: none; 
+          border-radius: 8px; 
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">
+          Aggiorna pagina
+        </button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    
+    // Blocca scroll della pagina
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function showAdminCacheBanner(cacheStatus) {
+  // Controlla se banner già mostrato/dismisso in questa sessione
+  if (sessionStorage.getItem('admin_cache_banner_dismissed') === 'true') {
+    return;
+  }
+  
+  // Rimuovi banner esistente se presente
+  const existingBanner = document.getElementById('adminCacheBanner');
+  if (existingBanner) {
+    existingBanner.remove();
+  }
+  
+  const banner = document.createElement('div');
+  banner.id = 'adminCacheBanner';
+  banner.style.cssText = `
+    position: fixed; 
+    top: 80px; 
+    left: 0; 
+    right: 0; 
+    z-index: 999;
+    background: var(--info-bg, rgba(59, 130, 246, 0.1)); 
+    border-bottom: 1px solid var(--info-color, #3b82f6);
+    padding: 12px 24px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  `;
+  
+  let content = `<div style="display: flex; align-items: center; gap: 12px;">`;
+  content += `<span class="material-icons" style="color: var(--info-color, #3b82f6);">info</span>`;
+  
+  if (cacheStatus.exists) {
+    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
+    content += `Cache presente (età: ${cacheStatus.age_formatted || 'sconosciuta'})`;
+    content += `</span>`;
+    
+    if (cacheStatus.suggestion) {
+      content += `<span style="
+        margin-left: 16px; 
+        padding: 4px 12px; 
+        background: var(--warning-bg, rgba(245, 158, 11, 0.1)); 
+        color: var(--warning-color, #d97706);
+        border-radius: 6px; 
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid var(--warning-color, #d97706);
+      ">${cacheStatus.suggestion}</span>`;
+    }
+  } else {
+    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
+    content += `Cache assente - usa i comandi navbar per rigenerare`;
+    content += `</span>`;
+  }
+  
+  content += `</div>`;
+  content += `<button onclick="dismissAdminBanner()" style="
+    background: none; 
+    border: none; 
+    cursor: pointer;
+    color: var(--text-secondary, #6b7280);
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  " onmouseover="this.style.background='var(--hover-bg, rgba(0,0,0,0.05))'" onmouseout="this.style.background='none'">`;
+  content += `<span class="material-icons">close</span></button>`;
+  
+  banner.innerHTML = content;
+  document.body.appendChild(banner);
+  
+  // Auto-dismiss dopo 10 secondi se non c'è suggestion
+  if (!cacheStatus.suggestion) {
+    setTimeout(() => {
+      if (document.getElementById('adminCacheBanner')) {
+        dismissAdminBanner();
+      }
+    }, 10000);
+  }
+}
+
+function dismissAdminBanner() {
+  const banner = document.getElementById('adminCacheBanner');
+  if (banner) {
+    banner.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(-100%)';
+    
+    setTimeout(() => {
+      banner.remove();
+    }, 300);
+    
+    sessionStorage.setItem('admin_cache_banner_dismissed', 'true');
+  }
+}
+
+// Resto delle funzioni esistenti (invariate)
 function stopContinuousPolling() {
   if (currentPollingInterval) {
     clearInterval(currentPollingInterval);
@@ -224,8 +487,6 @@ function updateUIFromBackendState(data) {
 }
 
 function handleOperationSuccess(data) {
-  // console.log('Operation completed successfully');
-
   let successMessage = 'Dati caricati con successo';
   if (data.job_info && !data.job_info.started_by_me) {
     successMessage += ' (completato da altro utente)';
@@ -380,7 +641,7 @@ function hideLoadingIndicators() {
   }
 }
 
-// Refresh forzato semplificato
+// Refresh forzato semplificato (solo per admin)
 async function forceRefreshData() {
   const confirm_msg = 'Aggiornare i dati ignorando la cache?\n\n' +
                      'Questa operazione può richiedere alcuni minuti.';
@@ -390,7 +651,7 @@ async function forceRefreshData() {
   }
 }
 
-// Funzione info cache
+// Funzione info cache (solo per admin)
 async function getCacheInfo() {
   try {
     const response = await fetch('api/data.php?action=cache_info', {
@@ -462,9 +723,12 @@ document.addEventListener('DOMContentLoaded', () => {
   on('btnRun','click',runCriteria);
   on('btnRunDual','click', () => window.CriteriaAndManager?.runDualCriteria?.());
   
-  // Controlli cache
+  // Controlli cache (solo per admin)
   on('btnForceRefresh', 'click', forceRefreshData);
   on('btnCacheInfo', 'click', getCacheInfo);
+
+  // Aggiungi funzione globale per banner admin
+  window.dismissAdminBanner = dismissAdminBanner;
 
   // Autoload
   loadData();
@@ -503,7 +767,7 @@ document.getElementById('criteriaSelect').addEventListener('change', async (e) =
   }
 });
 
-// Funzione con logging attività
+// Funzione con logging attività 
 async function runCriteria(){
   const criteriaId = document.getElementById('criteriaSelect').value;
   if(!criteriaId){ showMessage('Seleziona un criterio','warning'); return; }

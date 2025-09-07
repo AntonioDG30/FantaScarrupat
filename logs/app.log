@@ -32156,3 +32156,1873 @@
 [2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
 [2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
 [2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 00:55:46] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 00:55:46] [INFO] [Cache] Cache valid: age=4149s, hash matches
+[2025-09-08 00:55:47] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 00:55:47] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 00:55:47] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 00:55:47] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 00:55:47] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 00:55:47] [INFO] [Cache] Cache valid: age=4150s, hash matches
+[2025-09-08 00:55:47] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 00:55:47] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 00:55:47] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 00:55:47] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 00:55:47] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 00:55:47] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 24h)
+[2025-09-08 00:55:47] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 00:55:47] [INFO] [Cache] Cache valid: age=4150s, hash matches
+[2025-09-08 00:55:49] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 00:55:49] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 00:55:49] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 00:55:49] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 00:55:49] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:03:12] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:03:12] [INFO] [Cache] Cache valid: age=4595s, hash matches
+[2025-09-08 01:03:12] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:03:12] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:03:12] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:03:12] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:03:12] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:03:12] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 24h)
+[2025-09-08 01:03:13] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:03:13] [INFO] [Cache] Cache valid: age=4596s, hash matches
+[2025-09-08 01:03:16] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:03:16] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:03:16] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:03:16] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:03:16] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:04:58] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:04:58] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:04:58] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:04:58] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:04:58] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:04:58] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 24h)
+[2025-09-08 01:05:02] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:05:02] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:05:02] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:05:02] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:05:02] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:05:05] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:05:05] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:05:05] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:05:05] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:05:05] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:05:08] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:05:08] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:05:08] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:05:08] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:05:08] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:05:08] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 24h)
+[2025-09-08 01:05:13] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:05:13] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:05:13] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:05:13] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:05:13] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:05:16] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:05:16] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:05:16] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:05:16] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:05:16] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:05:18] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:05:18] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:05:18] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:05:18] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:05:18] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:05:21] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:05:21] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:05:21] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:05:21] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:05:21] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:05:21] [INFO] [FantacalcioAnalyzer] [CartelliniRatio] Soglia: 0.25 (presenze_min=10)
+[2025-09-08 01:05:26] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:05:26] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:05:26] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:05:26] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:05:26] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:07:07] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:07:07] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:07:09] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:07:09] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:07:14] [INFO] [CheckMyTeam] Evaluating criteria: 3
+[2025-09-08 01:07:14] [INFO] [CheckMyTeam] Criteria 3 loaded from cache
+[2025-09-08 01:07:17] [INFO] [CheckMyTeam] Evaluating criteria: 5
+[2025-09-08 01:07:17] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:07:17] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:07:17] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:07:17] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:07:17] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:07:17] [INFO] [Cache] Cached: criteria_eval_5
+[2025-09-08 01:07:17] [INFO] [CheckMyTeam] Criteria 5 evaluated
+[2025-09-08 01:08:32] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:08:32] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:08:32] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:08:32] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:08:32] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:08:32] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:08:36] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:08:36] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:08:36] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:08:36] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:08:36] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:08:36] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:08:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:08:37] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:08:37] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:08:37] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:08:37] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:08:37] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:08:39] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:08:39] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:08:39] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:08:39] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:08:39] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:08:47] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:08:47] [INFO] [Cache] Cache expired: age=4930s > ttl=300s
+[2025-09-08 01:08:47] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:08:47] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:08:47] [INFO] [Cache] Cache expired: age=4930s > ttl=300s
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache scaduta, rigenerazione necessaria...
+[2025-09-08 01:08:47] [INFO] [Cache] Lock acquired
+[2025-09-08 01:08:47] [INFO] [Progress] Progress initialized: Loading data (12 steps)
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 1/12 (8.3%) - Inizializzazione analyzer...
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 2/12 (16.7%) - Caricamento completo dei dati...
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] Percorso base: C:\wamp64\www\FantaScarrupat
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] Percorso dati: C:\wamp64\www\FantaScarrupat/data
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 3/12 (25%) - Caricamento lista giocatori...
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Lista] Ricerca: C:\wamp64\www\FantaScarrupat/data/lista/*.csv -> 1 file
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Lista] Carico: Lista-FantaAsta-Fantacalcio.csv
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Lista] Colonne rilevate nel CSV: 19
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Lista] Colonne mappate: id, cognome, nome_completo, ruolo_classic, ruolo_mantra, quota_iniziale_classic, quota_attuale_classic, quota_iniziale_mantra, quota_attuale_mantra, squadra, fvm_classic, fvm_mantra, piede, nazionalita, data_nascita, extra_col_1, trasferito, extra_col_3, extra_col_4
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Filtro] Esclusi 63 giocatori trasferiti
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori totali: 596
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori esclusi (trasferiti): 63
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori rimanenti: 533
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] ✅ Lista corrente caricata: 533 giocatori
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 4/12 (33.3%) - Determinazione stagioni...
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Anni] Usando configurazione esplicita: current=2025-26, last=2024-25
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] ✅ Stagioni: corrente=2025-26, ultima=2024-25
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 5/12 (41.7%) - Caricamento statistiche...
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] CSV trovati: 10
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] XLSX trovati: 0
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2015-16: 674 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2016-17: 630 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2017-18: 631 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2018-19: 641 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2019-20: 684 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2020-21: 678 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2021-22: 675 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2022-23: 672 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2023-24: 664 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] 2024-25: 679 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Statistiche] Anni caricati: 10
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] ✅ Statistiche caricate per 10 stagioni
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 6/12 (50%) - Caricamento quotazioni...
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] CSV trovati: 11
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] XLSX trovati: 0
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2015-16: 529 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2016-17: 513 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2017-18: 513 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2018-19: 523 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2019-20: 529 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2020-21: 564 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2021-22: 550 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2022-23: 545 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2023-24: 539 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2024-25: 560 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2025-26: 513 righe
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Quotazioni] Anni caricati: 11
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] ✅ Quotazioni caricate per 11 stagioni
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 7/12 (58.3%) - Caricamento valutazioni...
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Valutazioni] Path=C:\wamp64\www\FantaScarrupat/data/valutazioni/2024-25  File trovati=38
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Valutazioni] Caricati voti per 626 giocatori
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] ✅ Valutazioni caricate per 626 giocatori
+[2025-09-08 01:08:47] [INFO] [Progress] Progress: 8/12 (66.7%) - Calcolo liste dinamiche (API/Wikipedia)...
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Dinamiche] === INIZIO CALCOLO LISTE DINAMICHE ===
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Dinamiche] Current season: 2025-26
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Dinamiche] Last season: 2024-25
+[2025-09-08 01:08:47] [INFO] [FantacalcioAnalyzer] [Dinamiche] Tentativo API Football-Data...
+[2025-09-08 01:08:47] [INFO] [FootballDataFetcher] [FD] Testing API connection
+[2025-09-08 01:08:47] [INFO] [FootballDataFetcher] [FD] API test successful: Serie A
+[2025-09-08 01:08:47] [INFO] [FootballDataFetcher] [FD] Computing dynamic lists for 2025-26 vs 2024-25
+[2025-09-08 01:08:47] [INFO] [FootballDataFetcher] [FD] Season years: current=2025, last=2024
+[2025-09-08 01:08:47] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2025
+[2025-09-08 01:08:54] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Hellas Verona FC, US Cremonese, US Sassuolo Calcio, AC Pisa 1909, Torino FC, US Lecce, Como 1907
+[2025-09-08 01:08:54] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2024
+[2025-09-08 01:09:01] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Empoli FC, Hellas Verona FC, Venezia FC, Torino FC, US Lecce, AC Monza, Como 1907
+[2025-09-08 01:09:01] [INFO] [FootballDataFetcher] [FD] Neopromosse (raw): US Cremonese, US Sassuolo Calcio, AC Pisa 1909
+[2025-09-08 01:09:01] [INFO] [FootballDataFetcher] [FD] Fetching league table for season 2024
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] League table: 20 teams
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 1. SSC Napoli (GA: 27)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 2. FC Internazionale Milano (GA: 35)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 3. Atalanta BC (GA: 37)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 4. Juventus FC (GA: 35)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 5. AS Roma (GA: 35)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 6. ACF Fiorentina (GA: 41)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 7. SS Lazio (GA: 49)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 8. AC Milan (GA: 43)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 9. Bologna FC 1909 (GA: 47)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 10. Como 1907 (GA: 52)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 11. Torino FC (GA: 45)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 12. Udinese Calcio (GA: 56)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 13. Genoa CFC (GA: 49)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 14. Hellas Verona FC (GA: 66)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 15. Parma Calcio 1913 (GA: 58)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 16. Cagliari Calcio (GA: 56)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 17. US Lecce (GA: 58)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 18. Empoli FC (GA: 59)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 19. Venezia FC (GA: 56)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] 20. AC Monza (GA: 69)
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] Squadre media (10-17): Como 1907, Torino FC, Udinese Calcio, Genoa CFC, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] Squadre 50+ GA: Como 1907, Udinese Calcio, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce, Empoli FC, Venezia FC, AC Monza
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] [Dinamiche] API SUCCESS - Neopromosse: 3, Media: 8, GA50: 9
+[2025-09-08 01:09:07] [INFO] [FootballDataFetcher] [FD] League table cache HIT for season 2024
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] [Dinamiche] === RISULTATI FINALI ===
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] [Dinamiche] Neopromosse (3): Cremonese, Sassuolo, Pisa
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] [Dinamiche] Media classifica (8): Como, Torino, Udinese, Genoa, Verona, Parma, Cagliari, Lecce
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] [Dinamiche] 50+ GA (9): Como, Udinese, Verona, Parma, Cagliari, Lecce, Empoli, Venezia, Monza
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] [Dinamiche] Team GA mapping (20): {"Napoli":27,"Inter":35,"Atalanta":37,"Juventus":35,"Roma":35,"Fiorentina":41,"Lazio":49,"Milan":43,"Bologna":47,"Como":52,"Torino":45,"Udinese":56,"Genoa":49,"Verona":66,"Parma":58,"Cagliari":56,"Lecce":58,"Empoli":59,"Venezia":56,"Monza":69}
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] ✅ Liste dinamiche calcolate
+[2025-09-08 01:09:07] [INFO] [Progress] Progress: 9/12 (75%) - Pre-calcolo cache API (rose, nazionalità, rigoristi)...
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] === INIZIO PRE-CALCOLO CACHE API ===
+[2025-09-08 01:09:07] [INFO] [Progress] Log entry: Costruzione indice rose API...
+[2025-09-08 01:09:07] [INFO] [FantacalcioAnalyzer] [API Rose] Costruzione indice per stagione 2025
+[2025-09-08 01:09:13] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 98
+[2025-09-08 01:09:20] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 99
+[2025-09-08 01:09:26] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 100
+[2025-09-08 01:09:32] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 102
+[2025-09-08 01:09:39] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 103
+[2025-09-08 01:09:45] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 104
+[2025-09-08 01:09:51] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 107
+[2025-09-08 01:09:57] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 108
+[2025-09-08 01:10:04] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 109
+[2025-09-08 01:10:10] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 110
+[2025-09-08 01:10:16] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 112
+[2025-09-08 01:10:22] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 113
+[2025-09-08 01:10:28] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 115
+[2025-09-08 01:10:35] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 450
+[2025-09-08 01:10:41] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 457
+[2025-09-08 01:10:47] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 471
+[2025-09-08 01:10:53] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 487
+[2025-09-08 01:11:00] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 586
+[2025-09-08 01:11:06] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 5890
+[2025-09-08 01:11:08] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:08] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:11:08] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:11:08] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:11:08] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:11:08] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:11:12] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:11:12] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:11:12] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:11:12] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:11:12] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:11:12] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 7397
+[2025-09-08 01:11:14] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:11:14] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [API Rose] Indice completato: 20 squadre, 617 giocatori
+[2025-09-08 01:11:18] [INFO] [Progress] Log entry: Rose API indicizzate: 20 squadre
+[2025-09-08 01:11:18] [INFO] [Progress] Log entry: Risoluzione nazionalità effettive...
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Nazionalità] Calcolo nazionalità effettive per 533 giocatori
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Nazionalità] Risolte 533 nazionalità effettive
+[2025-09-08 01:11:18] [INFO] [Progress] Log entry: Nazionalità risolte: 533 giocatori
+[2025-09-08 01:11:18] [INFO] [Progress] Log entry: Download rigoristi da fantacalcio.it...
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi] Scraping da https://www.fantacalcio.it/rigoristi-serie-a
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Atalanta: krstovic
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Pisa: nzola
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cagliari: mina
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Bologna: immobile
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Como: paz n.
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Fiorentina: gudmundsson a.
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Parma: pellegrino m.
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cremonese: vazquez
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Genoa: malinovskyi
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Milan: pulisic
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Inter: calhanoglu
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Torino: zapata d.
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Juventus: locatelli
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lazio: zaccagni
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lecce: stulic
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Napoli: lukaku
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Udinese: davis k.
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Roma: dybala
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Sassuolo: berardi
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Verona: harroui
+[2025-09-08 01:11:18] [INFO] [Progress] Log entry: Rigoristi trovati per 20 squadre
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] Cache API pre-calcolate in 131.6s
+[2025-09-08 01:11:18] [INFO] [Progress] Log entry: Cache API completate in 131.6s
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] === FINE PRE-CALCOLO CACHE API ===
+[2025-09-08 01:11:18] [INFO] [Progress] Log entry: Cache API completate: 20 rose, 533 nazionalità, 20 rigoristi
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer] ✅ Dati caricati con successo (include cache API)
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer]   Anno corrente: 2025-26
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer]   Ultimo anno con dati: 2024-25
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer]   Giocatori in lista: 533
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer]   Anni di statistiche: 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer]   Rose API indicizzate: 20
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:11:18] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:11:18] [INFO] [Progress] Progress: 10/12 (83.3%) - Preparazione cache...
+[2025-09-08 01:11:18] [INFO] [Cache] Cached: lista_corrente
+[2025-09-08 01:11:18] [INFO] [Cache] Cached: statistiche
+[2025-09-08 01:11:18] [INFO] [Cache] Cached: quotazioni
+[2025-09-08 01:11:18] [INFO] [Cache] Cached: valutazioni
+[2025-09-08 01:11:18] [INFO] [Cache] Cached: metadata
+[2025-09-08 01:11:18] [INFO] [Cache] Cached: api_caches
+[2025-09-08 01:11:18] [INFO] [Progress] Progress: 11/12 (91.7%) - Aggiornamento manifest...
+[2025-09-08 01:11:18] [INFO] [Cache] Updated cache manifest
+[2025-09-08 01:11:18] [INFO] [Cache] Lock released
+[2025-09-08 01:11:18] [INFO] [Progress] Progress: 12/12 (100%) - Operazione completata
+[2025-09-08 01:11:18] [INFO] [Progress] Progress completed in 151s: Dati caricati e cache aggiornata
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:18] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:19] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:19] [INFO] [Cache] Cache valid: age=1s, hash matches
+[2025-09-08 01:11:25] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:25] [INFO] [Cache] Cache valid: age=7s, hash matches
+[2025-09-08 01:11:25] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:25] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:11:25] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:11:25] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:11:25] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:11:25] [INFO] [Cache] Cache valid: age=7s, hash matches
+[2025-09-08 01:11:25] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 01:11:25] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:11:25] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:11:25] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:11:25] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:11:25] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:11:25] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:25] [INFO] [Cache] Cache valid: age=7s, hash matches
+[2025-09-08 01:11:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:29] [INFO] [Cache] Cache valid: age=11s, hash matches
+[2025-09-08 01:11:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:29] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:11:29] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:11:29] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:11:29] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:11:29] [INFO] [Cache] Cache valid: age=11s, hash matches
+[2025-09-08 01:11:29] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 01:11:29] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:11:29] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:11:29] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:11:29] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:11:29] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:11:30] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:30] [INFO] [Cache] Cache valid: age=12s, hash matches
+[2025-09-08 01:11:34] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:11:34] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:11:46] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:46] [INFO] [Cache] Cache valid: age=28s, hash matches
+[2025-09-08 01:11:49] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:11:49] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:11:51] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:51] [INFO] [Cache] Cache valid: age=33s, hash matches
+[2025-09-08 01:11:51] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:52] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:11:52] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:11:52] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:11:52] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:11:52] [INFO] [Cache] Cache valid: age=34s, hash matches
+[2025-09-08 01:11:52] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 01:11:52] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:11:52] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:11:52] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:11:52] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:11:52] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:11:52] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:52] [INFO] [Cache] Cache valid: age=34s, hash matches
+[2025-09-08 01:11:56] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:11:56] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:11:56] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:11:56] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:11:56] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:11:56] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:12:02] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:12:02] [INFO] [Cache] Cache valid: age=44s, hash matches
+[2025-09-08 01:12:02] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:12:02] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:12:02] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:12:02] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:12:02] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:12:02] [INFO] [Cache] Cache valid: age=44s, hash matches
+[2025-09-08 01:12:02] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 01:12:02] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:12:02] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:12:02] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:12:02] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:12:02] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:12:02] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:12:02] [INFO] [Cache] Cache valid: age=44s, hash matches
+[2025-09-08 01:12:08] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:12:08] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:12:08] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:12:08] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:12:08] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:12:10] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:12:10] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:12:38] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:12:38] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache scaduta, rigenerazione necessaria...
+[2025-09-08 01:12:38] [INFO] [Cache] Lock acquired
+[2025-09-08 01:12:38] [INFO] [Progress] Progress initialized: Loading data (12 steps)
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 1/12 (8.3%) - Inizializzazione analyzer...
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 2/12 (16.7%) - Caricamento completo dei dati...
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] Percorso base: C:\wamp64\www\FantaScarrupat
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] Percorso dati: C:\wamp64\www\FantaScarrupat/data
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 3/12 (25%) - Caricamento lista giocatori...
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Lista] Ricerca: C:\wamp64\www\FantaScarrupat/data/lista/*.csv -> 1 file
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Lista] Carico: Lista-FantaAsta-Fantacalcio.csv
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Lista] Colonne rilevate nel CSV: 19
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Lista] Colonne mappate: id, cognome, nome_completo, ruolo_classic, ruolo_mantra, quota_iniziale_classic, quota_attuale_classic, quota_iniziale_mantra, quota_attuale_mantra, squadra, fvm_classic, fvm_mantra, piede, nazionalita, data_nascita, extra_col_1, trasferito, extra_col_3, extra_col_4
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Filtro] Esclusi 63 giocatori trasferiti
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori totali: 596
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori esclusi (trasferiti): 63
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori rimanenti: 533
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] ✅ Lista corrente caricata: 533 giocatori
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 4/12 (33.3%) - Determinazione stagioni...
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Anni] Usando configurazione esplicita: current=2025-26, last=2024-25
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] ✅ Stagioni: corrente=2025-26, ultima=2024-25
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 5/12 (41.7%) - Caricamento statistiche...
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] CSV trovati: 10
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] XLSX trovati: 0
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2015-16: 674 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2016-17: 630 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2017-18: 631 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2018-19: 641 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2019-20: 684 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2020-21: 678 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2021-22: 675 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2022-23: 672 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2023-24: 664 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] 2024-25: 679 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Statistiche] Anni caricati: 10
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] ✅ Statistiche caricate per 10 stagioni
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 6/12 (50%) - Caricamento quotazioni...
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] CSV trovati: 11
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] XLSX trovati: 0
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2015-16: 529 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2016-17: 513 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2017-18: 513 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2018-19: 523 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2019-20: 529 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2020-21: 564 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2021-22: 550 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2022-23: 545 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2023-24: 539 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2024-25: 560 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2025-26: 513 righe
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Quotazioni] Anni caricati: 11
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] ✅ Quotazioni caricate per 11 stagioni
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 7/12 (58.3%) - Caricamento valutazioni...
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Valutazioni] Path=C:\wamp64\www\FantaScarrupat/data/valutazioni/2024-25  File trovati=38
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Valutazioni] Caricati voti per 626 giocatori
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] ✅ Valutazioni caricate per 626 giocatori
+[2025-09-08 01:12:38] [INFO] [Progress] Progress: 8/12 (66.7%) - Calcolo liste dinamiche (API/Wikipedia)...
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Dinamiche] === INIZIO CALCOLO LISTE DINAMICHE ===
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Dinamiche] Current season: 2025-26
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Dinamiche] Last season: 2024-25
+[2025-09-08 01:12:38] [INFO] [FantacalcioAnalyzer] [Dinamiche] Tentativo API Football-Data...
+[2025-09-08 01:12:38] [INFO] [FootballDataFetcher] [FD] Testing API connection
+[2025-09-08 01:12:38] [INFO] [FootballDataFetcher] [FD] API test successful: Serie A
+[2025-09-08 01:12:38] [INFO] [FootballDataFetcher] [FD] Computing dynamic lists for 2025-26 vs 2024-25
+[2025-09-08 01:12:38] [INFO] [FootballDataFetcher] [FD] Season years: current=2025, last=2024
+[2025-09-08 01:12:38] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2025
+[2025-09-08 01:12:45] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Hellas Verona FC, US Cremonese, US Sassuolo Calcio, AC Pisa 1909, Torino FC, US Lecce, Como 1907
+[2025-09-08 01:12:45] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2024
+[2025-09-08 01:12:51] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Empoli FC, Hellas Verona FC, Venezia FC, Torino FC, US Lecce, AC Monza, Como 1907
+[2025-09-08 01:12:51] [INFO] [FootballDataFetcher] [FD] Neopromosse (raw): US Cremonese, US Sassuolo Calcio, AC Pisa 1909
+[2025-09-08 01:12:51] [INFO] [FootballDataFetcher] [FD] Fetching league table for season 2024
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] League table: 20 teams
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 1. SSC Napoli (GA: 27)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 2. FC Internazionale Milano (GA: 35)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 3. Atalanta BC (GA: 37)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 4. Juventus FC (GA: 35)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 5. AS Roma (GA: 35)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 6. ACF Fiorentina (GA: 41)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 7. SS Lazio (GA: 49)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 8. AC Milan (GA: 43)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 9. Bologna FC 1909 (GA: 47)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 10. Como 1907 (GA: 52)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 11. Torino FC (GA: 45)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 12. Udinese Calcio (GA: 56)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 13. Genoa CFC (GA: 49)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 14. Hellas Verona FC (GA: 66)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 15. Parma Calcio 1913 (GA: 58)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 16. Cagliari Calcio (GA: 56)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 17. US Lecce (GA: 58)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 18. Empoli FC (GA: 59)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 19. Venezia FC (GA: 56)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] 20. AC Monza (GA: 69)
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] Squadre media (10-17): Como 1907, Torino FC, Udinese Calcio, Genoa CFC, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] Squadre 50+ GA: Como 1907, Udinese Calcio, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce, Empoli FC, Venezia FC, AC Monza
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] [Dinamiche] API SUCCESS - Neopromosse: 3, Media: 8, GA50: 9
+[2025-09-08 01:12:58] [INFO] [FootballDataFetcher] [FD] League table cache HIT for season 2024
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] [Dinamiche] === RISULTATI FINALI ===
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] [Dinamiche] Neopromosse (3): Cremonese, Sassuolo, Pisa
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] [Dinamiche] Media classifica (8): Como, Torino, Udinese, Genoa, Verona, Parma, Cagliari, Lecce
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] [Dinamiche] 50+ GA (9): Como, Udinese, Verona, Parma, Cagliari, Lecce, Empoli, Venezia, Monza
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] [Dinamiche] Team GA mapping (20): {"Napoli":27,"Inter":35,"Atalanta":37,"Juventus":35,"Roma":35,"Fiorentina":41,"Lazio":49,"Milan":43,"Bologna":47,"Como":52,"Torino":45,"Udinese":56,"Genoa":49,"Verona":66,"Parma":58,"Cagliari":56,"Lecce":58,"Empoli":59,"Venezia":56,"Monza":69}
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] ✅ Liste dinamiche calcolate
+[2025-09-08 01:12:58] [INFO] [Progress] Progress: 9/12 (75%) - Pre-calcolo cache API (rose, nazionalità, rigoristi)...
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] === INIZIO PRE-CALCOLO CACHE API ===
+[2025-09-08 01:12:58] [INFO] [Progress] Log entry: Costruzione indice rose API...
+[2025-09-08 01:12:58] [INFO] [FantacalcioAnalyzer] [API Rose] Costruzione indice per stagione 2025
+[2025-09-08 01:13:04] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 98
+[2025-09-08 01:13:11] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 99
+[2025-09-08 01:13:17] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 100
+[2025-09-08 01:13:23] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 102
+[2025-09-08 01:13:29] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 103
+[2025-09-08 01:13:36] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 104
+[2025-09-08 01:13:42] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 107
+[2025-09-08 01:13:48] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 108
+[2025-09-08 01:13:54] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 109
+[2025-09-08 01:14:01] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 110
+[2025-09-08 01:14:07] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 112
+[2025-09-08 01:14:13] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 113
+[2025-09-08 01:14:19] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 115
+[2025-09-08 01:14:26] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 450
+[2025-09-08 01:14:32] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 457
+[2025-09-08 01:14:38] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 471
+[2025-09-08 01:14:44] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 487
+[2025-09-08 01:14:50] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 586
+[2025-09-08 01:14:57] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 5890
+[2025-09-08 01:15:03] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 7397
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [API Rose] Indice completato: 20 squadre, 617 giocatori
+[2025-09-08 01:15:09] [INFO] [Progress] Log entry: Rose API indicizzate: 20 squadre
+[2025-09-08 01:15:09] [INFO] [Progress] Log entry: Risoluzione nazionalità effettive...
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Nazionalità] Calcolo nazionalità effettive per 533 giocatori
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Nazionalità] Risolte 533 nazionalità effettive
+[2025-09-08 01:15:09] [INFO] [Progress] Log entry: Nazionalità risolte: 533 giocatori
+[2025-09-08 01:15:09] [INFO] [Progress] Log entry: Download rigoristi da fantacalcio.it...
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi] Scraping da https://www.fantacalcio.it/rigoristi-serie-a
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Atalanta: krstovic
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Pisa: nzola
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cagliari: mina
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Bologna: immobile
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Como: paz n.
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Fiorentina: gudmundsson a.
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Parma: pellegrino m.
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cremonese: vazquez
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Genoa: malinovskyi
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Milan: pulisic
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Inter: calhanoglu
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Torino: zapata d.
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Juventus: locatelli
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lazio: zaccagni
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lecce: stulic
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Napoli: lukaku
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Udinese: davis k.
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Roma: dybala
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Sassuolo: berardi
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Verona: harroui
+[2025-09-08 01:15:09] [INFO] [Progress] Log entry: Rigoristi trovati per 20 squadre
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] Cache API pre-calcolate in 131.44s
+[2025-09-08 01:15:09] [INFO] [Progress] Log entry: Cache API completate in 131.4s
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] === FINE PRE-CALCOLO CACHE API ===
+[2025-09-08 01:15:09] [INFO] [Progress] Log entry: Cache API completate: 20 rose, 533 nazionalità, 20 rigoristi
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer] ✅ Dati caricati con successo (include cache API)
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer]   Anno corrente: 2025-26
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer]   Ultimo anno con dati: 2024-25
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer]   Giocatori in lista: 533
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer]   Anni di statistiche: 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer]   Rose API indicizzate: 20
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:15:09] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:15:09] [INFO] [Progress] Progress: 10/12 (83.3%) - Preparazione cache...
+[2025-09-08 01:15:09] [INFO] [Cache] Cached: lista_corrente
+[2025-09-08 01:15:09] [INFO] [Cache] Cached: statistiche
+[2025-09-08 01:15:09] [INFO] [Cache] Cached: quotazioni
+[2025-09-08 01:15:09] [INFO] [Cache] Cached: valutazioni
+[2025-09-08 01:15:09] [INFO] [Cache] Cached: metadata
+[2025-09-08 01:15:09] [INFO] [Cache] Cached: api_caches
+[2025-09-08 01:15:09] [INFO] [Progress] Progress: 11/12 (91.7%) - Aggiornamento manifest...
+[2025-09-08 01:15:09] [INFO] [Cache] Updated cache manifest
+[2025-09-08 01:15:09] [INFO] [Cache] Lock released
+[2025-09-08 01:15:09] [INFO] [Progress] Progress: 12/12 (100%) - Operazione completata
+[2025-09-08 01:15:09] [INFO] [Progress] Progress completed in 151s: Dati caricati e cache aggiornata
+[2025-09-08 01:15:09] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:15:09] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:15:09] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:15:09] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:15:15] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:15:15] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:15:15] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:15:15] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:15:15] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:15:15] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:15:18] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:15:18] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:15:18] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:15:18] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:15:18] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:15:20] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:15:20] [INFO] [CheckMyTeam] Loading fresh bootstrap data
+[2025-09-08 01:15:20] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:15:20] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:15:20] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:15:20] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:15:20] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:15:20] [INFO] [CheckMyTeam] Data restored from session
+[2025-09-08 01:15:20] [INFO] [Cache] Cached: checkteam_bootstrap
+[2025-09-08 01:15:20] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-08 01:15:22] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:15:22] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:15:22] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:15:23] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:15:23] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:15:23] [INFO] [Progress] Progress completed in 1s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:15:25] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:15:25] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:16:41] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:16:41] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:16:43] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:16:43] [INFO] [Cache] Cache valid: age=94s, hash matches
+[2025-09-08 01:17:38] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:17:38] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:17:38] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:17:38] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:17:38] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:17:38] [INFO] [Cache] Cache valid: age=149s, hash matches
+[2025-09-08 01:17:38] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 01:17:38] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:17:38] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:17:38] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:17:38] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:17:38] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:17:40] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:17:40] [INFO] [Cache] Cache valid: age=151s, hash matches
+[2025-09-08 01:17:43] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:17:43] [INFO] [Cache] Cache valid: age=154s, hash matches
+[2025-09-08 01:18:14] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:18:14] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:19:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:19:18] [INFO] [Cache] Cache valid: age=249s, hash matches
+[2025-09-08 01:19:32] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:19:32] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:19:34] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:19:34] [INFO] [Cache] Cache valid: age=265s, hash matches
+[2025-09-08 01:19:57] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:19:57] [INFO] [Cache] Cache valid: age=288s, hash matches
+[2025-09-08 01:20:06] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:20:06] [INFO] [Cache] Cache valid: age=297s, hash matches
+[2025-09-08 01:20:10] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:20:10] [INFO] [Cache] Cache expired: age=301s > ttl=300s
+[2025-09-08 01:20:16] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:20:16] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:20:16] [INFO] [Cache] Cache expired: age=307s > ttl=300s
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache scaduta, rigenerazione necessaria...
+[2025-09-08 01:20:16] [INFO] [Cache] Lock acquired
+[2025-09-08 01:20:16] [INFO] [Progress] Progress initialized: Loading data (12 steps)
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 1/12 (8.3%) - Inizializzazione analyzer...
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 2/12 (16.7%) - Caricamento completo dei dati...
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] Percorso base: C:\wamp64\www\FantaScarrupat
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] Percorso dati: C:\wamp64\www\FantaScarrupat/data
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 3/12 (25%) - Caricamento lista giocatori...
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Lista] Ricerca: C:\wamp64\www\FantaScarrupat/data/lista/*.csv -> 1 file
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Lista] Carico: Lista-FantaAsta-Fantacalcio.csv
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Lista] Colonne rilevate nel CSV: 19
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Lista] Colonne mappate: id, cognome, nome_completo, ruolo_classic, ruolo_mantra, quota_iniziale_classic, quota_attuale_classic, quota_iniziale_mantra, quota_attuale_mantra, squadra, fvm_classic, fvm_mantra, piede, nazionalita, data_nascita, extra_col_1, trasferito, extra_col_3, extra_col_4
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Filtro] Esclusi 63 giocatori trasferiti
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori totali: 596
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori esclusi (trasferiti): 63
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori rimanenti: 533
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] ✅ Lista corrente caricata: 533 giocatori
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 4/12 (33.3%) - Determinazione stagioni...
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Anni] Usando configurazione esplicita: current=2025-26, last=2024-25
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] ✅ Stagioni: corrente=2025-26, ultima=2024-25
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 5/12 (41.7%) - Caricamento statistiche...
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] CSV trovati: 10
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] XLSX trovati: 0
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2015-16: 674 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2016-17: 630 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2017-18: 631 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2018-19: 641 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2019-20: 684 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2020-21: 678 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2021-22: 675 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2022-23: 672 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2023-24: 664 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] 2024-25: 679 righe
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] [Statistiche] Anni caricati: 10
+[2025-09-08 01:20:16] [INFO] [FantacalcioAnalyzer] ✅ Statistiche caricate per 10 stagioni
+[2025-09-08 01:20:16] [INFO] [Progress] Progress: 6/12 (50%) - Caricamento quotazioni...
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] CSV trovati: 11
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] XLSX trovati: 0
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2015-16: 529 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2016-17: 513 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2017-18: 513 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2018-19: 523 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2019-20: 529 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2020-21: 564 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2021-22: 550 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2022-23: 545 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2023-24: 539 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2024-25: 560 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2025-26: 513 righe
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Quotazioni] Anni caricati: 11
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] ✅ Quotazioni caricate per 11 stagioni
+[2025-09-08 01:20:17] [INFO] [Progress] Progress: 7/12 (58.3%) - Caricamento valutazioni...
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Valutazioni] Path=C:\wamp64\www\FantaScarrupat/data/valutazioni/2024-25  File trovati=38
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Valutazioni] Caricati voti per 626 giocatori
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] ✅ Valutazioni caricate per 626 giocatori
+[2025-09-08 01:20:17] [INFO] [Progress] Progress: 8/12 (66.7%) - Calcolo liste dinamiche (API/Wikipedia)...
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Dinamiche] === INIZIO CALCOLO LISTE DINAMICHE ===
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Dinamiche] Current season: 2025-26
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Dinamiche] Last season: 2024-25
+[2025-09-08 01:20:17] [INFO] [FantacalcioAnalyzer] [Dinamiche] Tentativo API Football-Data...
+[2025-09-08 01:20:17] [INFO] [FootballDataFetcher] [FD] Testing API connection
+[2025-09-08 01:20:17] [INFO] [FootballDataFetcher] [FD] API test successful: Serie A
+[2025-09-08 01:20:17] [INFO] [FootballDataFetcher] [FD] Computing dynamic lists for 2025-26 vs 2024-25
+[2025-09-08 01:20:17] [INFO] [FootballDataFetcher] [FD] Season years: current=2025, last=2024
+[2025-09-08 01:20:17] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2025
+[2025-09-08 01:20:23] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Hellas Verona FC, US Cremonese, US Sassuolo Calcio, AC Pisa 1909, Torino FC, US Lecce, Como 1907
+[2025-09-08 01:20:23] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2024
+[2025-09-08 01:20:30] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Empoli FC, Hellas Verona FC, Venezia FC, Torino FC, US Lecce, AC Monza, Como 1907
+[2025-09-08 01:20:30] [INFO] [FootballDataFetcher] [FD] Neopromosse (raw): US Cremonese, US Sassuolo Calcio, AC Pisa 1909
+[2025-09-08 01:20:30] [INFO] [FootballDataFetcher] [FD] Fetching league table for season 2024
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] League table: 20 teams
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 1. SSC Napoli (GA: 27)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 2. FC Internazionale Milano (GA: 35)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 3. Atalanta BC (GA: 37)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 4. Juventus FC (GA: 35)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 5. AS Roma (GA: 35)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 6. ACF Fiorentina (GA: 41)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 7. SS Lazio (GA: 49)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 8. AC Milan (GA: 43)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 9. Bologna FC 1909 (GA: 47)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 10. Como 1907 (GA: 52)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 11. Torino FC (GA: 45)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 12. Udinese Calcio (GA: 56)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 13. Genoa CFC (GA: 49)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 14. Hellas Verona FC (GA: 66)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 15. Parma Calcio 1913 (GA: 58)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 16. Cagliari Calcio (GA: 56)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 17. US Lecce (GA: 58)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 18. Empoli FC (GA: 59)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 19. Venezia FC (GA: 56)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] 20. AC Monza (GA: 69)
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] Squadre media (10-17): Como 1907, Torino FC, Udinese Calcio, Genoa CFC, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] Squadre 50+ GA: Como 1907, Udinese Calcio, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce, Empoli FC, Venezia FC, AC Monza
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] [Dinamiche] API SUCCESS - Neopromosse: 3, Media: 8, GA50: 9
+[2025-09-08 01:20:36] [INFO] [FootballDataFetcher] [FD] League table cache HIT for season 2024
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] [Dinamiche] === RISULTATI FINALI ===
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] [Dinamiche] Neopromosse (3): Cremonese, Sassuolo, Pisa
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] [Dinamiche] Media classifica (8): Como, Torino, Udinese, Genoa, Verona, Parma, Cagliari, Lecce
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] [Dinamiche] 50+ GA (9): Como, Udinese, Verona, Parma, Cagliari, Lecce, Empoli, Venezia, Monza
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] [Dinamiche] Team GA mapping (20): {"Napoli":27,"Inter":35,"Atalanta":37,"Juventus":35,"Roma":35,"Fiorentina":41,"Lazio":49,"Milan":43,"Bologna":47,"Como":52,"Torino":45,"Udinese":56,"Genoa":49,"Verona":66,"Parma":58,"Cagliari":56,"Lecce":58,"Empoli":59,"Venezia":56,"Monza":69}
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] ✅ Liste dinamiche calcolate
+[2025-09-08 01:20:36] [INFO] [Progress] Progress: 9/12 (75%) - Pre-calcolo cache API (rose, nazionalità, rigoristi)...
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] === INIZIO PRE-CALCOLO CACHE API ===
+[2025-09-08 01:20:36] [INFO] [Progress] Log entry: Costruzione indice rose API...
+[2025-09-08 01:20:36] [INFO] [FantacalcioAnalyzer] [API Rose] Costruzione indice per stagione 2025
+[2025-09-08 01:20:43] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 98
+[2025-09-08 01:20:49] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 99
+[2025-09-08 01:20:56] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 100
+[2025-09-08 01:21:02] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 102
+[2025-09-08 01:21:08] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 103
+[2025-09-08 01:21:14] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 104
+[2025-09-08 01:21:21] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 107
+[2025-09-08 01:21:27] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 108
+[2025-09-08 01:21:33] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 109
+[2025-09-08 01:21:39] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 110
+[2025-09-08 01:21:46] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 112
+[2025-09-08 01:21:52] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 113
+[2025-09-08 01:21:58] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 115
+[2025-09-08 01:22:04] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 450
+[2025-09-08 01:22:11] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 457
+[2025-09-08 01:22:17] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 471
+[2025-09-08 01:22:23] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 487
+[2025-09-08 01:22:29] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 586
+[2025-09-08 01:22:33] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:22:33] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:22:33] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:22:33] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:22:33] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:22:33] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:22:35] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:22:35] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:22:35] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:22:35] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:22:35] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:22:35] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:22:35] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 5890
+[2025-09-08 01:22:38] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:22:38] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:22:38] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:22:38] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:22:38] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:22:42] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 7397
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [API Rose] Indice completato: 20 squadre, 617 giocatori
+[2025-09-08 01:22:48] [INFO] [Progress] Log entry: Rose API indicizzate: 20 squadre
+[2025-09-08 01:22:48] [INFO] [Progress] Log entry: Risoluzione nazionalità effettive...
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Nazionalità] Calcolo nazionalità effettive per 533 giocatori
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Nazionalità] Risolte 533 nazionalità effettive
+[2025-09-08 01:22:48] [INFO] [Progress] Log entry: Nazionalità risolte: 533 giocatori
+[2025-09-08 01:22:48] [INFO] [Progress] Log entry: Download rigoristi da fantacalcio.it...
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi] Scraping da https://www.fantacalcio.it/rigoristi-serie-a
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Atalanta: krstovic
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Pisa: nzola
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cagliari: mina
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Bologna: immobile
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Como: paz n.
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Fiorentina: gudmundsson a.
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Parma: pellegrino m.
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cremonese: vazquez
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Genoa: malinovskyi
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Milan: pulisic
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Inter: calhanoglu
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Torino: zapata d.
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Juventus: locatelli
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lazio: zaccagni
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lecce: stulic
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Napoli: lukaku
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Udinese: davis k.
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Roma: dybala
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Sassuolo: berardi
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Verona: harroui
+[2025-09-08 01:22:48] [INFO] [Progress] Log entry: Rigoristi trovati per 20 squadre
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] Cache API pre-calcolate in 131.82s
+[2025-09-08 01:22:48] [INFO] [Progress] Log entry: Cache API completate in 131.8s
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] === FINE PRE-CALCOLO CACHE API ===
+[2025-09-08 01:22:48] [INFO] [Progress] Log entry: Cache API completate: 20 rose, 533 nazionalità, 20 rigoristi
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer] ✅ Dati caricati con successo (include cache API)
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer]   Anno corrente: 2025-26
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer]   Ultimo anno con dati: 2024-25
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer]   Giocatori in lista: 533
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer]   Anni di statistiche: 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer]   Rose API indicizzate: 20
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:22:48] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:22:48] [INFO] [Progress] Progress: 10/12 (83.3%) - Preparazione cache...
+[2025-09-08 01:22:48] [INFO] [Cache] Cached: lista_corrente
+[2025-09-08 01:22:48] [INFO] [Cache] Cached: statistiche
+[2025-09-08 01:22:48] [INFO] [Cache] Cached: quotazioni
+[2025-09-08 01:22:48] [INFO] [Cache] Cached: valutazioni
+[2025-09-08 01:22:48] [INFO] [Cache] Cached: metadata
+[2025-09-08 01:22:48] [INFO] [Cache] Cached: api_caches
+[2025-09-08 01:22:48] [INFO] [Progress] Progress: 11/12 (91.7%) - Aggiornamento manifest...
+[2025-09-08 01:22:48] [INFO] [Cache] Updated cache manifest
+[2025-09-08 01:22:48] [INFO] [Cache] Lock released
+[2025-09-08 01:22:48] [INFO] [Progress] Progress: 12/12 (100%) - Operazione completata
+[2025-09-08 01:22:48] [INFO] [Progress] Progress completed in 152s: Dati caricati e cache aggiornata
+[2025-09-08 01:22:55] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:22:55] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:22:55] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:22:55] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:22:55] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:22:58] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:22:58] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:22:58] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:22:58] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:22:58] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:24:18] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:24:19] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:24:19] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:24:19] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:24:19] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:24:19] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:24:21] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:24:21] [INFO] [Cache] Cache valid: age=93s, hash matches
+[2025-09-08 01:24:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:24:29] [INFO] [Cache] Cache valid: age=101s, hash matches
+[2025-09-08 01:31:17] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:31:17] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:31:17] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:31:17] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:31:17] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:31:17] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:31:20] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:31:20] [INFO] [Cache] Cache expired: age=512s > ttl=300s
+[2025-09-08 01:31:24] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:31:24] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:31:24] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:31:24] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:31:24] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:31:24] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:31:26] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:31:26] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:31:26] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:31:26] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:31:26] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:31:26] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:32:20] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:32:20] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:32:20] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:32:20] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:32:20] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:32:20] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:32:22] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:32:22] [INFO] [Cache] Cache expired: age=574s > ttl=300s
+[2025-09-08 01:32:28] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:32:28] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:32:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:32:29] [INFO] [Cache] Cache expired: age=581s > ttl=300s
+[2025-09-08 01:32:32] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:32:32] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:32:32] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:32:32] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:32:32] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:32:32] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:32:33] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:32:33] [INFO] [Cache] Cache expired: age=585s > ttl=300s
+[2025-09-08 01:32:40] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:32:40] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:32:40] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:32:40] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:32:40] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:32:40] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:32:42] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:32:42] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:32:45] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:32:45] [INFO] [Progress] Progress initialized: Caricamento dalla cache (3 steps)
+[2025-09-08 01:32:45] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache esistente...
+[2025-09-08 01:32:45] [INFO] [Progress] Progress: 2/3 (66.7%) - Lettura dati dalla cache...
+[2025-09-08 01:32:45] [INFO] [Progress] Progress: 3/3 (100%) - Ripristino sessione...
+[2025-09-08 01:32:45] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache esistente
+[2025-09-08 01:33:13] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:33:13] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:33:13] [INFO] [Cache] Cache expired: age=625s > ttl=300s
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache scaduta, rigenerazione necessaria...
+[2025-09-08 01:33:13] [INFO] [Cache] Lock acquired
+[2025-09-08 01:33:13] [INFO] [Progress] Progress initialized: Loading data (12 steps)
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 1/12 (8.3%) - Inizializzazione analyzer...
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 2/12 (16.7%) - Caricamento completo dei dati...
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] Percorso base: C:\wamp64\www\FantaScarrupat
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] Percorso dati: C:\wamp64\www\FantaScarrupat/data
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 3/12 (25%) - Caricamento lista giocatori...
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Lista] Ricerca: C:\wamp64\www\FantaScarrupat/data/lista/*.csv -> 1 file
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Lista] Carico: Lista-FantaAsta-Fantacalcio.csv
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Lista] Colonne rilevate nel CSV: 19
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Lista] Colonne mappate: id, cognome, nome_completo, ruolo_classic, ruolo_mantra, quota_iniziale_classic, quota_attuale_classic, quota_iniziale_mantra, quota_attuale_mantra, squadra, fvm_classic, fvm_mantra, piede, nazionalita, data_nascita, extra_col_1, trasferito, extra_col_3, extra_col_4
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Filtro] Esclusi 63 giocatori trasferiti
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori totali: 596
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori esclusi (trasferiti): 63
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori rimanenti: 533
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] ✅ Lista corrente caricata: 533 giocatori
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 4/12 (33.3%) - Determinazione stagioni...
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Anni] Usando configurazione esplicita: current=2025-26, last=2024-25
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] ✅ Stagioni: corrente=2025-26, ultima=2024-25
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 5/12 (41.7%) - Caricamento statistiche...
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] CSV trovati: 10
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] XLSX trovati: 0
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2015-16: 674 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2016-17: 630 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2017-18: 631 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2018-19: 641 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2019-20: 684 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2020-21: 678 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2021-22: 675 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2022-23: 672 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2023-24: 664 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] 2024-25: 679 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Statistiche] Anni caricati: 10
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] ✅ Statistiche caricate per 10 stagioni
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 6/12 (50%) - Caricamento quotazioni...
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] CSV trovati: 11
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] XLSX trovati: 0
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2015-16: 529 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2016-17: 513 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2017-18: 513 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2018-19: 523 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2019-20: 529 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2020-21: 564 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2021-22: 550 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2022-23: 545 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2023-24: 539 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2024-25: 560 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2025-26: 513 righe
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Quotazioni] Anni caricati: 11
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] ✅ Quotazioni caricate per 11 stagioni
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 7/12 (58.3%) - Caricamento valutazioni...
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Valutazioni] Path=C:\wamp64\www\FantaScarrupat/data/valutazioni/2024-25  File trovati=38
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Valutazioni] Caricati voti per 626 giocatori
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] ✅ Valutazioni caricate per 626 giocatori
+[2025-09-08 01:33:13] [INFO] [Progress] Progress: 8/12 (66.7%) - Calcolo liste dinamiche (API/Wikipedia)...
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Dinamiche] === INIZIO CALCOLO LISTE DINAMICHE ===
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Dinamiche] Current season: 2025-26
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Dinamiche] Last season: 2024-25
+[2025-09-08 01:33:13] [INFO] [FantacalcioAnalyzer] [Dinamiche] Tentativo API Football-Data...
+[2025-09-08 01:33:13] [INFO] [FootballDataFetcher] [FD] Testing API connection
+[2025-09-08 01:33:13] [INFO] [FootballDataFetcher] [FD] API test successful: Serie A
+[2025-09-08 01:33:13] [INFO] [FootballDataFetcher] [FD] Computing dynamic lists for 2025-26 vs 2024-25
+[2025-09-08 01:33:13] [INFO] [FootballDataFetcher] [FD] Season years: current=2025, last=2024
+[2025-09-08 01:33:13] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2025
+[2025-09-08 01:33:20] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Hellas Verona FC, US Cremonese, US Sassuolo Calcio, AC Pisa 1909, Torino FC, US Lecce, Como 1907
+[2025-09-08 01:33:20] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2024
+[2025-09-08 01:33:26] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Empoli FC, Hellas Verona FC, Venezia FC, Torino FC, US Lecce, AC Monza, Como 1907
+[2025-09-08 01:33:26] [INFO] [FootballDataFetcher] [FD] Neopromosse (raw): US Cremonese, US Sassuolo Calcio, AC Pisa 1909
+[2025-09-08 01:33:26] [INFO] [FootballDataFetcher] [FD] Fetching league table for season 2024
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] League table: 20 teams
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 1. SSC Napoli (GA: 27)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 2. FC Internazionale Milano (GA: 35)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 3. Atalanta BC (GA: 37)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 4. Juventus FC (GA: 35)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 5. AS Roma (GA: 35)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 6. ACF Fiorentina (GA: 41)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 7. SS Lazio (GA: 49)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 8. AC Milan (GA: 43)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 9. Bologna FC 1909 (GA: 47)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 10. Como 1907 (GA: 52)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 11. Torino FC (GA: 45)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 12. Udinese Calcio (GA: 56)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 13. Genoa CFC (GA: 49)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 14. Hellas Verona FC (GA: 66)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 15. Parma Calcio 1913 (GA: 58)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 16. Cagliari Calcio (GA: 56)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 17. US Lecce (GA: 58)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 18. Empoli FC (GA: 59)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 19. Venezia FC (GA: 56)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] 20. AC Monza (GA: 69)
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] Squadre media (10-17): Como 1907, Torino FC, Udinese Calcio, Genoa CFC, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] Squadre 50+ GA: Como 1907, Udinese Calcio, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce, Empoli FC, Venezia FC, AC Monza
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] [Dinamiche] API SUCCESS - Neopromosse: 3, Media: 8, GA50: 9
+[2025-09-08 01:33:32] [INFO] [FootballDataFetcher] [FD] League table cache HIT for season 2024
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] [Dinamiche] === RISULTATI FINALI ===
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] [Dinamiche] Neopromosse (3): Cremonese, Sassuolo, Pisa
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] [Dinamiche] Media classifica (8): Como, Torino, Udinese, Genoa, Verona, Parma, Cagliari, Lecce
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] [Dinamiche] 50+ GA (9): Como, Udinese, Verona, Parma, Cagliari, Lecce, Empoli, Venezia, Monza
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] [Dinamiche] Team GA mapping (20): {"Napoli":27,"Inter":35,"Atalanta":37,"Juventus":35,"Roma":35,"Fiorentina":41,"Lazio":49,"Milan":43,"Bologna":47,"Como":52,"Torino":45,"Udinese":56,"Genoa":49,"Verona":66,"Parma":58,"Cagliari":56,"Lecce":58,"Empoli":59,"Venezia":56,"Monza":69}
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] ✅ Liste dinamiche calcolate
+[2025-09-08 01:33:32] [INFO] [Progress] Progress: 9/12 (75%) - Pre-calcolo cache API (rose, nazionalità, rigoristi)...
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] === INIZIO PRE-CALCOLO CACHE API ===
+[2025-09-08 01:33:32] [INFO] [Progress] Log entry: Costruzione indice rose API...
+[2025-09-08 01:33:32] [INFO] [FantacalcioAnalyzer] [API Rose] Costruzione indice per stagione 2025
+[2025-09-08 01:33:39] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 98
+[2025-09-08 01:33:46] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 99
+[2025-09-08 01:33:52] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 100
+[2025-09-08 01:33:58] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 102
+[2025-09-08 01:34:04] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 103
+[2025-09-08 01:34:10] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 104
+[2025-09-08 01:34:17] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 107
+[2025-09-08 01:34:23] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 108
+[2025-09-08 01:34:27] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:34:27] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:34:27] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:34:27] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:34:27] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:34:27] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:34:29] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 109
+[2025-09-08 01:34:32] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:34:32] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:34:32] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:34:32] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:34:32] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:34:32] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:34:34] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:34:34] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:34:34] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:34:34] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:34:34] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:34:34] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:34:35] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 110
+[2025-09-08 01:34:37] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:34:37] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:34:37] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:34:37] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:34:37] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:34:40] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:34:40] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:34:40] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:34:40] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:34:40] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:34:40] [INFO] [FantacalcioAnalyzer] [Poche presenze] Giocatori con statistiche anno scorso: 679
+[2025-09-08 01:34:40] [INFO] [FantacalcioAnalyzer] [Poche presenze] Risultati: 82
+[2025-09-08 01:34:42] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 112
+[2025-09-08 01:34:48] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 113
+[2025-09-08 01:34:54] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 115
+[2025-09-08 01:35:00] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 450
+[2025-09-08 01:35:06] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 457
+[2025-09-08 01:35:13] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 471
+[2025-09-08 01:35:19] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 487
+[2025-09-08 01:35:25] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 586
+[2025-09-08 01:35:31] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 5890
+[2025-09-08 01:35:38] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 7397
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [API Rose] Indice completato: 20 squadre, 617 giocatori
+[2025-09-08 01:35:44] [INFO] [Progress] Log entry: Rose API indicizzate: 20 squadre
+[2025-09-08 01:35:44] [INFO] [Progress] Log entry: Risoluzione nazionalità effettive...
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Nazionalità] Calcolo nazionalità effettive per 533 giocatori
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Nazionalità] Risolte 533 nazionalità effettive
+[2025-09-08 01:35:44] [INFO] [Progress] Log entry: Nazionalità risolte: 533 giocatori
+[2025-09-08 01:35:44] [INFO] [Progress] Log entry: Download rigoristi da fantacalcio.it...
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi] Scraping da https://www.fantacalcio.it/rigoristi-serie-a
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Atalanta: krstovic
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Pisa: nzola
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cagliari: mina
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Bologna: immobile
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Como: paz n.
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Fiorentina: gudmundsson a.
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Parma: pellegrino m.
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cremonese: vazquez
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Genoa: malinovskyi
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Milan: pulisic
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Inter: calhanoglu
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Torino: zapata d.
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Juventus: locatelli
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lazio: zaccagni
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lecce: stulic
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Napoli: lukaku
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Udinese: davis k.
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Roma: dybala
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Sassuolo: berardi
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Verona: harroui
+[2025-09-08 01:35:44] [INFO] [Progress] Log entry: Rigoristi trovati per 20 squadre
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] Cache API pre-calcolate in 131.57s
+[2025-09-08 01:35:44] [INFO] [Progress] Log entry: Cache API completate in 131.6s
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] === FINE PRE-CALCOLO CACHE API ===
+[2025-09-08 01:35:44] [INFO] [Progress] Log entry: Cache API completate: 20 rose, 533 nazionalità, 20 rigoristi
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer] ✅ Dati caricati con successo (include cache API)
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer]   Anno corrente: 2025-26
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer]   Ultimo anno con dati: 2024-25
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer]   Giocatori in lista: 533
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer]   Anni di statistiche: 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer]   Rose API indicizzate: 20
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:35:44] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:35:44] [INFO] [Progress] Progress: 10/12 (83.3%) - Preparazione cache...
+[2025-09-08 01:35:44] [INFO] [Cache] Cached: lista_corrente
+[2025-09-08 01:35:44] [INFO] [Cache] Cached: statistiche
+[2025-09-08 01:35:44] [INFO] [Cache] Cached: quotazioni
+[2025-09-08 01:35:44] [INFO] [Cache] Cached: valutazioni
+[2025-09-08 01:35:44] [INFO] [Cache] Cached: metadata
+[2025-09-08 01:35:44] [INFO] [Cache] Cached: api_caches
+[2025-09-08 01:35:44] [INFO] [Progress] Progress: 11/12 (91.7%) - Aggiornamento manifest...
+[2025-09-08 01:35:44] [INFO] [Cache] Updated cache manifest
+[2025-09-08 01:35:44] [INFO] [Cache] Lock released
+[2025-09-08 01:35:44] [INFO] [Progress] Progress: 12/12 (100%) - Operazione completata
+[2025-09-08 01:35:44] [INFO] [Progress] Progress completed in 151s: Dati caricati e cache aggiornata
+[2025-09-08 01:35:47] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:35:47] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:35:47] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:35:47] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:35:47] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:35:47] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:35:49] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:35:49] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:35:49] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:35:49] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:35:49] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:35:53] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:35:53] [INFO] [Cache] Cache valid: age=9s, hash matches
+[2025-09-08 01:35:53] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:35:53] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:35:53] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:35:53] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:35:53] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:35:53] [INFO] [Cache] Cache valid: age=9s, hash matches
+[2025-09-08 01:35:53] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 01:35:53] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:35:53] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:35:53] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:35:53] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:35:53] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:35:53] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:35:53] [INFO] [Cache] Cache valid: age=9s, hash matches
+[2025-09-08 01:35:56] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:35:56] [INFO] [Cache] Cache valid: age=12s, hash matches
+[2025-09-08 01:35:56] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:35:56] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:35:56] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 2/12 (16.7%) - Avvio rigenerazione forzata...
+[2025-09-08 01:35:57] [INFO] [Cache] Lock acquired
+[2025-09-08 01:35:57] [INFO] [Progress] Progress initialized: Loading data (12 steps)
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 1/12 (8.3%) - Inizializzazione analyzer...
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 2/12 (16.7%) - Caricamento completo dei dati...
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] Percorso base: C:\wamp64\www\FantaScarrupat
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] Percorso dati: C:\wamp64\www\FantaScarrupat/data
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 3/12 (25%) - Caricamento lista giocatori...
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Lista] Ricerca: C:\wamp64\www\FantaScarrupat/data/lista/*.csv -> 1 file
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Lista] Carico: Lista-FantaAsta-Fantacalcio.csv
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Lista] Colonne rilevate nel CSV: 19
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Lista] Colonne mappate: id, cognome, nome_completo, ruolo_classic, ruolo_mantra, quota_iniziale_classic, quota_attuale_classic, quota_iniziale_mantra, quota_attuale_mantra, squadra, fvm_classic, fvm_mantra, piede, nazionalita, data_nascita, extra_col_1, trasferito, extra_col_3, extra_col_4
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Filtro] Esclusi 63 giocatori trasferiti
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori totali: 596
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori esclusi (trasferiti): 63
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori rimanenti: 533
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] ✅ Lista corrente caricata: 533 giocatori
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 4/12 (33.3%) - Determinazione stagioni...
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Anni] Usando configurazione esplicita: current=2025-26, last=2024-25
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] ✅ Stagioni: corrente=2025-26, ultima=2024-25
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 5/12 (41.7%) - Caricamento statistiche...
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] CSV trovati: 10
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] XLSX trovati: 0
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2015-16: 674 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2016-17: 630 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2017-18: 631 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2018-19: 641 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2019-20: 684 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2020-21: 678 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2021-22: 675 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2022-23: 672 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2023-24: 664 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] 2024-25: 679 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Statistiche] Anni caricati: 10
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] ✅ Statistiche caricate per 10 stagioni
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 6/12 (50%) - Caricamento quotazioni...
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] CSV trovati: 11
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] XLSX trovati: 0
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2015-16: 529 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2016-17: 513 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2017-18: 513 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2018-19: 523 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2019-20: 529 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2020-21: 564 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2021-22: 550 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2022-23: 545 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2023-24: 539 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2024-25: 560 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2025-26: 513 righe
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Quotazioni] Anni caricati: 11
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] ✅ Quotazioni caricate per 11 stagioni
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 7/12 (58.3%) - Caricamento valutazioni...
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Valutazioni] Path=C:\wamp64\www\FantaScarrupat/data/valutazioni/2024-25  File trovati=38
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Valutazioni] Caricati voti per 626 giocatori
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] ✅ Valutazioni caricate per 626 giocatori
+[2025-09-08 01:35:57] [INFO] [Progress] Progress: 8/12 (66.7%) - Calcolo liste dinamiche (API/Wikipedia)...
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Dinamiche] === INIZIO CALCOLO LISTE DINAMICHE ===
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Dinamiche] Current season: 2025-26
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Dinamiche] Last season: 2024-25
+[2025-09-08 01:35:57] [INFO] [FantacalcioAnalyzer] [Dinamiche] Tentativo API Football-Data...
+[2025-09-08 01:35:57] [INFO] [FootballDataFetcher] [FD] Testing API connection
+[2025-09-08 01:35:57] [INFO] [FootballDataFetcher] [FD] API test successful: Serie A
+[2025-09-08 01:35:57] [INFO] [FootballDataFetcher] [FD] Computing dynamic lists for 2025-26 vs 2024-25
+[2025-09-08 01:35:57] [INFO] [FootballDataFetcher] [FD] Season years: current=2025, last=2024
+[2025-09-08 01:35:57] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2025
+[2025-09-08 01:36:02] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:36:02] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:36:02] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:36:02] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:36:02] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:36:02] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 5m)
+[2025-09-08 01:36:03] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Hellas Verona FC, US Cremonese, US Sassuolo Calcio, AC Pisa 1909, Torino FC, US Lecce, Como 1907
+[2025-09-08 01:36:03] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2024
+[2025-09-08 01:36:05] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:36:05] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:36:05] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:36:05] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:36:05] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:36:10] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Empoli FC, Hellas Verona FC, Venezia FC, Torino FC, US Lecce, AC Monza, Como 1907
+[2025-09-08 01:36:10] [INFO] [FootballDataFetcher] [FD] Neopromosse (raw): US Cremonese, US Sassuolo Calcio, AC Pisa 1909
+[2025-09-08 01:36:10] [INFO] [FootballDataFetcher] [FD] Fetching league table for season 2024
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] League table: 20 teams
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 1. SSC Napoli (GA: 27)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 2. FC Internazionale Milano (GA: 35)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 3. Atalanta BC (GA: 37)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 4. Juventus FC (GA: 35)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 5. AS Roma (GA: 35)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 6. ACF Fiorentina (GA: 41)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 7. SS Lazio (GA: 49)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 8. AC Milan (GA: 43)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 9. Bologna FC 1909 (GA: 47)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 10. Como 1907 (GA: 52)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 11. Torino FC (GA: 45)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 12. Udinese Calcio (GA: 56)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 13. Genoa CFC (GA: 49)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 14. Hellas Verona FC (GA: 66)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 15. Parma Calcio 1913 (GA: 58)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 16. Cagliari Calcio (GA: 56)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 17. US Lecce (GA: 58)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 18. Empoli FC (GA: 59)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 19. Venezia FC (GA: 56)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] 20. AC Monza (GA: 69)
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] Squadre media (10-17): Como 1907, Torino FC, Udinese Calcio, Genoa CFC, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] Squadre 50+ GA: Como 1907, Udinese Calcio, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce, Empoli FC, Venezia FC, AC Monza
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] [Dinamiche] API SUCCESS - Neopromosse: 3, Media: 8, GA50: 9
+[2025-09-08 01:36:16] [INFO] [FootballDataFetcher] [FD] League table cache HIT for season 2024
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] [Dinamiche] === RISULTATI FINALI ===
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] [Dinamiche] Neopromosse (3): Cremonese, Sassuolo, Pisa
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] [Dinamiche] Media classifica (8): Como, Torino, Udinese, Genoa, Verona, Parma, Cagliari, Lecce
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] [Dinamiche] 50+ GA (9): Como, Udinese, Verona, Parma, Cagliari, Lecce, Empoli, Venezia, Monza
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] [Dinamiche] Team GA mapping (20): {"Napoli":27,"Inter":35,"Atalanta":37,"Juventus":35,"Roma":35,"Fiorentina":41,"Lazio":49,"Milan":43,"Bologna":47,"Como":52,"Torino":45,"Udinese":56,"Genoa":49,"Verona":66,"Parma":58,"Cagliari":56,"Lecce":58,"Empoli":59,"Venezia":56,"Monza":69}
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] ✅ Liste dinamiche calcolate
+[2025-09-08 01:36:16] [INFO] [Progress] Progress: 9/12 (75%) - Pre-calcolo cache API (rose, nazionalità, rigoristi)...
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] === INIZIO PRE-CALCOLO CACHE API ===
+[2025-09-08 01:36:16] [INFO] [Progress] Log entry: Costruzione indice rose API...
+[2025-09-08 01:36:16] [INFO] [FantacalcioAnalyzer] [API Rose] Costruzione indice per stagione 2025
+[2025-09-08 01:36:23] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 98
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Atalanta → nikola krstovic (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Pisa → m'bala nzola (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Cagliari → yerry mina (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Bologna → ciro immobile (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Como → nico paz (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Fiorentina → albert gudmundsson (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Parma → mateo pellegrino (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Cremonese → franco vazquez (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Genoa → ruslan malinovskyi (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Milan → christian pulisic (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Inter → hakan calhanoglu (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Torino → duvan zapata (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Juventus → manuel locatelli (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Lazio → mattia zaccagni (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Lecce → nikola stulic (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Napoli → romelu lukaku (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Udinese → keinan davis (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Roma → paulo dybala (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Sassuolo → domenico berardi (top1-surname-unique)
+[2025-09-08 01:36:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Verona → abdou harroui (top1-surname-unique)
+[2025-09-08 01:36:30] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 99
+[2025-09-08 01:36:36] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 100
+[2025-09-08 01:36:42] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 102
+[2025-09-08 01:36:48] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 103
+[2025-09-08 01:36:54] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 104
+[2025-09-08 01:37:01] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 107
+[2025-09-08 01:37:07] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 108
+[2025-09-08 01:37:13] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 109
+[2025-09-08 01:37:19] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 110
+[2025-09-08 01:37:25] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 112
+[2025-09-08 01:37:32] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 113
+[2025-09-08 01:37:38] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 115
+[2025-09-08 01:37:44] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 450
+[2025-09-08 01:37:50] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 457
+[2025-09-08 01:37:57] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 471
+[2025-09-08 01:38:03] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 487
+[2025-09-08 01:38:09] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 586
+[2025-09-08 01:38:15] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 5890
+[2025-09-08 01:38:21] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 7397
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [API Rose] Indice completato: 20 squadre, 617 giocatori
+[2025-09-08 01:38:28] [INFO] [Progress] Log entry: Rose API indicizzate: 20 squadre
+[2025-09-08 01:38:28] [INFO] [Progress] Log entry: Risoluzione nazionalità effettive...
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Nazionalità] Calcolo nazionalità effettive per 533 giocatori
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Nazionalità] Risolte 533 nazionalità effettive
+[2025-09-08 01:38:28] [INFO] [Progress] Log entry: Nazionalità risolte: 533 giocatori
+[2025-09-08 01:38:28] [INFO] [Progress] Log entry: Download rigoristi da fantacalcio.it...
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi] Scraping da https://www.fantacalcio.it/rigoristi-serie-a
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Atalanta: krstovic
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Pisa: nzola
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cagliari: mina
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Bologna: immobile
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Como: paz n.
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Fiorentina: gudmundsson a.
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Parma: pellegrino m.
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cremonese: vazquez
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Genoa: malinovskyi
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Milan: pulisic
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Inter: calhanoglu
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Torino: zapata d.
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Juventus: locatelli
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lazio: zaccagni
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lecce: stulic
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Napoli: lukaku
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Udinese: davis k.
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Roma: dybala
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Sassuolo: berardi
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Verona: harroui
+[2025-09-08 01:38:28] [INFO] [Progress] Log entry: Rigoristi trovati per 20 squadre
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] Cache API pre-calcolate in 131.58s
+[2025-09-08 01:38:28] [INFO] [Progress] Log entry: Cache API completate in 131.6s
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] === FINE PRE-CALCOLO CACHE API ===
+[2025-09-08 01:38:28] [INFO] [Progress] Log entry: Cache API completate: 20 rose, 533 nazionalità, 20 rigoristi
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer] ✅ Dati caricati con successo (include cache API)
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer]   Anno corrente: 2025-26
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer]   Ultimo anno con dati: 2024-25
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer]   Giocatori in lista: 533
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer]   Anni di statistiche: 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer]   Rose API indicizzate: 20
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:38:28] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:38:28] [INFO] [Progress] Progress: 10/12 (83.3%) - Preparazione cache...
+[2025-09-08 01:38:28] [INFO] [Cache] Cached: lista_corrente
+[2025-09-08 01:38:28] [INFO] [Cache] Cached: statistiche
+[2025-09-08 01:38:28] [INFO] [Cache] Cached: quotazioni
+[2025-09-08 01:38:28] [INFO] [Cache] Cached: valutazioni
+[2025-09-08 01:38:28] [INFO] [Cache] Cached: metadata
+[2025-09-08 01:38:28] [INFO] [Cache] Cached: api_caches
+[2025-09-08 01:38:28] [INFO] [Progress] Progress: 11/12 (91.7%) - Aggiornamento manifest...
+[2025-09-08 01:38:28] [INFO] [Cache] Updated cache manifest
+[2025-09-08 01:38:28] [INFO] [Cache] Lock released
+[2025-09-08 01:38:28] [INFO] [Progress] Progress: 12/12 (100%) - Operazione completata
+[2025-09-08 01:38:28] [INFO] [Progress] Progress completed in 151s: Dati caricati e cache aggiornata
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:38:28] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:42:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:42:29] [INFO] [Cache] Cache valid: age=241s, hash matches
+[2025-09-08 01:42:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:42:29] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:42:29] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:42:29] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:42:29] [INFO] [Progress] Progress: 2/12 (16.7%) - Verifica validità cache...
+[2025-09-08 01:42:29] [INFO] [Cache] Cache valid: age=241s, hash matches
+[2025-09-08 01:42:29] [INFO] [Progress] Progress: 2/12 (16.7%) - Cache valida, caricamento rapido...
+[2025-09-08 01:42:29] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:42:29] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:42:29] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:42:29] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:42:29] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 24h)
+[2025-09-08 01:42:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:42:29] [INFO] [Cache] Cache valid: age=241s, hash matches
+[2025-09-08 01:42:31] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:42:31] [INFO] [Cache] Cache valid: age=243s, hash matches
+[2025-09-08 01:42:35] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:42:35] [INFO] [Cache] Cache valid: age=247s, hash matches
+[2025-09-08 01:42:35] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:42:35] [INFO] [Progress] Progress initialized: Caricamento dati (12 steps)
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 0/12 (0%) - Avvio operazione...
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 1/12 (8.3%) - Analisi richiesta...
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 2/12 (16.7%) - Avvio rigenerazione forzata...
+[2025-09-08 01:42:35] [INFO] [Cache] Lock acquired
+[2025-09-08 01:42:35] [INFO] [Progress] Progress initialized: Loading data (12 steps)
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 1/12 (8.3%) - Inizializzazione analyzer...
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 2/12 (16.7%) - Caricamento completo dei dati...
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] Percorso base: C:\wamp64\www\FantaScarrupat
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] Percorso dati: C:\wamp64\www\FantaScarrupat/data
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 3/12 (25%) - Caricamento lista giocatori...
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Lista] Ricerca: C:\wamp64\www\FantaScarrupat/data/lista/*.csv -> 1 file
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Lista] Carico: Lista-FantaAsta-Fantacalcio.csv
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Lista] Colonne rilevate nel CSV: 19
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Lista] Colonne mappate: id, cognome, nome_completo, ruolo_classic, ruolo_mantra, quota_iniziale_classic, quota_attuale_classic, quota_iniziale_mantra, quota_attuale_mantra, squadra, fvm_classic, fvm_mantra, piede, nazionalita, data_nascita, extra_col_1, trasferito, extra_col_3, extra_col_4
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Filtro] Esclusi 63 giocatori trasferiti
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori totali: 596
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori esclusi (trasferiti): 63
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Lista] Giocatori rimanenti: 533
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] ✅ Lista corrente caricata: 533 giocatori
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 4/12 (33.3%) - Determinazione stagioni...
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Anni] Usando configurazione esplicita: current=2025-26, last=2024-25
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] ✅ Stagioni: corrente=2025-26, ultima=2024-25
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 5/12 (41.7%) - Caricamento statistiche...
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] CSV trovati: 10
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] XLSX trovati: 0
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2015-16: 674 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2016-17: 630 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2017-18: 631 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2018-19: 641 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2019-20: 684 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2020-21: 678 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2021-22: 675 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2022-23: 672 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2023-24: 664 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] 2024-25: 679 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Statistiche] Anni caricati: 10
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] ✅ Statistiche caricate per 10 stagioni
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 6/12 (50%) - Caricamento quotazioni...
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] CSV trovati: 11
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] XLSX trovati: 0
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2015-16: 529 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2016-17: 513 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2017-18: 513 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2018-19: 523 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2019-20: 529 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2020-21: 564 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2021-22: 550 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2022-23: 545 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2023-24: 539 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2024-25: 560 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] 2025-26: 513 righe
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Quotazioni] Anni caricati: 11
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] ✅ Quotazioni caricate per 11 stagioni
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 7/12 (58.3%) - Caricamento valutazioni...
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Valutazioni] Path=C:\wamp64\www\FantaScarrupat/data/valutazioni/2024-25  File trovati=38
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Valutazioni] Caricati voti per 626 giocatori
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] ✅ Valutazioni caricate per 626 giocatori
+[2025-09-08 01:42:35] [INFO] [Progress] Progress: 8/12 (66.7%) - Calcolo liste dinamiche (API/Wikipedia)...
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Dinamiche] === INIZIO CALCOLO LISTE DINAMICHE ===
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Dinamiche] Current season: 2025-26
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Dinamiche] Last season: 2024-25
+[2025-09-08 01:42:35] [INFO] [FantacalcioAnalyzer] [Dinamiche] Tentativo API Football-Data...
+[2025-09-08 01:42:35] [INFO] [FootballDataFetcher] [FD] Testing API connection
+[2025-09-08 01:42:36] [INFO] [FootballDataFetcher] [FD] API test successful: Serie A
+[2025-09-08 01:42:36] [INFO] [FootballDataFetcher] [FD] Computing dynamic lists for 2025-26 vs 2024-25
+[2025-09-08 01:42:36] [INFO] [FootballDataFetcher] [FD] Season years: current=2025, last=2024
+[2025-09-08 01:42:36] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2025
+[2025-09-08 01:42:42] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Hellas Verona FC, US Cremonese, US Sassuolo Calcio, AC Pisa 1909, Torino FC, US Lecce, Como 1907
+[2025-09-08 01:42:42] [INFO] [FootballDataFetcher] [FD] Fetching teams for season 2024
+[2025-09-08 01:42:49] [INFO] [FootballDataFetcher] [FD] Found 20 teams: AC Milan, ACF Fiorentina, AS Roma, Atalanta BC, Bologna FC 1909, Cagliari Calcio, Genoa CFC, FC Internazionale Milano, Juventus FC, SS Lazio, Parma Calcio 1913, SSC Napoli, Udinese Calcio, Empoli FC, Hellas Verona FC, Venezia FC, Torino FC, US Lecce, AC Monza, Como 1907
+[2025-09-08 01:42:49] [INFO] [FootballDataFetcher] [FD] Neopromosse (raw): US Cremonese, US Sassuolo Calcio, AC Pisa 1909
+[2025-09-08 01:42:49] [INFO] [FootballDataFetcher] [FD] Fetching league table for season 2024
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] League table: 20 teams
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 1. SSC Napoli (GA: 27)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 2. FC Internazionale Milano (GA: 35)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 3. Atalanta BC (GA: 37)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 4. Juventus FC (GA: 35)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 5. AS Roma (GA: 35)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 6. ACF Fiorentina (GA: 41)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 7. SS Lazio (GA: 49)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 8. AC Milan (GA: 43)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 9. Bologna FC 1909 (GA: 47)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 10. Como 1907 (GA: 52)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 11. Torino FC (GA: 45)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 12. Udinese Calcio (GA: 56)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 13. Genoa CFC (GA: 49)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 14. Hellas Verona FC (GA: 66)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 15. Parma Calcio 1913 (GA: 58)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 16. Cagliari Calcio (GA: 56)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 17. US Lecce (GA: 58)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 18. Empoli FC (GA: 59)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 19. Venezia FC (GA: 56)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] 20. AC Monza (GA: 69)
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] Squadre media (10-17): Como 1907, Torino FC, Udinese Calcio, Genoa CFC, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] Squadre 50+ GA: Como 1907, Udinese Calcio, Hellas Verona FC, Parma Calcio 1913, Cagliari Calcio, US Lecce, Empoli FC, Venezia FC, AC Monza
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] [Dinamiche] API SUCCESS - Neopromosse: 3, Media: 8, GA50: 9
+[2025-09-08 01:42:55] [INFO] [FootballDataFetcher] [FD] League table cache HIT for season 2024
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] [Dinamiche] === RISULTATI FINALI ===
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] [Dinamiche] Neopromosse (3): Cremonese, Sassuolo, Pisa
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] [Dinamiche] Media classifica (8): Como, Torino, Udinese, Genoa, Verona, Parma, Cagliari, Lecce
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] [Dinamiche] 50+ GA (9): Como, Udinese, Verona, Parma, Cagliari, Lecce, Empoli, Venezia, Monza
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] [Dinamiche] Team GA mapping (20): {"Napoli":27,"Inter":35,"Atalanta":37,"Juventus":35,"Roma":35,"Fiorentina":41,"Lazio":49,"Milan":43,"Bologna":47,"Como":52,"Torino":45,"Udinese":56,"Genoa":49,"Verona":66,"Parma":58,"Cagliari":56,"Lecce":58,"Empoli":59,"Venezia":56,"Monza":69}
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] ✅ Liste dinamiche calcolate
+[2025-09-08 01:42:55] [INFO] [Progress] Progress: 9/12 (75%) - Pre-calcolo cache API (rose, nazionalità, rigoristi)...
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] === INIZIO PRE-CALCOLO CACHE API ===
+[2025-09-08 01:42:55] [INFO] [Progress] Log entry: Costruzione indice rose API...
+[2025-09-08 01:42:55] [INFO] [FantacalcioAnalyzer] [API Rose] Costruzione indice per stagione 2025
+[2025-09-08 01:43:02] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 98
+[2025-09-08 01:43:09] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 99
+[2025-09-08 01:43:15] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 100
+[2025-09-08 01:43:21] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 102
+[2025-09-08 01:43:27] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 103
+[2025-09-08 01:43:33] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 104
+[2025-09-08 01:43:40] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 107
+[2025-09-08 01:43:46] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 108
+[2025-09-08 01:43:52] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 109
+[2025-09-08 01:43:58] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 110
+[2025-09-08 01:44:05] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 112
+[2025-09-08 01:44:11] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 113
+[2025-09-08 01:44:17] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 115
+[2025-09-08 01:44:23] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 450
+[2025-09-08 01:44:29] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 457
+[2025-09-08 01:44:36] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 471
+[2025-09-08 01:44:42] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 487
+[2025-09-08 01:44:48] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 586
+[2025-09-08 01:44:54] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 5890
+[2025-09-08 01:45:01] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 7397
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [API Rose] Indice completato: 20 squadre, 617 giocatori
+[2025-09-08 01:45:07] [INFO] [Progress] Log entry: Rose API indicizzate: 20 squadre
+[2025-09-08 01:45:07] [INFO] [Progress] Log entry: Risoluzione nazionalità effettive...
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Nazionalità] Calcolo nazionalità effettive per 533 giocatori
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Nazionalità] Risolte 533 nazionalità effettive
+[2025-09-08 01:45:07] [INFO] [Progress] Log entry: Nazionalità risolte: 533 giocatori
+[2025-09-08 01:45:07] [INFO] [Progress] Log entry: Download rigoristi da fantacalcio.it...
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi] Scraping da https://www.fantacalcio.it/rigoristi-serie-a
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Atalanta: krstovic
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Pisa: nzola
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cagliari: mina
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Bologna: immobile
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Como: paz n.
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Fiorentina: gudmundsson a.
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Parma: pellegrino m.
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cremonese: vazquez
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Genoa: malinovskyi
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Milan: pulisic
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Inter: calhanoglu
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Torino: zapata d.
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Juventus: locatelli
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lazio: zaccagni
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lecce: stulic
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Napoli: lukaku
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Udinese: davis k.
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Roma: dybala
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Sassuolo: berardi
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Verona: harroui
+[2025-09-08 01:45:07] [INFO] [Progress] Log entry: Rigoristi trovati per 20 squadre
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] Cache API pre-calcolate in 131.59s
+[2025-09-08 01:45:07] [INFO] [Progress] Log entry: Cache API completate in 131.6s
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] === FINE PRE-CALCOLO CACHE API ===
+[2025-09-08 01:45:07] [INFO] [Progress] Log entry: Cache API completate: 20 rose, 533 nazionalità, 20 rigoristi
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer] ✅ Dati caricati con successo (include cache API)
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer]   Anno corrente: 2025-26
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer]   Ultimo anno con dati: 2024-25
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer]   Giocatori in lista: 533
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer]   Anni di statistiche: 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer]   Rose API indicizzate: 20
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:45:07] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:45:07] [INFO] [Progress] Progress: 10/12 (83.3%) - Preparazione cache...
+[2025-09-08 01:45:07] [INFO] [Cache] Cached: lista_corrente
+[2025-09-08 01:45:07] [INFO] [Cache] Cached: statistiche
+[2025-09-08 01:45:07] [INFO] [Cache] Cached: quotazioni
+[2025-09-08 01:45:07] [INFO] [Cache] Cached: valutazioni
+[2025-09-08 01:45:07] [INFO] [Cache] Cached: metadata
+[2025-09-08 01:45:07] [INFO] [Cache] Cached: api_caches
+[2025-09-08 01:45:07] [INFO] [Progress] Progress: 11/12 (91.7%) - Aggiornamento manifest...
+[2025-09-08 01:45:07] [INFO] [Cache] Updated cache manifest
+[2025-09-08 01:45:07] [INFO] [Cache] Lock released
+[2025-09-08 01:45:07] [INFO] [Progress] Progress: 12/12 (100%) - Operazione completata
+[2025-09-08 01:45:07] [INFO] [Progress] Progress completed in 152s: Dati caricati e cache aggiornata
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:07] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:07] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-08 01:45:10] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:45:10] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:45:10] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:45:10] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:45:10] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Atalanta → nikola krstovic (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Pisa → m'bala nzola (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Cagliari → yerry mina (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Bologna → ciro immobile (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Como → nico paz (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Fiorentina → albert gudmundsson (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Parma → mateo pellegrino (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Cremonese → franco vazquez (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Genoa → ruslan malinovskyi (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Milan → christian pulisic (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Inter → hakan calhanoglu (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Torino → duvan zapata (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Juventus → manuel locatelli (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Lazio → mattia zaccagni (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Lecce → nikola stulic (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Napoli → romelu lukaku (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Udinese → keinan davis (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Roma → paulo dybala (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Sassuolo → domenico berardi (top1-surname-unique)
+[2025-09-08 01:45:13] [INFO] [FantacalcioAnalyzer] [Rigoristi][MATCH] Verona → abdou harroui (top1-surname-unique)
+[2025-09-08 01:45:22] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:45:22] [INFO] [CheckMyTeam] Bootstrap data loaded from cache
+[2025-09-08 01:45:29] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-08 01:45:29] [INFO] [Progress] Progress initialized: Loading from cache (3 steps)
+[2025-09-08 01:45:29] [INFO] [Progress] Progress: 1/3 (33.3%) - Lettura cache valida...
+[2025-09-08 01:45:29] [INFO] [Progress] Progress: 2/3 (66.7%) - Ripristino sessione...
+[2025-09-08 01:45:29] [INFO] [Progress] Progress: 3/3 (100%) - Cache caricata con successo
+[2025-09-08 01:45:29] [INFO] [Progress] Progress completed in 0s: Dati caricati dalla cache (≤ 24h)
+[2025-09-08 01:45:31] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:45:31] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:45:31] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:45:31] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:45:31] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:45:34] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-08 01:45:34] [INFO] [FantacalcioAnalyzer]   Lista corrente: 533
+[2025-09-08 01:45:34] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-08 01:45:34] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-08 01:45:34] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-08 01:45:36] [INFO] [CheckMyTeam] Bootstrap request initiated
+[2025-09-08 01:45:36] [INFO] [CheckMyTeam] Bootstrap data loaded from cache

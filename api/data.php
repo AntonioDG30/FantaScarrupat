@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     }
 }
 
+$isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'];
+
 $action = $_GET['action'] ?? '';
 
 try {
@@ -38,6 +40,15 @@ try {
         case 'clear_progress':
             Progress::clear();
             echo json_encode(['success' => true, 'message' => 'Progress cleared']);
+            break;
+
+        case 'cache_status':
+            $status = Cache::getStatusForUser($isAdmin);
+            echo json_encode([
+                'success' => true,
+                'is_admin' => $isAdmin,
+                'cache_status' => $status
+            ]);
             break;
             
         case 'status':
@@ -69,81 +80,102 @@ try {
 
 function handleLoadData(): void
 {
-    try {
-        ignore_user_abort(true);
-        @ini_set('max_execution_time', '600');
-        @set_time_limit(600);
 
-        $forceRefresh = (bool)($_GET['refresh'] ?? $_POST['refresh'] ?? false)
-                    || (($_SERVER['HTTP_X_FORCE_REFRESH'] ?? '') === '1');
-
-        $currentHash = Cache::computeInputsHash();
-        
-        // *** VERIFICA SE C'È GIÀ UN'OPERAZIONE IN CORSO ***
-        $existingJob = getActiveJob();
-        if ($existingJob) {
-            // Un altro utente sta già caricando - agganciati
+    global $isAdmin;
+    
+    // Non-admin: verifica solo esistenza cache
+    if (!$isAdmin) {
+        $cacheExists = Cache::existsOnly();
+        if (!$cacheExists) {
             echo json_encode([
-                'success' => true,
-                'joined_existing_job' => true,
-                'job_id' => $existingJob['job_id'],
-                'started_by' => $existingJob['started_by'],
-                'operation' => $existingJob['operation'],
-                'message' => 'Operazione già in corso da altro utente - agganciato al progress'
+                'success' => false,
+                'error' => 'cache_missing_non_admin',
+                'message' => 'Cache assente. Contatta l\'admin.'
             ]);
             return;
         }
         
-        // *** TENTATIVO DI ACQUISIRE IL LOCK GLOBALE ***
-        $jobId = generateJobId();
-        if (!acquireGlobalLock($jobId)) {
-            // Race condition - prova a trovare il job che è riuscito ad acquisire il lock
-            sleep(1);
+        // Cache presente: carica senza controlli TTL
+        $currentHash = Cache::computeInputsHash();
+        handleCachedLoad($currentHash);
+        return;
+    } else { 
+        try {
+            ignore_user_abort(true);
+            @ini_set('max_execution_time', '600');
+            @set_time_limit(600);
+
+            $forceRefresh = (bool)($_GET['refresh'] ?? $_POST['refresh'] ?? false)
+                        || (($_SERVER['HTTP_X_FORCE_REFRESH'] ?? '') === '1');
+
+            $currentHash = Cache::computeInputsHash();
+            
+            // *** VERIFICA SE C'È GIÀ UN'OPERAZIONE IN CORSO ***
             $existingJob = getActiveJob();
             if ($existingJob) {
+                // Un altro utente sta già caricando - agganciati
                 echo json_encode([
                     'success' => true,
                     'joined_existing_job' => true,
                     'job_id' => $existingJob['job_id'],
-                    'message' => 'Agganciato ad operazione in corso'
+                    'started_by' => $existingJob['started_by'],
+                    'operation' => $existingJob['operation'],
+                    'message' => 'Operazione già in corso da altro utente - agganciato al progress'
                 ]);
                 return;
-            } else {
-                throw new \Exception('Impossibile acquisire lock per operazione');
             }
-        }
-        
-        // *** QUESTO UTENTE DIVENTA IL "LEADER" ***
-        registerJobLeader($jobId, $forceRefresh ? 'force_rebuild' : 'cache_check');
-        
-        // Pulizia e inizializzazione
-        Progress::clear();
-        usleep(100000);
-        Progress::init(12, 'Caricamento dati');
-        Progress::update(0, 'Avvio operazione...');
-
-        Progress::update(1, 'Analisi richiesta...');
-
-        if ($forceRefresh) {
-            Progress::update(2, 'Avvio rigenerazione forzata...');
-            handleFullLoad($currentHash, true, $jobId);
-        } else {
-            Progress::update(2, 'Verifica validità cache...');
-            $cacheValid = Cache::isValid($currentHash, CACHE_TTL_SECONDS);
             
-            if ($cacheValid) {
-                Progress::update(2, 'Cache valida, caricamento rapido...');
-                handleCachedLoad($currentHash, $jobId);
-            } else {
-                Progress::update(2, 'Cache scaduta, rigenerazione necessaria...');
-                handleFullLoad($currentHash, false, $jobId);
+            // *** TENTATIVO DI ACQUISIRE IL LOCK GLOBALE ***
+            $jobId = generateJobId();
+            if (!acquireGlobalLock($jobId)) {
+                // Race condition - prova a trovare il job che è riuscito ad acquisire il lock
+                sleep(1);
+                $existingJob = getActiveJob();
+                if ($existingJob) {
+                    echo json_encode([
+                        'success' => true,
+                        'joined_existing_job' => true,
+                        'job_id' => $existingJob['job_id'],
+                        'message' => 'Agganciato ad operazione in corso'
+                    ]);
+                    return;
+                } else {
+                    throw new \Exception('Impossibile acquisire lock per operazione');
+                }
             }
-        }
+            
+            // *** QUESTO UTENTE DIVENTA IL "LEADER" ***
+            registerJobLeader($jobId, $forceRefresh ? 'force_rebuild' : 'cache_check');
+            
+            // Pulizia e inizializzazione
+            Progress::clear();
+            usleep(100000);
+            Progress::init(12, 'Caricamento dati');
+            Progress::update(0, 'Avvio operazione...');
 
-    } catch (\Exception $e) {
-        cleanupJob();
-        Progress::error('Errore durante il caricamento: ' . $e->getMessage(), $e);
-        throw $e;
+            Progress::update(1, 'Analisi richiesta...');
+
+            if ($forceRefresh) {
+                Progress::update(2, 'Avvio rigenerazione forzata...');
+                handleFullLoad($currentHash, true, $jobId);
+            } else {
+                Progress::update(2, 'Verifica validità cache...');
+                $cacheValid = Cache::isValid($currentHash, CACHE_TTL_SECONDS);
+                
+                if ($cacheValid) {
+                    Progress::update(2, 'Cache valida, caricamento rapido...');
+                    handleCachedLoad($currentHash, $jobId);
+                } else {
+                    Progress::update(2, 'Cache scaduta, rigenerazione necessaria...');
+                    handleFullLoad($currentHash, false, $jobId);
+                }
+            }
+
+        } catch (\Exception $e) {
+            cleanupJob();
+            Progress::error('Errore durante il caricamento: ' . $e->getMessage(), $e);
+            throw $e;
+        }
     }
 }
 
