@@ -1,36 +1,72 @@
 {
-    "operation": "Loading from cache",
-    "step": 3,
-    "total": 3,
-    "percent": 100,
-    "label": "Dati caricati dalla cache (\u2264 24h)",
-    "started_at": 1757019845,
-    "updated_at": 1757019845,
+    "operation": "Loading data",
+    "step": 9,
+    "total": 12,
+    "percent": 75,
+    "label": "Pre-calcolo cache API (rose, nazionalit\u00e0, rigoristi)...",
+    "started_at": 1757281445,
+    "updated_at": 1757281465,
     "error": null,
-    "completed": true,
+    "completed": false,
     "log": [
         {
             "step": 1,
-            "label": "Lettura cache valida...",
-            "ts": 1757019845,
+            "label": "Inizializzazione analyzer...",
+            "ts": 1757281445,
             "metadata": []
         },
         {
             "step": 2,
-            "label": "Ripristino sessione...",
-            "ts": 1757019845,
+            "label": "Caricamento completo dei dati...",
+            "ts": 1757281445,
             "metadata": []
         },
         {
             "step": 3,
-            "label": "Cache caricata con successo",
-            "ts": 1757019845,
+            "label": "Caricamento lista giocatori...",
+            "ts": 1757281445,
             "metadata": []
         },
         {
-            "step": 3,
-            "label": "Dati caricati dalla cache (\u2264 24h)",
-            "ts": 1757019845,
+            "step": 4,
+            "label": "Determinazione stagioni...",
+            "ts": 1757281445,
+            "metadata": []
+        },
+        {
+            "step": 5,
+            "label": "Caricamento statistiche...",
+            "ts": 1757281445,
+            "metadata": []
+        },
+        {
+            "step": 6,
+            "label": "Caricamento quotazioni...",
+            "ts": 1757281445,
+            "metadata": []
+        },
+        {
+            "step": 7,
+            "label": "Caricamento valutazioni...",
+            "ts": 1757281445,
+            "metadata": []
+        },
+        {
+            "step": 8,
+            "label": "Calcolo liste dinamiche (API\/Wikipedia)...",
+            "ts": 1757281445,
+            "metadata": []
+        },
+        {
+            "step": 9,
+            "label": "Pre-calcolo cache API (rose, nazionalit\u00e0, rigoristi)...",
+            "ts": 1757281465,
+            "metadata": []
+        },
+        {
+            "step": 9,
+            "label": "Costruzione indice rose API...",
+            "ts": 1757281465,
             "metadata": []
         }
     ]

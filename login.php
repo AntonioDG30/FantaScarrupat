@@ -341,11 +341,18 @@ try {
                         <span class="material-icons" id="loginIcon">login</span>
                         Accedi
                     </button>
+
+                    <a href="<?= url('index.php') ?>" class="btn-back-to-site">
+                        <span class="material-icons">arrow_back</span>
+                        Torna al sito
+                    </a>
+
                 </form>
 
                 <div class="form-footer">
                     <p>Accedendo accetti i nostri termini di servizio e la privacy policy.</p>
                 </div>
+                </form>
             </div>
         </div>
     </div>
