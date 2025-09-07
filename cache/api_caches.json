@@ -188,11 +188,6 @@
                 "nat_norm": "italia",
                 "dob": "2006-08-24"
             },
-            "simon sohm": {
-                "nat_raw": "Switzerland",
-                "nat_norm": "svizzera",
-                "dob": "2001-04-11"
-            },
             "hans nicolussi caviglia": {
                 "nat_raw": "Italy",
                 "nat_norm": "italia",
@@ -273,11 +268,6 @@
                 "nat_norm": "marocco",
                 "dob": "2002-01-24"
             },
-            "alessandro bianco": {
-                "nat_raw": "Italy",
-                "nat_norm": "italia",
-                "dob": "2002-10-01"
-            },
             "gino infantino": {
                 "nat_raw": "Argentina",
                 "nat_norm": "argentina",
@@ -302,6 +292,11 @@
                 "nat_raw": "Italy",
                 "nat_norm": "italia",
                 "dob": "2001-01-27"
+            },
+            "simon sohm": {
+                "nat_raw": "Switzerland",
+                "nat_norm": "svizzera",
+                "dob": "2001-04-11"
             }
         },
         "Roma": {
@@ -2538,11 +2533,6 @@
                 "nat_norm": "italia",
                 "dob": "2001-04-06"
             },
-            "zan jevsenak": {
-                "nat_raw": "Slovenia",
-                "nat_norm": "slovenia",
-                "dob": "2003-05-15"
-            },
             "giacomo maucci": {
                 "nat_raw": "Italy",
                 "nat_norm": "italia",
@@ -3161,7 +3151,6 @@
         "5918": "Ghana",
         "4730": "Nigeria",
         "2137": "Italia",
-        "6229": "Mali",
         "7172": "Bologna",
         "2722": "Italia",
         "133": "Polonia",
@@ -3184,7 +3173,6 @@
         "2167": "Italia",
         "2765": "Danimarca",
         "6895": "Argentina",
-        "6459": "Svezia",
         "4436": "Italia",
         "6572": "Argentina",
         "6643": "Olanda",
@@ -3216,27 +3204,22 @@
         "418": "Italia",
         "6893": "Germania",
         "7014": "Croazia",
-        "6944": "Brasile",
         "6896": "Belgio",
         "4994": "Kosovo",
         "5435": "Spagna",
         "6867": "Spagna",
-        "6676": "Germania",
         "6151": "Argentina",
         "4284": "Spagna",
         "5036": "Francia",
         "5559": "Francia",
-        "2553": "Inghilterra",
         "7126": "Croazia",
         "6875": "Argentina",
         "7127": "Olanda",
         "6967": "Spagna",
         "7128": "Germania",
         "7129": "Spagna",
-        "7027": "Spagna",
         "2155": "Italia",
         "7017": "Grecia",
-        "6657": "Italia",
         "761": "Indonesia",
         "6505": "Italia",
         "612": "Italia",
@@ -3246,10 +3229,8 @@
         "770": "Italia",
         "6013": "Italia",
         "2847": "Italia",
-        "5863": "Italia",
         "7132": "Italia",
         "27": "Italia",
-        "5857": "Svizzera",
         "2274": "Italia",
         "7133": "Belgio",
         "449": "Italia",
@@ -3268,7 +3249,6 @@
         "7069": "Italia",
         "2160": "Germania",
         "5449": "Italia",
-        "5516": "Italia",
         "1933": "Italia",
         "6294": "Italia",
         "6804": "Marocco",
@@ -3276,7 +3256,6 @@
         "6010": "Italia",
         "5788": "Maroccco",
         "5800": "Islanda",
-        "6409": "Argentina",
         "647": "Bosnia Erzegovina",
         "2097": "Italia",
         "188": "Italia",
@@ -3285,7 +3264,6 @@
         "6660": "Italia",
         "6977": "Danimarca",
         "5739": "Belgio",
-        "6245": "Italia",
         "5514": "Messico",
         "6814": "Inghilterra",
         "2593": "Spagna",
@@ -3311,7 +3289,6 @@
         "2120": "Italia",
         "6217": "Germania",
         "322": "Olanda",
-        "4177": "Francia",
         "2525": "Italia",
         "5877": "Brasile",
         "254": "Italia",
@@ -3329,7 +3306,6 @@
         "6669": "Francia",
         "7071": "Italia",
         "2764": "Argentina",
-        "6628": "Iran",
         "4871": "Francia",
         "5876": "Italia",
         "218": "Italia",
@@ -3339,7 +3315,6 @@
         "294": "Italia",
         "4976": "Francia",
         "6766": "Inghilterra",
-        "6802": "Italia",
         "6039": "Colombia",
         "6803": "Svezia",
         "5520": "Italia",
@@ -3351,7 +3326,6 @@
         "5813": "Italia",
         "5685": "Olanda",
         "6884": "Portogallo",
-        "4179": "Argentina",
         "6434": "Turchia",
         "5544": "Canada",
         "2012": "Polonia",
@@ -3418,7 +3392,6 @@
         "4751": "Inghilterra",
         "6496": "Italia",
         "5273": "Ecuador",
-        "6531": "Spagna",
         "5812": "Italia",
         "4892": "Belgio",
         "5992": "Francia",
@@ -3427,7 +3400,6 @@
         "2606": "Croazia",
         "5295": "Inghilterra",
         "4199": "Inghilterra",
-        "4856": "Nigeria",
         "2423": "Stati Uniti",
         "4510": "Portogallo",
         "7008": "Messico",
@@ -3484,7 +3456,6 @@
         "7140": "Italia",
         "6411": "Brasile",
         "7170": "Belgio",
-        "7141": "Romania",
         "2745": "Italia",
         "7142": "Portogallo",
         "7143": "Italia",
@@ -3495,11 +3466,9 @@
         "7150": "Turchia",
         "6593": "Nigeria",
         "2334": "Algeria",
-        "7151": "Italia",
         "5318": "Francia",
         "7171": "Repubblica Ceca",
         "5455": "Italia",
-        "7153": "Danimarca",
         "6836": "Danimarca",
         "7169": "Polonia",
         "610": "Italia",
@@ -3509,7 +3478,6 @@
         "4317": "Francia",
         "4657": "Turchia",
         "6986": "Olanda",
-        "7020": "Olanda",
         "4772": "Spagna",
         "7181": "Brasile",
         "779": "Italia",
@@ -3523,19 +3491,16 @@
         "309": "Argentina",
         "6675": "Ucraina",
         "6365": "Irlanda",
-        "4518": "Italia",
         "2127": "Italia",
         "4867": "Italia",
         "7155": "Bosnia Erzegovina",
         "7154": "Olanda",
         "2279": "Italia",
         "4374": "Polonia",
-        "6189": "Italia",
         "6431": "Colombia",
         "5851": "Scozia",
         "7156": "Italia",
         "6219": "Italia",
-        "4930": "Italia",
         "6717": "Canada",
         "6246": "Italia",
         "7157": "Italia",
@@ -3545,9 +3510,7 @@
         "1842": "Italia",
         "531": "Italia",
         "6060": "Francia",
-        "5845": "Uruguay",
         "7158": "Italia",
-        "6205": "Italia",
         "2038": "Italia",
         "7159": "Danimarca",
         "7179": "Uruguay",
@@ -3591,13 +3554,9 @@
         "5850": "Slovenia",
         "6481": "Argentina",
         "6684": "Olanda",
-        "5824": "Italia",
         "6653": "Spagna",
-        "6213": "Brasile",
-        "2475": "Cile",
         "7161": "Costa d''Avorio",
         "5637": "Inghilterra",
-        "6635": "Cile",
         "4957": "Italia",
         "511": "Italia",
         "6631": "Italia",
@@ -3617,7 +3576,6 @@
         "7162": "Brasile",
         "6159": "Svezia",
         "6630": "Colombia",
-        "6644": "Capo Verde",
         "6125": "Colombia",
         "5750": "Norvegia",
         "7183": "Marocco",
@@ -3649,18 +3607,63 @@
         "6677": "Montenegro",
         "6005": "Turchia",
         "7220": "Algeria",
+        "7222": "Gambia",
+        "6439": "Marocco",
+        "7223": "Italia",
         "5427": "Spagna",
         "2670": "Giamaica",
         "7018": "Danimarca",
         "7235": "Argentina",
-        "7240": "Germania"
+        "7236": "Italia",
+        "7240": "Germania",
+        "6274": "Francia",
+        "5610": "Belgio",
+        "7246": "Spagna",
+        "6844": "Inghilterra",
+        "2528": "Serbia",
+        "7249": "Polonia",
+        "7253": "Germania",
+        "7252": "Serbia",
+        "7255": "Svizzera",
+        "6552": "Nigeria",
+        "6218": "Italia",
+        "5561": "Olanda",
+        "7010": "Libia",
+        "7260": "Polonia",
+        "7261": "Croazia",
+        "4728": "Francia",
+        "4349": "Italia",
+        "7264": "Italia",
+        "6555": "Camerun",
+        "5168": "Grecia",
+        "6351": "Ghana",
+        "7254": "Brasile",
+        "6538": "Camerun",
+        "5156": "Francia",
+        "4479": "Macedonia del Nord",
+        "7268": "Uruguay",
+        "6870": "Senegal",
+        "2379": "Francia",
+        "4137": "Brasile",
+        "6528": "Ecuador",
+        "5761": "Kosovo",
+        "6052": "Danimarca",
+        "7271": "Germania",
+        "4159": "Svizzera",
+        "6314": "Belgio",
+        "441": "Italia",
+        "6665": "Francia",
+        "2766": "Italia",
+        "7272": "Senegal",
+        "7274": "Portogallo",
+        "2499": "Inghilterra",
+        "4677": "Costa d''Avorio",
+        "388": "Spagna",
+        "7276": "Stati Uniti"
     },
     "rigoristi_map": {
         "Atalanta": [
             "krstovic"
-        ],
-        "Bologna": [
-            "immobile"
         ],
         "Pisa": [
             "nzola"
@@ -3668,14 +3671,20 @@
         "Cagliari": [
             "mina"
         ],
+        "Bologna": [
+            "immobile"
+        ],
         "Como": [
             "paz n"
         ],
-        "Cremonese": [
-            "vazquez"
-        ],
         "Fiorentina": [
             "gudmundsson a"
+        ],
+        "Parma": [
+            "pellegrino m"
+        ],
+        "Cremonese": [
+            "vazquez"
         ],
         "Genoa": [
             "malinovskyi"
@@ -3685,6 +3694,9 @@
         ],
         "Inter": [
             "calhanoglu"
+        ],
+        "Torino": [
+            "zapata d"
         ],
         "Juventus": [
             "locatelli"
@@ -3698,20 +3710,14 @@
         "Napoli": [
             "lukaku"
         ],
-        "Torino": [
-            "zapata d"
-        ],
-        "Parma": [
-            "pellegrino m"
+        "Udinese": [
+            "davis k"
         ],
         "Roma": [
             "dybala"
         ],
         "Sassuolo": [
             "berardi"
-        ],
-        "Udinese": [
-            "davis k"
         ],
         "Verona": [
             "harroui"
@@ -3721,23 +3727,26 @@
         "Atalanta": [
             "krstovic"
         ],
-        "Bologna": [
-            "immobile"
-        ],
         "Pisa": [
             "nzola"
         ],
         "Cagliari": [
             "mina"
         ],
+        "Bologna": [
+            "immobile"
+        ],
         "Como": [
             "paz n."
         ],
-        "Cremonese": [
-            "vazquez"
-        ],
         "Fiorentina": [
             "gudmundsson a."
+        ],
+        "Parma": [
+            "pellegrino m."
+        ],
+        "Cremonese": [
+            "vazquez"
         ],
         "Genoa": [
             "malinovskyi"
@@ -3747,6 +3756,9 @@
         ],
         "Inter": [
             "calhanoglu"
+        ],
+        "Torino": [
+            "zapata d."
         ],
         "Juventus": [
             "locatelli"
@@ -3760,20 +3772,14 @@
         "Napoli": [
             "lukaku"
         ],
-        "Torino": [
-            "zapata d."
-        ],
-        "Parma": [
-            "pellegrino m."
+        "Udinese": [
+            "davis k."
         ],
         "Roma": [
             "dybala"
         ],
         "Sassuolo": [
             "berardi"
-        ],
-        "Udinese": [
-            "davis k."
         ],
         "Verona": [
             "harroui"

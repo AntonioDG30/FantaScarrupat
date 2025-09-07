@@ -32022,3 +32022,137 @@
 [2025-09-07 23:45:28] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 110
 [2025-09-07 23:45:34] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 112
 [2025-09-07 23:45:41] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 113
+[2025-09-07 23:45:47] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 115
+[2025-09-07 23:45:53] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 450
+[2025-09-07 23:45:59] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 457
+[2025-09-07 23:46:06] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 471
+[2025-09-07 23:46:12] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 487
+[2025-09-07 23:46:18] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 586
+[2025-09-07 23:46:24] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 5890
+[2025-09-07 23:46:30] [INFO] [FootballDataFetcher] [FD] Fetching squad for team 7397
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [API Rose] Indice completato: 20 squadre, 617 giocatori
+[2025-09-07 23:46:37] [INFO] [Progress] Log entry: Rose API indicizzate: 20 squadre
+[2025-09-07 23:46:37] [INFO] [Progress] Log entry: Risoluzione nazionalità effettive...
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Nazionalità] Calcolo nazionalità effettive per 533 giocatori
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Nazionalità] Risolte 533 nazionalità effettive
+[2025-09-07 23:46:37] [INFO] [Progress] Log entry: Nazionalità risolte: 533 giocatori
+[2025-09-07 23:46:37] [INFO] [Progress] Log entry: Download rigoristi da fantacalcio.it...
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi] Scraping da https://www.fantacalcio.it/rigoristi-serie-a
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Atalanta: krstovic
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Pisa: nzola
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cagliari: mina
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Bologna: immobile
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Como: paz n.
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Fiorentina: gudmundsson a.
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Parma: pellegrino m.
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Cremonese: vazquez
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Genoa: malinovskyi
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Milan: pulisic
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Inter: calhanoglu
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Torino: zapata d.
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Juventus: locatelli
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lazio: zaccagni
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Lecce: stulic
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Napoli: lukaku
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Udinese: davis k.
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Roma: dybala
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Sassuolo: berardi
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] [Rigoristi][TOP1] Verona: harroui
+[2025-09-07 23:46:37] [INFO] [Progress] Log entry: Rigoristi trovati per 20 squadre
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] Cache API pre-calcolate in 131.82s
+[2025-09-07 23:46:37] [INFO] [Progress] Log entry: Cache API completate in 131.8s
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] === FINE PRE-CALCOLO CACHE API ===
+[2025-09-07 23:46:37] [INFO] [Progress] Log entry: Cache API completate: 20 rose, 533 nazionalità, 20 rigoristi
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer] ✅ Dati caricati con successo (include cache API)
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer]   Anno corrente: 2025-26
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer]   Ultimo anno con dati: 2024-25
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer]   Giocatori in lista: 533
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer]   Anni di statistiche: 2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer]   Rose API indicizzate: 20
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 533
+[2025-09-07 23:46:37] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-07 23:46:37] [INFO] [Progress] Progress: 10/12 (83.3%) - Preparazione cache...
+[2025-09-07 23:46:37] [INFO] [Cache] Cached: lista_corrente
+[2025-09-07 23:46:37] [INFO] [Cache] Cached: statistiche
+[2025-09-07 23:46:37] [INFO] [Cache] Cached: quotazioni
+[2025-09-07 23:46:37] [INFO] [Cache] Cached: valutazioni
+[2025-09-07 23:46:37] [INFO] [Cache] Cached: metadata
+[2025-09-07 23:46:37] [INFO] [Cache] Cached: api_caches
+[2025-09-07 23:46:37] [INFO] [Progress] Progress: 11/12 (91.7%) - Aggiornamento manifest...
+[2025-09-07 23:46:37] [INFO] [Cache] Updated cache manifest
+[2025-09-07 23:46:37] [INFO] [Cache] Lock released
+[2025-09-07 23:46:37] [INFO] [Progress] Progress: 12/12 (100%) - Operazione completata
+[2025-09-07 23:46:37] [INFO] [Progress] Progress completed in 152s: Dati caricati e cache aggiornata
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
+[2025-09-07 23:46:37] [INFO] [Cache] Computed inputs hash: dd6663fadc4f44b774f90334c9b6c116
+[2025-09-07 23:46:37] [INFO] [Cache] Cache valid: age=0s, hash matches
