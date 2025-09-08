@@ -1,3 +1,7 @@
+/**
+ * CheckMyTeam - Sistema semplificato con nuovo cache manager
+ */
+
 // Configurazioni rosa
 const SQUAD_CONFIG = {
   'P': { count: 3, name: 'Portieri', icon: 'sports_soccer', color: '#FF9800' },
@@ -11,42 +15,20 @@ let appState = {
   playersData: null,
   playersByRole: { P: [], D: [], C: [], A: [] },
   criteriaList: {},
-  selectedCriteria: new Map(), // Map<criteriaId, {name, description}>
-  criteriaSets: {}, // { criteriaId: Set<playerId> }
-  selectedPlayers: {}, // { slotId: playerId }
-  playerSelects: {}, // { slotId: TomSelect instance }
-  isLoading: false
+  selectedCriteria: new Map(),
+  criteriaSets: {},
+  selectedPlayers: {},
+  playerSelects: {},
+  isReady: false
 };
 
 // ===== UTILITIES =====
-function url(path) {
-  const basePath = '<?= getProjectBasePath() ?>';
-  return basePath + path.replace(/^\/+/, '');
-}
-
 function showMessage(msg, type = 'info') {
-  const el = document.createElement('div');
-  el.className = 'toast-msg ' + type;
-  el.textContent = msg;
-  document.body.appendChild(el);
-  requestAnimationFrame(() => el.classList.add('show'));
-  setTimeout(() => {
-    el.classList.remove('show');
-    setTimeout(() => el.remove(), 300);
-  }, 3000);
-}
-
-function showLoading(text = 'Caricamento in corso…') {
-  if (window.ProgressManager && ProgressManager.isActive && ProgressManager.isActive()) {
-    return;
+  if (window.cacheManager) {
+    window.cacheManager.showMessage(msg, type);
+  } else {
+    console.log(`[${type}] ${msg}`);
   }
-  const overlay = document.getElementById('loadingOverlay');
-  overlay.style.display = 'block';
-  overlay.querySelector('.loading-text').textContent = text;
-}
-
-function hideLoading() {
-  document.getElementById('loadingOverlay').style.display = 'none';
 }
 
 function debounce(func, wait) {
@@ -61,87 +43,41 @@ function debounce(func, wait) {
   };
 }
 
-// ===== NUOVA LOGICA ADMIN/NON-ADMIN per CheckMyTeam =====
+// ===== INIZIALIZZAZIONE =====
 async function initializeApp() {
   try {
-    // Verifica status cache e tipo utente
-    const statusResponse = await fetch('api/data.php?action=cache_status', {
-      headers: { 'X-CSRF-Token': csrfToken }
-    });
+    // Usa il nuovo cache manager
+    const success = await window.cacheManager.initialize();
     
-    if (!statusResponse.ok) {
-      throw new Error(`HTTP ${statusResponse.status}: ${statusResponse.statusText}`);
+    if (!success) {
+      // Cache manager ha già gestito l'errore con overlay/banner
+      return;
     }
     
-    const statusData = await statusResponse.json();
+    // Cache OK - carica i dati per CheckMyTeam
+    await loadCheckMyTeamData();
+    await buildInterface();
     
-    if (!statusData.success) {
-      throw new Error('Errore verifica cache: ' + (statusData.error || 'Sconosciuto'));
-    }
-    
-    const isAdmin = statusData.is_admin;
-    const cacheStatus = statusData.cache_status;
-    
-    if (!isAdmin) {
-      // NON-ADMIN: controlla solo esistenza cache
-      if (!cacheStatus.exists) {
-        showCacheMissingOverlay();
-        return;
-      } else {
-        // Cache presente: carica normalmente
-        await loadDataForNonAdmin();
-        await buildInterface();
-        markDataAsLoaded();
-        showMessage('Applicazione pronta', 'success');
-        return;
-      }
-    } else {
-      // ADMIN: mostra banner informativo e procedi normalmente
-      showAdminCacheBanner(cacheStatus);
-      
-      // Logica originale per admin
-      if (window.ProgressManager) {
-        ProgressManager.show('empty');
-      } else {
-        showLoading('Inizializzazione...');
-      }
-
-      await loadData();
-      await buildInterface();
-      
-      if (window.ProgressManager) {
-        ProgressManager.forceComplete();
-      } else {
-        hideLoading();
-      }
-      
-      markDataAsLoaded();
-      showMessage('Applicazione pronta', 'success');
-    }
+    appState.isReady = true;
+    showMessage('CheckMyTeam pronto', 'success');
     
   } catch (error) {
-    console.error('Initialization error:', error);
-    
-    if (window.ProgressManager) {
-      ProgressManager.hide();
-    } else {
-      hideLoading();
-    }
-    
-    if (error.message === 'cache_missing_non_admin') {
-      showCacheMissingOverlay();
-    } else {
-      showMessage('Errore di inizializzazione: ' + error.message, 'danger');
-    }
+    console.error('CheckMyTeam initialization error:', error);
+    showMessage('Errore di inizializzazione: ' + error.message, 'danger');
   }
 }
 
-// Nuove funzioni per gestione admin/non-admin
-async function loadDataForNonAdmin() {
+// ===== CARICAMENTO DATI SPECIFICI =====
+async function loadCheckMyTeamData() {
   try {
-    // Carica direttamente dalla cache senza controlli TTL
+    // Verifica che i dati di sessione siano disponibili (caricati dal cache manager)
+    if (!window._SESSION_DATA_LOADED) {
+      throw new Error('Dati sessione non disponibili. Cache non caricata correttamente.');
+    }
+    
+    // USA L'ENDPOINT BOOTSTRAP CORRETTO invece di data.php?action=status
     const response = await fetch('api/checkteam.php?action=bootstrap', {
-      headers: { 'X-CSRF-Token': csrfToken }
+      headers: { 'X-CSRF-Token': getCsrfToken() }
     });
     
     if (!response.ok) {
@@ -151,211 +87,145 @@ async function loadDataForNonAdmin() {
     const data = await response.json();
     
     if (!data.success) {
-      if (data.error === 'cache_missing_non_admin') {
-        throw new Error('cache_missing_non_admin');
-      } else {
-        throw new Error(data.error || 'Errore nel caricamento dati');
-      }
+      throw new Error(data.error || 'Errore caricamento dati CheckMyTeam');
     }
+    
+    // I dati vengono già normalizzati dall'endpoint bootstrap
+    const players = data.players || [];
+    const playersByRole = data.playersByRole || { P: [], D: [], C: [], A: [] };
+    const criteriaList = data.criteriaList || {};
     
     // Popola lo stato
-    appState.playersData = data.players;
-    appState.playersByRole = data.playersByRole;
-    appState.criteriaList = data.criteriaList;
+    appState.playersData = players;
+    appState.playersByRole = playersByRole;
+    appState.criteriaList = criteriaList;
     
-  } catch (error) {
-    console.error('LoadDataForNonAdmin error:', error);
-    throw error;
-  }
-}
-
-function showCacheMissingOverlay() {
-  if (window.ProgressManager) {
-    ProgressManager.showNonAdminBlock();
-  } else {
-    // Fallback overlay semplice
-    const overlay = document.createElement('div');
-    overlay.id = 'cacheMissingOverlay';
-    overlay.style.cssText = `
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8); z-index: 10000;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
-    `;
-    overlay.innerHTML = `
-      <div style="
-        background: var(--card-bg, white); 
-        padding: 40px; 
-        border-radius: 16px; 
-        text-align: center; 
-        max-width: 400px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      ">
-        <span class="material-icons" style="
-          font-size: 64px; 
-          color: var(--warning-color, #f59e0b); 
-          margin-bottom: 24px; 
-          display: block;
-        ">info</span>
-        <h2 style="
-          margin: 0 0 16px 0; 
-          color: var(--text-primary, #1a1a1a);
-          font-size: 1.5rem;
-          font-weight: 700;
-        ">Cache assente</h2>
-        <p style="
-          margin: 0 0 24px 0; 
-          color: var(--text-secondary, #6b7280);
-          line-height: 1.5;
-        ">I dati della cache non sono disponibili.<br>Contatta l'amministratore per rigenerare la cache.</p>
-        <button onclick="location.reload()" style="
-          padding: 12px 24px; 
-          background: var(--primary-color, #3b82f6); 
-          color: white; 
-          border: none; 
-          border-radius: 8px; 
-          cursor: pointer;
-          font-weight: 600;
-          transition: all 0.2s ease;
-        " onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">
-          Aggiorna pagina
-        </button>
-      </div>
-    `;
-    document.body.appendChild(overlay);
-    
-    // Blocca scroll della pagina
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function showAdminCacheBanner(cacheStatus) {
-  // Controlla se banner già mostrato/dismisso in questa sessione
-  if (sessionStorage.getItem('admin_cache_banner_dismissed') === 'true') {
-    return;
-  }
-  
-  // Rimuovi banner esistente se presente
-  const existingBanner = document.getElementById('adminCacheBanner');
-  if (existingBanner) {
-    existingBanner.remove();
-  }
-  
-  const banner = document.createElement('div');
-  banner.id = 'adminCacheBanner';
-  banner.style.cssText = `
-    position: fixed; 
-    top: 80px; 
-    left: 0; 
-    right: 0; 
-    z-index: 999;
-    background: var(--info-bg, rgba(59, 130, 246, 0.1)); 
-    border-bottom: 1px solid var(--info-color, #3b82f6);
-    padding: 12px 24px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
-  `;
-  
-  let content = `<div style="display: flex; align-items: center; gap: 12px;">`;
-  content += `<span class="material-icons" style="color: var(--info-color, #3b82f6);">info</span>`;
-  
-  if (cacheStatus.exists) {
-    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
-    content += `Cache presente (età: ${cacheStatus.age_formatted || 'sconosciuta'})`;
-    content += `</span>`;
-    
-    if (cacheStatus.suggestion) {
-      content += `<span style="
-        margin-left: 16px; 
-        padding: 4px 12px; 
-        background: var(--warning-bg, rgba(245, 158, 11, 0.1)); 
-        color: var(--warning-color, #d97706);
-        border-radius: 6px; 
-        font-size: 0.85rem;
-        font-weight: 600;
-        border: 1px solid var(--warning-color, #d97706);
-      ">${cacheStatus.suggestion}</span>`;
-    }
-  } else {
-    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
-    content += `Cache assente - usa i comandi navbar per rigenerare`;
-    content += `</span>`;
-  }
-  
-  content += `</div>`;
-  content += `<button onclick="dismissAdminBanner()" style="
-    background: none; 
-    border: none; 
-    cursor: pointer;
-    color: var(--text-secondary, #6b7280);
-    padding: 4px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-  " onmouseover="this.style.background='var(--hover-bg, rgba(0,0,0,0.05))'" onmouseout="this.style.background='none'">`;
-  content += `<span class="material-icons">close</span></button>`;
-  
-  banner.innerHTML = content;
-  document.body.appendChild(banner);
-  
-  // Auto-dismiss dopo 10 secondi se non c'è suggestion
-  if (!cacheStatus.suggestion) {
-    setTimeout(() => {
-      if (document.getElementById('adminCacheBanner')) {
-        dismissAdminBanner();
-      }
-    }, 10000);
-  }
-}
-
-function dismissAdminBanner() {
-  const banner = document.getElementById('adminCacheBanner');
-  if (banner) {
-    banner.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    banner.style.opacity = '0';
-    banner.style.transform = 'translateY(-100%)';
-    
-    setTimeout(() => {
-      banner.remove();
-    }, 300);
-    
-    sessionStorage.setItem('admin_cache_banner_dismissed', 'true');
-  }
-}
-
-// ===== DATA LOADING (logica originale per admin) =====
-async function loadData() {
-  const response = await fetch('api/checkteam.php?action=bootstrap', {
-    headers: { 'X-CSRF-Token': csrfToken }
-  });
-  
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-  }
-  
-  const data = await response.json();
-  
-  if (!data.success) {
-    throw new Error(data.error || 'Errore nel caricamento dati');
-  }
-  
-  // Popola lo stato
-  appState.playersData = data.players;
-  appState.playersByRole = data.playersByRole;
-  appState.criteriaList = data.criteriaList;
-
-  /** 
-    console.log('Data loaded:', {
+    console.log('CheckMyTeam data loaded from bootstrap:', {
       players: appState.playersData.length,
       criteriaCount: Object.keys(appState.criteriaList).length,
       byRole: Object.keys(appState.playersByRole).map(r => `${r}: ${appState.playersByRole[r].length}`).join(', ')
     });
-  */
+    
+    // Valida che abbiamo ricevuto dati validi
+    if (appState.playersData.length === 0) {
+      throw new Error('Nessun giocatore ricevuto dall\'endpoint bootstrap');
+    }
+    
+    // Verifica che tutti i ruoli abbiano giocatori
+    const roleCheck = Object.keys(appState.playersByRole).map(role => ({
+      role,
+      count: appState.playersByRole[role].length
+    }));
+    
+    console.log('Players by role:', roleCheck);
+    
+    if (roleCheck.every(r => r.count === 0)) {
+      throw new Error('Nessun giocatore trovato per nessun ruolo');
+    }
+    
+  } catch (error) {
+    console.error('LoadCheckMyTeamData error:', error);
+    throw error;
+  }
 }
 
-// ===== INTERFACE BUILDING =====
+// ===== FUNZIONI DI SUPPORTO =====
+function groupPlayersByRole(players) {
+  const byRole = {'P': [], 'D': [], 'C': [], 'A': []};
+  
+  if (!Array.isArray(players)) {
+    console.warn('Players data is not an array:', players);
+    return byRole;
+  }
+  
+  console.log('Grouping players by role. Total players:', players.length);
+  console.log('Sample player data:', players.slice(0, 3));
+  
+  players.forEach((player, index) => {
+    // Gestisci diversi formati possibili per il ruolo
+    const role = player.ruolo_classic || 
+                 player.ruolo || 
+                 player.R || 
+                 '';
+    
+    // Normalizza il nome completo
+    const nomeCompleto = player.nome_completo || 
+                        player.nome || 
+                        player.Nome || 
+                        `Giocatore ${index}`;
+    
+    // Normalizza la squadra
+    const squadra = player.squadra || 
+                   player.squadra_attuale || 
+                   player.Squadra || 
+                   'Squadra sconosciuta';
+    
+    // Normalizza l'ID
+    const playerId = player.id || 
+                    player.codice_fantacalcio || 
+                    player.Id || 
+                    index;
+    
+    if (byRole[role]) {
+      byRole[role].push({
+        id: playerId,
+        nome_completo: nomeCompleto,
+        squadra: squadra,
+        ruolo_classic: role,
+        // Mantieni anche i dati originali per sicurezza
+        _original: player
+      });
+    } else {
+      console.warn(`Unknown role: "${role}" for player:`, player);
+    }
+  });
+  
+  // Log finale per debug
+  Object.keys(byRole).forEach(role => {
+    console.log(`Role ${role}: ${byRole[role].length} players`);
+  });
+  
+  return byRole;
+}
+
+function getHardcodedCriteriaList() {
+  return {
+    '1': { name: 'Under 23 (al 1° luglio)', description: 'Giocatori nati dopo il 1° luglio 2002' },
+    '2': { name: 'Over 32 (al 1° luglio)', description: 'Giocatori nati prima del 1° luglio 1993' },
+    '3': { name: 'Prima stagione in Serie A', description: 'Giocatori senza presenze storiche' },
+    '4': { name: 'Più di 200 presenze in Serie A', description: 'Giocatori esperti' },
+    '5': { name: 'Giocatori sudamericani', description: 'Nazionalità sudamericane' },
+    '6': { name: 'Giocatori africani', description: 'Nazionalità africane' },
+    '7': { name: 'Europei non italiani', description: 'Nazionalità europee escl. Italia' },
+    '8': { name: 'Squadre neopromosse', description: 'Squadre promosse quest\'anno' },
+    '9': { name: 'Squadre 10°—17° scorsa stagione', description: 'Squadre di media classifica' },
+    '10': { name: 'Portieri squadre con GA ≥ 50', description: 'Portieri squadre difese deboli' },
+    '11': { name: 'Difensori con almeno 1 gol', description: 'Difensori che segnano' },
+    '12': { name: 'Centrocampisti con almeno 3 assist', description: 'Centrocampisti creativi' },
+    '13': { name: 'Attaccanti con massimo 5 gol', description: 'Attaccanti poco prolifici' },
+    '14': { name: 'Meno di 10 presenze', description: 'Giocatori poco utilizzati' },
+    '15': { name: 'Media voto < 6', description: 'Giocatori con rendimento basso' },
+    '16': { name: 'Quotazione ≤ 6', description: 'Giocatori economici' },
+    '17': { name: 'Quotazione ≤ 3', description: 'Giocatori molto economici' },
+    '18': { name: 'Rosa stagione precedente', description: 'Giocatori della rosa dell\'anno scorso' },
+    '19': { name: 'Ritorno in Serie A', description: 'Giocatori che tornano dopo assenza' },
+    '20': { name: 'Almeno 5 partite \'6*\' (S.V.)', description: 'Giocatori spesso senza voto' },
+    '21': { name: 'Più di 7 ammonizioni', description: 'Giocatori indisciplinati' },
+    '22': { name: 'Cambiato squadra', description: 'Nuovi acquisti' },
+    '23': { name: 'Almeno 1 autogol', description: 'Giocatori sfortunati' },
+    '24': { name: 'Almeno 34 presenze', description: 'Giocatori sempre utilizzati' },
+    '25': { name: 'Almeno un rigore sbagliato', description: 'Rigoristi imprecisi' },
+    '26': { name: 'Zero ammonizioni/espulsioni', description: 'Giocatori disciplinati' },
+    '27': { name: 'Presenti ultime 3 stagioni', description: 'Giocatori costanti' },
+    '28': { name: 'Gol+Assist ≥ 5', description: 'Giocatori offensivi produttivi' },
+    '29': { name: 'Alto rapporto cartellini/presenze', description: 'Giocatori indisciplinati' },
+    '30': { name: 'Rigoristi designati', description: 'Tiratori di rigori' },
+    '31': { name: 'Cambio ruolo ufficiale', description: 'Giocatori che cambiano posizione' },
+    '32': { name: 'Esordienti assoluti', description: 'Prima volta in Serie A' }
+  };
+}
+
+// ===== COSTRUZIONE INTERFACCIA =====
 async function buildInterface() {
   buildCriteriaSelector();
   buildSquadSelectors();
@@ -370,7 +240,6 @@ function buildCriteriaSelector() {
     return;
   }
   
-  // Popola la select
   select.innerHTML = '<option value="">Seleziona un criterio</option>';
   Object.entries(appState.criteriaList).forEach(([id, info]) => {
     const option = document.createElement('option');
@@ -393,6 +262,8 @@ function buildSquadSelectors() {
     };
     
     const container = document.getElementById(containerMap[role]);
+    if (!container) return;
+    
     container.innerHTML = '';
     
     for (let i = 0; i < config.count; i++) {
@@ -411,7 +282,6 @@ function buildSquadSelectors() {
     }
   });
   
-  // Inizializza Tom Select
   initializePlayerSelects();
 }
 
@@ -434,26 +304,32 @@ function initializePlayerSelects() {
         selectElement.appendChild(option);
       });
       
-      // Inizializza Tom Select
+      // Inizializza Tom Select se disponibile
       try {
-        const tomSelect = new TomSelect(selectElement, {
-          placeholder: `Seleziona ${config.name}`,
-          searchField: ['text'],
-          sortField: { field: 'text', direction: 'asc' },
-          dropdownParent: 'body',
-          render: {
-            option: function(data, escape) {
-              return `<div class="option">${escape(data.text)}</div>`;
+        if (window.TomSelect) {
+          const tomSelect = new TomSelect(selectElement, {
+            placeholder: `Seleziona ${config.name}`,
+            searchField: ['text'],
+            sortField: { field: 'text', direction: 'asc' },
+            dropdownParent: 'body',
+            render: {
+              option: function(data, escape) {
+                return `<div class="option">${escape(data.text)}</div>`;
+              }
             }
-          }
-        });
-        
-        // Event handler
-        tomSelect.on('change', (value) => {
-          handlePlayerSelection(slotId, value);
-        });
-        
-        appState.playerSelects[slotId] = tomSelect;
+          });
+          
+          tomSelect.on('change', (value) => {
+            handlePlayerSelection(slotId, value);
+          });
+          
+          appState.playerSelects[slotId] = tomSelect;
+        } else {
+          // Fallback to native select
+          selectElement.addEventListener('change', (e) => {
+            handlePlayerSelection(slotId, e.target.value);
+          });
+        }
       } catch (error) {
         console.error(`Error initializing select for ${slotId}:`, error);
         
@@ -468,12 +344,21 @@ function initializePlayerSelects() {
 
 // ===== EVENT HANDLERS =====
 function bindEvents() {
-  // Add criteria button
-  document.getElementById('btnAddCriteria').addEventListener('click', addSelectedCriteria);
+  const btnAdd = document.getElementById('btnAddCriteria');
+  if (btnAdd) {
+    btnAdd.addEventListener('click', addSelectedCriteria);
+  }
   
   // Cache controls (solo per admin)
-  document.getElementById('btnCacheInfo')?.addEventListener('click', getCacheInfo);
-  document.getElementById('btnForceRefresh')?.addEventListener('click', forceRefreshData);
+  const btnCacheInfo = document.getElementById('btnCacheInfo');
+  if (btnCacheInfo) {
+    btnCacheInfo.addEventListener('click', () => window.cacheManager.getCacheInfo());
+  }
+  
+  const btnForceRefresh = document.getElementById('btnForceRefresh');
+  if (btnForceRefresh) {
+    btnForceRefresh.addEventListener('click', () => window.cacheManager.rebuildCache());
+  }
 }
 
 const debouncedUpdateSquadCounts = debounce(updateSquadCounts, 200);
@@ -495,13 +380,10 @@ async function addSelectedCriteria() {
   const criteriaInfo = appState.criteriaList[criteriaId];
   appState.selectedCriteria.set(criteriaId, criteriaInfo);
   
-  // Reset select
   select.value = '';
-  
-  // Update UI
   renderSelectedCriteria();
   
-  // Load criteria set
+  // Carica set criterio
   if (!appState.criteriaSets[criteriaId]) {
     try {
       await loadCriteriaSet(criteriaId);
@@ -518,6 +400,8 @@ async function addSelectedCriteria() {
 function renderSelectedCriteria() {
   const container = document.getElementById('selectedCriteriaContainer');
   const list = document.getElementById('selectedCriteriaList');
+  
+  if (!container || !list) return;
   
   if (appState.selectedCriteria.size === 0) {
     container.style.display = 'none';
@@ -557,28 +441,36 @@ function removeSelectedCriteria(criteriaId) {
 }
 
 async function loadCriteriaSet(criteriaId) {
-  const response = await fetch('api/checkteam.php?action=evaluate_criteria', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken
-    },
-    body: JSON.stringify({ criteriaId })
-  });
-  
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status}`);
+  try {
+    // Nel sistema originale, CheckMyTeam usava gli stessi endpoint di criteria.php
+    // Non aveva endpoint separati in checkteam.php
+    const response = await fetch(`api/criteria.php?action=run&criteria=${criteriaId}`, {
+      headers: { 'X-CSRF-Token': getCsrfToken() }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.success) {
+      throw new Error(data.error || 'Errore valutazione criterio');
+    }
+    
+    // Estrai gli ID dei giocatori dai risultati
+    const playerIds = data.results.map(player => {
+      return parseInt(player.id || player.codice_fantacalcio || 0);
+    }).filter(id => id > 0);
+    
+    appState.criteriaSets[criteriaId] = new Set(playerIds);
+    
+    console.log(`Criteria ${criteriaId} loaded: ${playerIds.length} players`);
+    
+  } catch (error) {
+    console.error(`Error loading criteria ${criteriaId}:`, error);
+    throw error;
   }
-  
-  const data = await response.json();
-  
-  if (!data.success) {
-    throw new Error(data.error || 'Errore valutazione criterio');
-  }
-  
-  appState.criteriaSets[criteriaId] = new Set(data.playerIds);
-  
-  //console.log(`Criteria ${criteriaId} loaded: ${data.playerIds.length} players`);
 }
 
 function updateSquadCounts() {
@@ -589,7 +481,6 @@ function updateSquadCounts() {
     const criteriaSet = appState.criteriaSets[criteriaId];
     
     if (criteriaSet && countElement) {
-      // Conta quanti giocatori della rosa rispettano questo criterio
       let count = 0;
       selectedPlayerIds.forEach(playerId => {
         if (criteriaSet.has(parseInt(playerId))) {
@@ -609,7 +500,6 @@ function handlePlayerSelection(slotId, playerId) {
     const existingSlot = Object.keys(appState.selectedPlayers).find(k => appState.selectedPlayers[k] === playerId);
     showMessage(`Giocatore già selezionato in ${existingSlot}`, 'warning');
     
-    // Reset this selection
     const tomSelect = appState.playerSelects[slotId];
     if (tomSelect) {
       tomSelect.clear();
@@ -625,22 +515,22 @@ function handlePlayerSelection(slotId, playerId) {
   }
   
   // Update slot visual state
-  const slot = document.querySelector(`#select-${slotId}`).closest('.player-slot');
-  if (playerId) {
-    slot.classList.add('has-selection');
-  } else {
-    slot.classList.remove('has-selection');
+  const slot = document.querySelector(`#select-${slotId}`)?.closest('.player-slot');
+  if (slot) {
+    if (playerId) {
+      slot.classList.add('has-selection');
+    } else {
+      slot.classList.remove('has-selection');
+    }
   }
   
-  // Update player criteria display
   updatePlayerCriteria(slotId, playerId);
-  
-  // Update squad counts
   debouncedUpdateSquadCounts();
 }
 
 function updatePlayerCriteria(slotId, playerId) {
   const criteriaDiv = document.getElementById(`criteria-${slotId}`);
+  if (!criteriaDiv) return;
   
   if (!playerId || appState.selectedCriteria.size === 0) {
     criteriaDiv.textContent = appState.selectedCriteria.size === 0 ? 
@@ -677,7 +567,6 @@ function updateAllPlayerMatches() {
     updatePlayerCriteria(slotId, appState.selectedPlayers[slotId]);
   });
   
-  // Anche per slot vuoti per aggiornare il messaggio
   Object.keys(appState.playerSelects).forEach(slotId => {
     if (!appState.selectedPlayers[slotId]) {
       updatePlayerCriteria(slotId, null);
@@ -685,57 +574,61 @@ function updateAllPlayerMatches() {
   });
 }
 
-function markDataAsLoaded() {
-  const badge = document.getElementById('statusBadge');
-  if (badge) {
-    badge.classList.remove('not-loaded');
-    badge.classList.add('loaded');
-    badge.innerHTML = '<span class="material-icons">check_circle</span><span>Dati caricati</span>';
-  }
-}
-
-// ===== CACHE FUNCTIONS (solo per admin) =====
-async function getCacheInfo() {
-  try {
-    const response = await fetch('api/data.php?action=cache_info', {
-      headers: { 'X-CSRF-Token': csrfToken }
-    });
-    const data = await response.json();
-    
-    if (data.success) {
-      const info = data.cache_info;
-      let message = `📋 Stato Cache\n\n`;
-      
-      if (info.status === 'exists') {
-        message += `✅ Cache presente\n`;
-        message += `📅 Creata: ${info.built_at_formatted}\n`;
-        message += `⏰ Età: ${info.age_formatted}\n`;
-        message += `📄 TTL: ${Math.round(data.ttl_seconds/3600)} ore\n`;
-        message += `✔️ Valida: ${data.is_valid ? 'Sì' : 'No (scaduta)'}`;
-        
-        if (!data.is_valid) {
-          message += '\n\n💡 La cache è scaduta. Usa "Aggiorna" per rigenerare.';
-        }
-      } else {
-        message += `❌ Nessuna cache presente\n`;
-        message += `💡 I dati verranno caricati completamente al prossimo refresh.`;
-      }
-      
-      alert(message);
-    } else {
-      showMessage('Errore nel recupero info cache', 'warning');
-    }
-  } catch (e) {
-    showMessage('Errore di rete', 'warning');
-  }
-}
-
-async function forceRefreshData() {
-  if (confirm('Aggiornare i dati ignorando la cache?\n\nQuesta operazione può richiedere alcuni minuti.')) {
-    location.reload();
-  }
+// ===== UTILITIES =====
+function getCsrfToken() {
+  return window.csrfToken || 
+         document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
+         '';
 }
 
 // Make functions globally accessible
 window.removeSelectedCriteria = removeSelectedCriteria;
-window.dismissAdminBanner = dismissAdminBanner;
+
+// ===== INIZIALIZZAZIONE =====
+document.addEventListener('DOMContentLoaded', () => {
+  // IMPORTANTE: Inizializza theme SUBITO
+  initializeTheme();
+  
+  // Inizializza app
+  initializeApp();
+});
+
+// Aggiungi le stesse funzioni theme di sopra
+function initializeTheme() {
+  if (window.ThemeManager) {
+    const themeManager = new ThemeManager(); 
+    themeManager.init();
+    console.log('ThemeManager initialized');
+  } else {
+    console.warn('ThemeManager not found');
+    initializeThemeFallback();
+  }
+  
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+    console.log('Theme toggle button bound');
+  }
+}
+
+function initializeThemeFallback() {
+  const savedTheme = localStorage.getItem('theme') || 'auto';
+  applyTheme(savedTheme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  applyTheme(newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  const icon = document.getElementById('themeIcon');
+  if (icon) {
+    icon.textContent = newTheme === 'dark' ? 'light_mode' : 'dark_mode';
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  console.log('Theme applied:', theme);
+}

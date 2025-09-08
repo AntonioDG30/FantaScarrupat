@@ -35,7 +35,7 @@ class EnhancedAdminPanel {
         this.initRoseFeatures();
         this.initCalciatoriFeatures();
         
-        console.log('Enhanced Admin Panel v2.0 initialized');
+        // console.log('Enhanced Admin Panel v2.0 initialized');
     }
     
     /**
@@ -1188,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const enhancedAdminPanel = new EnhancedAdminPanel();
     window.adminPanel = enhancedAdminPanel;
     
-    console.log('Enhanced Admin Panel loaded successfully');
+    // console.log('Enhanced Admin Panel loaded successfully');
 });
 
 // Cleanup su unload
@@ -1205,7 +1205,7 @@ Object.assign(EnhancedAdminPanel.prototype, {
      * PRIORITÀ #4: Associazioni Parametri-Rose - Implementazione completa
      */
     initParametriAssociazioni() {
-        console.log('Inizializzazione gestione associazioni parametri...');
+        // console.log('Inizializzazione gestione associazioni parametri...');
         
         // Gestione click sui bottoni di modifica associazione
         document.addEventListener('click', (e) => {
@@ -1255,7 +1255,7 @@ Object.assign(EnhancedAdminPanel.prototype, {
         const rosaYear = btn.dataset.rosaYear;
         const currentParams = btn.dataset.currentParams;
         
-        console.log('Apertura modal per rosa:', { rosaId, rosaName, rosaYear, currentParams });
+        // console.log('Apertura modal per rosa:', { rosaId, rosaName, rosaYear, currentParams });
         
         // Imposta informazioni rosa
         document.getElementById('rosaId').value = rosaId;
@@ -1277,7 +1277,7 @@ Object.assign(EnhancedAdminPanel.prototype, {
                 const checkbox = document.getElementById(`param_${id}`);
                 if (checkbox) {
                     checkbox.checked = true;
-                    console.log('Selezionato parametro:', id);
+                    // console.log('Selezionato parametro:', id);
                 }
             });
         }
@@ -1312,7 +1312,7 @@ Object.assign(EnhancedAdminPanel.prototype, {
         submitBtn.innerHTML = '<span class="material-icons spinning">refresh</span> Salvataggio...';
         
         try {
-            console.log('Invio dati associazioni...', Object.fromEntries(formData));
+            // console.log('Invio dati associazioni...', Object.fromEntries(formData));
             
             const response = await fetch('php/updateAssociazioni.php', {
                 method: 'POST',
@@ -1323,7 +1323,7 @@ Object.assign(EnhancedAdminPanel.prototype, {
             });
             
             const result = await response.json();
-            console.log('Risposta server:', result);
+            // console.log('Risposta server:', result);
             
             if (result.success) {
                 this.showNotification({
@@ -2272,7 +2272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             
-            console.log('Tutte le funzionalità admin sono state inizializzate');
+            // console.log('Tutte le funzionalità admin sono state inizializzate');
         } else {
             setTimeout(initializeNewFeatures, 100);
         }

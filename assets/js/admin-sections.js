@@ -14,7 +14,7 @@ class AdminSectionsManager {
         this.initYearFilter();
         this.initGalleryViewToggle();
         this.initFormDynamics();
-        console.log('Admin Sections Manager initialized');
+        // console.log('Admin Sections Manager initialized');
     }
     
     /**

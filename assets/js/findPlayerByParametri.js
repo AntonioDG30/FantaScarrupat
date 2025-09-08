@@ -1,15 +1,14 @@
-// Funzione url() per compatibilità 
-function url(path) {
-    const basePath = '<?= getProjectBasePath() ?>';
-    return basePath + path.replace(/^\/+/, '');
-}
+/**
+ * FindPlayerByParametri - Sistema semplificato con nuovo cache manager
+ */
 
+// Stato applicazione
 let currentResults = [];
 let originalResults = [];
 let currentCriteria = '';
-let currentMode = 'single'; // 'single' | 'dual'
+let currentMode = 'single';
 
-// Criteri -> colonne extra (mantenuto come prima)
+// Criteri e mapping colonne
 const criteriaColumns = {
   '1':['data_nascita'],'2':['data_nascita'],'3':[],'4':['presenze_totali'],'5':['nazionalita_effettiva'],'6':['nazionalita_effettiva'],
   '7':['nazionalita_effettiva'],'8':[],'9':[],'10':['GA_scorsa_squadra'],'11':['gol_scorsa_stagione'],'12':['assist_scorsa_stagione'],
@@ -38,773 +37,236 @@ const criteriaList = {
   '34':'>10 gol nella scorsa stagione' 
 };
 
-// UI helpers (mantenuti come prima)
-function showLoading(text='Caricamento in corso…'){ 
-  // Se c'è ProgressManager attivo, non mostrare il loading classico
-  if (window.ProgressManager && ProgressManager.isActive && ProgressManager.isActive()) {
-    return;
-  }
-  const o=document.getElementById('loadingOverlay'); 
-  o.style.display='block'; 
-  o.querySelector('.loading-text').textContent=text; 
-}
-
-function hideLoading(){ 
-  document.getElementById('loadingOverlay').style.display='none'; 
-}
-
-function showMessage(msg,type='info'){
-  const el=document.createElement('div'); 
-  el.className='toast-msg '+type; 
-  el.textContent=msg;
-  document.body.appendChild(el); 
-  requestAnimationFrame(()=>el.classList.add('show'));
-  setTimeout(()=>{ 
-    el.classList.remove('show'); 
-    setTimeout(()=>el.remove(),300); 
-  },2600);
-}
-
-// ===== NUOVA LOGICA ADMIN/NON-ADMIN =====
-let currentPollingInterval = null;
-
-async function loadData(forceRefresh = false) {
-  try {
-    // Prima verifica lo status della cache e il tipo utente
-    const statusResponse = await fetch('api/data.php?action=cache_status', {
-      headers: { 'X-CSRF-Token': csrfToken }
-    });
-    
-    if (!statusResponse.ok) {
-      throw new Error(`HTTP ${statusResponse.status}`);
-    }
-    
-    const statusData = await statusResponse.json();
-    
-    if (!statusData.success) {
-      showMessage('Errore verifica cache: ' + (statusData.error || 'Sconosciuto'), 'danger');
-      return;
-    }
-    
-    const isAdmin = statusData.is_admin;
-    const cacheStatus = statusData.cache_status;
-    
-    if (!isAdmin) {
-      // NON-ADMIN: controlla solo esistenza cache
-      if (!cacheStatus.exists) {
-        showCacheMissingOverlay();
-        return;
-      } else {
-        // Cache presente: carica normalmente senza controlli TTL
-        await loadDataForNonAdmin();
-        return;
-      }
-    } else {
-      // ADMIN: mostra banner informativo e procedi con logica esistente
-      showAdminCacheBanner(cacheStatus);
-      
-      // Resto della logica esistente per admin (dal codice originale)
-      const progressCheck = await fetch('status/progress.php', {
-        cache: 'no-cache',
-        headers: { 'Cache-Control': 'no-cache' }
-      });
-      
-      if (progressCheck.ok) {
-        const progressData = await progressCheck.json();
-        if (progressData.operation_active) {
-          if (window.ProgressManager) {
-            ProgressManager.show(progressData.cache_state);
-          }
-          
-          disableInterface();
-          startContinuousPolling();
-          
-          let message = 'Operazione in corso';
-          if (progressData.job_info && !progressData.job_info.started_by_me) {
-            message += ' (avviata da altro utente)';
-          }
-          showMessage(message, 'info');
-          return;
-        }
-      }
-
-      // Clear progress state prima di iniziare
-      try {
-        const clearUrl = new URL('api/data.php', window.location.href);
-        clearUrl.searchParams.set('action', 'clear_progress');
-        await fetch(clearUrl, {
-          headers: { 'X-CSRF-Token': csrfToken }
-        });
-      } catch (e) {
-        console.warn('Could not clear previous progress:', e);
-      }
-      
-      // Mostra progress e disabilita UI
-      if (window.ProgressManager) {
-        ProgressManager.show('checking');
-      } else {
-        showLoading('Avvio operazione...');
-      }
-      
-      disableInterface();
-      startContinuousPolling();
-      
-      await new Promise(resolve => setTimeout(resolve, 200));
-      
-      // Avvia load operation per admin
-      const url = new URL('api/data.php', window.location.href);
-      url.searchParams.set('action', 'load');
-      
-      const headers = { 'X-CSRF-Token': csrfToken };
-      if (forceRefresh) {
-        headers['X-Force-Refresh'] = '1';
-      }
-      
-      const response = await fetch(url, { headers });
-      const data = await response.json();
-      
-      if (data.success) {
-        console.log('Load initiated, polling will handle completion');
-      } else {
-        stopContinuousPolling();
-        hideLoadingIndicators();
-        enableInterface();
-        showMessage(data.error || 'Errore nel caricamento', 'danger');
-      }
-    }
-    
-  } catch (e) {
-    stopContinuousPolling();
-    hideLoadingIndicators();
-    enableInterface();
-    showMessage('Errore di rete: ' + e.message, 'danger');
-    console.error('LoadData error:', e);
-  }
-}
-
-// Nuova funzione per caricamento admin (simile a non-admin ma con controlli diversi)
-async function loadDataForAdmin() {
-  try {
-    showLoading('Caricamento dati dalla cache...');
-    
-    const response = await fetch('api/data.php?action=load', {
-      headers: { 'X-CSRF-Token': csrfToken }
-    });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    if (data.success) {
-      markDataAsLoaded();
-      enableInterface();
-      
-      let successMessage = 'Dati caricati con successo';
-      if (data.cache_info && data.cache_info.age_formatted) {
-        successMessage += ` (cache età: ${data.cache_info.age_formatted})`;
-      }
-      showMessage(successMessage, 'success');
-    } else {
-      showMessage(data.error || 'Errore nel caricamento', 'danger');
-    }
-  } catch (e) {
-    showMessage('Errore di rete: ' + e.message, 'danger');
-    console.error('LoadDataForAdmin error:', e);
-  } finally {
-    hideLoading();
-  }
-}
-
-// Nuove funzioni per gestione admin/non-admin
-async function loadDataForNonAdmin() {
-  try {
-    showLoading('Caricamento dati dalla cache...');
-    
-    const response = await fetch('api/data.php?action=load', {
-      headers: { 'X-CSRF-Token': csrfToken }
-    });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    if (data.success) {
-      markDataAsLoaded();
-      enableInterface();
-      
-      let successMessage = 'Dati caricati con successo';
-      if (data.cache_info && data.cache_info.age_formatted) {
-        successMessage += ` (cache età: ${data.cache_info.age_formatted})`;
-      }
-      showMessage(successMessage, 'success');
-    } else {
-      if (data.error === 'cache_missing_non_admin') {
-        showCacheMissingOverlay();
-      } else {
-        showMessage(data.error || 'Errore nel caricamento', 'danger');
-      }
-    }
-  } catch (e) {
-    showMessage('Errore di rete: ' + e.message, 'danger');
-    console.error('LoadDataForNonAdmin error:', e);
-  } finally {
-    hideLoading();
-  }
-}
-
-function showCacheMissingOverlay() {
-  if (window.ProgressManager) {
-    ProgressManager.showNonAdminBlock();
+// ===== UTILITIES =====
+function showMessage(msg, type = 'info') {
+  if (window.cacheManager) {
+    window.cacheManager.showMessage(msg, type);
   } else {
-    // Fallback overlay semplice
-    const overlay = document.createElement('div');
-    overlay.id = 'cacheMissingOverlay';
-    overlay.style.cssText = `
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8); z-index: 10000;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
-    `;
-    overlay.innerHTML = `
-      <div style="
-        background: var(--card-bg, white); 
-        padding: 40px; 
-        border-radius: 16px; 
-        text-align: center; 
-        max-width: 400px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      ">
-        <span class="material-icons" style="
-          font-size: 64px; 
-          color: var(--warning-color, #f59e0b); 
-          margin-bottom: 24px; 
-          display: block;
-        ">info</span>
-        <h2 style="
-          margin: 0 0 16px 0; 
-          color: var(--text-primary, #1a1a1a);
-          font-size: 1.5rem;
-          font-weight: 700;
-        ">Cache assente</h2>
-        <p style="
-          margin: 0 0 24px 0; 
-          color: var(--text-secondary, #6b7280);
-          line-height: 1.5;
-        ">I dati della cache non sono disponibili.<br>Contatta l'amministratore per rigenerare la cache.</p>
-        <button onclick="location.reload()" style="
-          padding: 12px 24px; 
-          background: var(--primary-color, #3b82f6); 
-          color: white; 
-          border: none; 
-          border-radius: 8px; 
-          cursor: pointer;
-          font-weight: 600;
-          transition: all 0.2s ease;
-        " onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">
-          Aggiorna pagina
-        </button>
-      </div>
-    `;
-    document.body.appendChild(overlay);
-    
-    // Blocca scroll della pagina
-    document.body.style.overflow = 'hidden';
+    console.log(`[${type}] ${msg}`);
   }
 }
 
-function showAdminCacheBanner(cacheStatus) {
-  // Controlla se banner già mostrato/dismisso in questa sessione
-  if (sessionStorage.getItem('admin_cache_banner_dismissed') === 'true') {
-    return;
-  }
-  
-  // Rimuovi banner esistente se presente
-  const existingBanner = document.getElementById('adminCacheBanner');
-  if (existingBanner) {
-    existingBanner.remove();
-  }
-  
-  const banner = document.createElement('div');
-  banner.id = 'adminCacheBanner';
-  banner.style.cssText = `
-    position: fixed; 
-    top: 80px; 
-    left: 0; 
-    right: 0; 
-    z-index: 999;
-    background: var(--info-bg, rgba(59, 130, 246, 0.1)); 
-    border-bottom: 1px solid var(--info-color, #3b82f6);
-    padding: 12px 24px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif);
-  `;
-  
-  let content = `<div style="display: flex; align-items: center; gap: 12px;">`;
-  content += `<span class="material-icons" style="color: var(--info-color, #3b82f6);">info</span>`;
-  
-  if (cacheStatus.exists) {
-    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
-    content += `Cache presente (età: ${cacheStatus.age_formatted || 'sconosciuta'})`;
-    content += `</span>`;
-    
-    if (cacheStatus.suggestion) {
-      content += `<span style="
-        margin-left: 16px; 
-        padding: 4px 12px; 
-        background: var(--warning-bg, rgba(245, 158, 11, 0.1)); 
-        color: var(--warning-color, #d97706);
-        border-radius: 6px; 
-        font-size: 0.85rem;
-        font-weight: 600;
-        border: 1px solid var(--warning-color, #d97706);
-      ">${cacheStatus.suggestion}</span>`;
-    }
-  } else {
-    content += `<span style="color: var(--text-primary, #1a1a1a); font-weight: 500;">`;
-    content += `Cache assente - usa i comandi navbar per rigenerare`;
-    content += `</span>`;
-  }
-  
-  content += `</div>`;
-  content += `<button onclick="dismissAdminBanner()" style="
-    background: none; 
-    border: none; 
-    cursor: pointer;
-    color: var(--text-secondary, #6b7280);
-    padding: 4px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-  " onmouseover="this.style.background='var(--hover-bg, rgba(0,0,0,0.05))'" onmouseout="this.style.background='none'">`;
-  content += `<span class="material-icons">close</span></button>`;
-  
-  banner.innerHTML = content;
-  document.body.appendChild(banner);
-  
-  // Auto-dismiss dopo 10 secondi se non c'è suggestion
-  if (!cacheStatus.suggestion) {
-    setTimeout(() => {
-      if (document.getElementById('adminCacheBanner')) {
-        dismissAdminBanner();
-      }
-    }, 10000);
-  }
-}
-
-function dismissAdminBanner() {
-  const banner = document.getElementById('adminCacheBanner');
-  if (banner) {
-    banner.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    banner.style.opacity = '0';
-    banner.style.transform = 'translateY(-100%)';
-    
-    setTimeout(() => {
-      banner.remove();
-    }, 300);
-    
-    sessionStorage.setItem('admin_cache_banner_dismissed', 'true');
-  }
-}
-
-// Resto delle funzioni esistenti (invariate)
-function stopContinuousPolling() {
-  if (currentPollingInterval) {
-    clearInterval(currentPollingInterval);
-    currentPollingInterval = null;
-  }
-}
-
-function updateUIFromBackendState(data) {
-  window.ProgressManager.updateProgress(
-    data.step || 0, 
-    data.total || 1, 
-    data.label || 'In elaborazione...', 
-    data.percent || 0
-  );
-  
-  // Mostra info multi-utente
-  if (data.job_info) {
-    let statusText = data.label;
-    if (!data.job_info.started_by_me) {
-      statusText += ` (avviato da altro utente)`;
-    }
-    if (data.job_info.participants_count > 1) {
-      statusText += ` [${data.job_info.participants_count} utenti collegati]`;
-    }
-    
-    window.ProgressManager.updateProgress(
-      data.step || 0, 
-      data.total || 1, 
-      statusText, 
-      data.percent || 0
-    );
-  }
-
-  // Aggiorna progress manager SOLO se attivo
-  if (window.ProgressManager && window.ProgressManager.isActive()) {
-    window.ProgressManager.updateProgress(
-      data.step || 0, 
-      data.total || 1, 
-      data.label || 'In elaborazione...', 
-      data.percent || 0
-    );
-    
-    // Aggiorna cache status se disponibile
-    if (data.cache_state) {
-      const statusMap = {
-        'fresh': 'valid',
-        'stale': 'expired', 
-        'rebuilding': 'rebuilding',
-        'empty': 'empty'
-      };
-      window.ProgressManager.updateCacheStatus(
-        statusMap[data.cache_state] || data.cache_state,
-        data.cache_info?.age_formatted
-      );
-    }
-    
-    // Aggiorna log se disponibile
-    if (data.log && Array.isArray(data.log)) {
-      data.log.forEach(entry => {
-        if (typeof entry === 'object' && entry.label) {
-          window.ProgressManager.addLogEntry(entry.label, entry.ts);
-        }
-      });
-    }
-  } else {
-    // Fallback per loading semplice
-    const loadingText = document.querySelector('.loading-text');
+function showLoading(text = 'Caricamento in corso…') {
+  const overlay = document.getElementById('loadingOverlay');
+  if (overlay) {
+    overlay.style.display = 'block';
+    const loadingText = overlay.querySelector('.loading-text');
     if (loadingText) {
-      loadingText.textContent = data.label || 'Caricamento in corso...';
+      loadingText.textContent = text;
     }
   }
 }
 
-function handleOperationSuccess(data) {
-  let successMessage = 'Dati caricati con successo';
-  if (data.job_info && !data.job_info.started_by_me) {
-    successMessage += ' (completato da altro utente)';
+function hideLoading() {
+  const overlay = document.getElementById('loadingOverlay');
+  if (overlay) {
+    overlay.style.display = 'none';
   }
-  if (data.cache_final_info) {
-    successMessage += ` (age: ${data.cache_final_info.age})`;
-  }
-  
-  // Gestione corretta del completamento
-  if (window.ProgressManager && window.ProgressManager.isActive()) {
-    window.ProgressManager.forceComplete();
-  } else {
-    hideLoadingIndicators();
-  }
-  
-  // Marca dati come caricati
-  markDataAsLoaded();
-  enableInterface();
-  
-  // Messaggio di successo
-  const cacheMsg = data.cache_final_info ? 
-    ` (age: ${data.cache_final_info.age})` : 
-    '';
-  showMessage('Dati caricati con successo' + cacheMsg, 'success');
 }
 
-function startContinuousPolling() {
-  stopContinuousPolling();
-  
-  let pollAttempts = 0;
-  const maxAttempts = 600;
-  
-  currentPollingInterval = setInterval(async () => {
-    pollAttempts++;
+function getCsrfToken() {
+  return window.csrfToken || 
+         document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
+         '';
+}
+
+// ===== INIZIALIZZAZIONE =====
+async function initializeApp() {
+  try {
+    // Usa il nuovo cache manager
+    const success = await window.cacheManager.initialize();
     
-    if (pollAttempts > maxAttempts) {
-      stopContinuousPolling();
-      handleOperationError('Timeout: operazione troppo lunga');
+    if (!success) {
+      // Cache manager ha già gestito l'errore con overlay/banner
+      // Ma dobbiamo abilitare le select dei criteri che hanno dati hardcoded
+      enableCriteriaSelects();
       return;
     }
     
-    try {
-      const progressUrl = new URL('status/progress.php', window.location.href);
-      const response = await fetch(progressUrl, {
-        cache: 'no-cache',
-        headers: { 
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache'
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      // Aggiorna UI solo se i dati sono coerenti
-      if (data.step !== undefined && data.total !== undefined) {
-        updateUIFromBackendState(data);
-      }
-      
-      // Check completamento più rigoroso
-      if (data.completed === true && data.operation_active === false) {
-        stopContinuousPolling();
-        
-        if (data.error) {
-          handleOperationError(data.error);
-        } else {
-          handleOperationSuccess(data);
-        }
-      }
-      
-    } catch (error) {
-      console.warn('Polling error:', error);
-    }
-  }, 500);
-}
-
-function handleOperationError(errorMessage) {
-  if (window.ProgressManager) {
-    ProgressManager.updateProgress(0, 1, `Errore: ${errorMessage}`, 0);
+    // Cache OK - abilita tutto il sistema
+    enableAllControls();
+    showMessage('FindPlayerByParametri pronto', 'success');
     
-    // Mostra pulsante per retry
-    const btnRefresh = document.querySelector('#btnForceRefresh');
-    if (btnRefresh) {
-      btnRefresh.style.display = 'flex';
-    }
+  } catch (error) {
+    console.error('FindPlayerByParametri initialization error:', error);
+    showMessage('Errore di inizializzazione: ' + error.message, 'danger');
+    // Anche in caso di errore, abilita almeno le select criteri
+    enableCriteriaSelects();
   }
-  
-  hideLoadingIndicators();
-  enableInterface();
-  showMessage('Errore: ' + errorMessage, 'danger');
 }
 
-function disableInterface() {
-  const controls = [
-    'criteriaSelect', 'criteriaSelectA', 'criteriaSelectB', 
-    'btnRun', 'btnRunDual', 'btnReload'
-  ];
+// ===== FUNZIONI DI ABILITAZIONE =====
+function enableCriteriaSelects() {
+  // Abilita specificamente le select dei criteri (hanno dati hardcoded)
+  const criteriaSelects = ['criteriaSelect', 'criteriaSelectA', 'criteriaSelectB'];
   
-  controls.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.disabled = true;
-      el.style.opacity = '0.5';
+  criteriaSelects.forEach(id => {
+    const select = document.getElementById(id);
+    if (select) {
+      select.disabled = false;
+      select.style.opacity = '1';
     }
   });
   
-  const cacheButtons = document.querySelectorAll('.btn-cache-action');
-  cacheButtons.forEach(btn => {
-    btn.disabled = true;
-    btn.style.opacity = '0.5';
-  });
+  console.log('Criteria selects enabled');
 }
 
-function enableInterface() {
-  const controls = [
-    'criteriaSelect', 'criteriaSelectA', 'criteriaSelectB', 
-    'btnRun', 'btnRunDual', 'btnReload'
-  ];
+function enableAllControls() {
+  // Abilita tutti i controlli dell'app
+  const allControls = document.querySelectorAll(`
+    .controls-bar select,
+    .controls-bar button, 
+    .controls-bar input,
+    .criteria-selector select,
+    .criteria-selector button,
+    .criteria-selector input,
+    .squad-section select,
+    .squad-section button,
+    .squad-section input,
+    .results-card button,
+    .results-card select,
+    .results-card input,
+    .filters-grid select,
+    .filters-grid button,
+    .filters-grid input
+  `);
   
-  controls.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.disabled = false;
-      el.style.opacity = '1';
-    }
+  allControls.forEach(el => {
+    el.disabled = false;
+    el.style.opacity = '1';
   });
   
-  const cacheButtons = document.querySelectorAll('.btn-cache-action');
-  cacheButtons.forEach(btn => {
-    btn.disabled = false;
-    btn.style.opacity = '1';
-  });
+  console.log('All app controls enabled');
 }
 
-function markDataAsLoaded() {
-  const badge = document.getElementById('statusBadge');
-  if (badge) {
-    badge.classList.remove('not-loaded'); 
-    badge.classList.add('loaded');
-    badge.innerHTML = '<span class="material-icons">check_circle</span><span>Dati caricati</span>';
-  }
-}
-
-function hideLoadingIndicators() {
-  if (window.ProgressManager) {
-    ProgressManager.hide();
-  } else {
-    hideLoading();
-  }
-}
-
-// Refresh forzato semplificato (solo per admin)
-async function forceRefreshData() {
-  const confirm_msg = 'Aggiornare i dati ignorando la cache?\n\n' +
-                     'Questa operazione può richiedere alcuni minuti.';
-  
-  if (confirm(confirm_msg)) {
-    await loadData(true);
-  }
-}
-
-// Funzione info cache (solo per admin)
-async function getCacheInfo() {
-  try {
-    const response = await fetch('api/data.php?action=cache_info', {
-      headers: { 'X-CSRF-Token': csrfToken }
-    });
-    const data = await response.json();
-    
-    if (data.success) {
-      const info = data.cache_info;
-      let message = `📋 Stato Cache\n\n`;
-      
-      if (info.status === 'exists') {
-        message += `✅ Cache presente\n`;
-        message += `📅 Creata: ${info.built_at_formatted}\n`;
-        message += `⏰ Età: ${info.age_formatted}\n`;
-        message += `📄 TTL: 24 ore\n`;
-        message += `✔️ Valida: ${data.is_valid ? 'Sì' : 'No (scaduta)'}`;
-        
-        if (!data.is_valid) {
-          message += '\n\n💡 La cache è scaduta. Usa "Aggiorna" per rigenerare.';
-        }
-      } else {
-        message += `❌ Nessuna cache presente\n`;
-        message += `💡 I dati verranno caricati completamente al prossimo refresh.`;
-      }
-      
-      alert(message);
-    } else {
-      showMessage('Errore nel recupero info cache', 'warning');
-    }
-  } catch (e) {
-    showMessage('Errore di rete', 'warning');
-  }
-}
-
-// Resto del codice esistente per tabs, criteri, ecc.
-document.addEventListener('DOMContentLoaded', () => {
-  // Tabs handler
+// ===== GESTIONE TABS =====
+function initializeTabs() {
   const tabs = document.querySelectorAll('.control-tab');
   const panels = [
     document.getElementById('panel-single-wrapper'),
     document.getElementById('panel-dual-wrapper'),
     document.getElementById('panel-filters-wrapper')
   ];
+  
   tabs.forEach((tab, i) => {
-    tab.addEventListener('click', (e)=>{
+    tab.addEventListener('click', (e) => {
       e.preventDefault();
-      tabs.forEach(t=>t.classList.remove('active')); 
+      tabs.forEach(t => t.classList.remove('active')); 
       tab.classList.add('active');
-      panels.forEach(p=>p.classList.remove('active')); 
+      panels.forEach(p => p.classList.remove('active')); 
       panels[i]?.classList.add('active');
     });
   });
+}
 
-  // Theme
-  const tm = new ThemeManager(); 
-  tm.init();
-
-  // Popola select
-  populateSelects();
-
-  // Event listeners
-  const on = (id, ev, fn) => { 
-    const el=document.getElementById(id); 
-    if(el) el.addEventListener(ev, fn); 
-  };
-  
-  on('btnReload','click', () => loadData(false));
-  on('btnRun','click',runCriteria);
-  on('btnRunDual','click', () => window.CriteriaAndManager?.runDualCriteria?.());
-  
-  // Controlli cache (solo per admin)
-  on('btnForceRefresh', 'click', forceRefreshData);
-  on('btnCacheInfo', 'click', getCacheInfo);
-
-  // Aggiungi funzione globale per banner admin
-  window.dismissAdminBanner = dismissAdminBanner;
-
-  // Autoload
-  loadData();
-});
-
-function populateSelects(){
-  ['criteriaSelect','criteriaSelectA','criteriaSelectB'].forEach((id, idx)=>{
-    const el=document.getElementById(id);
-    if(!el) return;
-    const placeholder = idx===0 ? 'Seleziona un criterio' : (idx===1 ? 'Seleziona criterio A' : 'Seleziona criterio B');
+// ===== POPOLAMENTO SELECT =====
+function populateSelects() {
+  ['criteriaSelect','criteriaSelectA','criteriaSelectB'].forEach((id, idx) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    
+    const placeholder = idx === 0 ? 'Seleziona un criterio' : 
+                       (idx === 1 ? 'Seleziona criterio A' : 'Seleziona criterio B');
+    
     el.innerHTML = `<option value="">${placeholder}</option>`;
-    Object.entries(criteriaList).forEach(([k,v])=> el.innerHTML += `<option value="${k}">${k}. ${v}</option>`);
+    Object.entries(criteriaList).forEach(([k,v]) => {
+      el.innerHTML += `<option value="${k}">${k}. ${v}</option>`;
+    });
   });
 }
 
-document.getElementById('criteriaSelect').addEventListener('change', async (e) => {
-  const v = e.target.value;
-  const wrap = document.getElementById('prevTeamWrapper');
-  const sel  = document.getElementById('prevTeamSelect');
-  if (v === '18'){
-    wrap.style.display = 'flex';
-    sel.disabled = true;
-    try{
-      const res = await fetch('api/criteria.php?action=list_prev_teams', { headers: {'X-CSRF-Token': csrfToken} });
-      const data = await res.json();
-      sel.innerHTML = `<option value="">Seleziona fantasquadra</option>`;
-      if (data.success && Array.isArray(data.teams)){
-        data.teams.forEach(n => sel.innerHTML += `<option value="${n}">${n}</option>`);
+// ===== GESTIONE CRITERIO 18 =====
+function initializeCriteriaHandlers() {
+  const criteriaSelect = document.getElementById('criteriaSelect');
+  if (criteriaSelect) {
+    criteriaSelect.addEventListener('change', async (e) => {
+      const v = e.target.value;
+      const wrap = document.getElementById('prevTeamWrapper');
+      const sel = document.getElementById('prevTeamSelect');
+      
+      if (v === '18') {
+        wrap.style.display = 'flex';
+        sel.disabled = true;
+        
+        try {
+          const res = await fetch('api/criteria.php?action=list_prev_teams', { 
+            headers: {'X-CSRF-Token': getCsrfToken()} 
+          });
+          const data = await res.json();
+          
+          sel.innerHTML = `<option value="">Seleziona fantasquadra</option>`;
+          if (data.success && Array.isArray(data.teams)) {
+            data.teams.forEach(n => {
+              sel.innerHTML += `<option value="${n}">${n}</option>`;
+            });
+          }
+          sel.disabled = false;
+        } catch(e) {
+          showMessage('Errore caricamento fantasquadre','danger');
+        }
+      } else {
+        wrap.style.display = 'none';
       }
-      sel.disabled = false;
-    } catch(e){
-      showMessage('Errore caricamento fantasquadre','danger');
-    }
-  } else {
-    wrap.style.display = 'none';
+    });
   }
-});
+}
 
-// Funzione con logging attività 
-async function runCriteria(){
+// ===== ESECUZIONE CRITERI =====
+async function runCriteria() {
   const criteriaId = document.getElementById('criteriaSelect').value;
-  if(!criteriaId){ showMessage('Seleziona un criterio','warning'); return; }
+  if (!criteriaId) { 
+    showMessage('Seleziona un criterio','warning'); 
+    return; 
+  }
 
   // Validazione aggiuntiva per criterio 18
   let extra = '';
-  if (criteriaId === '18'){
+  if (criteriaId === '18') {
     const fsq = (document.getElementById('prevTeamSelect')?.value || '').trim();
-    if (!fsq){ showMessage('Seleziona una fantasquadra','warning'); return; }
+    if (!fsq) { 
+      showMessage('Seleziona una fantasquadra','warning'); 
+      return; 
+    }
     extra = `&fantasquadra=${encodeURIComponent(fsq)}`;
   }
 
-  currentMode='single'; currentCriteria=criteriaId; showLoading('Esecuzione criterio…');
-  try{
-    const res = await fetch(`api/criteria.php?action=run&criteria=${criteriaId}${extra}`, { headers:{'X-CSRF-Token':csrfToken} });
+  currentMode = 'single'; 
+  currentCriteria = criteriaId; 
+  
+  showMessage('Esecuzione criterio in corso...', 'info');
+  
+  try {
+    const res = await fetch(`api/criteria.php?action=run&criteria=${criteriaId}${extra}`, { 
+      headers: {'X-CSRF-Token': getCsrfToken()} 
+    });
+    
     const data = await res.json();
-    if(data.success){
+    
+    if (data.success) {
       currentResults = Array.isArray(data.results) ? data.results : [];
       originalResults = [...currentResults];
-      displayResults(); showFilters();
+      displayResults(); 
+      showFilters();
       showMessage(`Trovati ${currentResults.length} giocatori`,'success');
       
       // Log attività ricerca
       logSearchActivityToServer(criteriaId);
-    } else { showMessage(data.error || "Errore nell'esecuzione",'danger'); }
-  } catch(e){ showMessage('Errore di rete','danger'); }
-  finally{ hideLoading(); }
+    } else { 
+      showMessage(data.error || "Errore nell'esecuzione",'danger'); 
+    }
+  } catch(e) { 
+    showMessage('Errore di rete','danger'); 
+  }
 }
 
-// Funzione per log attività al server
+// ===== LOG ATTIVITÀ =====
 async function logSearchActivityToServer(criteriaId) {
   try {
     await fetch('api/log_activity.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken
+        'X-CSRF-Token': getCsrfToken()
       },
       body: JSON.stringify({
         activity_type: 'search',
@@ -816,147 +278,193 @@ async function logSearchActivityToServer(criteriaId) {
   }
 }
 
-function showFilters(){
-  const card=document.getElementById('filtersCard');
-  card.style.display='grid';
-  if(window.FiltersManager && originalResults.length){
-    window.FiltersManager.initialize(originalResults, applyFiltersCallback);
+// ===== FILTRI =====
+function showFilters() {
+  const card = document.getElementById('filtersCard');
+  if (card) {
+    card.style.display = 'grid';
+    if (window.FiltersManager && originalResults.length) {
+      window.FiltersManager.initialize(originalResults, applyFiltersCallback);
+    }
   }
 }
 
-function applyFiltersCallback(filtered){
-  currentResults = filtered; displayResults();
+function applyFiltersCallback(filtered) {
+  currentResults = filtered; 
+  displayResults();
 }
 
-// Costruzione colonne
-function buildColumns(){
+// ===== VISUALIZZAZIONE RISULTATI =====
+function buildColumns() {
   const base = [
     { data:'nome_completo', title:'NOME COMPLETO' },
     { data:'ruolo_classic', title:'RUOLO CLASSIC' },
     { data:'squadra', title:'SQUADRA' },
     { data:'quota_attuale_classic', title:'QUOTA ATTUALE CLASSIC' }
   ];
+  
   let extra = [];
-  if(currentMode==='single'){ extra = criteriaColumns[currentCriteria] || []; }
-  return base.concat(extra.map(k => ({ data:k, title:k.replaceAll('_',' ').toUpperCase() })));
+  if (currentMode === 'single') { 
+    extra = criteriaColumns[currentCriteria] || []; 
+  }
+  
+  return base.concat(extra.map(k => ({ 
+    data: k, 
+    title: k.replaceAll('_',' ').toUpperCase() 
+  })));
 }
 
-// DataTableManager: unico punto di gestione per evitare reinit
+// DataTableManager semplificato
 const DataTableManager = (() => {
   let dt = null;
   let sig = '';
-  let inFlight = false;
-  let queued = null;
 
   const buildSig = (cols) => JSON.stringify((cols||[]).map(c => c.data));
 
-  function ensureTableElement(){
+  function ensureTableElement() {
     const container = document.querySelector('#resultsCard .table-container') || document.body;
     let table = document.getElementById('resultsTable');
-    if(!table){
+    if (!table) {
       table = document.createElement('table');
-      table.id='resultsTable'; table.className='table table-sm';
+      table.id = 'resultsTable'; 
+      table.className = 'table table-sm';
       container.appendChild(table);
     }
     return table;
   }
 
-  function hardDestroy(){
-    try{
-      if ($.fn && $.fn.dataTable && $.fn.dataTable.isDataTable('#resultsTable')){
+  function hardDestroy() {
+    try {
+      if ($.fn && $.fn.dataTable && $.fn.dataTable.isDataTable('#resultsTable')) {
         $('#resultsTable').DataTable().clear().destroy(true);
       }
-    }catch(e){/* noop */}
-    dt=null; sig='';
+    } catch(e) { /* noop */ }
+    dt = null; 
+    sig = '';
   }
 
-  function rebuild(columns, data){
-    if(inFlight){ queued={columns,data}; return; }
-    inFlight = true;
-    try{
+  function rebuild(columns, data) {
+    try {
       hardDestroy();
       const table = ensureTableElement();
       table.innerHTML = '';
-      const thead=document.createElement('thead'); const tr=document.createElement('tr');
-      columns.forEach(c=>{ const th=document.createElement('th'); th.textContent=c.title; tr.appendChild(th); });
-      thead.appendChild(tr); table.appendChild(thead); table.appendChild(document.createElement('tbody'));
-      const orderIdx=Math.max(0, columns.findIndex(c=>c.data==='quota_attuale_classic'));
-      dt = $('#resultsTable').DataTable({
-        destroy:true, data:[], columns:columns,
-        responsive:true, deferRender:true, pageLength:25,
-        lengthMenu:[25,50,100,250,500], scrollY:'60vh', scrollCollapse:true, scroller:true,
-        order:[[orderIdx,'desc']],
-        dom:"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons:[ {extend:'colvis', text:'Mostra/Nascondi Colonne', className:'btn btn-outline-secondary btn-sm'} ],
-        initComplete:function(){
-          const btn=document.getElementById('btnToggleColumns');
-          if(btn){ btn.onclick = () => $('.buttons-colvis').trigger('click'); }
-        }
+      
+      const thead = document.createElement('thead'); 
+      const tr = document.createElement('tr');
+      columns.forEach(c => { 
+        const th = document.createElement('th'); 
+        th.textContent = c.title; 
+        tr.appendChild(th); 
       });
+      thead.appendChild(tr); 
+      table.appendChild(thead); 
+      table.appendChild(document.createElement('tbody'));
+      
+      const orderIdx = Math.max(0, columns.findIndex(c => c.data === 'quota_attuale_classic'));
+      
+      dt = $('#resultsTable').DataTable({
+        destroy: true, 
+        data: [], 
+        columns: columns,
+        responsive: true, 
+        deferRender: true, 
+        pageLength: 25,
+        lengthMenu: [25,50,100,250,500], 
+        scrollY: '60vh', 
+        scrollCollapse: true, 
+        scroller: true,
+        order: [[orderIdx,'desc']],
+        dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [
+          {extend:'colvis', text:'Mostra/Nascondi Colonne', className:'btn btn-outline-secondary btn-sm'}
+        ]
+      });
+      
       sig = buildSig(columns);
-      updateData(data||[]);
-    } finally {
-      inFlight=false;
-      if(queued){ const q=queued; queued=null; ensure(q.columns, q.data); }
+      updateData(data || []);
+    } catch (e) {
+      console.error('DataTable rebuild error:', e);
     }
   }
 
-  function updateData(data){
-    if(!dt){ return; }
-    try{ dt.clear(); if(data && data.length) dt.rows.add(data); dt.draw(false); }
-    catch(e){ console.warn('[DT] updateData error', e); }
+  function updateData(data) {
+    if (!dt) return;
+    try { 
+      dt.clear(); 
+      if (data && data.length) dt.rows.add(data); 
+      dt.draw(false); 
+    } catch(e) { 
+      console.warn('[DT] updateData error', e); 
+    }
   }
 
-  function ensure(columns, data){
+  function ensure(columns, data) {
     const newSig = buildSig(columns);
-    if(dt && $.fn && $.fn.dataTable && $.fn.dataTable.isDataTable('#resultsTable') && newSig===sig){
+    if (dt && $.fn && $.fn.dataTable && $.fn.dataTable.isDataTable('#resultsTable') && newSig === sig) {
       updateData(data);
     } else {
       rebuild(columns, data);
     }
   }
 
-  function destroyIfAny(){ hardDestroy(); }
-
-  return { ensure, destroyIfAny, get:()=>dt };
-})();
-
-function displayResults(){
-  const resultsCard=document.getElementById('resultsCard');
-  const emptyState=document.getElementById('emptyState');
-  const resultsCount=document.getElementById('resultsCount');
-  if(!resultsCard || !emptyState || !resultsCount){ console.warn('[UI] Elementi risultati mancanti'); return; }
-
-  resultsCard.style.display='block';
-  resultsCount.textContent = `${currentResults.length} giocatori trovati`;
-  const badge=document.getElementById('badgeCount'); if(badge){ badge.style.display = currentResults.length ? 'inline-block' : 'none'; }
-
-  if(!currentResults.length){
-    emptyState.style.display='block'; const tbl=document.getElementById('resultsTable'); if(tbl) tbl.style.display='none';
-    DataTableManager.destroyIfAny(); return;
+  function destroyIfAny() { 
+    hardDestroy(); 
   }
 
-  emptyState.style.display='none'; const tbl=document.getElementById('resultsTable'); if(tbl) tbl.style.display='table';
+  return { ensure, destroyIfAny, get: () => dt };
+})();
+
+function displayResults() {
+  const resultsCard = document.getElementById('resultsCard');
+  const emptyState = document.getElementById('emptyState');
+  const resultsCount = document.getElementById('resultsCount');
+  
+  if (!resultsCard || !emptyState || !resultsCount) { 
+    console.warn('[UI] Elementi risultati mancanti'); 
+    return; 
+  }
+
+  resultsCard.style.display = 'block';
+  resultsCount.textContent = `${currentResults.length} giocatori trovati`;
+
+  if (!currentResults.length) {
+    emptyState.style.display = 'block'; 
+    const tbl = document.getElementById('resultsTable'); 
+    if (tbl) tbl.style.display = 'none';
+    DataTableManager.destroyIfAny(); 
+    return;
+  }
+
+  emptyState.style.display = 'none'; 
+  const tbl = document.getElementById('resultsTable'); 
+  if (tbl) tbl.style.display = 'table';
 
   const cols = buildColumns();
-  const data = currentResults.map(row => { const o={}; cols.forEach(c => o[c.data] = row?.[c.data] ?? ''); return o; });
+  const data = currentResults.map(row => { 
+    const o = {}; 
+    cols.forEach(c => o[c.data] = row?.[c.data] ?? ''); 
+    return o; 
+  });
+  
   DataTableManager.ensure(cols, data);
 }
 
-async function exportData(format){
-  if(!currentResults || !currentResults.length){
+// ===== EXPORT =====
+async function exportData(format) {
+  if (!currentResults || !currentResults.length) {
     showMessage('Nessun risultato da esportare','warning'); 
     return;
   }
-  try{
-    const criteriaId = (currentMode==='single' ? currentCriteria : '');
+  
+  try {
+    const criteriaId = (currentMode === 'single' ? currentCriteria : '');
     const res = await fetch('api/criteria.php?action=export', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken
+        'X-CSRF-Token': getCsrfToken()
       },
       body: JSON.stringify({
         criteria: criteriaId,
@@ -965,14 +473,14 @@ async function exportData(format){
       })
     });
 
-    if(!res.ok){
+    if (!res.ok) {
       const t = await res.text();
       throw new Error(t || res.statusText);
     }
 
     const blob = await res.blob();
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
     a.href = url;
     a.download = `criterio_${criteriaId || 'AND'}_${Date.now()}.${format}`;
     document.body.appendChild(a);
@@ -983,7 +491,97 @@ async function exportData(format){
     
     // Log attività export
     logSearchActivityToServer(`export_${format}`);
-  }catch(e){
+  } catch(e) {
     showMessage('Errore export: '+(e.message||e),'danger');
   }
 }
+
+// ===== EVENT BINDINGS =====
+function bindEvents() {
+  const btnRun = document.getElementById('btnRun');
+  if (btnRun) {
+    btnRun.addEventListener('click', runCriteria);
+  }
+  
+  const btnRunDual = document.getElementById('btnRunDual');
+  if (btnRunDual) {
+    btnRunDual.addEventListener('click', () => {
+      if (window.CriteriaAndManager?.runDualCriteria) {
+        window.CriteriaAndManager.runDualCriteria();
+      }
+    });
+  }
+  
+  // Cache controls (solo per admin)
+  const btnCacheInfo = document.getElementById('btnCacheInfo');
+  if (btnCacheInfo) {
+    btnCacheInfo.addEventListener('click', () => window.cacheManager.getCacheInfo());
+  }
+  
+  const btnForceRefresh = document.getElementById('btnForceRefresh');
+  if (btnForceRefresh) {
+    btnForceRefresh.addEventListener('click', () => window.cacheManager.rebuildCache());
+  }
+}
+
+// ===== INIZIALIZZAZIONE DOM =====
+document.addEventListener('DOMContentLoaded', () => {
+  // IMPORTANTE: Inizializza theme SUBITO e con collegamento bottone
+  initializeTheme();
+
+  // Inizializza componenti UI
+  initializeTabs();
+  populateSelects();
+  initializeCriteriaHandlers();
+  bindEvents();
+
+  // DOPO aver inizializzato l'UI, avvia il cache manager
+  initializeApp();
+});
+
+// Nuova funzione per gestire theme
+function initializeTheme() {
+  if (window.ThemeManager) {
+    const themeManager = new ThemeManager(); 
+    themeManager.init();
+    console.log('ThemeManager initialized');
+  } else {
+    console.warn('ThemeManager not found');
+    // Fallback manuale
+    initializeThemeFallback();
+  }
+  
+  // Collega sempre il bottone theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+    console.log('Theme toggle button bound');
+  }
+}
+
+function initializeThemeFallback() {
+  // Gestione manuale se ThemeManager non è disponibile
+  const savedTheme = localStorage.getItem('theme') || 'auto';
+  applyTheme(savedTheme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  applyTheme(newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Aggiorna icona
+  const icon = document.getElementById('themeIcon');
+  if (icon) {
+    icon.textContent = newTheme === 'dark' ? 'light_mode' : 'dark_mode';
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  console.log('Theme applied:', theme);
+}
+
+// Export global functions
+window.exportData = exportData;

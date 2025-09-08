@@ -33,6 +33,7 @@ require_once __DIR__ . '/config/find_userData.php';
   <!-- Theme & Page CSS -->
   <link rel="stylesheet" href="assets/css/theme.css">
   <link rel="stylesheet" href="assets/css/checkmyteam.css">
+  <link rel="stylesheet" href="assets/css/cache-system.css">
 
 </head>
 <body>
@@ -213,14 +214,6 @@ require_once __DIR__ . '/config/find_userData.php';
   </div>
 </div>
 
-<!-- Loading overlay -->
-<div class="loading-overlay" id="loadingOverlay" style="display:none">
-  <div class="loading-content">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Caricamento in corso…</div>
-  </div>
-</div>
-
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -228,7 +221,8 @@ require_once __DIR__ . '/config/find_userData.php';
 
 <!-- App scripts -->
 <script src="assets/js/theme.js"></script>
-<script src="assets/js/progress.js"></script>
+<script src="assets/js/cache-manager.js"></script>
+<script src="assets/js/cache-init.js"></script>
 <script src="assets/js/checkmyteam.js"></script>
 
 <script>
@@ -238,25 +232,17 @@ require_once __DIR__ . '/config/find_userData.php';
     nome_fantasquadra: <?= json_encode($u['nome_fantasquadra']) ?>,
     is_admin: <?= (int)$u['flag_admin'] ?> === 1,
     theme_preference: <?= json_encode($u['theme_preference'] ?? 'auto') ?>,
-    avatar_url: <?= json_encode($u['avatar_url']) ?> // valore così com'è dal DB
+    avatar_url: <?= json_encode($u['avatar_url']) ?>
   };
 
+
   // ===== GLOBALS =====
-  const csrfToken = '<?= htmlspecialchars($_SESSION['csrf_token']) ?>';
+  window.csrfToken = '<?= htmlspecialchars($_SESSION['csrf_token']) ?>';
+  const csrfToken = window.csrfToken; // Compatibility
 
   function url(path) {
     return '<?= getProjectBasePath() ?>' + path.replace(/^\/+/, '');
   }
-
-  // ===== INITIALIZATION =====
-  document.addEventListener('DOMContentLoaded', () => {
-    // Initialize theme
-    const themeManager = new ThemeManager();
-    themeManager.init();
-    
-    // Initialize app
-    initializeApp();
-  });  
 </script>
 <script src="assets/js/mobile-navbar.js"></script>
 <script src="assets/js/session-monitor.js"></script>

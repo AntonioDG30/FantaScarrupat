@@ -29,7 +29,7 @@ class EnhancedAdminPanel {
         this.addTabToForms();
         this.fixChartSizing();
         
-        console.log('Enhanced Admin Panel v2.0 initialized');
+        // console.log('Enhanced Admin Panel v2.0 initialized');
     }
     
     /**
@@ -1019,7 +1019,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const enhancedAdminPanel = new EnhancedAdminPanel();
     window.adminPanel = enhancedAdminPanel;
     
-    console.log('Enhanced Admin Panel loaded successfully');
+    // console.log('Enhanced Admin Panel loaded successfully');
 });
 
 // Cleanup su unload

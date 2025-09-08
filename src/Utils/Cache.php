@@ -3,12 +3,19 @@ declare(strict_types=1);
 
 namespace FantacalcioAnalyzer\Utils;
 
+use FantacalcioAnalyzer\Core\FantacalcioAnalyzer;
+
 /**
- * Sistema di cache intelligente con TTL e hash degli input
+ * Sistema di cache semplificato e affidabile
+ * - File JSON unico per efficienza
+ * - Logica separata admin/non-admin
+ * - Gestione errori con backup/restore
  */
 class Cache
 {
     private static string $cacheDir;
+    private static string $cacheFile;
+    private static string $backupFile;
     private static Logger $logger;
     
     public static function init(string $basePath = ''): void
@@ -18,6 +25,8 @@ class Cache
         }
         
         self::$cacheDir = $basePath . '/cache';
+        self::$cacheFile = self::$cacheDir . '/complete_cache.json';
+        self::$backupFile = self::$cacheDir . '/cache_backup.json';
         self::$logger = new Logger("Cache");
         
         if (!is_dir(self::$cacheDir)) {
@@ -28,234 +37,325 @@ class Cache
     }
     
     /**
-     * Calcola l'hash degli input per determinare se la cache è ancora valida
+     * Verifica se la cache esiste (per tutti gli utenti)
      */
-    public static function computeInputsHash(): string
+    public static function exists(): bool
     {
-        if (!isset(self::$cacheDir)) {
+        if (!isset(self::$cacheFile)) {
             self::init();
         }
         
-        $basePath = dirname(self::$cacheDir);
-        $dataPath = $basePath . '/data';
-        
-        $inputs = [];
-        
-        // Configurazione che influenza il caricamento
-        $inputs['config'] = [
-            'current_season' => defined('CURRENT_SEASON') ? CURRENT_SEASON : '2025-26',
-            'last_season' => defined('LAST_SEASON') ? LAST_SEASON : '2024-25',
-        ];
-        
-        // Scansiona tutti i file di input
-        $patterns = [
-            $dataPath . '/lista/*.csv',
-            $dataPath . '/statistiche/*.csv',
-            $dataPath . '/statistiche/*.xlsx', 
-            $dataPath . '/quotazioni/*.csv',
-            $dataPath . '/quotazioni/*.xlsx',
-            $dataPath . '/valutazioni/*/*.csv'
-        ];
-        
-        foreach ($patterns as $pattern) {
-            $files = glob($pattern) ?: [];
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    $relativePath = str_replace($basePath, '', $file);
-                    $inputs['files'][$relativePath] = [
-                        'mtime' => filemtime($file),
-                        'size' => filesize($file)
-                    ];
-                }
-            }
-        }
-        
-        // Ordina per garantire hash deterministico
-        ksort($inputs);
-        if (isset($inputs['files'])) {
-            ksort($inputs['files']);
-        }
-        
-        $hash = md5(json_encode($inputs));
-        self::$logger->info("Computed inputs hash: $hash");
-        
-        return $hash;
+        return file_exists(self::$cacheFile) && filesize(self::$cacheFile) > 100;
     }
     
     /**
-     * Verifica se la cache è valida
+     * Legge i dati dalla cache
      */
-    public static function isValid(string $currentHash, int $ttlSeconds = 10800): bool
+    public static function read(): ?array
     {
-        if (!isset(self::$cacheDir)) {
+        if (!self::exists()) {
+            return null;
+        }
+        
+        $content = @file_get_contents(self::$cacheFile);
+        if ($content === false) {
+            self::$logger->error("Cannot read cache file");
+            return null;
+        }
+        
+        $data = json_decode($content, true);
+        if (!is_array($data)) {
+            self::$logger->error("Invalid cache file format");
+            return null;
+        }
+        
+        self::$logger->info("Cache loaded successfully");
+        return $data;
+    }
+    
+    /**
+     * Rigenera completamente la cache (solo per admin)
+     */
+    public static function rebuild(): array
+    {
+        if (!isset(self::$cacheFile)) {
             self::init();
         }
         
-        $manifest = self::getManifest();
-        if (!$manifest) {
+        // Log inizio operazione in app.log
+        error_log("[CACHE] Starting cache rebuild at " . date('Y-m-d H:i:s'));
+        self::$logger->info("Starting cache rebuild");
+        
+        // Backup della cache esistente
+        self::backup();
+        
+        try {
+            error_log("[CACHE] Initializing FantacalcioAnalyzer...");
+            
+            // Inizializza analyzer e carica tutti i dati
+            $analyzer = new FantacalcioAnalyzer();
+            
+            error_log("[CACHE] Loading data from analyzer...");
+            $analyzer->loadData();
+            
+            error_log("[CACHE] Preparing cache data...");
+            
+            // Prepara dati completi per la cache
+            $sessionData = $analyzer->getSessionData();
+            
+            $cacheData = [
+                'version' => '2.0',
+                'built_at' => time(),
+                'built_at_formatted' => date('Y-m-d H:i:s'),
+                
+                // Dati principali
+                'lista_corrente' => $sessionData['lista_corrente'],
+                'statistiche' => $sessionData['statistiche'],
+                'quotazioni' => $sessionData['quotazioni'],
+                'valutazioni' => $sessionData['valutazioni'],
+                
+                // Metadati calcolati
+                'metadata' => [
+                    'current_year' => $sessionData['current_year'],
+                    'last_year' => $sessionData['last_year'],
+                    'neopromosse' => $sessionData['neopromosse'],
+                    'squadre_media' => $sessionData['squadre_media'],
+                    'squadre_50ga' => $sessionData['squadre_50ga'],
+                    'team_ga_last' => $sessionData['team_ga_last']
+                ],
+                
+                // Cache API
+                'api_caches' => [
+                    'api_squad_index' => $sessionData['api_squad_index'],
+                    'effective_nationalities' => $sessionData['effective_nationalities'],
+                    'rigoristi_map' => $sessionData['rigoristi_map'],
+                    'rigoristi_raw_map' => $sessionData['rigoristi_raw_map']
+                ],
+                
+                // Statistiche costruzione
+                'build_stats' => [
+                    'total_players' => count($sessionData['lista_corrente'] ?? []),
+                    'api_teams' => count($sessionData['api_squad_index'] ?? []),
+                    'effective_nationalities' => count($sessionData['effective_nationalities'] ?? []),
+                    'rigoristi_teams' => count($sessionData['rigoristi_map'] ?? []),
+                    'statistics_years' => array_keys($sessionData['statistiche'] ?? []),
+                    'quotazioni_years' => array_keys($sessionData['quotazioni'] ?? []),
+                    'valutazioni_years' => array_keys($sessionData['valutazioni'] ?? [])
+                ]
+            ];
+            
+            error_log("[CACHE] Writing cache file atomically...");
+            
+            // Scrivi cache atomicamente
+            $tempFile = self::$cacheFile . '.tmp';
+            $content = json_encode($cacheData, JSON_PRETTY_PRINT);
+            
+            if (file_put_contents($tempFile, $content, LOCK_EX) === false) {
+                throw new \Exception("Cannot write temporary cache file");
+            }
+            
+            if (!rename($tempFile, self::$cacheFile)) {
+                throw new \Exception("Cannot move temporary cache file");
+            }
+            
+            $buildStats = $cacheData['build_stats'];
+            error_log("[CACHE] Cache rebuilt successfully - Players: {$buildStats['total_players']}, API Teams: {$buildStats['api_teams']}");
+            
+            self::$logger->info("Cache rebuilt successfully", [
+                'players' => $buildStats['total_players'],
+                'api_teams' => $buildStats['api_teams']
+            ]);
+            
+            // Rimuovi backup dopo successo
+            self::removeBackup();
+            
+            return [
+                'success' => true,
+                'cache_info' => self::getInfo(),
+                'build_stats' => $cacheData['build_stats']
+            ];
+            
+        } catch (\Exception $e) {
+            error_log("[CACHE] Rebuild FAILED: " . $e->getMessage());
+            self::$logger->error("Cache rebuild failed: " . $e->getMessage());
+            
+            // Ripristina backup se disponibile
+            if (self::restore()) {
+                error_log("[CACHE] Previous cache restored after rebuild failure");
+                self::$logger->info("Previous cache restored after rebuild failure");
+                return [
+                    'success' => false,
+                    'error' => $e->getMessage(),
+                    'backup_restored' => true,
+                    'message' => 'Errore durante la rigenerazione. Cache precedente ripristinata.'
+                ];
+            } else {
+                error_log("[CACHE] No backup available after rebuild failure");
+                return [
+                    'success' => false,
+                    'error' => $e->getMessage(),
+                    'backup_restored' => false,
+                    'message' => 'Errore durante la rigenerazione. Nessuna cache disponibile.'
+                ];
+            }
+        }
+    }
+    
+    /**
+     * Carica dati in sessione dalla cache
+     */
+    public static function loadToSession(): bool
+    {
+        $data = self::read();
+        if (!$data) {
             return false;
         }
         
-        $builtAt = $manifest['built_at'] ?? 0;
-        $cachedHash = $manifest['inputs_hash'] ?? '';
+        // Carica dati principali
+        $_SESSION['data_loaded'] = true;
+        $_SESSION['lista_corrente'] = $data['lista_corrente'] ?? [];
+        $_SESSION['statistiche'] = $data['statistiche'] ?? [];
+        $_SESSION['quotazioni'] = $data['quotazioni'] ?? [];
+        $_SESSION['valutazioni'] = $data['valutazioni'] ?? [];
         
-        // Verifica TTL
-        $age = time() - $builtAt;
-        if ($age > $ttlSeconds) {
-            self::$logger->info("Cache expired: age={$age}s > ttl={$ttlSeconds}s");
-            return false;
-        }
+        // Carica metadati
+        $metadata = $data['metadata'] ?? [];
+        $_SESSION['current_year'] = $metadata['current_year'] ?? null;
+        $_SESSION['last_year'] = $metadata['last_year'] ?? null;
+        $_SESSION['neopromosse'] = $metadata['neopromosse'] ?? [];
+        $_SESSION['squadre_media'] = $metadata['squadre_media'] ?? [];
+        $_SESSION['squadre_50ga'] = $metadata['squadre_50ga'] ?? [];
+        $_SESSION['team_ga_last'] = $metadata['team_ga_last'] ?? [];
         
-        // Verifica hash input
-        if ($cachedHash !== $currentHash) {
-            self::$logger->info("Cache invalid: hash mismatch");
-            return false;
-        }
+        // Carica cache API
+        $apiCaches = $data['api_caches'] ?? [];
+        $_SESSION['api_squad_index'] = $apiCaches['api_squad_index'] ?? [];
+        $_SESSION['effective_nationalities'] = $apiCaches['effective_nationalities'] ?? [];
+        $_SESSION['rigoristi_map'] = $apiCaches['rigoristi_map'] ?? [];
+        $_SESSION['rigoristi_raw_map'] = $apiCaches['rigoristi_raw_map'] ?? [];
         
-        self::$logger->info("Cache valid: age={$age}s, hash matches");
+        self::$logger->info("Data loaded to session from cache");
         return true;
     }
     
     /**
-     * Legge il manifest della cache
-     */
-    public static function getManifest(): ?array
-    {
-        if (!isset(self::$cacheDir)) {
-            self::init();
-        }
-        
-        $manifestPath = self::$cacheDir . '/manifest.json';
-        if (!file_exists($manifestPath)) {
-            return null;
-        }
-        
-        $content = file_get_contents($manifestPath);
-        if ($content === false) {
-            return null;
-        }
-        
-        $manifest = json_decode($content, true);
-        return is_array($manifest) ? $manifest : null;
-    }
-    
-    /**
-     * Scrive il manifest della cache
-     */
-    public static function setManifest(string $inputsHash, array $additional = []): void
-    {
-        if (!isset(self::$cacheDir)) {
-            self::init();
-        }
-        
-        $manifest = array_merge([
-            'version' => '1',
-            'built_at' => time(),
-            'inputs_hash' => $inputsHash,
-        ], $additional);
-        
-        $manifestPath = self::$cacheDir . '/manifest.json';
-        $content = json_encode($manifest, JSON_PRETTY_PRINT);
-        
-        if (file_put_contents($manifestPath, $content) === false) {
-            throw new \Exception("Cannot write manifest: $manifestPath");
-        }
-        
-        self::$logger->info("Updated cache manifest");
-    }
-    
-    /**
-     * Legge un file dalla cache
-     */
-    public static function read(string $key): mixed
-    {
-        if (!isset(self::$cacheDir)) {
-            self::init();
-        }
-        
-        $path = self::$cacheDir . '/' . $key . '.json';
-        if (!file_exists($path)) {
-            return null;
-        }
-        
-        $content = file_get_contents($path);
-        if ($content === false) {
-            return null;
-        }
-        
-        return json_decode($content, true);
-    }
-    
-    /**
-     * Scrive un file nella cache
-     */
-    public static function write(string $key, mixed $data): void
-    {
-        if (!isset(self::$cacheDir)) {
-            self::init();
-        }
-        
-        $path = self::$cacheDir . '/' . $key . '.json';
-        $content = json_encode($data, JSON_PRETTY_PRINT);
-        
-        if (file_put_contents($path, $content) === false) {
-            throw new \Exception("Cannot write cache file: $path");
-        }
-        
-        self::$logger->info("Cached: $key");
-    }
-    
-    /**
-     * Pulisce la cache
-     */
-    public static function clear(): void
-    {
-        if (!isset(self::$cacheDir)) {
-            self::init();
-        }
-        
-        $files = glob(self::$cacheDir . '/*.json') ?: [];
-        foreach ($files as $file) {
-            @unlink($file);
-        }
-        
-        self::$logger->info("Cache cleared");
-    }
-    
-    /**
-     * Ottiene informazioni sulla cache
+     * Informazioni sulla cache
      */
     public static function getInfo(): array
     {
-        if (!isset(self::$cacheDir)) {
-            self::init();
+        if (!self::exists()) {
+            return [
+                'exists' => false,
+                'status' => 'empty'
+            ];
         }
         
-        $manifest = self::getManifest();
-        if (!$manifest) {
-            return ['status' => 'empty'];
+        $data = self::read();
+        if (!$data) {
+            return [
+                'exists' => true,
+                'status' => 'corrupted'
+            ];
         }
         
-        $builtAt = $manifest['built_at'] ?? 0;
+        $builtAt = $data['built_at'] ?? 0;
         $age = time() - $builtAt;
         
-        $lockActive = file_exists(self::$cacheDir . '/.load.lock');
-
         return [
-            'status' => 'exists',
+            'exists' => true,
+            'status' => 'valid',
             'built_at' => $builtAt,
-            'built_at_formatted' => date('Y-m-d H:i:s', $builtAt),
+            'built_at_formatted' => $data['built_at_formatted'] ?? date('Y-m-d H:i:s', $builtAt),
             'age_seconds' => $age,
             'age_formatted' => self::formatDuration($age),
-            'inputs_hash' => $manifest['inputs_hash'] ?? '',
-            'version' => $manifest['version'] ?? '0',
-            'lock_active' => $lockActive
+            'version' => $data['version'] ?? '1.0',
+            'build_stats' => $data['build_stats'] ?? []
         ];
-
     }
     
     /**
-     * Formatta una durata in secondi in formato human-readable
+     * Status per tipo utente
+     */
+    public static function getStatusForUser(bool $isAdmin): array
+    {
+        $info = self::getInfo();
+        
+        if (!$info['exists']) {
+            return [
+                'exists' => false,
+                'message' => $isAdmin 
+                    ? 'Cache assente. Utilizzare i comandi della navbar per rigenerare.'
+                    : 'Dati non disponibili. Contattare l\'amministratore.',
+                'suggestion' => $isAdmin ? 'rebuild' : null
+            ];
+        }
+        
+        if ($info['status'] === 'corrupted') {
+            return [
+                'exists' => true,
+                'status' => 'corrupted',
+                'message' => $isAdmin
+                    ? 'Cache corrotta. Rigenerazione necessaria.'
+                    : 'Errore nei dati. Contattare l\'amministratore.',
+                'suggestion' => $isAdmin ? 'rebuild' : null
+            ];
+        }
+        
+        $result = [
+            'exists' => true,
+            'status' => 'valid',
+            'built_at_formatted' => $info['built_at_formatted'],
+            'age_formatted' => $info['age_formatted'],
+            'build_stats' => $info['build_stats']
+        ];
+        
+        // Solo admin vedono statistiche dettagliate e suggerimenti
+        if ($isAdmin) {
+            $age = $info['age_seconds'];
+            if ($age > 86400) { // 24 ore
+                $result['suggestion'] = 'Cache più vecchia di 24h. Considerare rigenerazione.';
+            }
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * Backup della cache esistente
+     */
+    private static function backup(): bool
+    {
+        if (!self::exists()) {
+            return false;
+        }
+        
+        return copy(self::$cacheFile, self::$backupFile);
+    }
+    
+    /**
+     * Ripristina cache dal backup
+     */
+    private static function restore(): bool
+    {
+        if (!file_exists(self::$backupFile)) {
+            return false;
+        }
+        
+        return copy(self::$backupFile, self::$cacheFile);
+    }
+    
+    /**
+     * Rimuove backup
+     */
+    private static function removeBackup(): void
+    {
+        if (file_exists(self::$backupFile)) {
+            @unlink(self::$backupFile);
+        }
+    }
+    
+    /**
+     * Formatta durata
      */
     private static function formatDuration(int $seconds): string
     {
@@ -272,156 +372,24 @@ class Cache
     }
     
     /**
-     * Verifica e crea un lock per evitare esecuzioni concorrenti
+     * Ottiene il percorso del file cache (per data.php compatibility)
      */
-    public static function acquireLock(int $timeoutSeconds = 30): bool
+    public static function getCacheFile(): string
     {
-        if (!isset(self::$cacheDir)) {
+        if (!isset(self::$cacheFile)) {
             self::init();
         }
-        
-        $lockPath = self::$cacheDir . '/.load.lock';
-        
-        // Verifica se c'è già un lock attivo
-        if (file_exists($lockPath)) {
-            $lockTime = filemtime($lockPath);
-            $age = time() - $lockTime;
-            
-            // Se il lock è troppo vecchio, lo consideriamo stale
-            if ($age > $timeoutSeconds) {
-                @unlink($lockPath);
-                self::$logger->warning("Removed stale lock (age: {$age}s)");
-            } else {
-                self::$logger->info("Lock already exists (age: {$age}s)");
-                return false;
-            }
-        }
-        
-        // Crea il lock
-        if (file_put_contents($lockPath, time()) === false) {
-            self::$logger->error("Cannot create lock file");
-            return false;
-        }
-        
-        self::$logger->info("Lock acquired");
-        return true;
+        return self::$cacheFile;
     }
     
     /**
-     * Rilascia il lock
+     * Ottiene il percorso del file backup (per data.php compatibility)
      */
-    public static function releaseLock(): void
+    public static function getBackupFile(): string
     {
-        if (!isset(self::$cacheDir)) {
+        if (!isset(self::$backupFile)) {
             self::init();
         }
-        
-        $lockPath = self::$cacheDir . '/.load.lock';
-        if (file_exists($lockPath)) {
-            @unlink($lockPath);
-            self::$logger->info("Lock released");
-        }
+        return self::$backupFile;
     }
-
-    public static function getStatus(int $ttlSeconds = CACHE_TTL_SECONDS, ?string $currentHash = null): array
-    {
-        if (!isset(self::$cacheDir)) self::init();
-
-        $manifest = self::getManifest(); // già esistente nella tua classe
-        $exists   = is_array($manifest);
-        $builtAt  = $exists ? (int)($manifest['built_at'] ?? 0) : 0;
-        $age      = $exists ? max(0, time() - $builtAt) : 0;
-
-        $lockPath   = self::$cacheDir . '/.load.lock';
-        $lockActive = file_exists($lockPath);
-
-        $cachedHash = $exists ? ($manifest['inputs_hash'] ?? null) : null;
-        if ($currentHash === null) {
-            // Non costa molto: lo calcolo se non fornito
-            $currentHash = self::computeInputsHash();
-        }
-
-        $isValid = $exists
-            && $age <= $ttlSeconds
-            && $cachedHash === $currentHash;
-
-        $status =
-            !$exists         ? 'empty' :
-            ($lockActive     ? 'rebuilding' :
-            ($isValid        ? 'valid' : 'expired'));
-
-        return [
-            'status'        => $status,           // valid | expired | rebuilding | empty
-            'built_at'      => $builtAt,
-            'age_seconds'   => $age,
-            'age_formatted' => self::formatAge($age),
-            'inputs_hash'   => $cachedHash,
-            'lock_active'   => $lockActive,
-            'ttl_seconds'   => $ttlSeconds,
-        ];
-    }
-
-    private static function formatAge(int $seconds): string
-    {
-        if ($seconds < 60) return $seconds . 's';
-        if ($seconds < 3600) return floor($seconds/60) . 'm';
-        $h = floor($seconds/3600);
-        $m = floor(($seconds%3600)/60);
-        return sprintf('%dh %dm', $h, $m);
-    }
-
-    /**
-     * Verifica solo esistenza cache (per non-admin)
-     */
-    public static function existsOnly(): bool
-    {
-        if (!isset(self::$cacheDir)) {
-            self::init();
-        }
-        
-        $manifest = self::getManifest();
-        return $manifest !== null && isset($manifest['built_at']);
-    }
-
-    /**
-     * Status cache personalizzato per tipo utente
-     */
-    public static function getStatusForUser(bool $isAdmin): array
-    {
-        if (!isset(self::$cacheDir)) {
-            self::init();
-        }
-        
-        $manifest = self::getManifest();
-        $exists = $manifest !== null && isset($manifest['built_at']);
-        
-        if (!$exists) {
-            return [
-                'exists' => false,
-                'last_build_at' => null,
-                'age_seconds' => null,
-                'age_formatted' => null,
-                'suggestion' => $isAdmin ? 'Cache assente - rigenerare dai comandi navbar' : null
-            ];
-        }
-        
-        $builtAt = $manifest['built_at'];
-        $ageSeconds = time() - $builtAt;
-        
-        $result = [
-            'exists' => true,
-            'last_build_at' => date('Y-m-d H:i:s', $builtAt),
-            'age_seconds' => $ageSeconds,
-            'age_formatted' => self::formatDuration($ageSeconds)
-        ];
-        
-        // Solo admin vedono età e suggerimenti
-        if ($isAdmin) {
-            $result['suggestion'] = $ageSeconds > 86400 ? // 24 ore
-                'Cache più vecchia di 24h: valutare rigenerazione' : null;
-        }
-        
-        return $result;
-    }
-
 }

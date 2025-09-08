@@ -67,89 +67,151 @@ function handleBootstrap(): void
 {
     global $logger;
     
-    $logger->info("Bootstrap request initiated");
+    $logger->info("CheckMyTeam bootstrap request initiated");
     
-    // Controlla cache specifica per CheckMyTeam
-    $cacheKey = 'checkteam_bootstrap';
-    $cachedData = Cache::read($cacheKey);
-    
-    if ($cachedData !== null && is_array($cachedData)) {
-        $logger->info("Bootstrap data loaded from cache");
-        
+    // Verifica che la cache principale esista
+    if (!Cache::exists()) {
+        $logger->error("Bootstrap failed: main cache not available");
         echo json_encode([
-            'success' => true,
-            'players' => $cachedData['players'],
-            'playersByRole' => $cachedData['playersByRole'],
-            'criteriaList' => $cachedData['criteriaList'],
-            'fromCache' => true,
-            'cacheAge' => time() - ($cachedData['cached_at'] ?? time())
+            'success' => false,
+            'error' => 'Cache not available',
+            'message' => 'Dati non disponibili. Cache principale assente.'
         ]);
         return;
     }
     
-    // Carica dati freschi
-    $logger->info("Loading fresh bootstrap data");
-    
-    $analyzer = new FantacalcioAnalyzer();
-    
-    // Verifica se i dati sono già caricati in sessione
-    $hasCache = isset($_SESSION['data_loaded']) && $_SESSION['data_loaded'] && 
-                isset($_SESSION['lista_corrente']);
-    
-    if ($hasCache) {
-        $sessionData = [
-            'lista_corrente' => $_SESSION['lista_corrente'],
-            'statistiche' => $_SESSION['statistiche'] ?? [],
-            'quotazioni' => $_SESSION['quotazioni'] ?? [],
-            'valutazioni' => $_SESSION['valutazioni'] ?? [],
-            'current_year' => $_SESSION['current_year'] ?? null,
-            'last_year' => $_SESSION['last_year'] ?? null,
-            'neopromosse' => $_SESSION['neopromosse'] ?? [],
-            'squadre_media' => $_SESSION['squadre_media'] ?? [],
-            'squadre_50ga' => $_SESSION['squadre_50ga'] ?? [],
-            'team_ga_last' => $_SESSION['team_ga_last'] ?? [],
-            'api_squad_index' => $_SESSION['api_squad_index'] ?? [],
-            'effective_nationalities' => $_SESSION['effective_nationalities'] ?? [],
-            'rigoristi_map' => $_SESSION['rigoristi_map'] ?? [],
-            'rigoristi_raw_map' => $_SESSION['rigoristi_raw_map'] ?? []
-        ];
+    try {
+        // Leggi i dati dalla cache principale
+        $cacheData = Cache::read();
         
-        $analyzer->restoreFromSession($sessionData);
-        $logger->info("Data restored from session");
-    } else {
-        $analyzer->loadData();
-        $logger->info("Fresh data loaded");
+        // DEBUG: Log della struttura della cache per capire il problema
+        $logger->info("Cache structure debug", [
+            'cache_keys' => array_keys($cacheData ?? []),
+            'has_lista_corrente' => isset($cacheData['lista_corrente']),
+            'lista_corrente_count' => count($cacheData['lista_corrente'] ?? [])
+        ]);
+        
+        // Prova diverse possibili strutture della cache
+        $listaCorrente = null;
+        
+        if (isset($cacheData['lista_corrente']) && is_array($cacheData['lista_corrente'])) {
+            $listaCorrente = $cacheData['lista_corrente'];
+            $logger->info("Found lista_corrente directly in cache");
+        } elseif (isset($cacheData['data']['lista_corrente'])) {
+            $listaCorrente = $cacheData['data']['lista_corrente'];
+            $logger->info("Found lista_corrente in cache.data");
+        } elseif (isset($cacheData['session_data']['lista_corrente'])) {
+            $listaCorrente = $cacheData['session_data']['lista_corrente'];
+            $logger->info("Found lista_corrente in cache.session_data");
+        } else {
+            // Fallback: usa dati dalla sessione se disponibili
+            if (isset($_SESSION['lista_corrente']) && is_array($_SESSION['lista_corrente'])) {
+                $listaCorrente = $_SESSION['lista_corrente'];
+                $logger->info("Using lista_corrente from session as fallback");
+            }
+        }
+        
+        if (!$listaCorrente || !is_array($listaCorrente) || count($listaCorrente) === 0) {
+            // Debug aggiuntivo per capire cosa c'è nella cache
+            $logger->error("No valid lista_corrente found", [
+                'cache_data_sample' => array_slice($cacheData ?? [], 0, 5, true),
+                'session_has_lista' => isset($_SESSION['lista_corrente']),
+                'session_lista_count' => count($_SESSION['lista_corrente'] ?? [])
+            ]);
+            
+            throw new \Exception('No valid lista_corrente found in cache or session');
+        }
+        
+        $logger->info("Bootstrap: loaded " . count($listaCorrente) . " players");
+        
+        // Normalizza e organizza i dati per CheckMyTeam
+        $players = normalizePlayersData($listaCorrente);
+        $playersByRole = groupPlayersByRole($players);
+        $criteriaList = getCriteriaList();
+        
+        $logger->info("Bootstrap data prepared", [
+            'total_players' => count($players),
+            'players_by_role' => array_map('count', $playersByRole),
+            'criteria_count' => count($criteriaList)
+        ]);
+        
+        echo json_encode([
+            'success' => true,
+            'players' => $players,
+            'playersByRole' => $playersByRole,
+            'criteriaList' => $criteriaList,
+            'fromCache' => true,
+            'stats' => [
+                'total_players' => count($players),
+                'players_by_role' => array_map('count', $playersByRole)
+            ],
+            'debug' => [
+                'source' => isset($cacheData['lista_corrente']) ? 'cache_direct' : 
+                           (isset($cacheData['data']['lista_corrente']) ? 'cache_data' :
+                           (isset($cacheData['session_data']['lista_corrente']) ? 'cache_session_data' : 'session_fallback')),
+                'raw_count' => count($listaCorrente)
+            ]
+        ]);
+        
+    } catch (\Exception $e) {
+        $logger->error("CheckMyTeam bootstrap error: " . $e->getMessage());
+        
+        // Prova un ultimo fallback usando criteria.php
+        try {
+            $logger->info("Attempting fallback via criteria.php");
+            
+            // Usa un criterio che restituisce molti giocatori per ottenere la lista
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/criteria.php?action=run&criteria=16');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'X-CSRF-Token: ' . ($_SESSION['csrf_token'] ?? ''),
+                'Content-Type: application/json'
+            ]);
+            
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            
+            if ($httpCode === 200) {
+                $data = json_decode($response, true);
+                if ($data && $data['success'] && isset($data['results'])) {
+                    $players = normalizePlayersData($data['results']);
+                    $playersByRole = groupPlayersByRole($players);
+                    $criteriaList = getCriteriaList();
+                    
+                    $logger->info("Fallback successful", ['players_loaded' => count($players)]);
+                    
+                    echo json_encode([
+                        'success' => true,
+                        'players' => $players,
+                        'playersByRole' => $playersByRole,
+                        'criteriaList' => $criteriaList,
+                        'fromCache' => false,
+                        'fallback' => true,
+                        'stats' => [
+                            'total_players' => count($players),
+                            'players_by_role' => array_map('count', $playersByRole)
+                        ]
+                    ]);
+                    return;
+                }
+            }
+        } catch (\Exception $fallbackError) {
+            $logger->error("Fallback also failed: " . $fallbackError->getMessage());
+        }
+        
+        echo json_encode([
+            'success' => false,
+            'error' => $e->getMessage(),
+            'debug' => [
+                'cache_exists' => Cache::exists(),
+                'cache_info' => Cache::exists() ? Cache::getInfo() : null,
+                'session_has_data' => isset($_SESSION['lista_corrente']),
+                'session_data_count' => count($_SESSION['lista_corrente'] ?? [])
+            ]
+        ]);
     }
-    
-    // Normalizza e organizza i dati
-    $players = normalizePlayersData($analyzer->listaCorrente ?? []);
-    $playersByRole = groupPlayersByRole($players);
-    $criteriaList = getCriteriaList();
-    
-    // Prepara dati per cache
-    $bootstrapData = [
-        'players' => $players,
-        'playersByRole' => $playersByRole,
-        'criteriaList' => $criteriaList,
-        'cached_at' => time()
-    ];
-    
-    // Salva in cache (TTL di 1 ora)
-    Cache::write($cacheKey, $bootstrapData);
-    
-    $logger->info("Bootstrap data prepared", [
-        'total_players' => count($players),
-        'players_by_role' => array_map('count', $playersByRole),
-        'criteria_count' => count($criteriaList)
-    ]);
-    
-    echo json_encode([
-        'success' => true,
-        'players' => $players,
-        'playersByRole' => $playersByRole,
-        'criteriaList' => $criteriaList,
-        'fromCache' => false
-    ]);
 }
 
 /**
@@ -172,75 +234,67 @@ function handleEvaluateCriteria(): void
     
     $logger->info("Evaluating criteria: $criteriaId");
     
-    // Controlla cache per questo specifico criterio
-    $cacheKey = "criteria_eval_{$criteriaId}";
-    $cachedResult = Cache::read($cacheKey);
-    
-    if ($cachedResult !== null && is_array($cachedResult)) {
-        $logger->info("Criteria $criteriaId loaded from cache");
+    try {
+        // Usa criteria.php per eseguire il criterio (stesso sistema di FindPlayer)
+        // Questo assicura compatibilità e coerenza
+        $analyzer = new FantacalcioAnalyzer();
+        
+        // Verifica se i dati sono già caricati in sessione
+        $hasSessionData = isset($_SESSION['data_loaded']) && $_SESSION['data_loaded'] && 
+                         isset($_SESSION['lista_corrente']);
+        
+        if ($hasSessionData) {
+            // Ripristina dati dalla sessione
+            $sessionData = [
+                'lista_corrente' => $_SESSION['lista_corrente'],
+                'statistiche' => $_SESSION['statistiche'] ?? [],
+                'quotazioni' => $_SESSION['quotazioni'] ?? [],
+                'valutazioni' => $_SESSION['valutazioni'] ?? [],
+                'current_year' => $_SESSION['current_year'] ?? null,
+                'last_year' => $_SESSION['last_year'] ?? null,
+                'neopromosse' => $_SESSION['neopromosse'] ?? [],
+                'squadre_media' => $_SESSION['squadre_media'] ?? [],
+                'squadre_50ga' => $_SESSION['squadre_50ga'] ?? [],
+                'team_ga_last' => $_SESSION['team_ga_last'] ?? [],
+                'api_squad_index' => $_SESSION['api_squad_index'] ?? [],
+                'effective_nationalities' => $_SESSION['effective_nationalities'] ?? [],
+                'rigoristi_map' => $_SESSION['rigoristi_map'] ?? [],
+                'rigoristi_raw_map' => $_SESSION['rigoristi_raw_map'] ?? []
+            ];
+            
+            $analyzer->restoreFromSession($sessionData);
+            $logger->info("Data restored from session for criteria evaluation");
+        } else {
+            // Se non ci sono dati in sessione, prova a caricarli dalla cache
+            if (!Cache::exists()) {
+                throw new \Exception('No cache available for criteria evaluation');
+            }
+            
+            $analyzer->loadData();
+            $logger->info("Data loaded fresh for criteria evaluation");
+        }
+        
+        // Esegui il criterio
+        $results = $analyzer->runCriteria($criteriaId);
+        $playerIds = array_map(fn($player) => (int)($player['id'] ?? 0), $results);
+        $playerIds = array_filter($playerIds, fn($id) => $id > 0);
+        
+        $logger->info("Criteria $criteriaId evaluated", [
+            'matched_players' => count($playerIds)
+        ]);
         
         echo json_encode([
             'success' => true,
             'criteriaId' => $criteriaId,
-            'playerIds' => $cachedResult['playerIds'],
-            'count' => count($cachedResult['playerIds']),
-            'fromCache' => true
+            'playerIds' => $playerIds,
+            'count' => count($playerIds),
+            'fromCache' => false
         ]);
-        return;
-    }
-    
-    // Esegui il criterio
-    $analyzer = new FantacalcioAnalyzer();
-    
-    // Ripristina dati da sessione se disponibili
-    $hasCache = isset($_SESSION['data_loaded']) && $_SESSION['data_loaded'];
-    
-    if ($hasCache) {
-        $sessionData = [
-            'lista_corrente' => $_SESSION['lista_corrente'],
-            'statistiche' => $_SESSION['statistiche'] ?? [],
-            'quotazioni' => $_SESSION['quotazioni'] ?? [],
-            'valutazioni' => $_SESSION['valutazioni'] ?? [],
-            'current_year' => $_SESSION['current_year'] ?? null,
-            'last_year' => $_SESSION['last_year'] ?? null,
-            'neopromosse' => $_SESSION['neopromosse'] ?? [],
-            'squadre_media' => $_SESSION['squadre_media'] ?? [],
-            'squadre_50ga' => $_SESSION['squadre_50ga'] ?? [],
-            'team_ga_last' => $_SESSION['team_ga_last'] ?? [],
-            'api_squad_index' => $_SESSION['api_squad_index'] ?? [],
-            'effective_nationalities' => $_SESSION['effective_nationalities'] ?? [],
-            'rigoristi_map' => $_SESSION['rigoristi_map'] ?? [],
-            'rigoristi_raw_map' => $_SESSION['rigoristi_raw_map'] ?? []
-        ];
         
-        $analyzer->restoreFromSession($sessionData);
-    } else {
-        $analyzer->loadData();
+    } catch (\Exception $e) {
+        $logger->error("Criteria evaluation error: " . $e->getMessage());
+        throw $e;
     }
-    
-    // Esegui il criterio
-    $results = $analyzer->runCriteria($criteriaId);
-    $playerIds = array_map(fn($player) => (int)($player['id'] ?? 0), $results);
-    $playerIds = array_filter($playerIds, fn($id) => $id > 0);
-    
-    // Salva in cache (TTL di 30 minuti)
-    $cacheData = [
-        'playerIds' => $playerIds,
-        'cached_at' => time()
-    ];
-    Cache::write($cacheKey, $cacheData);
-    
-    $logger->info("Criteria $criteriaId evaluated", [
-        'matched_players' => count($playerIds)
-    ]);
-    
-    echo json_encode([
-        'success' => true,
-        'criteriaId' => $criteriaId,
-        'playerIds' => $playerIds,
-        'count' => count($playerIds),
-        'fromCache' => false
-    ]);
 }
 
 /**
@@ -249,15 +303,11 @@ function handleEvaluateCriteria(): void
 function handleCacheInfo(): void
 {
     $cacheInfo = Cache::getInfo();
-    $currentHash = Cache::computeInputsHash();
-    $isValid = Cache::isValid($currentHash, CACHE_TTL_SECONDS);
     
     echo json_encode([
         'success' => true,
         'cache_info' => $cacheInfo,
-        'current_hash' => $currentHash,
-        'is_valid' => $isValid,
-        'ttl_seconds' => CACHE_TTL_SECONDS
+        'cache_exists' => Cache::exists()
     ]);
 }
 

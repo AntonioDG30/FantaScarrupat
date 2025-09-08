@@ -4,13 +4,11 @@ declare(strict_types=1);
 // **PROTEZIONE AUTENTICAZIONE**
 require_once __DIR__ . '/auth/require_login.php';
 
-
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/config/find_userData.php';
-
 
 // Log attività ricerca
 function logSearchActivity($pdo, $user_id, $criteria_id = null) {
@@ -60,6 +58,7 @@ function logSearchActivity($pdo, $user_id, $criteria_id = null) {
   <!-- Theme & Page CSS -->
   <link rel="stylesheet" href="assets/css/theme.css">
   <link rel="stylesheet" href="assets/css/FindPlayerByParametri.css">
+  <link rel="stylesheet" href="assets/css/cache-system.css">
   
 </head>
 <body>
@@ -70,7 +69,7 @@ function logSearchActivity($pdo, $user_id, $criteria_id = null) {
       nome_fantasquadra: <?= json_encode($u['nome_fantasquadra']) ?>,
       is_admin: <?= (int)$u['flag_admin'] ?> === 1,
       theme_preference: <?= json_encode($u['theme_preference'] ?? 'auto') ?>,
-      avatar_url: <?= json_encode($u['avatar_url']) ?> // valore così com'è dal DB
+      avatar_url: <?= json_encode($u['avatar_url']) ?>
     };
   </script>
 
@@ -129,7 +128,6 @@ function logSearchActivity($pdo, $user_id, $criteria_id = null) {
       </div>
     </div>
   </nav>
-
 
   <!-- Controls bar -->
   <div class="controls-bar slide-up">
@@ -290,14 +288,6 @@ function logSearchActivity($pdo, $user_id, $criteria_id = null) {
   </div>
 </div>
 
-<!-- Loading overlay -->
-<div class="loading-overlay" id="loadingOverlay" style="display:none">
-  <div class="loading-content">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Caricamento in corso…</div>
-  </div>
-</div>
-
 <!-- jQuery + fallback chain -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script>if(!window.jQuery){document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"><\\/script>')}</script>
@@ -323,11 +313,24 @@ function logSearchActivity($pdo, $user_id, $criteria_id = null) {
 <script src="assets/js/theme.js"></script>
 <script src="assets/js/filters.js"></script>
 <script src="assets/js/criteria-and.js"></script>
-<script src="assets/js/progress.js"></script>
+<script src="assets/js/cache-manager.js"></script>
+<script src="assets/js/cache-init.js"></script>
 <script src="assets/js/findPlayerByParametri.js"></script>
 
 <script>
-  const csrfToken = '<?= htmlspecialchars($_SESSION['csrf_token']) ?>';
+  window.CURRENT_USER = {
+    id_user: <?= (int)$u['id_user'] ?>,
+    username: <?= json_encode($u['username']) ?>,
+    nome_fantasquadra: <?= json_encode($u['nome_fantasquadra']) ?>,
+    is_admin: <?= (int)$u['flag_admin'] ?> === 1,
+    theme_preference: <?= json_encode($u['theme_preference'] ?? 'auto') ?>,
+    avatar_url: <?= json_encode($u['avatar_url']) ?>
+  };
+
+  // Variabili globali per il sistema
+  window.csrfToken = '<?= htmlspecialchars($_SESSION['csrf_token']) ?>';
+  const csrfToken = window.csrfToken; // Compatibility
+  
   function url(path) {
     return '<?= getProjectBasePath() ?>' + path.replace(/^\/+/, '');
   }

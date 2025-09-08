@@ -285,7 +285,7 @@ if ($isAjax) {
         window.addEventListener('load', function() {
             if (window.performance) {
                 const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
-                console.log(`Admin Panel loaded in ${loadTime}ms`);
+                // console.log(`Admin Panel loaded in ${loadTime}ms`);
             }
         });
     </script>
