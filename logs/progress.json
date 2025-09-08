@@ -4,69 +4,69 @@
     "total": 10,
     "percent": 90,
     "label": "Pre-calcolo cache API (rose, nazionalit\u00e0, rigoristi)...",
-    "started_at": 1757344478,
-    "updated_at": 1757344499,
+    "started_at": 1757349609,
+    "updated_at": 1757349632,
     "error": null,
     "completed": false,
     "log": [
         {
             "step": 8,
             "label": "Calcolo liste dinamiche (API\/Wikipedia)...",
-            "ts": 1757344478,
+            "ts": 1757349609,
             "metadata": []
         },
         {
             "step": 9,
             "label": "Pre-calcolo cache API (rose, nazionalit\u00e0, rigoristi)...",
-            "ts": 1757344499,
+            "ts": 1757349632,
             "metadata": []
         },
         {
             "step": 9,
             "label": "Costruzione indice rose API...",
-            "ts": 1757344499,
+            "ts": 1757349632,
             "metadata": []
         },
         {
             "step": 9,
             "label": "Rose API indicizzate: 20 squadre",
-            "ts": 1757344657,
+            "ts": 1757349787,
             "metadata": []
         },
         {
             "step": 9,
             "label": "Risoluzione nazionalit\u00e0 effettive...",
-            "ts": 1757344657,
+            "ts": 1757349787,
             "metadata": []
         },
         {
             "step": 9,
-            "label": "Nazionalit\u00e0 risolte: 533 giocatori",
-            "ts": 1757344657,
+            "label": "Nazionalit\u00e0 risolte: 538 giocatori",
+            "ts": 1757349787,
             "metadata": []
         },
         {
             "step": 9,
             "label": "Download rigoristi da fantacalcio.it...",
-            "ts": 1757344657,
+            "ts": 1757349787,
             "metadata": []
         },
         {
             "step": 9,
             "label": "Rigoristi trovati per 20 squadre",
-            "ts": 1757344663,
+            "ts": 1757349788,
             "metadata": []
         },
         {
             "step": 9,
-            "label": "Cache API completate in 163.3s",
-            "ts": 1757344663,
+            "label": "Cache API completate in 156s",
+            "ts": 1757349788,
             "metadata": []
         },
         {
             "step": 9,
-            "label": "Cache API completate: 20 rose, 533 nazionalit\u00e0, 20 rigoristi",
-            "ts": 1757344663,
+            "label": "Cache API completate: 20 rose, 538 nazionalit\u00e0, 20 rigoristi",
+            "ts": 1757349788,
             "metadata": []
         }
     ]

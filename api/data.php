@@ -130,12 +130,6 @@ function handleLoadFromCache(): void
             'valutazioni_years' => array_keys($_SESSION['valutazioni'] ?? []),
             'api_teams' => count($_SESSION['api_squad_index'] ?? []),
             'effective_nationalities' => count($_SESSION['effective_nationalities'] ?? [])
-        ],
-        // Aggiungi i dati per CheckMyTeam
-        'session_data' => [
-            'lista_corrente' => $_SESSION['lista_corrente'] ?? [],
-            'current_year' => $_SESSION['current_year'] ?? null,
-            'last_year' => $_SESSION['last_year'] ?? null
         ]
     ]);
     

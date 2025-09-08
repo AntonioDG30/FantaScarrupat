@@ -92,16 +92,27 @@ class Cache
         try {
             error_log("[CACHE] Initializing FantacalcioAnalyzer...");
             
-            // Inizializza analyzer e carica tutti i dati
+            // Inizializza analyzer
             $analyzer = new FantacalcioAnalyzer();
+            error_log("[CACHE] FantacalcioAnalyzer created successfully");
             
-            error_log("[CACHE] Loading data from analyzer...");
+            error_log("[CACHE] Starting loadData() call...");
+            error_log("[CACHE] Memory usage before loadData: " . round(memory_get_usage(true)/1024/1024, 2) . " MB");
+            
+            // Questo è il punto critico dove si ferma
             $analyzer->loadData();
             
-            error_log("[CACHE] Preparing cache data...");
+            error_log("[CACHE] loadData() completed successfully");
+            error_log("[CACHE] Memory usage after loadData: " . round(memory_get_usage(true)/1024/1024, 2) . " MB");
+            
+            error_log("[CACHE] Getting session data...");
             
             // Prepara dati completi per la cache
             $sessionData = $analyzer->getSessionData();
+            
+            error_log("[CACHE] Session data retrieved successfully");
+            error_log("[CACHE] Lista corrente count: " . count($sessionData['lista_corrente'] ?? []));
+            error_log("[CACHE] Statistiche years: " . count($sessionData['statistiche'] ?? []));
             
             $cacheData = [
                 'version' => '2.0',
@@ -144,6 +155,7 @@ class Cache
                 ]
             ];
             
+            error_log("[CACHE] Cache data structure prepared");
             error_log("[CACHE] Writing cache file atomically...");
             
             // Scrivi cache atomicamente
@@ -177,6 +189,7 @@ class Cache
             
         } catch (\Exception $e) {
             error_log("[CACHE] Rebuild FAILED: " . $e->getMessage());
+            error_log("[CACHE] Error in file: " . $e->getFile() . " line: " . $e->getLine());
             self::$logger->error("Cache rebuild failed: " . $e->getMessage());
             
             // Ripristina backup se disponibile
@@ -196,6 +209,28 @@ class Cache
                     'error' => $e->getMessage(),
                     'backup_restored' => false,
                     'message' => 'Errore durante la rigenerazione. Nessuna cache disponibile.'
+                ];
+            }
+        } catch (\Throwable $t) {
+            error_log("[CACHE] FATAL ERROR during rebuild: " . $t->getMessage());
+            error_log("[CACHE] Fatal error in file: " . $t->getFile() . " line: " . $t->getLine());
+            error_log("[CACHE] Stack trace: " . $t->getTraceAsString());
+            
+            // Ripristina backup
+            if (self::restore()) {
+                error_log("[CACHE] Previous cache restored after fatal error");
+                return [
+                    'success' => false,
+                    'error' => 'Fatal error: ' . $t->getMessage(),
+                    'backup_restored' => true,
+                    'message' => 'Errore fatale durante la rigenerazione. Cache precedente ripristinata.'
+                ];
+            } else {
+                return [
+                    'success' => false,
+                    'error' => 'Fatal error: ' . $t->getMessage(),
+                    'backup_restored' => false,
+                    'message' => 'Errore fatale durante la rigenerazione. Nessuna cache disponibile.'
                 ];
             }
         }
