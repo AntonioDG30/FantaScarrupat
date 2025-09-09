@@ -35946,3 +35946,41 @@
 [2025-09-09 14:56:47] [INFO] [Cache] Cache loaded successfully
 [2025-09-09 14:56:47] [INFO] [DataAPI] Data loaded from cache to session
 [2025-09-09 14:56:49] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:28] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 15:03:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:28] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 15:03:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:28] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 15:03:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:28] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 15:03:29] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 15:03:31] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 15:03:31] [INFO] [FantacalcioAnalyzer]   Lista corrente: 537
+[2025-09-09 15:03:31] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 15:03:31] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 537
+[2025-09-09 15:03:31] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 15:11:15] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 15:11:15] [INFO] [FantacalcioAnalyzer]   Lista corrente: 537
+[2025-09-09 15:11:15] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 15:11:15] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 537
+[2025-09-09 15:11:15] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 15:14:21] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 15:14:21] [INFO] [FantacalcioAnalyzer]   Lista corrente: 537
+[2025-09-09 15:14:21] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 15:14:21] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 537
+[2025-09-09 15:14:21] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 15:23:16] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 15:23:16] [INFO] [FantacalcioAnalyzer]   Lista corrente: 537
+[2025-09-09 15:23:16] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 15:23:16] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 537
+[2025-09-09 15:23:16] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 15:25:31] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 15:25:31] [INFO] [FantacalcioAnalyzer]   Lista corrente: 537
+[2025-09-09 15:25:31] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 15:25:31] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 537
+[2025-09-09 15:25:31] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 15:25:31] [INFO] [FantacalcioAnalyzer] [Poche presenze] Giocatori con statistiche anno scorso: 679
+[2025-09-09 15:25:31] [INFO] [FantacalcioAnalyzer] [Poche presenze] Risultati: 83
