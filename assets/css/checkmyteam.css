@@ -376,3 +376,292 @@
       margin-top: -20px;
       margin-bottom: 20px;
     }
+
+    /* Stili aggiuntivi per i nuovi controlli */
+.criteria-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.criteria-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-reset-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--danger-color, #dc3545);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.btn-reset-all:hover {
+  background: var(--danger-color-hover, #c82333);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.btn-reset-all:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.squad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.squad-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-clear-squad {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--warning-color, #ffc107);
+  color: var(--dark-color, #212529);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(255, 193, 7, 0.2);
+}
+
+.btn-clear-squad:hover {
+  background: var(--warning-color-hover, #e0a800);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+.btn-clear-squad:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(255, 193, 7, 0.2);
+}
+
+.squad-persistence-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--success-bg, rgba(16, 185, 129, 0.1));
+  color: var(--success-color, #059669);
+  border: 1px solid var(--success-color, #059669);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.squad-persistence-indicator .material-icons {
+  font-size: 16px !important;
+}
+
+/* Reset Confirmation Modal Styles */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+  padding: 20px 24px 16px;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--danger-color, #dc3545);
+}
+
+.modal-body {
+  padding: 20px 24px;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+  padding: 16px 24px 20px;
+}
+
+#btnConfirmReset {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .btn-reset-all {
+  background: var(--danger-color-dark, #e74c3c);
+  box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+}
+
+[data-theme="dark"] .btn-reset-all:hover {
+  background: var(--danger-color-hover-dark, #c0392b);
+  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.4);
+}
+
+[data-theme="dark"] .btn-clear-squad {
+  background: var(--warning-color-dark, #f39c12);
+  color: var(--text-primary-dark, #f8f9fa);
+  box-shadow: 0 2px 4px rgba(243, 156, 18, 0.3);
+}
+
+[data-theme="dark"] .btn-clear-squad:hover {
+  background: var(--warning-color-hover-dark, #d68910);
+  box-shadow: 0 4px 8px rgba(243, 156, 18, 0.4);
+}
+
+[data-theme="dark"] .squad-persistence-indicator {
+  background: var(--success-bg-dark, rgba(46, 204, 113, 0.15));
+  color: var(--success-color-dark, #2ecc71);
+  border-color: var(--success-color-dark, #2ecc71);
+}
+
+[data-theme="dark"] .modal-content {
+  background: var(--card-bg-dark, #1f2937);
+  color: var(--text-primary-dark, #f8f9fa);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+  border-color: var(--border-color-dark, rgba(255, 255, 255, 0.1));
+}
+
+[data-theme="dark"] .modal-title {
+  color: var(--danger-color-dark, #e74c3c);
+}
+
+[data-theme="dark"] .text-muted {
+  color: var(--text-secondary-dark, #9ca3af) !important;
+}
+
+[data-theme="dark"] .text-warning {
+  color: var(--warning-color-dark, #f39c12) !important;
+}
+
+[data-theme="dark"] #btnConfirmReset {
+  background: var(--danger-color-dark, #e74c3c);
+  border-color: var(--danger-color-dark, #e74c3c);
+}
+
+[data-theme="dark"] #btnConfirmReset:hover {
+  background: var(--danger-color-hover-dark, #c0392b);
+  border-color: var(--danger-color-hover-dark, #c0392b);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .criteria-header,
+  .squad-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .criteria-actions,
+  .squad-actions {
+    justify-content: center;
+  }
+  
+  .squad-persistence-indicator {
+    text-align: center;
+  }
+  
+  .squad-persistence-indicator .indicator-text {
+    display: none;
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .btn-reset-all,
+  .btn-clear-squad {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .criteria-actions,
+  .squad-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .btn-reset-all,
+  .btn-clear-squad {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .squad-persistence-indicator {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+}
+
+/* Animation for successful save */
+.squad-persistence-indicator.save-success {
+  animation: saveSuccess 0.6s ease-out;
+}
+
+@keyframes saveSuccess {
+  0% {
+    transform: scale(1);
+    background: var(--success-bg, rgba(16, 185, 129, 0.1));
+  }
+  50% {
+    transform: scale(1.02);
+    background: var(--success-bg, rgba(16, 185, 129, 0.2));
+  }
+  100% {
+    transform: scale(1);
+    background: var(--success-bg, rgba(16, 185, 129, 0.1));
+  }
+}
+
+[data-theme="dark"] .squad-persistence-indicator.save-success {
+  animation: saveSuccessDark 0.6s ease-out;
+}
+
+@keyframes saveSuccessDark {
+  0% {
+    transform: scale(1);
+    background: var(--success-bg-dark, rgba(46, 204, 113, 0.15));
+  }
+  50% {
+    transform: scale(1.02);
+    background: var(--success-bg-dark, rgba(46, 204, 113, 0.25));
+  }
+  100% {
+    transform: scale(1);
+    background: var(--success-bg-dark, rgba(46, 204, 113, 0.15));
+  }
+}

@@ -1,5 +1,6 @@
 /**
- * CheckMyTeam - Sistema semplificato con nuovo cache manager
+ * CheckMyTeam - Sistema semplificato con nuovo cache manager e persistenza dati
+ * Versione aggiornata con salvataggio automatico in localStorage
  */
 
 // Configurazioni rosa
@@ -8,6 +9,14 @@ const SQUAD_CONFIG = {
   'D': { count: 8, name: 'Difensori', icon: 'shield', color: '#4CAF50' },
   'C': { count: 8, name: 'Centrocampisti', icon: 'directions_run', color: '#2196F3' },
   'A': { count: 6, name: 'Attaccanti', icon: 'flash_on', color: '#F44336' }
+};
+
+// Chiavi per localStorage
+const STORAGE_KEYS = {
+  selectedCriteria: 'checkmyteam_selected_criteria',
+  selectedPlayers: 'checkmyteam_selected_players',
+  criteriaSets: 'checkmyteam_criteria_sets',
+  lastSaved: 'checkmyteam_last_saved'
 };
 
 // Stato dell'applicazione
@@ -19,7 +28,8 @@ let appState = {
   criteriaSets: {},
   selectedPlayers: {},
   playerSelects: {},
-  isReady: false
+  isReady: false,
+  persistenceEnabled: true // Flag per controllare il salvataggio automatico
 };
 
 // ===== UTILITIES =====
@@ -43,6 +53,387 @@ function debounce(func, wait) {
   };
 }
 
+// ===== PERSISTENZA DATI =====
+
+/**
+ * Verifica se localStorage è disponibile
+ */
+function isLocalStorageAvailable() {
+  try {
+    const test = '__localStorage_test__';
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    console.warn('localStorage non disponibile:', e);
+    return false;
+  }
+}
+
+/**
+ * Salva i dati correnti in localStorage
+ */
+function saveToLocalStorage() {
+  if (!appState.persistenceEnabled || !isLocalStorageAvailable()) return;
+  
+  try {
+    // Converti Map in oggetto per selectedCriteria
+    const selectedCriteriaObj = {};
+    appState.selectedCriteria.forEach((value, key) => {
+      selectedCriteriaObj[key] = value;
+    });
+    
+    // Converti Set in array per criteriaSets
+    const criteriaSetsObj = {};
+    Object.keys(appState.criteriaSets).forEach(key => {
+      if (appState.criteriaSets[key] instanceof Set) {
+        criteriaSetsObj[key] = Array.from(appState.criteriaSets[key]);
+      } else {
+        criteriaSetsObj[key] = appState.criteriaSets[key];
+      }
+    });
+    
+    const dataToSave = {
+      selectedCriteria: selectedCriteriaObj,
+      selectedPlayers: appState.selectedPlayers,
+      criteriaSets: criteriaSetsObj,
+      timestamp: new Date().toISOString(),
+      version: '1.0'
+    };
+    
+    localStorage.setItem(STORAGE_KEYS.selectedCriteria, JSON.stringify(selectedCriteriaObj));
+    localStorage.setItem(STORAGE_KEYS.selectedPlayers, JSON.stringify(appState.selectedPlayers));
+    localStorage.setItem(STORAGE_KEYS.criteriaSets, JSON.stringify(criteriaSetsObj));
+    localStorage.setItem(STORAGE_KEYS.lastSaved, dataToSave.timestamp);
+    
+    console.log('Dati salvati in localStorage:', {
+      criteriaCount: Object.keys(selectedCriteriaObj).length,
+      playersCount: Object.keys(appState.selectedPlayers).length,
+      criteriaSetsCount: Object.keys(criteriaSetsObj).length
+    });
+    
+    // Aggiorna indicatore di salvataggio
+    updatePersistenceIndicator(true);
+    
+  } catch (e) {
+    console.error('Errore salvataggio localStorage:', e);
+    updatePersistenceIndicator(false);
+  }
+}
+
+/**
+ * Carica i dati da localStorage
+ */
+function loadFromLocalStorage() {
+  if (!isLocalStorageAvailable()) return false;
+  
+  try {
+    const selectedCriteriaData = localStorage.getItem(STORAGE_KEYS.selectedCriteria);
+    const selectedPlayersData = localStorage.getItem(STORAGE_KEYS.selectedPlayers);
+    const criteriaSetsData = localStorage.getItem(STORAGE_KEYS.criteriaSets);
+    const lastSaved = localStorage.getItem(STORAGE_KEYS.lastSaved);
+    
+    if (!selectedCriteriaData && !selectedPlayersData) {
+      console.log('Nessun dato salvato trovato in localStorage');
+      return false;
+    }
+    
+    // Ripristina selectedCriteria (da oggetto a Map)
+    if (selectedCriteriaData) {
+      const selectedCriteriaObj = JSON.parse(selectedCriteriaData);
+      appState.selectedCriteria = new Map();
+      Object.keys(selectedCriteriaObj).forEach(key => {
+        appState.selectedCriteria.set(key, selectedCriteriaObj[key]);
+      });
+    }
+    
+    // Ripristina selectedPlayers
+    if (selectedPlayersData) {
+      appState.selectedPlayers = JSON.parse(selectedPlayersData);
+    }
+    
+    // Ripristina criteriaSets (da array a Set)
+    if (criteriaSetsData) {
+      const criteriaSetsObj = JSON.parse(criteriaSetsData);
+      appState.criteriaSets = {};
+      Object.keys(criteriaSetsObj).forEach(key => {
+        if (Array.isArray(criteriaSetsObj[key])) {
+          appState.criteriaSets[key] = new Set(criteriaSetsObj[key]);
+        } else {
+          appState.criteriaSets[key] = criteriaSetsObj[key];
+        }
+      });
+    }
+    
+    console.log('Dati caricati da localStorage:', {
+      criteriaCount: appState.selectedCriteria.size,
+      playersCount: Object.keys(appState.selectedPlayers).length,
+      criteriaSetsCount: Object.keys(appState.criteriaSets).length,
+      lastSaved: lastSaved
+    });
+    
+    if (lastSaved) {
+      const savedDate = new Date(lastSaved);
+      showMessage(`Dati ripristinati dall'ultima sessione (${savedDate.toLocaleDateString()} ${savedDate.toLocaleTimeString()})`, 'info');
+    }
+    
+    return true;
+    
+  } catch (e) {
+    console.error('Errore caricamento localStorage:', e);
+    showMessage('Errore nel ripristino dei dati salvati', 'warning');
+    return false;
+  }
+}
+
+/**
+ * Cancella tutti i dati da localStorage
+ */
+function clearLocalStorage() {
+  if (!isLocalStorageAvailable()) return;
+  
+  try {
+    Object.values(STORAGE_KEYS).forEach(key => {
+      localStorage.removeItem(key);
+    });
+    console.log('localStorage pulito');
+  } catch (e) {
+    console.error('Errore pulizia localStorage:', e);
+  }
+}
+
+/**
+ * Aggiorna l'indicatore di persistenza
+ */
+function updatePersistenceIndicator(success = true) {
+  const indicator = document.getElementById('squadPersistenceIndicator');
+  if (!indicator) return;
+  
+  const icon = indicator.querySelector('.material-icons');
+  const text = indicator.querySelector('.indicator-text');
+  
+  if (success) {
+    icon.textContent = 'save';
+    if (text) text.textContent = 'Le tue selezioni vengono salvate automaticamente';
+    indicator.style.color = 'var(--success-color, #059669)';
+    indicator.style.borderColor = 'var(--success-color, #059669)';
+    indicator.style.backgroundColor = 'var(--success-bg, rgba(16, 185, 129, 0.1))';
+  } else {
+    icon.textContent = 'save_off';
+    if (text) text.textContent = 'Errore nel salvataggio automatico';
+    indicator.style.color = 'var(--warning-color, #d97706)';
+    indicator.style.borderColor = 'var(--warning-color, #d97706)';
+    indicator.style.backgroundColor = 'var(--warning-bg, rgba(245, 158, 11, 0.1))';
+  }
+}
+
+// ===== RESET FUNCTIONALITY =====
+
+/**
+ * Reset completo dell'applicazione
+ */
+function resetApplication() {
+  // Disabilita temporaneamente il salvataggio automatico
+  appState.persistenceEnabled = false;
+  
+  try {
+    // Pulisci stato in memoria
+    appState.selectedCriteria.clear();
+    appState.criteriaSets = {};
+    appState.selectedPlayers = {};
+    
+    // Pulisci localStorage
+    clearLocalStorage();
+    
+    // Reset interfaccia
+    resetInterface();
+    
+    // Riabilita salvataggio automatico
+    appState.persistenceEnabled = true;
+    
+    showMessage('Reset completato con successo', 'success');
+    
+  } catch (e) {
+    console.error('Errore durante il reset:', e);
+    showMessage('Errore durante il reset: ' + e.message, 'danger');
+    
+    // Riabilita salvataggio automatico anche in caso di errore
+    appState.persistenceEnabled = true;
+  }
+}
+
+/**
+ * Reset solo della rosa (mantiene i criteri)
+ */
+function clearSquadOnly() {
+  // Disabilita temporaneamente il salvataggio automatico
+  appState.persistenceEnabled = false;
+  
+  try {
+    // Pulisci solo i giocatori selezionati
+    appState.selectedPlayers = {};
+    
+    // Salva lo stato aggiornato
+    appState.persistenceEnabled = true;
+    saveToLocalStorage();
+    
+    // Reset interfaccia della rosa
+    resetSquadInterface();
+    
+    showMessage('Rosa svuotata con successo', 'success');
+    
+  } catch (e) {
+    console.error('Errore durante lo svuotamento della rosa:', e);
+    showMessage('Errore durante lo svuotamento della rosa: ' + e.message, 'danger');
+    
+    // Riabilita salvataggio automatico anche in caso di errore
+    appState.persistenceEnabled = true;
+  }
+}
+
+/**
+ * Reset dell'interfaccia
+ */
+function resetInterface() {
+  // Reset criteri selezionati
+  document.getElementById('selectedCriteriaContainer').style.display = 'none';
+  document.getElementById('selectedCriteriaList').innerHTML = '';
+  
+  // Reset selettore criteri
+  const criteriaSelect = document.getElementById('criteriaSelect');
+  if (criteriaSelect) {
+    criteriaSelect.value = '';
+  }
+  
+  // Reset rosa
+  resetSquadInterface();
+}
+
+/**
+ * Reset solo dell'interfaccia della rosa
+ */
+function resetSquadInterface() {
+  // Reset TomSelect instances
+  Object.values(appState.playerSelects).forEach(tomSelect => {
+    if (tomSelect && tomSelect.clear) {
+      tomSelect.clear();
+    }
+  });
+  
+  // Reset slot visuals
+  document.querySelectorAll('.player-slot').forEach(slot => {
+    slot.classList.remove('has-selection');
+    const criteriaDiv = slot.querySelector('.player-criteria');
+    if (criteriaDiv) {
+      criteriaDiv.textContent = 'Seleziona dei criteri per vedere la valutazione';
+      criteriaDiv.className = 'player-criteria no-matches';
+    }
+  });
+  
+  // Reset native selects (fallback)
+  document.querySelectorAll('.player-select').forEach(select => {
+    select.value = '';
+  });
+}
+
+// ===== RIPRISTINO STATO =====
+
+/**
+ * Ripristina l'interfaccia dopo il caricamento dei dati
+ */
+async function restoreInterface() {
+  if (!appState.isReady) return;
+  
+  try {
+    // Ripristina criteri selezionati
+    if (appState.selectedCriteria.size > 0) {
+      // Carica i set di criteri mancanti
+      for (const [criteriaId] of appState.selectedCriteria) {
+        if (!appState.criteriaSets[criteriaId]) {
+          try {
+            await loadCriteriaSet(criteriaId);
+          } catch (e) {
+            console.warn(`Impossibile caricare criterio ${criteriaId}:`, e);
+          }
+        }
+      }
+      
+      // Renderizza i criteri
+      renderSelectedCriteria();
+      updateAllPlayerMatches();
+      debouncedUpdateSquadCounts();
+    }
+    
+    // Ripristina giocatori selezionati con retry logic
+    if (Object.keys(appState.selectedPlayers).length > 0) {
+      // Aspetta un momento per assicurarsi che TomSelect sia completamente inizializzato
+      setTimeout(() => {
+        Object.entries(appState.selectedPlayers).forEach(([slotId, playerId]) => {
+          restorePlayerSelection(slotId, playerId);
+        });
+      }, 100);
+    }
+    
+    console.log('Interfaccia ripristinata con successo');
+    updatePersistenceIndicator(true);
+    
+  } catch (e) {
+    console.error('Errore ripristino interfaccia:', e);
+    showMessage('Errore nel ripristino dell\'interfaccia', 'warning');
+  }
+}
+
+/**
+ * Ripristina la selezione di un singolo giocatore con gestione robusta
+ */
+function restorePlayerSelection(slotId, playerId) {
+  const tomSelect = appState.playerSelects[slotId];
+  const selectElement = document.getElementById(`select-${slotId}`);
+  
+  // Converti playerId in stringa per consistenza
+  const playerIdStr = String(playerId);
+  
+  if (tomSelect && tomSelect.setValue) {
+    // Verifica che l'opzione esista in TomSelect
+    const hasOption = tomSelect.options.hasOwnProperty(playerIdStr);
+    
+    if (hasOption) {
+      tomSelect.setValue(playerIdStr, true); // true = silent, no trigger events
+      console.log(`TomSelect restored for ${slotId}: ${playerIdStr}`);
+    } else {
+      console.warn(`Option ${playerIdStr} not found in TomSelect for ${slotId}`);
+      
+      // Prova a trovare l'opzione nel DOM e aggiungerla se necessario
+      if (selectElement) {
+        const option = selectElement.querySelector(`option[value="${playerIdStr}"]`);
+        if (option) {
+          // L'opzione esiste nel DOM ma non in TomSelect, forza refresh
+          tomSelect.sync();
+          setTimeout(() => {
+            if (tomSelect.options.hasOwnProperty(playerIdStr)) {
+              tomSelect.setValue(playerIdStr, true);
+              console.log(`TomSelect restored after sync for ${slotId}: ${playerIdStr}`);
+            }
+          }, 50);
+        }
+      }
+    }
+  } else if (selectElement) {
+    // Fallback per select native
+    selectElement.value = playerIdStr;
+    console.log(`Native select restored for ${slotId}: ${playerIdStr}`);
+  }
+  
+  // Aggiorna stato visuale sempre
+  const slot = document.querySelector(`#select-${slotId}`)?.closest('.player-slot');
+  if (slot) {
+    slot.classList.add('has-selection');
+  }
+  
+  // Aggiorna criteri del giocatore
+  updatePlayerCriteria(slotId, playerIdStr);
+}
+
 // ===== INIZIALIZZAZIONE =====
 async function initializeApp() {
   try {
@@ -58,7 +449,16 @@ async function initializeApp() {
     await loadCheckMyTeamData();
     await buildInterface();
     
+    // Carica dati salvati DOPO che l'interfaccia è pronta
+    const hasStoredData = loadFromLocalStorage();
+    
     appState.isReady = true;
+    
+    // Ripristina interfaccia se ci sono dati salvati
+    if (hasStoredData) {
+      await restoreInterface();
+    }
+    
     showMessage('CheckMyTeam pronto', 'success');
     
   } catch (error) {
@@ -349,6 +749,32 @@ function bindEvents() {
     btnAdd.addEventListener('click', addSelectedCriteria);
   }
   
+  // Reset buttons
+  const btnResetAll = document.getElementById('btnResetAll');
+  if (btnResetAll) {
+    btnResetAll.addEventListener('click', showResetModal);
+  }
+  
+  const btnClearSquad = document.getElementById('btnClearSquad');
+  if (btnClearSquad) {
+    btnClearSquad.addEventListener('click', () => {
+      if (confirm('Sei sicuro di voler svuotare tutta la rosa?')) {
+        clearSquadOnly();
+      }
+    });
+  }
+  
+  const btnConfirmReset = document.getElementById('btnConfirmReset');
+  if (btnConfirmReset) {
+    btnConfirmReset.addEventListener('click', () => {
+      resetApplication();
+      
+      // Chiudi modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('resetConfirmModal'));
+      if (modal) modal.hide();
+    });
+  }
+  
   // Cache controls (solo per admin)
   const btnCacheInfo = document.getElementById('btnCacheInfo');
   if (btnCacheInfo) {
@@ -361,7 +787,13 @@ function bindEvents() {
   }
 }
 
+function showResetModal() {
+  const modal = new bootstrap.Modal(document.getElementById('resetConfirmModal'));
+  modal.show();
+}
+
 const debouncedUpdateSquadCounts = debounce(updateSquadCounts, 200);
+const debouncedSaveToLocalStorage = debounce(saveToLocalStorage, 1000);
 
 async function addSelectedCriteria() {
   const select = document.getElementById('criteriaSelect');
@@ -395,6 +827,9 @@ async function addSelectedCriteria() {
   
   debouncedUpdateSquadCounts();
   updateAllPlayerMatches();
+  
+  // Salva automaticamente
+  debouncedSaveToLocalStorage();
 }
 
 function renderSelectedCriteria() {
@@ -438,6 +873,9 @@ function removeSelectedCriteria(criteriaId) {
   renderSelectedCriteria();
   updateAllPlayerMatches();
   showMessage('Criterio rimosso', 'info');
+  
+  // Salva automaticamente
+  debouncedSaveToLocalStorage();
 }
 
 async function loadCriteriaSet(criteriaId) {
@@ -466,6 +904,9 @@ async function loadCriteriaSet(criteriaId) {
     appState.criteriaSets[criteriaId] = new Set(playerIds);
     
     console.log(`Criteria ${criteriaId} loaded: ${playerIds.length} players`);
+    
+    // Salva automaticamente
+    debouncedSaveToLocalStorage();
     
   } catch (error) {
     console.error(`Error loading criteria ${criteriaId}:`, error);
@@ -526,6 +967,9 @@ function handlePlayerSelection(slotId, playerId) {
   
   updatePlayerCriteria(slotId, playerId);
   debouncedUpdateSquadCounts();
+  
+  // Salva automaticamente
+  debouncedSaveToLocalStorage();
 }
 
 function updatePlayerCriteria(slotId, playerId) {

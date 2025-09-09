@@ -135,6 +135,12 @@ require_once __DIR__ . '/config/find_userData.php';
         <span class="material-icons">rule</span>
         Seleziona Criteri di Valutazione
       </h2>
+      <div class="criteria-actions">
+        <button class="btn-reset-all" id="btnResetAll" title="Cancella tutto e ricomincia">
+          <span class="material-icons">restart_alt</span>
+          Reset
+        </button>
+      </div>
     </div>
     <div class="criteria-body">
       <div class="criteria-select-row">
@@ -165,6 +171,16 @@ require_once __DIR__ . '/config/find_userData.php';
         <span class="material-icons">groups</span>
         Componi la tua Rosa (25 giocatori)
       </h2>
+      <div class="squad-actions">
+        <button class="btn-clear-squad" id="btnClearSquad" title="Svuota tutta la rosa">
+          <span class="material-icons">clear_all</span>
+          Svuota Rosa
+        </button>
+        <div class="squad-persistence-indicator" id="squadPersistenceIndicator">
+          <span class="material-icons">save</span>
+          <span class="indicator-text">Le tue selezioni vengono salvate automaticamente</span>
+        </div>
+      </div>
     </div>
     <div class="squad-body">
       <!-- Portieri -->
@@ -214,6 +230,38 @@ require_once __DIR__ . '/config/find_userData.php';
   </div>
 </div>
 
+<!-- Reset Confirmation Modal -->
+<div class="modal fade" id="resetConfirmModal" tabindex="-1" aria-labelledby="resetConfirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resetConfirmModalLabel">
+          <span class="material-icons">warning</span>
+          Conferma Reset
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Sei sicuro di voler cancellare tutte le selezioni?</p>
+        <p class="text-muted small">Questa azione cancellerà:</p>
+        <ul class="text-muted small">
+          <li>Tutti i criteri selezionati</li>
+          <li>Tutti i giocatori della rosa</li>
+          <li>I dati salvati automaticamente</li>
+        </ul>
+        <p class="text-warning small"><strong>Nota:</strong> Questa azione non può essere annullata.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmReset">
+          <span class="material-icons">restart_alt</span>
+          Conferma Reset
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -235,7 +283,6 @@ require_once __DIR__ . '/config/find_userData.php';
     avatar_url: <?= json_encode($u['avatar_url']) ?>
   };
 
-
   // ===== GLOBALS =====
   window.csrfToken = '<?= htmlspecialchars($_SESSION['csrf_token']) ?>';
   const csrfToken = window.csrfToken; // Compatibility
@@ -246,6 +293,10 @@ require_once __DIR__ . '/config/find_userData.php';
 </script>
 <script src="assets/js/mobile-navbar.js"></script>
 <script src="assets/js/session-monitor.js"></script>
+
+<style>
+
+</style>
 
 </body>
 </html>

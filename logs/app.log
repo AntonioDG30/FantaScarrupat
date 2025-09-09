@@ -35302,3 +35302,452 @@
 [2025-09-08 18:44:47] [INFO] [FantacalcioAnalyzer]   API squad index: 20
 [2025-09-08 18:44:47] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 538
 [2025-09-08 18:44:47] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 02:22:29] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:29] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:29] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:29] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:22:29] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:29] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:22:29] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:29] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:22:29] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:29] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:22:30] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:32] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 02:22:32] [INFO] [FantacalcioAnalyzer]   Lista corrente: 538
+[2025-09-09 02:22:32] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 02:22:32] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 538
+[2025-09-09 02:22:32] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 02:22:34] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:34] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:34] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:34] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:22:34] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:34] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:22:34] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:34] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:22:35] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:35] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:22:35] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:22:35] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:35] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:22:35] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:22:35] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:22:35] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:22:35] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:22:37] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 02:22:37] [INFO] [FantacalcioAnalyzer]   Lista corrente: 538
+[2025-09-09 02:22:37] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 02:22:37] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 538
+[2025-09-09 02:22:37] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 02:24:14] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:14] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:14] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:14] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:14] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:14] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:14] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:14] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:14] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:14] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:14] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:24:14] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:14] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:24:14] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:24:14] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:24:14] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:24:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:16] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:16] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:17] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:17] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:17] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:17] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:17] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:24:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:17] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:24:17] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:24:17] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:24:17] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:24:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:19] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 02:24:19] [INFO] [FantacalcioAnalyzer]   Lista corrente: 538
+[2025-09-09 02:24:19] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 02:24:19] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 538
+[2025-09-09 02:24:19] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 02:24:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:41] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:41] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:41] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:41] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:41] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:24:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:41] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:24:41] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:24:41] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:24:41] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:24:42] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:24:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:24:47] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:24:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:47] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:24:47] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:24:47] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:24:47] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:24:48] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:24:53] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 02:24:53] [INFO] [FantacalcioAnalyzer]   Lista corrente: 538
+[2025-09-09 02:24:53] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 02:24:53] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 538
+[2025-09-09 02:24:53] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 02:25:10] [INFO] [FantacalcioAnalyzer] Dati ripristinati da sessione (include cache API):
+[2025-09-09 02:25:10] [INFO] [FantacalcioAnalyzer]   Lista corrente: 538
+[2025-09-09 02:25:10] [INFO] [FantacalcioAnalyzer]   API squad index: 20
+[2025-09-09 02:25:10] [INFO] [FantacalcioAnalyzer]   Nazionalità effettive: 538
+[2025-09-09 02:25:10] [INFO] [FantacalcioAnalyzer]   Rigoristi: 20
+[2025-09-09 02:25:12] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:25:12] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:25:12] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:25:12] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:25:12] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:25:12] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:25:13] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:25:13] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:25:13] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:25:13] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:25:13] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:25:13] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:25:13] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:25:13] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:25:13] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:25:13] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:25:13] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:35] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:36] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:29:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:36] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:29:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:36] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:29:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:36] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:29:36] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:29:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:29:36] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:29:36] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:29:36] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:29:36] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:29:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:17] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:30:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:17] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:30:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:17] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:30:17] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:17] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:30:17] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:30:18] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:18] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:30:18] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:30:18] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:30:18] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:30:18] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:36] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:30:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:36] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:30:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:36] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:30:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:36] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:30:36] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:30:37] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:37] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:30:37] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:30:37] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:30:37] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:30:37] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:30:56] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:30:56] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:30:56] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:30:56] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:30:56] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:30:56] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:30:56] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:30:56] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:30:56] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:30:57] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:20] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:20] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:20] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:20] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:31:20] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:20] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:31:20] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:20] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:31:21] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:21] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:31:21] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:31:21] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:21] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:31:21] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:31:21] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:31:21] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:31:21] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:31:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:31:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:31:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:31:41] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:31:41] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:41] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:31:41] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:31:41] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:31:41] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:31:42] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:31:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:31:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:31:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:31:43] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:31:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:31:43] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:31:43] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:31:43] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:31:43] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:31:44] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:37:54] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:37:54] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:37:54] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:37:54] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:37:54] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:54] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:37:54] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:37:54] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:37:54] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:37:55] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:37:59] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:00] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:00] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:00] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:00] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:00] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:00] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:00] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:00] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:00] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:00] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:38:00] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:00] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:38:00] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:38:00] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:38:00] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:38:00] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:11] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:12] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:15] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:38:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:15] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:38:15] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:38:15] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:38:15] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:38:16] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:27] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:27] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:27] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:27] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:27] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:27] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:27] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:27] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:38:27] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:27] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:38:27] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:38:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:38:28] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:38:28] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:38:28] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:38:28] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:38:28] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:02] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:02] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:02] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:02] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:45:02] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:02] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:45:02] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:45:02] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:45:02] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:45:03] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:08] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:08] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:08] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:08] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:08] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:08] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:08] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:08] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:08] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:08] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:09] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:09] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:10] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:36] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:36] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:36] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:36] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:36] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:37] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:39] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:39] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:43] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:43] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:44] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:44] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:44] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:44] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:45:44] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:44] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:45:44] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:45:44] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:45:44] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:45:44] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:45:44] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:45:44] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:45:44] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:48:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:48:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:48:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:48:15] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:48:15] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:15] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:48:15] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:48:15] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:48:15] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:48:16] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:48:31] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:48:31] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:48:31] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:48:31] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:48:31] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:31] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:48:31] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:48:31] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:48:31] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:48:32] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:47] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:48:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:47] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:48:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:47] [INFO] [Cache] Data loaded to session from cache
+[2025-09-09 02:48:47] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:47] [INFO] [DataAPI] Data loaded from cache to session
+[2025-09-09 02:48:47] [INFO] [CheckMyTeam] CheckMyTeam bootstrap request initiated
+[2025-09-09 02:48:48] [INFO] [Cache] Cache loaded successfully
+[2025-09-09 02:48:48] [INFO] [CheckMyTeam] Cache structure debug
+[2025-09-09 02:48:48] [INFO] [CheckMyTeam] Found lista_corrente directly in cache
+[2025-09-09 02:48:48] [INFO] [CheckMyTeam] Bootstrap: loaded 538 players
+[2025-09-09 02:48:48] [INFO] [CheckMyTeam] Bootstrap data prepared
+[2025-09-09 02:48:48] [INFO] [Cache] Cache loaded successfully
