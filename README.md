@@ -126,9 +126,9 @@ FantaScarrupat/
 
 ## Database
 
-Non è incluso nel repository un dump SQL dello schema. Le tabelle principali usate dall'applicazione (ricostruite dal codice) sono:
+Lo schema completo (tabelle, indici, chiavi esterne) è in [`database/schema.sql`](database/schema.sql) — solo struttura, nessun dato applicativo: niente utenti, niente contenuti reali della lega. Include i valori di riferimento minimi per le tabelle enum-like (`tipologia_competizione`, `tipologia_partita`, `ruoli`).
 
-`users`, `fantasquadra`, `stagione`, `competizione`, `competizione_disputata`, `tipologia_competizione`, `partita_avvessario`, `partita_solitaria`, `tipologia_partita`, `formazione`, `formazione_giocatore`, `rosa`, `dettagli_rosa`, `crediti_pagati`, `giocatore`, `giocatore_stagione`, `ruoli`, `ruoli_giocatori`, `parametri_rosa`, `user_parametro_assegnato`, `immagine`, `storia_timeline`, `login_attempts`.
+Tabelle principali: `users`, `fantasquadra`, `stagione`, `competizione`, `competizione_disputata`, `tipologia_competizione`, `partita_avvessario`, `partita_solitaria`, `tipologia_partita`, `formazione`, `formazione_giocatore`, `rosa`, `dettagli_rosa`, `giocatore`, `giocatore_stagione`, `ruoli`, `ruoli_giocatori`, `parametri_rosa`, `user_parametro_assegnato`, `immagine`, `storia_timeline`, `login_attempts`.
 
 ---
 
@@ -141,7 +141,7 @@ Non è incluso nel repository un dump SQL dello schema. Le tabelle principali us
     git clone https://github.com/AntonioDG30/FantaScarrupat.git
     ```
 
-3. **Database**: crea uno schema MySQL con le tabelle elencate sopra (nessun dump incluso) e configura le credenziali in `config/config.php`.
+3. **Database**: crea un database MySQL vuoto e importa [`database/schema.sql`](database/schema.sql) (es. `mysql -u root -p nome_db < database/schema.sql` o via phpMyAdmin), poi configura le credenziali in `config/config.php`. Gli account utente vanno creati manualmente (nessun utente incluso nello schema).
 4. **Deploy locale**: posiziona il progetto nella root del server WAMP (es. `C:\wamp64\www\FantaScarrupat`). `config/config.php` rileva automaticamente il base path confrontando `DOCUMENT_ROOT` con la cartella del progetto — nessuna configurazione manuale di percorsi richiesta.
 5. **Nota**: alcune funzionalità (consenso cookie, header HSTS reali) dipendono da un ambiente con HTTPS attivo e non sono pienamente verificabili in locale.
 
@@ -167,4 +167,4 @@ GitHub: [@AntonioDG30](https://github.com/AntonioDG30)
 
 ## Licenza
 
-Progetto privato a uso della lega FantaScarrupat. Questo recupero del codice non include un file `LICENSE`; in assenza di una licenza esplicita, il codice non è da considerarsi open-source riutilizzabile.
+Il codice sorgente è distribuito con licenza [MIT](LICENSE). I contenuti in `uploads/` e `caricamenti_admin/` (foto e dati dei partecipanti alla lega) non sono coperti dalla licenza: restano dati privati della lega FantaScarrupat, indipendentemente dai termini applicati al codice.
