@@ -1,0 +1,69 @@
+# ════════════════════════════════════════════════════════════════
+#  FantaScarrupat — Hardening web server (root)
+# ════════════════════════════════════════════════════════════════
+
+AddDefaultCharset UTF-8
+DirectoryIndex index.php
+
+# MIME corretto per il web app manifest
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+</IfModule>
+
+# Nessun directory listing su tutto il sito
+Options -Indexes
+
+# ── Security headers ────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+    # HSTS: dietro il proxy TLS di Altervista la variabile env HTTPS non è affidabile,
+    # quindi lo inviamo sempre (i browser lo onorano comunque solo sulle risposte HTTPS).
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Content-Security-Policy — tutte le risorse sono self-hosted (font, Bootstrap inclusi).
+    # 'unsafe-inline' è ancora necessario per gli stili/script inline presenti nelle pagine.
+    Header set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+
+    # Non rivelare la tecnologia di backend
+    Header unset X-Powered-By
+</IfModule>
+
+# ── Blocca l'accesso diretto ai file sensibili ──────────────────
+<FilesMatch "\.(ini|log|sh|inc|bak|config|sql|tex|py|lock|md|dist|iml|map|yaml|yml)$">
+    Require all denied
+</FilesMatch>
+
+# Blocca tutti i file nascosti (.git, .gitignore, .editorconfig, .env, .htaccess…)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Blocca i manifest dei package manager
+<FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json)$">
+    Require all denied
+</FilesMatch>
+
+# ── Forza HTTPS in produzione (esclude lo sviluppo locale) ──────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Nega l'accesso web all'archivio dei caricamenti admin
+    RewriteRule ^caricamenti_admin/ - [F,L]
+
+    # IMPORTANTE (Altervista): il TLS è terminato da un proxy a monte e la
+    # richiesta arriva ad Apache in HTTP, quindi %{HTTPS} è "off" anche in HTTPS.
+    # Senza il controllo su X-Forwarded-Proto la regola scatterebbe su OGNI
+    # richiesta → redirect infinito (ERR_TOO_MANY_REDIRECTS).
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} !=localhost
+    RewriteCond %{HTTP_HOST} !=127.0.0.1
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Sitemap dinamica servita all'URL convenzionale /sitemap.xml
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+</IfModule>

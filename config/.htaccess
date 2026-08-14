@@ -1,0 +1,2 @@
+# Cartella config — credenziali DB e costanti applicative. Nessun accesso dal web.
+Require all denied

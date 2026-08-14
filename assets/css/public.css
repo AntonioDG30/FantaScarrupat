@@ -1,0 +1,4969 @@
+﻿/* ============================================================
+   public.css â€” zona pubblica â€” dark archive edition
+   Palette archivistica, grana fotografica, componenti /public/
+   ============================================================ */
+
+/* â”€â”€ Tema scuro archivistico â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Sovrascrive il tema di default di main.css con una palette
+   piÃ¹ profonda: navy-nero + oro. Vince per specificitÃ  (0,1,1).
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+html[data-zone="public"] {
+  /* Palette esatta backup: #14183E navy + #1363C6 blu + #15ACE1 teal + #FF6914 arancio */
+  --c-bg:            oklch(13% 0.065 270);   /* #14183E — navy scuro */
+  --c-bg-alt:        oklch(17% 0.060 270);
+  --c-bg-raised:     oklch(22% 0.055 270);
+  --c-bg-inset:      oklch(10% 0.050 270);   /* navbar / footer */
+
+  --c-text:          oklch(97% 0.010 264);   /* ~#F4F7FE — bianco con tinta blu */
+  --c-text-muted:    oklch(74% 0.020 260);
+  --c-text-faint:    oklch(54% 0.018 260);
+
+  --c-gold:          oklch(66% 0.195  38);   /* #FF6914 — arancio brand */
+  --c-gold-dim:      oklch(50% 0.145  38);
+
+  --c-accent:        oklch(48% 0.195 262);   /* #1363C6 — blu primario */
+
+  --c-border:        oklch(26% 0.058 270);
+  --c-border-strong: oklch(38% 0.058 270);
+
+  --c-success:       oklch(65% 0.160 154);
+  --c-success-bg:    oklch(14% 0.040 154);
+  --c-danger:        oklch(60% 0.210  25);
+  --c-danger-bg:     oklch(13% 0.040  25);
+
+  /* Accenti — dalla palette backup */
+  --c-fire:          oklch(66% 0.195  38);   /* #FF6914 arancio */
+  --c-fire-dim:      oklch(50% 0.145  38);
+  --c-teal:          oklch(68% 0.130 218);   /* #15ACE1 teal/ciano */
+  --c-amber:         oklch(82% 0.075 244);   /* #99cbff pale blue highlight */
+  --c-violet:        oklch(48% 0.195 262);   /* #1363C6 blu primario */
+
+  --shadow-1: 0 2px  8px oklch(0% 0 0 / 0.55);
+  --shadow-2: 0 8px 32px oklch(0% 0 0 / 0.65);
+
+  /* Font display â€” Cormorant Garamond */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+/* Previeni scrollbar orizzontale */
+[data-zone="public"] body {
+  overflow-x: hidden;
+}
+
+/* â”€â”€ Grana fotografica â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Overlay fixed SVG-noise a bassa opacitÃ . Nessun file extra.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-zone="public"] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  background-repeat: repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-zone="public"] body::after { display: none; }
+}
+
+/* â”€â”€ Navbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Gold bottom-rule, brand Cormorant italic, link in Barlow tiny.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-zone="public"] .fs-navbar {
+  background-color: var(--c-bg-inset);
+  border-bottom: 1px solid oklch(52% 0.100 76 / 0.40);
+  height: 60px;
+  --navbar-h: 60px;
+}
+
+/* Brand espande a sinistra, actions a destra: il nav resta al centro */
+[data-zone="public"] .fs-navbar .container {
+  gap: var(--sp-4);
+}
+[data-zone="public"] .fs-navbar__brand {
+  flex: 1 1 0;
+  min-width: 0;
+}
+[data-zone="public"] .fs-navbar__nav {
+  flex: 0 0 auto;
+  justify-content: center;
+}
+[data-zone="public"] .fs-navbar__actions {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 0;
+}
+
+[data-zone="public"] .fs-navbar__brand {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.005em;
+  color: var(--c-text);
+}
+[data-zone="public"] .fs-navbar__brand:hover { color: var(--c-text); }
+[data-zone="public"] .fs-navbar__brand em {
+  color: var(--c-gold);
+  font-style: italic;
+}
+
+[data-zone="public"] .fs-navbar__link {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  height: 60px;
+  border-bottom-width: 1px;
+  border-bottom-color: transparent;
+  padding-inline: var(--sp-4);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-bottom-color var(--dur-fast) var(--ease-out);
+}
+[data-zone="public"] .fs-navbar__link:hover {
+  color: var(--c-text);
+  border-bottom-color: var(--c-border-strong);
+}
+[data-zone="public"] .fs-navbar__link.active {
+  color: var(--c-gold);
+  border-bottom-color: var(--c-gold);
+}
+
+[data-zone="public"] .fs-navbar__actions .btn-primary {
+  background-color: transparent;
+  border-color: oklch(52% 0.100 76 / 0.60);
+  color: var(--c-gold);
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+}
+[data-zone="public"] .fs-navbar__actions .btn-primary:hover {
+  background-color: var(--c-gold);
+  color: oklch(9% 0.020 258);
+  border-color: var(--c-gold);
+}
+
+/* Voce "Accedi" mostrata SOLO dentro la tendina mobile (su desktop c'è il bottone in .actions) */
+[data-zone="public"] .fs-navbar__nav-login { display: none; }
+
+@media (max-width: 768px) {
+  /* Solo due elementi in barra: brand a sinistra, hamburger all'estrema destra */
+  [data-zone="public"] .fs-navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  [data-zone="public"] .fs-navbar__brand { flex: 0 0 auto; }
+  /* Accedi non resta in barra: va nella tendina */
+  [data-zone="public"] .fs-navbar__actions { display: none; }
+  [data-zone="public"] .fs-navbar__toggle { margin-left: auto; }
+
+  [data-zone="public"] .fs-navbar__nav {
+    background-color: var(--c-bg-inset);
+    border-bottom: 1px solid oklch(52% 0.100 76 / 0.30);
+    top: 60px;
+  }
+  [data-zone="public"] .fs-navbar__link.active {
+    border-left-color: var(--c-gold);
+    color: var(--c-gold);
+  }
+  /* Accedi nella tendina: in evidenza (oro) con separatore in alto */
+  [data-zone="public"] .fs-navbar__nav-login {
+    display: flex;
+    color: var(--c-gold);
+    border-top: 1px solid oklch(52% 0.100 76 / 0.30);
+    margin-top: var(--sp-2);
+  }
+  [data-zone="public"] .fs-navbar__nav-login.active { color: var(--c-gold); }
+}
+
+/* â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Brand in Cormorant italic. Minimal e scuro.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-zone="public"] .fs-footer {
+  background-color: var(--c-bg-inset);
+  border-top: 1px solid var(--c-border);
+  color: var(--c-text-muted);
+  padding-block: var(--sp-16) var(--sp-12);
+}
+[data-zone="public"] .fs-footer__brand {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  letter-spacing: 0.005em;
+}
+[data-zone="public"] .fs-footer__tagline {
+  color: var(--c-text-faint);
+  font-size: 0.875rem;
+}
+[data-zone="public"] .fs-footer__heading {
+  color: var(--c-text-faint);
+  letter-spacing: 0.14em;
+}
+[data-zone="public"] .fs-footer__links a { color: var(--c-text-muted); }
+[data-zone="public"] .fs-footer__links a:hover { color: var(--c-text); }
+[data-zone="public"] .fs-footer__bottom {
+  border-top-color: var(--c-border);
+  color: var(--c-text-faint);
+  font-size: 0.75rem;
+}
+
+/* â”€â”€ Sezione alternata â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-zone="public"] .section-alt {
+  background-color: var(--c-bg-alt);
+}
+
+/* â”€â”€ Alert override â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-zone="public"] .alert-success {
+  background-color: var(--c-success-bg);
+  color: oklch(75% 0.120 154);
+  border-color: oklch(65% 0.160 154 / 0.25);
+}
+[data-zone="public"] .alert-danger {
+  background-color: var(--c-danger-bg);
+  color: oklch(72% 0.170 25);
+  border-color: oklch(60% 0.210 25 / 0.25);
+}
+
+/* â”€â”€ Form override â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-zone="public"] .form-control {
+  background-color: var(--c-bg-raised);
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+[data-zone="public"] .form-control::placeholder { color: var(--c-text-faint); }
+[data-zone="public"] .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7A96' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   COMPONENTI HOMEPAGE
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* â”€â”€ Eyebrow (label sopra i titoli) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pub-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+.pub-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--c-gold-dim);
+  flex-shrink: 0;
+}
+
+/* â”€â”€ Hero homepage â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Tipografico puro: niente immagine, titolo enorme,
+   anno in filigrana, striscia stagione in fondo.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pub-hero {
+  position: relative;
+  background-color: var(--c-bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Garantisce altezza minima percettibile anche su mobile */
+  min-height: max(480px, 72vh);
+}
+
+/* Anno fondazione â€” filigrana tipografica â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   FIX: line-height: 1 Ã¨ critico â€” senza di esso l'elemento
+   eredita 1.6 dal body, diventando 38rem alto invece di 24rem,
+   e translateY(-52%) si calcola sulla dimensione sbagliata.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pub-hero__year {
+  position: absolute;
+  right: -0.02em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(10rem, 24vw, 22rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;          /* CRITICO: previene element-height Ã— 1.6 */
+  color: oklch(93% 0.010 80 / 0.05);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  letter-spacing: -0.04em;
+}
+
+.pub-hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(var(--sp-16), 10vw, var(--sp-24));
+  padding-bottom: clamp(var(--sp-12), 6vw, var(--sp-20));
+}
+
+.pub-hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+.pub-hero__eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--c-gold-dim);
+  flex-shrink: 0;
+}
+
+/* Hero title â€” FIX: clamp con min 2rem per non eccedere su 375px */
+.pub-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 10vw, 10.5rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+  margin-bottom: var(--sp-8);
+}
+
+/* FIX: non ripetiamo font-style:italic â€” il parent Ã¨ giÃ  italic,
+   ripeterlo su em puÃ² invertire lo stile su certi renderer.   */
+.pub-hero__title em {
+  color: var(--c-gold);
+}
+
+.pub-hero__sub {
+  font-size: clamp(0.9375rem, 1.6vw, 1.1rem);
+  color: var(--c-text-muted);
+  max-width: 42ch;
+  line-height: 1.65;
+  margin-bottom: var(--sp-10);
+}
+
+.pub-hero__ctas {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+/* Bottoni zona pubblica */
+.btn-gold {
+  background-color: var(--c-gold);
+  border-color: var(--c-gold);
+  color: oklch(9% 0.020 258);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.btn-gold:hover {
+  background-color: oklch(70% 0.162 76);
+  border-color: oklch(70% 0.162 76);
+  color: oklch(9% 0.020 258);
+}
+
+.btn-outline-warm {
+  background-color: transparent;
+  border-color: var(--c-border-strong);
+  color: var(--c-text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.btn-outline-warm:hover {
+  border-color: var(--c-text-muted);
+  color: var(--c-text);
+}
+
+/* â”€â”€ Season ticker â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Striscia orizzontale a piede dell'hero con i campioni recenti.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.season-ticker {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--c-border);
+  background-color: var(--c-bg-inset);
+  overflow: hidden;
+  min-height: 50px;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.season-ticker__label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  background-color: oklch(76% 0.162 76 / 0.06);
+  border-right: 1px solid var(--c-border);
+  white-space: nowrap;
+}
+
+.season-ticker__entries {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.season-ticker__entries::-webkit-scrollbar { display: none; }
+
+.season-ticker__entry {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-3) var(--sp-5);
+  border-right: 1px solid var(--c-border);
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  gap: var(--sp-3);
+}
+.season-ticker__entry em {
+  font-style: normal;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--c-text-faint);
+}
+.season-ticker__entry strong {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+/* â”€â”€ Sezione archivio numeri â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Layout a due colonne: testo a sinistra, numeri editoriali a destra.
+   FIX: breakpoint alzato a 900px per evitare layout stretto su tablet.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pub-archive__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-16);
+  align-items: center;
+}
+
+.pub-archive__headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.15;
+  color: var(--c-text);
+  margin-bottom: var(--sp-6);
+  letter-spacing: -0.015em;
+}
+
+.pub-archive__body {
+  color: var(--c-text-muted);
+  line-height: 1.75;
+  margin-bottom: var(--sp-8);
+  max-width: 50ch;
+}
+
+.pub-archive__link {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.pub-archive__link::after {
+  content: 'â†’';
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.pub-archive__link:hover { color: var(--c-gold); }
+.pub-archive__link:hover::after { transform: translateX(5px); }
+
+/* Numeri editoriali */
+.pub-numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.pub-number {
+  padding: var(--sp-7) var(--sp-6);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--c-bg-raised);
+}
+.pub-number::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-gold-dim), transparent);
+}
+
+.pub-number__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-text);
+  letter-spacing: -0.03em;
+  display: block;
+}
+
+.pub-number__label {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin-top: var(--sp-3);
+  display: block;
+}
+
+/* Responsivo archivio */
+@media (max-width: 900px) {
+  .pub-archive__grid { grid-template-columns: 1fr; gap: var(--sp-10); }
+  .pub-archive__body { max-width: 65ch; }
+}
+@media (max-width: 520px) {
+  .pub-numbers { grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+  .pub-number { padding: var(--sp-5) var(--sp-4); }
+  .pub-number__value { font-size: clamp(2rem, 8vw, 3rem); }
+}
+
+/* â”€â”€ Section header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Eyebrow + titolo Cormorant italic. Variante split con link a destra.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pub-section-header {
+  margin-bottom: var(--sp-10);
+}
+.pub-section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.pub-section-header--split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.pub-section-link {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  white-space: nowrap;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--c-border);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-bottom-color var(--dur-fast) var(--ease-out);
+}
+.pub-section-link::after { content: 'â†’'; }
+.pub-section-link:hover {
+  color: var(--c-gold);
+  border-bottom-color: var(--c-gold-dim);
+}
+
+/* â”€â”€ Winner list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Lista verticale â€” NON card grid.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.winner-list {
+  list-style: none;
+  border-top: 1px solid var(--c-border);
+}
+
+.winner-entry {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) 1fr auto;
+  align-items: center;
+  padding: var(--sp-6) var(--sp-2);
+  border-bottom: 1px solid var(--c-border);
+  gap: var(--sp-5);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.winner-entry:hover {
+  background-color: oklch(76% 0.162 76 / 0.03);
+}
+
+.winner-entry__comp {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+}
+
+.winner-entry__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: color var(--dur-fast) var(--ease-out);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.winner-entry__name:hover { color: var(--c-gold); }
+
+/* Logo squadra nella winner-list homepage */
+.winner-entry__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  object-fit: contain;
+  padding: 3px;
+  background-color: var(--c-bg-inset);
+  border: 1px solid var(--c-border);
+  flex-shrink: 0;
+}
+
+.winner-entry__year {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--c-text-faint);
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .winner-entry {
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+    padding-block: var(--sp-5);
+  }
+  .winner-entry__year { display: none; }
+}
+
+/* â”€â”€ Roster list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Lista tipografica partecipanti â€” NON card grid.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.roster-list {
+  list-style: none;
+  border-top: 1px solid var(--c-border);
+}
+.roster-list li { display: block; }
+
+.roster-entry {
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr auto;
+  align-items: center;
+  padding: var(--sp-5) var(--sp-2);
+  border-bottom: 1px solid var(--c-border);
+  gap: var(--sp-4);
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.roster-entry:hover {
+  background-color: oklch(100% 0 0 / 0.025);
+}
+
+.roster-entry__num {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--c-border-strong);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-align: right;
+  padding-right: var(--sp-3);
+  border-right: 1px solid var(--c-border);
+  font-style: italic;
+}
+
+.roster-entry__name {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.roster-entry:hover .roster-entry__name { color: var(--c-gold); }
+
+.roster-entry__coach {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+}
+
+.roster-entry__trophies {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 40px;
+}
+
+.trophy-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--c-gold-dim);
+  flex-shrink: 0;
+}
+.trophy-dot:first-child { background-color: var(--c-gold); }
+
+@media (max-width: 640px) {
+  .roster-entry {
+    grid-template-columns: 40px 1fr auto;
+    row-gap: 2px;
+    padding: var(--sp-4) var(--sp-1);
+  }
+  .roster-entry__num { grid-row: 1 / 3; align-self: center; }
+  .roster-entry__name { font-size: 1rem; }
+  .roster-entry__coach {
+    grid-column: 2;
+    font-size: 0.8125rem;
+    color: var(--c-text-faint);
+  }
+  .roster-entry__trophies {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    min-width: 32px;
+  }
+}
+
+/* â”€â”€ Gallery strip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Tre immagini affiancate, nessuna card wrapper.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pub-gallery-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+
+.pub-gallery-item {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  display: block;
+  background-color: var(--c-bg-raised);
+}
+
+.pub-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82) saturate(0.75);
+  transition: transform var(--dur-slow) var(--ease-out),
+              filter    var(--dur-slow) var(--ease-out);
+}
+.pub-gallery-item:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.94) saturate(1.0);
+}
+
+@media (max-width: 640px) {
+  .pub-gallery-strip { grid-template-columns: 1fr 1fr; }
+  .pub-gallery-strip .pub-gallery-item:last-child { display: none; }
+}
+
+/* â”€â”€ CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Centrata, titolo display, minimal.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.pub-cta {
+  text-align: center;
+  padding-block: clamp(var(--sp-16), 8vw, var(--sp-24));
+  background-color: var(--c-bg-alt);
+}
+
+.pub-cta__tagline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--c-text);
+  line-height: 1.2;
+  margin-bottom: var(--sp-5);
+  max-width: 22ch;
+  margin-inline: auto;
+  letter-spacing: -0.015em;
+}
+
+.pub-cta__sub {
+  color: var(--c-text-muted);
+  margin-bottom: var(--sp-10);
+  max-width: 46ch;
+  margin-inline: auto;
+  font-size: 1rem;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HERO PAGINE INTERNE
+   (partecipanti.php, albo-doro.php, storia.php, ecc.)
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.hero {
+  background-color: var(--c-bg-inset);
+  color: var(--c-text);
+  padding-block: clamp(var(--sp-12), 7vw, var(--sp-20));
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 120%,
+    oklch(76% 0.162 76 / 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+.hero__eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--c-gold-dim);
+  flex-shrink: 0;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--c-text);
+  margin-bottom: var(--sp-5);
+}
+
+.hero__subtitle {
+  font-size: clamp(0.9375rem, 1.5vw, 1.1rem);
+  color: var(--c-text-muted);
+  max-width: 52ch;
+  line-height: 1.65;
+  margin-bottom: var(--sp-8);
+}
+
+/* Stats row â€” backward compat */
+.hero__stats {
+  display: flex;
+  gap: var(--sp-10);
+  flex-wrap: wrap;
+  margin-top: var(--sp-10);
+  padding-top: var(--sp-10);
+  border-top: 1px solid var(--c-border);
+}
+.hero__stat-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  color: var(--c-text);
+  letter-spacing: -0.025em;
+}
+.hero__stat-label {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin-top: var(--sp-2);
+}
+
+/* â”€â”€ Section heading (pagine interne) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.section-heading {
+  margin-bottom: var(--sp-10);
+}
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  margin-bottom: var(--sp-3);
+  letter-spacing: -0.015em;
+}
+.section-heading p { color: var(--c-text-muted); }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ALBO D'ORO â€” redesign card-grid + palmares + hall of fame
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* â”€â”€ Filter pills â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-10);
+}
+
+.albo-filter__btn {
+  padding: var(--sp-2) var(--sp-5);
+  border-radius: 999px;
+  border: 1px solid var(--c-border-strong);
+  background: transparent;
+  color: var(--c-text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+.albo-filter__btn:hover {
+  border-color: var(--c-gold-dim);
+  color: var(--c-text);
+}
+.albo-filter__btn.active {
+  background-color: var(--c-gold);
+  border-color: var(--c-gold);
+  color: oklch(9% 0.020 258);
+}
+
+/* â”€â”€ Year block (vista "tutte le stagioni") â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-year-block {
+  margin-bottom: var(--sp-12);
+}
+
+.albo-year-block__label {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold-dim);
+  padding-bottom: var(--sp-3);
+  margin-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* â”€â”€ Trophy cards grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: var(--sp-5);
+}
+
+/* Card â€” <a> cliccabile / <div> archivio non linkato */
+.albo-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow var(--dur-base) var(--ease-out),
+              transform  var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out);
+}
+.albo-card:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-4px);
+  border-color: var(--c-border-strong);
+}
+
+/* Card archivio â€” stagioni senza dati disponibili */
+.albo-card--locked {
+  cursor: default;
+}
+.albo-card--locked:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--c-border);
+}
+.albo-card--locked .albo-card__img {
+  filter: brightness(0.65) saturate(0.35);
+}
+.albo-card--locked .albo-card__img-ph,
+.albo-card--locked .albo-card__name,
+.albo-card--locked .albo-card__coach {
+  opacity: 0.55;
+}
+.albo-card--locked .albo-card__header {
+  color: var(--c-text-faint);
+}
+
+/* Immagine 1:1 con placeholder */
+.albo-card__img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: oklch(19% 0.018 258);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.albo-card__img-ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--c-border-strong);
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+}
+
+.albo-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 7%;
+  filter: brightness(0.88) saturate(0.78);
+  transition: transform var(--dur-slow) var(--ease-out),
+              filter    var(--dur-slow) var(--ease-out);
+}
+.albo-card:hover .albo-card__img {
+  transform: scale(1.05);
+  filter: brightness(1.0) saturate(1.0);
+}
+
+/* Header anno/competizione â€” striscia in cima alla card */
+.albo-card__header {
+  padding: var(--sp-3) var(--sp-4);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  background-color: oklch(23% 0.018 258);
+  border-bottom: 1px solid var(--c-border);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Badge "1Âª edizione" nel header card */
+.albo-card__prima {
+  font-size: 0.52rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  background-color: oklch(76% 0.162 76 / 0.08);
+  border: 1px solid oklch(76% 0.162 76 / 0.18);
+  border-radius: 999px;
+  padding: 1px var(--sp-2);
+  margin-left: var(--sp-2);
+  line-height: 1;
+}
+
+/* Badge Ã—N (multi-vittorie) in alto a destra dell'immagine */
+.albo-card__multi-badge {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  min-width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  padding: 0 var(--sp-2);
+  background-color: var(--c-gold);
+  color: oklch(14% 0.020 258);
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 1px 6px oklch(0% 0 0 / 0.4);
+}
+
+/* Corpo testuale */
+.albo-card__body {
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+  background-color: oklch(25% 0.018 258);
+  border-top: 1px solid var(--c-border);
+}
+
+.albo-card__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--sp-1);
+}
+
+.albo-card__coach {
+  font-size: 0.775rem;
+  color: var(--c-text-muted);
+}
+
+/* â”€â”€ Campione in carica â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-champion {
+  margin-bottom: var(--sp-10);
+}
+
+.albo-champion__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold-dim);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.albo-champion__streak-badge {
+  padding: 2px var(--sp-3);
+  border-radius: 999px;
+  background-color: oklch(76% 0.162 76 / 0.13);
+  border: 1px solid oklch(76% 0.162 76 / 0.28);
+  color: var(--c-gold);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+}
+
+.albo-champion__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  padding: var(--sp-6) var(--sp-8);
+  background-color: oklch(76% 0.162 76 / 0.05);
+  border: 1px solid oklch(76% 0.162 76 / 0.25);
+  border-radius: var(--r-xl);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color var(--dur-base) var(--ease-out),
+              border-color     var(--dur-base) var(--ease-out);
+}
+.albo-champion__inner:hover {
+  background-color: oklch(76% 0.162 76 / 0.09);
+  border-color: oklch(76% 0.162 76 / 0.48);
+}
+
+.albo-champion__logo-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+.albo-champion__logo-ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-lg);
+  background-color: oklch(19% 0.018 258);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--c-border-strong);
+}
+.albo-champion__logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+  border-radius: var(--r-lg);
+}
+
+.albo-champion__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.albo-champion__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--c-text);
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+}
+
+.albo-champion__coach {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+}
+
+.albo-champion__season {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-gold-dim);
+  margin-top: var(--sp-1);
+}
+
+.albo-champion__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  transition: color var(--dur-base) var(--ease-out),
+              gap   var(--dur-base) var(--ease-out);
+}
+.albo-champion__inner:hover .albo-champion__cta {
+  color: var(--c-gold);
+  gap: var(--sp-3);
+}
+
+@media (max-width: 560px) {
+  .albo-champion__inner {
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    padding: var(--sp-5) var(--sp-5);
+  }
+  .albo-champion__logo-wrap { width: 72px; height: 72px; }
+  .albo-champion__cta { display: none; }
+}
+
+/* â”€â”€ Palmares per competizione â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-palmares {
+  margin-top: var(--sp-12);
+}
+
+/* Header palmares: titolo + micro-stats affiancati */
+.albo-palmares__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  padding-bottom: var(--sp-3);
+  margin-bottom: var(--sp-5);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.albo-palmares__title {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin: 0;
+}
+
+/* Statistiche competizione (edizioni Â· campioni diversi) */
+.albo-comp-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 0.72rem;
+  color: var(--c-text-faint);
+  flex-shrink: 0;
+}
+.albo-comp-stats__sep {
+  color: var(--c-border-strong);
+}
+
+/* â”€â”€ Palmares â€” trofei per squadra â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-palm2-list {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.albo-palm2-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--c-border);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out);
+  flex-wrap: wrap;
+}
+.albo-palm2-row:last-child { border-bottom: none; }
+.albo-palm2-row:hover { background: var(--c-bg-raised); }
+.albo-palm2-row--gold { background: oklch(76% 0.162 76 / 0.04); }
+.albo-palm2-row--gold:hover { background: oklch(76% 0.162 76 / 0.07); }
+
+.albo-palm2-team {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-width: 180px;
+  flex-shrink: 0;
+}
+.albo-palm2-logo {
+  width: 40px; height: 40px;
+  border-radius: var(--r-md);
+  object-fit: contain;
+  padding: 4px;
+  background: var(--c-bg-inset);
+  border: 1px solid var(--c-border);
+  flex-shrink: 0;
+}
+.albo-palm2-logo-ph {
+  width: 40px; height: 40px;
+  border-radius: var(--r-md);
+  background: oklch(66% 0.012 258 / 0.10);
+  border: 1px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--c-text-muted);
+  flex-shrink: 0;
+}
+.albo-palm2-team__info {
+  display: flex; flex-direction: column; gap: 2px; min-width: 0;
+}
+.albo-palm2-name {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--c-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+.albo-palm2-coach {
+  font-size: 0.68rem;
+  color: var(--c-text-faint);
+}
+.albo-palm2-row--gold .albo-palm2-name { color: var(--c-gold); }
+
+/* Trofei con anno sotto */
+.albo-palm2-trophies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--sp-2) var(--sp-3);
+}
+.albo-palm2-trophy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.albo-palm2-trophy__icon {
+  font-size: 22px;
+  font-variation-settings: 'FILL' 1;
+  color: var(--c-border-strong);
+}
+.albo-palm2-row--gold .albo-palm2-trophy__icon { color: var(--c-gold); }
+.albo-palm2-trophy__year {
+  font-size: 0.58rem;
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+  color: var(--c-text-faint);
+  white-space: nowrap;
+}
+
+/* Team focus mode â€” palmares row attiva */
+.albo-palm2-row--team-active {
+  background-color: oklch(76% 0.162 76 / 0.14) !important;
+  outline: 1px solid oklch(76% 0.162 76 / 0.30);
+  outline-offset: -1px;
+}
+.albo-palm2-row--team-active .albo-palm2-name { color: var(--c-gold); }
+
+/* â”€â”€ Team focus mode â€” card dimming â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-view.albo-has-focus .albo-card {
+  opacity: 0.18;
+  filter: grayscale(0.4) brightness(0.75);
+  transition: opacity 0.22s var(--ease-out), filter 0.22s var(--ease-out),
+              box-shadow 0.22s var(--ease-out);
+}
+.albo-view.albo-has-focus .albo-card.albo-card--team-match {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 0 2px var(--c-gold-dim), var(--shadow-1);
+}
+
+@media (max-width: 480px) {
+  .albo-palm2-team { min-width: 140px; }
+  .albo-palm2-trophy__icon { font-size: 18px; }
+  .albo-palm2-trophy__year { font-size: 0.54rem; }
+}
+
+/* â”€â”€ Hall of Fame â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-hall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--sp-4);
+}
+
+.albo-hall-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--sp-7) var(--sp-5) var(--sp-6);
+  background-color: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-xl);
+  gap: var(--sp-3);
+  position: relative;
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
+}
+.albo-hall-entry:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+}
+
+/* Medaglie colorate */
+.albo-hall-entry--gold   { border-color: oklch(76% 0.162 76 / 0.45);
+                            background-color: oklch(76% 0.162 76 / 0.06); }
+.albo-hall-entry--silver { border-color: oklch(70% 0.010 258 / 0.40);
+                            background-color: oklch(70% 0.010 258 / 0.04); }
+.albo-hall-entry--bronze { border-color: oklch(62% 0.090 46  / 0.40);
+                            background-color: oklch(62% 0.090 46  / 0.04); }
+
+.albo-hall-entry__rank {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  color: var(--c-border-strong);
+}
+.albo-hall-entry--gold   .albo-hall-entry__rank { color: var(--c-gold); }
+.albo-hall-entry--silver .albo-hall-entry__rank { color: oklch(72% 0.012 258); }
+.albo-hall-entry--bronze .albo-hall-entry__rank { color: oklch(62% 0.090 46); }
+
+.albo-hall-entry__logo {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-lg);
+  object-fit: contain;
+  padding: 8px;
+  background-color: var(--c-bg-inset);
+  border: 1px solid var(--c-border);
+}
+
+.albo-hall-entry__logo-ph {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: oklch(66% 0.012 258 / 0.12);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--c-text-muted);
+}
+
+.albo-hall-entry__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.albo-hall-entry__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.albo-hall-entry__wins {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+.albo-hall-entry__wins span {
+  color: var(--c-gold-dim);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-family: var(--font-display);
+  margin-right: 2px;
+  letter-spacing: 0;
+}
+
+/* Responsive: albo su mobile */
+@media (max-width: 640px) {
+  .albo-palm2-row { gap: var(--sp-3); padding: var(--sp-3); }
+  .albo-palm2-team { min-width: 130px; }
+  .albo-hall {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  .albo-hall-entry__logo,
+  .albo-hall-entry__logo-ph { width: 56px; height: 56px; }
+  .albo-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   PARTECIPANTI
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.partecipanti-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-5);
+}
+
+/* Card â€” struttura verticale: foto portrait â†’ corpo testuale */
+.partecipante-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: box-shadow var(--dur-base) var(--ease-out),
+              transform  var(--dur-base) var(--ease-out);
+}
+.partecipante-card:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-3px);
+}
+
+/* â”€â”€ Area foto (3:4 portrait) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.partecipante-card__photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: oklch(19% 0.018 258);
+}
+
+/* Placeholder testuale â€” sempre presente, dietro la foto */
+.partecipante-card__photo-ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--c-border-strong);
+  letter-spacing: -0.03em;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Foto coach â€” assoluta sopra il placeholder */
+.partecipante-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: brightness(0.88) saturate(0.72);
+  transition: transform var(--dur-slow) var(--ease-out),
+              filter    var(--dur-slow) var(--ease-out);
+}
+.partecipante-card:hover .partecipante-card__photo {
+  transform: scale(1.04);
+  filter: brightness(0.96) saturate(0.88);
+}
+
+/* Scudetto (logo squadra) â€” badge in basso a destra */
+.partecipante-card__badge {
+  position: absolute;
+  bottom: var(--sp-3);
+  right: var(--sp-3);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  object-fit: contain;
+  padding: 5px;
+  background-color: oklch(19% 0.016 258 / 0.90);
+  border: 1px solid oklch(44% 0.022 258 / 0.70);
+  flex-shrink: 0;
+}
+
+/* â”€â”€ Corpo testuale â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.partecipante-card__body {
+  padding: var(--sp-5) var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.partecipante-card__nome {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  margin-bottom: var(--sp-1);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.partecipante-card__squadra {
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  margin-bottom: var(--sp-4);
+}
+
+.partecipante-card__trofei {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 0.8rem;
+  color: var(--c-text-muted);
+  margin-top: auto;
+}
+
+
+/* ── Dettagli Rosa — tabella unificata + riga separatore ruolo ── */
+
+/* La riga separatore ruolo (es. "Portieri (2)") */
+.rosa-role-sep td {
+  background: var(--c-bg-inset);
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  padding-block: var(--sp-2);
+  padding-inline: var(--sp-4);
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* Prima riga separatore non ha bordo superiore ridondante */
+.fs-table--rosa tbody tr.rosa-role-sep:first-child td {
+  border-top: none;
+}
+
+
+/* ── Parametri obbligatori ── */
+
+.rosa-parametri {
+  margin-top: var(--sp-10);
+  padding: var(--sp-6) var(--sp-8);
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+}
+
+.rosa-parametri__title {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin-bottom: var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.rosa-parametri__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  counter-reset: none;
+}
+
+.rosa-parametri__list li {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: baseline;
+}
+
+.rosa-parametri__num {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-gold);
+  flex-shrink: 0;
+  min-width: 1.5rem;
+  line-height: 1;
+}
+
+.rosa-parametri__text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--c-text-muted);
+}
+
+
+/* ── Team links in dettagli-competizione ── */
+
+.det-team-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid oklch(100% 0 0 / 0.15);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-bottom-color var(--dur-fast) var(--ease-out);
+}
+.det-team-link:hover {
+  color: var(--c-teal);
+  border-bottom-color: var(--c-teal);
+}
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   GALLERIA
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.galleria-grid {
+  columns: 3;
+  column-gap: var(--sp-4);
+}
+
+.galleria-item {
+  break-inside: avoid;
+  margin-bottom: var(--sp-4);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.galleria-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.82) saturate(0.75);
+  transition: transform var(--dur-slow) var(--ease-out),
+              filter    var(--dur-slow) var(--ease-out);
+}
+.galleria-item:hover img {
+  transform: scale(1.03);
+  filter: brightness(0.94) saturate(1.0);
+}
+
+@media (max-width: 768px) { .galleria-grid { columns: 2; } }
+@media (max-width: 480px) { .galleria-grid { columns: 1; } }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   DETTAGLI ROSA
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.rosa-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  padding: var(--sp-5) var(--sp-6);
+  background-color: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  margin-bottom: var(--sp-6);
+}
+
+.rosa-meta__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.rosa-meta__item .label {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+}
+
+.rosa-meta__item .value {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+}
+
+.rosa-meta__divider {
+  width: 1px;
+  height: 32px;
+  background-color: var(--c-border);
+  align-self: center;
+}
+
+.budget-bar { flex: 1; min-width: 180px; }
+.budget-bar__track {
+  height: 4px;
+  background-color: var(--c-border);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  margin-top: var(--sp-2);
+}
+.budget-bar__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background-color: var(--c-gold);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TABELLONE / BRACKET
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.bracket-match {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background-color: var(--c-bg-raised);
+}
+
+.bracket-team {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-3) var(--sp-5);
+  gap: var(--sp-4);
+}
+.bracket-team:first-child { border-bottom: 1px solid var(--c-border); }
+
+.bracket-team__name {
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+}
+
+.bracket-team__score {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  min-width: 32px;
+  text-align: right;
+  color: var(--c-text-faint);
+}
+
+.bracket-team.winner {
+  background-color: oklch(76% 0.162 76 / 0.05);
+}
+.bracket-team.winner .bracket-team__name {
+  font-weight: 600;
+  color: var(--c-text);
+}
+.bracket-team.winner .bracket-team__score { color: var(--c-gold); }
+
+/* Tie-break come "secondo risultato" a destra della card partita */
+.bracket-match.has-tb { position: relative; }
+.bracket-match.has-tb .bracket-team { padding-right: 80px; }
+.bracket-match__tb {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 66px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid var(--c-border);
+  background: oklch(55% 0.130 200 / 0.12);
+}
+.bracket-match__tb--rig { background: oklch(55% 0.150 28 / 0.12); }
+.bracket-match__tb-score {
+  flex: 1;                 /* ogni numero occupa metà pannello → allineato alla riga squadra */
+  display: flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-text);
+}
+.bracket-match__tb-badge {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(70% 0.130 200);
+  margin: 1px 0;
+}
+.bracket-match__tb--rig .bracket-match__tb-badge { color: oklch(72% 0.150 28); }
+/* sposta l'etichetta "formazioni" a sinistra del pannello tie-break */
+.bracket-match.has-tb.js-vedi-form::after { right: 74px; }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   REGOLAMENTO
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.regolamento-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--sp-12);
+  align-items: start;
+}
+
+.regolamento-sidebar {
+  position: sticky;
+  top: 80px;
+}
+
+.regolamento-sidebar__title {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.regolamento-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.regolamento-sidebar__nav a {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+  text-decoration: none;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  transition: color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+.regolamento-sidebar__nav a:hover {
+  color: var(--c-text);
+  background-color: oklch(100% 0 0 / 0.04);
+}
+
+@media (max-width: 768px) {
+  .regolamento-layout { grid-template-columns: 1fr; }
+  .regolamento-sidebar { display: none; }
+}
+
+/* â”€â”€ Contattaci â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 720px) {
+  .contact-layout { grid-template-columns: 1fr !important; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HOMEPAGE â€” SEZIONE STORIA
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* Background leggermente piÃ¹ caldo per distinguerla dal resto */
+.pub-storia {
+  background-color: oklch(22% 0.014 55);  /* dark warm sepia */
+}
+
+/* Layout a due colonne: citazione a sinistra, corpo a destra */
+.pub-storia__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--sp-10), 6vw, var(--sp-20));
+  align-items: start;
+}
+
+/* Colonna sinistra: la citazione grande */
+.pub-storia__quote-col {
+  position: sticky;
+  top: calc(60px + var(--sp-10));
+  padding-top: var(--sp-4);
+}
+
+.pub-storia__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-gold);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--sp-6) 0;
+}
+
+.pub-storia__quote-sub {
+  font-size: 0.9375rem;
+  color: var(--c-text-faint);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Colonna destra: titolo + testo + pilastri + link */
+.pub-storia__heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.15;
+  color: var(--c-text);
+  margin-bottom: var(--sp-6);
+  letter-spacing: -0.015em;
+}
+
+.pub-storia__text {
+  color: var(--c-text-muted);
+  line-height: 1.75;
+  margin-bottom: var(--sp-5);
+  max-width: 56ch;
+}
+
+/* I tre pilastri (Passione, Amicizia, RivalitÃ ) */
+.pub-storia__pillars {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  margin: var(--sp-8) 0 var(--sp-10);
+  padding: 0;
+}
+
+.pub-storia__pillar {
+  display: flex;
+  gap: var(--sp-5);
+  align-items: flex-start;
+}
+
+.pub-storia__pillar-icon {
+  font-size: 1.25rem;
+  color: var(--c-gold-dim);
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-variation-settings: 'FILL' 1;
+}
+
+.pub-storia__pillar strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text);
+  margin-bottom: var(--sp-1);
+}
+
+.pub-storia__pillar p {
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsivo storia */
+@media (max-width: 860px) {
+  .pub-storia__layout {
+    grid-template-columns: 1fr;
+    gap: var(--sp-10);
+  }
+  .pub-storia__quote-col {
+    position: static;
+    border-bottom: 1px solid var(--c-border);
+    padding-bottom: var(--sp-8);
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HOMEPAGE â€” SEZIONE ESPLORA
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* Lista verticale a righe â€” stile sommario editoriale */
+.pub-explore {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--c-border);
+}
+
+.pub-explore__item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: var(--sp-6);
+  padding: var(--sp-7) var(--sp-2);
+  border-bottom: 1px solid var(--c-border);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.pub-explore__item:hover {
+  background-color: oklch(76% 0.162 76 / 0.04);
+}
+
+/* Numero seriale in Cormorant italic */
+.pub-explore__num {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--c-border-strong);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-align: right;
+  flex-shrink: 0;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.pub-explore__item:hover .pub-explore__num {
+  color: var(--c-gold-dim);
+}
+
+/* Titolo sezione */
+.pub-explore__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  display: block;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.pub-explore__item:hover .pub-explore__title {
+  color: var(--c-gold);
+}
+
+/* Descrizione breve */
+.pub-explore__desc {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+  display: block;
+  margin-top: var(--sp-1);
+  line-height: 1.4;
+}
+
+/* Freccia */
+.pub-explore__arrow {
+  font-size: 1.25rem;
+  color: var(--c-text-faint);
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out);
+}
+.pub-explore__item:hover .pub-explore__arrow {
+  transform: translateX(6px);
+  color: var(--c-gold);
+}
+
+@media (max-width: 640px) {
+  .pub-explore__item {
+    grid-template-columns: 44px 1fr auto;
+    gap: var(--sp-4);
+    padding: var(--sp-6) var(--sp-1);
+  }
+  .pub-explore__num { font-size: 1.4rem; }
+  .pub-explore__title { font-size: 1.2rem; }
+  .pub-explore__desc { display: none; }
+}
+
+/* â”€â”€ albo-toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Toast in-page per card stagioni senza dati (anno < 2024).
+   Intercetta il click in JS, evita la navigazione, mostra questo.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.albo-toast {
+  position: fixed;
+  bottom: var(--sp-8);
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(100% + 40px));
+  z-index: 9000;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  max-width: min(500px, calc(100vw - 2 * var(--sp-6)));
+  width: max-content;
+  padding: var(--sp-4) var(--sp-5);
+  background: oklch(28% 0.028 222 / 0.96);
+  border: 1px solid oklch(55% 0.090 222 / 0.45);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px oklch(0% 0 0 / 0.65);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity   0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.albo-toast--visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.albo-toast__icon {
+  font-size: 22px;
+  color: var(--c-accent);
+  flex-shrink: 0;
+  margin-top: 1px;
+  line-height: 1;
+}
+
+.albo-toast__text {
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--c-text-muted);
+}
+
+.albo-toast__text strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 3px;
+}
+
+.albo-toast__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-top: -2px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--c-text-faint);
+  padding: 0;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.albo-toast__close:hover {
+  color: var(--c-text);
+}
+
+.albo-toast__close .material-symbols-rounded {
+  font-size: 18px;
+}
+
+@media (max-width: 520px) {
+  .albo-toast {
+    bottom: var(--sp-5);
+    max-width: calc(100vw - var(--sp-8));
+    width: auto;
+  }
+}
+
+/* â”€â”€ det-unavailable-banner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Banner informativo in dettagli-competizione.php per stagioni
+   precedenti alla 23/24, dove i dati non sono ancora disponibili.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-unavailable-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin: var(--sp-8) auto 0;
+  max-width: 860px;
+  padding: var(--sp-5) var(--sp-6);
+  background: oklch(30% 0.025 222 / 0.45);
+  border: 1px solid oklch(55% 0.090 222 / 0.40);
+  border-radius: 10px;
+  color: var(--c-text);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.det-unavailable-banner__icon {
+  font-size: 22px;
+  font-variation-settings: 'FILL' 1;
+  color: var(--c-accent);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.det-unavailable-banner__text {
+  flex: 1;
+}
+
+.det-unavailable-banner__text strong {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--c-text);
+  margin-bottom: 2px;
+}
+
+.det-unavailable-banner__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid oklch(55% 0.090 222 / 0.50);
+  border-radius: 6px;
+  color: var(--c-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+
+.det-unavailable-banner__link:hover {
+  background: oklch(40% 0.050 222 / 0.30);
+  border-color: oklch(67% 0.138 222 / 0.70);
+  color: oklch(80% 0.100 222);
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .det-unavailable-banner {
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-inline: var(--sp-4);
+    padding: var(--sp-4) var(--sp-5);
+  }
+  .det-unavailable-banner__link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* â”€â”€ det-range-slider â€” Filtro giornate â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Dual-range slider per 'A Calendario' in dettagli-competizione.php.
+   Due <input type="range"> sovrapposti; la barra colorata Ã¨ un <div>
+   aggiornato via CSS custom property --p1/--p2.
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-range-slider {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5) var(--sp-6);
+  margin-bottom: var(--sp-8);
+}
+
+.det-range-slider__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+}
+
+.det-range-slider__label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.det-range-slider__display {
+  margin-left: auto;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--c-gold);
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+}
+
+.det-range-slider__reset {
+  background: transparent;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  color: var(--c-text-faint);
+  font-size: 0.72rem;
+  font-family: var(--font-heading);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.det-range-slider__reset:hover {
+  background: var(--c-bg-alt);
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+
+.det-range-slider__track-wrap {
+  position: relative;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+/* Barra colorata aggiornata via JS con --p1/--p2 */
+.det-range-slider__fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 2px;
+  pointer-events: none;
+  background: linear-gradient(to right,
+    var(--c-border)   var(--p1, 0%),
+    var(--c-gold-dim) var(--p1, 0%),
+    var(--c-gold-dim) var(--p2, 100%),
+    var(--c-border)   var(--p2, 100%)
+  );
+}
+
+/* I due thumb sovrapposti */
+.det-range-slider__thumb {
+  position: absolute;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  height: 36px;
+  pointer-events: none; /* Solo il thumb Ã¨ cliccabile */
+}
+
+.det-range-slider__thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--c-gold);
+  border-radius: 50%;
+  border: 3px solid var(--c-bg-raised);
+  cursor: grab;
+  pointer-events: all;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 8px oklch(0% 0 0 / 0.50),
+              0 0 0 1px oklch(76% 0.162 76 / 0.25);
+  transition: transform 0.15s var(--ease-out);
+}
+
+.det-range-slider__thumb:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+  cursor: grabbing;
+}
+
+.det-range-slider__thumb::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--c-gold);
+  border-radius: 50%;
+  border: 3px solid var(--c-bg-raised);
+  cursor: grab;
+  pointer-events: all;
+  box-shadow: 0 2px 8px oklch(0% 0 0 / 0.50);
+}
+
+/* Etichette min/max sotto la barra */
+.det-range-slider__endpoints {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--sp-2);
+  font-size: 0.68rem;
+  color: var(--c-text-faint);
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 480px) {
+  .det-range-slider {
+    padding: var(--sp-4) var(--sp-4);
+  }
+  .det-range-slider__header {
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ELIMINATORIE â€” det-fixture
+   Sfide andata/ritorno nelle fasi a eliminazione diretta.
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.det-fixtures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-10);
+}
+
+/* Card sfida */
+.det-fixture {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+/* â”€â”€ Aggregate header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-fixture__agg {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.det-fixture__agg-team {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+  line-height: 1.2;
+}
+.det-fixture__agg-team--a { text-align: right; }
+.det-fixture__agg-team--b { text-align: left; }
+.det-fixture__agg-team--winner {
+  color: var(--c-gold);
+}
+
+.det-fixture__agg-score {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--c-text);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  padding: 0 var(--sp-2);
+}
+
+/* â”€â”€ Qualifier bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-fixture__qualifier {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-5);
+  font-size: 0.68rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--c-success);
+  border-bottom: 1px solid var(--c-border);
+  background: oklch(63% 0.150 145 / 0.06);
+}
+.det-fixture__qualifier .material-symbols-rounded {
+  font-size: 13px;
+  font-variation-settings: 'FILL' 1;
+  flex-shrink: 0;
+}
+.det-fixture__qualifier--tied {
+  color: var(--c-text-faint);
+  background: transparent;
+}
+
+/* â”€â”€ Leg rows (andata / ritorno) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-fixture__leg {
+  display: grid;
+  grid-template-columns: 22px 1fr auto 1fr auto;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--c-border);
+}
+.det-fixture__leg:last-child { border-bottom: none; }
+
+.det-fixture__leg-label {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--c-text-faint);
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-sm);
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.det-fixture__leg-home {
+  text-align: right;
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.det-fixture__leg-away {
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.det-fixture__leg-home--win,
+.det-fixture__leg-away--win {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.det-fixture__leg-score {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--c-text);
+  padding: 0 var(--sp-2);
+  flex-shrink: 0;
+}
+
+.det-fixture__leg-pts {
+  font-size: 0.65rem;
+  color: var(--c-text-faint);
+  text-align: right;
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* â”€â”€ Finale: card con bordo dorato â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-fixture--champion {
+  border: 1px solid oklch(76% 0.162 76 / 0.45);
+  background: oklch(76% 0.162 76 / 0.030);
+  box-shadow: 0 0 0 1px oklch(76% 0.162 76 / 0.15);
+}
+
+/* â”€â”€ Trophy inline nel nome squadra â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-fixture__trophy {
+  font-size: 14px;
+  font-variation-settings: 'FILL' 1;
+  color: var(--c-gold);
+  vertical-align: -2px;
+  flex-shrink: 0;
+}
+
+/* â”€â”€ Tiebreak banner (supplementari / rigori) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-fixture__tiebreak {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-4);
+  background: oklch(50% 0.010 258 / 0.10);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+.det-fixture__tiebreak-badge {
+  font-family: var(--font-heading);
+  font-size: 0.60rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.det-fixture__tiebreak-badge--rig {
+  background: oklch(55% 0.150 28 / 0.18);
+  color: oklch(72% 0.150 28);
+}
+.det-fixture__tiebreak-badge--supp {
+  background: oklch(55% 0.130 200 / 0.18);
+  color: oklch(70% 0.130 200);
+}
+.det-fixture__tiebreak-score {
+  font-size: 0.72rem;
+  color: var(--c-text-muted);
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+}
+
+/* â”€â”€ Qualifier: variante campione â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-fixture__qualifier--champion {
+  color: var(--c-gold);
+  background: oklch(76% 0.162 76 / 0.06);
+  font-weight: 600;
+}
+.det-fixture__qualifier--champion .material-symbols-rounded {
+  color: var(--c-gold);
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .det-fixtures-grid {
+    grid-template-columns: 1fr;
+  }
+  .det-fixture__leg {
+    grid-template-columns: 18px 1fr auto 1fr; /* hide pts */
+  }
+  .det-fixture__leg-pts { display: none; }
+  .det-fixture__agg-score { font-size: 1.1rem; }
+  .det-fixture__agg-team { font-size: 0.72rem; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TABELLONE ELIMINATORIE â€” det-bracket
+   Bracket orizzontale scorrevole. Rounds leftâ†’right.
+   Usa lo stesso schema inline-block + connector del backup.
+   Match height: 2 Ã— 44px = 88px.
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TABELLONE BRACKET
+   Layout: colonne flex orizzontali, offset verticale per round via
+   padding-top su .det-br-winners, connettori multipli per paia.
+   Geometria (match_h=108px, gap iniziale=16px) calcolata in PHP.
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* Sezione eyebrow per il tabellone */
+.det-section-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-faint);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Container scroll orizzontale */
+.det-bracket-wrap {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: var(--sp-6);
+  margin-bottom: var(--sp-12);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-border-strong) transparent;
+}
+
+/* Flex row di round colonne */
+.det-bracket {
+  display: inline-flex;
+  align-items: flex-start;
+  min-width: max-content;
+  padding: var(--sp-2) var(--sp-1) var(--sp-2) 0;
+}
+
+/* â”€â”€ Singola colonna round â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-br-round {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.det-br-round__label {
+  font-family: var(--font-heading);
+  font-size: 0.60rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--c-text-faint);
+  margin-bottom: var(--sp-5);
+  padding-left: 3px;
+  white-space: nowrap;
+}
+
+/* winners = matchups + connettori, flex row con offset verticale via padding-top */
+.det-br-winners {
+  display: flex;
+  align-items: flex-start;
+}
+
+.det-br-matchups,
+.det-br-connectors {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* â”€â”€ Match card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-br-match {
+  width: 256px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--c-bg-raised);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+
+/* Finale: card evidenziata in oro */
+.det-br-match--champion {
+  border-color: oklch(76% 0.162 76 / 0.50);
+  background: oklch(76% 0.162 76 / 0.035);
+  box-shadow: 0 0 0 1px oklch(76% 0.162 76 / 0.18);
+}
+
+/* Riga squadra */
+.det-br-team {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-3);
+  min-height: 54px;
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+}
+
+.det-br-team:not(:last-child) {
+  border-bottom: 1px solid var(--c-border);
+}
+
+.det-br-match--champion .det-br-team:not(:last-child) {
+  border-bottom-color: oklch(76% 0.162 76 / 0.20);
+}
+
+/* Logo */
+.det-br-team__logo {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-sm);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.det-br-team__logo-ph {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-sm);
+  background: oklch(66% 0.012 258 / 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.52rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--c-text-faint);
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+
+/* Nome squadra */
+.det-br-team__name {
+  flex: 1;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+}
+
+/* Punteggio aggregato */
+.det-br-team__score {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--c-text-muted);
+  min-width: 22px;
+  text-align: right;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Trofeo campione */
+.det-br-team__trophy {
+  font-size: 15px;
+  font-variation-settings: 'FILL' 1;
+  color: var(--c-gold);
+  flex-shrink: 0;
+  margin-left: var(--sp-1);
+}
+
+/* Stato vincitore */
+.det-br-team--win {
+  color: var(--c-text);
+  background: oklch(76% 0.162 76 / 0.05);
+}
+.det-br-team--win .det-br-team__name {
+  font-weight: 600;
+}
+.det-br-team--win .det-br-team__score {
+  color: var(--c-gold);
+  font-size: 1.125rem;
+}
+
+/* Stato perdente */
+.det-br-team--lose {
+  opacity: 0.30;
+}
+
+/* â”€â”€ Connettori tra round â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ *
+ *  .det-br-connectors â†’ flex column, gap = gap del round corrente
+ *  .det-br-conn-pair  â†’ flex row: merger (verticale) + line (orizzontale)
+ *  Altezze iniettate come inline style dal PHP.
+ * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-br-connectors {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.det-br-conn-pair {
+  display: flex;
+  align-items: center;
+}
+
+/* Braccio verticale del connettore */
+.det-br-merger {
+  position: relative;
+  width: 22px;
+  flex-shrink: 0;
+  /* height iniettata via inline style */
+}
+
+.det-br-merger::before,
+.det-br-merger::after {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50%;
+  border: 0 solid oklch(66% 0.012 258 / 0.30);
+}
+.det-br-merger::before {
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-top-right-radius: 3px;
+}
+.det-br-merger::after {
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-bottom-right-radius: 3px;
+}
+
+/* Tratto orizzontale verso il round successivo */
+.det-br-line {
+  width: 26px;
+  height: 0;
+  border-bottom: 1px solid oklch(66% 0.012 258 / 0.30);
+  flex-shrink: 0;
+}
+
+/* â”€â”€ Tiebreak nel bracket â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.det-br-tiebreak {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 4px var(--sp-3) 5px;
+  border-top: 1px solid var(--c-border);
+  background: oklch(50% 0.010 258 / 0.06);
+}
+.det-br-tiebreak__badge {
+  font-family: var(--font-heading);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.det-br-tiebreak__badge--rig {
+  background: oklch(55% 0.150 28 / 0.18);
+  color: oklch(72% 0.150 28);
+}
+.det-br-tiebreak__badge--supp {
+  background: oklch(55% 0.130 200 / 0.18);
+  color: oklch(70% 0.130 200);
+}
+.det-br-tiebreak__score {
+  font-size: 0.65rem;
+  color: var(--c-text-faint);
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+}
+
+/* â”€â”€ Responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 640px) {
+  .det-br-match { width: 200px; }
+  .det-br-team  { min-height: 46px; }
+  .det-br-team__name  { font-size: 0.7rem; }
+  .det-br-team__score { font-size: 0.9375rem; min-width: 18px; }
+  .det-br-team__logo,
+  .det-br-team__logo-ph { width: 22px; height: 22px; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   STATISTICHE COMPETIZIONE â€” det-stats
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.det-stats {
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--c-border);
+}
+
+.det-stats__title {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-faint);
+  margin-bottom: var(--sp-6);
+}
+
+/* Grid di record card */
+.det-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-4);
+}
+
+.det-stat-card {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.det-stat-card__label {
+  font-size: 0.68rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-text-faint);
+  font-weight: 700;
+}
+
+.det-stat-card__value {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--c-text);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.det-stat-card__sub {
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+  line-height: 1.3;
+}
+
+.det-stat-card--accent .det-stat-card__value {
+  color: var(--c-gold);
+}
+
+/* Record match â€” layout speciale */
+.det-stat-match {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  grid-column: span 2;
+}
+@media (max-width: 600px) {
+  .det-stat-match { grid-column: span 1; }
+}
+.det-stat-match__label {
+  font-size: 0.68rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-text-faint);
+  font-weight: 700;
+  padding: var(--sp-3) var(--sp-4) 0;
+}
+.det-stat-match__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: 0.8125rem;
+}
+.det-stat-match__team {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--c-text-muted);
+}
+.det-stat-match__team--right { text-align: right; }
+.det-stat-match__score {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--c-gold);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* Stats generali in albo-doro */
+.albo-global-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-10);
+}
+.albo-gstat {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+.albo-gstat__label {
+  font-size: 0.68rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-text-faint);
+  font-weight: 700;
+}
+.albo-gstat__value {
+  font-family: var(--font-heading);
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--c-text);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.albo-gstat__sub {
+  font-size: 0.72rem;
+  color: var(--c-text-muted);
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ALBO D'ORO â€” RECORD STORICI SECTION
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.albo-rec {
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--c-border);
+}
+
+.albo-rec__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-faint);
+  margin: 0 0 var(--sp-6) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.albo-rec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--sp-4);
+}
+
+.albo-rec-card {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.albo-rec-card--wide {
+  grid-column: span 2;
+}
+
+.albo-rec-card__label {
+  font-size: 0.68rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-text-faint);
+  font-weight: 700;
+}
+
+.albo-rec-card__value {
+  font-family: var(--font-heading);
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--c-text);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-top: var(--sp-1);
+}
+
+.albo-rec-card--accent .albo-rec-card__value {
+  color: var(--c-gold);
+}
+
+.albo-rec-card__sub {
+  font-size: 0.72rem;
+  color: var(--c-text-muted);
+  line-height: 1.5;
+  margin-top: var(--sp-1);
+}
+
+/* Match detail widget */
+.albo-rec-match {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.albo-rec-match__team {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+  line-height: 1.2;
+}
+
+.albo-rec-match__team--right {
+  text-align: right;
+}
+
+.albo-rec-match__score {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--c-gold);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Esiti partite — card a 3 colonne proporzionali */
+.albo-rec-card--outcomes .albo-rec-outcomes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--sp-3);
+  margin-block: var(--sp-3) var(--sp-3);
+}
+
+.albo-rec-outcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.albo-rec-outcome--home .albo-rec-outcome__num { color: oklch(63% 0.150 145); }
+.albo-rec-outcome--draw .albo-rec-outcome__num { color: var(--c-text-muted); }
+.albo-rec-outcome--away .albo-rec-outcome__num { color: oklch(60% 0.180 28); }
+
+.albo-rec-outcome__num {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.albo-rec-outcome__pct {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--c-text-faint);
+}
+
+.albo-rec-outcome__lbl {
+  font-family: var(--font-heading);
+  font-size: 0.575rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+}
+
+/* Result distribution bar */
+.albo-rec-bar {
+  display: flex;
+  height: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  gap: 2px;
+  margin-top: var(--sp-2);
+}
+
+.albo-rec-bar__seg {
+  border-radius: 3px;
+  min-width: 4px;
+}
+
+.albo-rec-bar__seg--home { background: oklch(63% 0.150 145); }
+.albo-rec-bar__seg--draw { background: var(--c-border-strong); }
+.albo-rec-bar__seg--away { background: oklch(60% 0.180 28); }
+
+/* ── Sala trofei tooltip ─────────────────────────────────────────────────────── */
+.albo-hall-entry__name--hoverable {
+  cursor: default;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  text-decoration-color: oklch(60% 0.01 260 / 0.5);
+}
+
+.albo-trophy-room {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(calc(-100% - 10px));
+  transition: opacity 0.15s ease-out;
+  max-width: 340px;
+  min-width: 180px;
+}
+
+.albo-trophy-room--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.albo-trophy-room__inner {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  box-shadow: 0 8px 32px oklch(0% 0 0 / 0.5);
+}
+
+.albo-trophy-room__comp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.albo-trophy-room__comp-name {
+  font-family: var(--font-heading);
+  font-size: 0.575rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+}
+
+.albo-trophy-room__icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.albo-trophy-room__icon {
+  font-size: 1.375rem;
+  line-height: 1;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .albo-rec-card--wide {
+    grid-column: span 1;
+  }
+  .albo-rec-match {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-1);
+  }
+  .albo-rec-match__team--right {
+    text-align: left;
+  }
+}
+.albo-gstat--accent .albo-gstat__value { color: var(--c-gold); }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   REGOLAMENTO â€” sidebar + accordion
+   Layout: sidebar fissa a sinistra, pannelli capitolo a destra.
+   Su mobile: sidebar come barra orizzontale scrollabile.
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.reg-layout {
+  display: grid;
+  /* minmax(0, …) È FONDAMENTALE: una traccia "1fr" ha minimo implicito "auto"
+     e si allarga sul contenuto (le 13 pillole capitolo, una riga lunga) sfondando
+     la pagina. minmax(0,1fr) forza il minimo a 0 → la traccia resta nel viewport. */
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: var(--sp-12);
+  align-items: start;
+  min-width: 0;
+}
+/* Tutti i contenitori della catena devono poter restringersi sotto il contenuto. */
+.reg-layout,
+.reg-sidebar, .reg-sidebar__inner,
+.reg-content, .reg-panel, .reg-panel__header,
+.reg-accordion, .reg-acc-item { min-width: 0; }
+.reg-content .reg-table-wrap { max-width: 100%; }
+
+/* â”€â”€ Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.reg-sidebar {
+  position: sticky;
+  top: calc(var(--navbar-h) + var(--sp-6));
+}
+.reg-sidebar__inner {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.reg-sidebar__heading {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border-bottom: 1px solid var(--c-border);
+}
+.reg-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+}
+.reg-chap-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  margin: 0;
+  background: none;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  text-align: left;
+  color: var(--c-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+.reg-chap-btn:hover {
+  background: var(--c-bg-alt);
+  color: var(--c-text);
+}
+.reg-chap-btn.is-active {
+  color: var(--c-text);
+  background: oklch(76% 0.162 76 / 0.10);
+}
+.reg-chap-btn__num {
+  display: grid;
+  place-items: center;
+  width: 24px; height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: oklch(76% 0.162 76 / 0.14);
+  color: var(--c-gold);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.reg-chap-btn.is-active .reg-chap-btn__num {
+  background: var(--c-gold);
+  color: oklch(20% 0.04 80);
+}
+.reg-chap-btn__label {
+  flex: 1;
+  min-width: 0;
+}
+.reg-sidebar__download {
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+  border-top: 1px solid var(--c-border);
+}
+.reg-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  background: oklch(76% 0.162 76 / 0.10);
+  border: 1px solid oklch(76% 0.162 76 / 0.30);
+  border-radius: var(--r-md);
+  color: var(--c-gold);
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+.reg-download-btn:hover {
+  background: oklch(76% 0.162 76 / 0.18);
+  border-color: oklch(76% 0.162 76 / 0.55);
+  color: var(--c-gold);
+}
+
+/* â”€â”€ Pannelli â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.reg-panel { display: none; }
+.reg-panel.is-active { display: block; }
+
+.reg-panel__header {
+  margin-bottom: var(--sp-8);
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--c-border);
+}
+.reg-panel__num {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  display: block;
+  margin-bottom: var(--sp-2);
+}
+.reg-panel__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 600;
+  color: var(--c-text);
+  margin-bottom: var(--sp-2);
+  line-height: 1.15;
+}
+.reg-panel__meta {
+  font-size: 0.8125rem;
+  color: var(--c-text-faint);
+  margin-bottom: 0;
+}
+
+/* â”€â”€ Accordion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.reg-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.reg-acc-item {
+  position: relative;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--c-bg-card, var(--c-bg-raised));
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+.reg-acc-item:hover { border-color: var(--c-border-strong); }
+.reg-acc-item:has(.reg-acc-trigger.is-open) {
+  border-color: oklch(76% 0.162 76 / 0.42);
+  box-shadow: 0 6px 26px oklch(0% 0 0 / 0.22);
+}
+/* Filetto oro a sinistra quando aperto */
+.reg-acc-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--c-gold);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.reg-acc-item:has(.reg-acc-trigger.is-open)::before { transform: scaleY(1); }
+
+.reg-acc-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  width: 100%;
+  padding: var(--sp-4) var(--sp-5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--c-text);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.reg-acc-trigger:hover { background: oklch(76% 0.162 76 / 0.05); }
+.reg-acc-trigger.is-open { background: oklch(76% 0.162 76 / 0.07); }
+.reg-acc-trigger__label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--c-text);
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.reg-acc-trigger__art {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  background: oklch(76% 0.162 76 / 0.12);
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.reg-acc-trigger__icon {
+  display: grid;
+  place-items: center;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: var(--c-gold);
+  background: oklch(76% 0.162 76 / 0.12);
+  flex-shrink: 0;
+  transition: transform var(--dur-base) var(--ease-out),
+              background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+.reg-acc-trigger.is-open .reg-acc-trigger__icon {
+  transform: rotate(180deg);
+  background: oklch(76% 0.162 76 / 0.16);
+  color: var(--c-gold);
+}
+/* Apertura con semplice toggle display: robusto, nessuna griglia che possa
+   far sfondare la larghezza sul contenuto. */
+.reg-acc-body {
+  display: none;
+  border-top: 1px solid var(--c-border);
+}
+.reg-acc-body.is-open {
+  display: block;
+  animation: reg-acc-in var(--dur-base) var(--ease-out);
+}
+@keyframes reg-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.reg-acc-body__inner {
+  min-width: 0;
+  padding: var(--sp-5) var(--sp-6);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--c-text-muted);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.reg-acc-body__inner p { margin-bottom: var(--sp-4); }
+.reg-acc-body__inner p:last-child { margin-bottom: 0; }
+.reg-acc-body__inner strong { color: var(--c-text); font-weight: 600; }
+.reg-acc-body__inner em { color: var(--c-text); font-style: italic; }
+/* Reti di sicurezza: nessun figlio può sfondare in larghezza */
+.reg-acc-body__inner > * { min-width: 0; max-width: 100%; }
+.reg-acc-body__inner img,
+.reg-acc-body__inner pre,
+.reg-acc-body__inner table { max-width: 100%; }
+
+/* Liste — ripristina i marker (il reset globale ul,ol{list-style:none} e il
+   precedente display:flex li toglievano pallini e numeri). */
+.reg-list {
+  margin: var(--sp-3) 0 var(--sp-4);
+  padding-left: var(--sp-6);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  min-width: 0;
+}
+ul.reg-list { list-style: disc; }
+ol.reg-list { list-style: decimal; }
+.reg-list li {
+  margin-bottom: var(--sp-2);
+  padding-left: var(--sp-1);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.reg-list li:last-child { margin-bottom: 0; }
+.reg-list li::marker { color: var(--c-gold); font-weight: 700; }
+
+/* Sotto-titoli subsection */
+.reg-subsection {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin: var(--sp-6) 0 var(--sp-3);
+}
+
+/* Tabelle */
+.reg-table-wrap {
+  overflow-x: auto;
+  margin: var(--sp-4) 0;
+  border-radius: var(--r-md);
+  border: 1px solid var(--c-border);
+}
+.reg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.reg-table th {
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  background: var(--c-bg-alt);
+  border-bottom: 1px solid var(--c-border);
+  text-align: left;
+}
+.reg-table td {
+  padding: var(--sp-3) var(--sp-4);
+  color: var(--c-text-muted);
+  border-bottom: 1px solid var(--c-border);
+}
+.reg-table tr:last-child td { border-bottom: none; }
+
+/* â”€â”€ Mobile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 840px) {
+  .reg-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-5);
+  }
+  .reg-sidebar { position: static; }
+  .reg-sidebar__inner { border-radius: var(--r-lg); }
+  /* Capitoli: griglia verticale a 2 colonne (niente slider orizzontale) */
+  .reg-sidebar__nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+    padding: var(--sp-3);
+    gap: var(--sp-2);
+  }
+  .reg-chap-btn {
+    white-space: normal;
+    min-width: 0;
+  }
+  /* Solo il pannello attivo è visibile (niente lista di titoli sfocati) */
+}
+
+@media (max-width: 420px) {
+  /* Su telefoni stretti: una sola colonna, etichette per intero */
+  .reg-sidebar__nav { grid-template-columns: 1fr; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   HOMEPAGE — hs-* components
+   Tono: archivio sportivo serio con ironia nel nome.
+   Ispirazione: almanacchi calcistici, giornalismo sportivo di qualità.
+   No dashboard, no SaaS metric cards, no glassmorphism, no gradient text.
+════════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── Utility condivise ──────────────────────────────────────────────────── */
+
+.hs-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+.hs-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--c-gold);
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+.hs-arch-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--sp-8);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   1. COPERTINA
+   Full-height, dark, fortemente tipografica.
+   Mobile: colonna unica. Desktop (≥768px): titolo a sx, campione a dx.
+   Il campione è testo puro — nessuna box, nessun bordo, nessuna ombra.
+════════════════════════════════════════════════════════════════════════════ */
+
+@keyframes hs-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hs-cover {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  /* dinamico: scala con l'altezza dello schermo, mai più di 10rem top+bottom */
+  padding-block: clamp(3rem, 7vh, 5.5rem);
+  background-image:
+    radial-gradient(ellipse 80% 80% at -5% 55%,  oklch(48% 0.195 262 / 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 55% at 95%  8%,  oklch(66% 0.195  38 / 0.10) 0%, transparent 58%);
+}
+
+/* Anno in filigrana — driven dal data-year attribute */
+.hs-cover::before {
+  content: attr(data-year);
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.10em;
+  font-family: var(--font-display);
+  font-size: clamp(18rem, 34vw, 32rem);
+  font-weight: 700;
+  color: oklch(100% 0 0 / 0.020);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.hs-cover__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-10);
+  align-items: end;
+}
+
+@media (min-width: 768px) {
+  .hs-cover__inner {
+    grid-template-columns: 1fr auto;
+    gap: clamp(var(--sp-10), 5vw, var(--sp-20));
+  }
+}
+
+/* ── Blocco principale: titolo + fatti + CTA ── */
+
+.hs-cover__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: var(--sp-5);
+  animation: hs-up 0.50s cubic-bezier(0.22,1,0.36,1) 0.05s both;
+}
+
+.hs-cover__title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 13vw, 10.5rem);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: oklch(96% 0.006 85);
+  margin-bottom: var(--sp-6);
+  animation: hs-up 0.60s cubic-bezier(0.22,1,0.36,1) 0.12s both;
+}
+.hs-cover__title em {
+  font-style: italic;
+  color: var(--c-gold);
+}
+
+/* Mobile/tablet stretto (sotto le 2 colonne): "FantaScarrupat" è una parola unica
+   e a font grande sfora a destra. Spezziamo "Scarrupat" su una riga propria e
+   centriamo la copertina. */
+@media (max-width: 767px) {
+  .hs-cover__inner { justify-items: center; text-align: center; }
+  .hs-cover__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hs-cover__title {
+    font-size: clamp(2.6rem, 14vw, 5rem);
+    letter-spacing: -0.03em;
+  }
+  .hs-cover__title em { display: block; }
+  .hs-cover__rule { margin-inline: auto; }
+  .hs-cover__facts,
+  .hs-cover__ctas { justify-content: center; }
+}
+
+/* Lineetta separatrice gold */
+.hs-cover__rule {
+  width: clamp(48px, 10vw, 96px);
+  height: 1px;
+  background: var(--c-gold);
+  opacity: 0.45;
+  margin-bottom: var(--sp-6);
+  animation: hs-up 0.50s cubic-bezier(0.22,1,0.36,1) 0.22s both;
+}
+
+/* Striscia dati inline: "9 stagioni · 20 trofei · …" */
+.hs-cover__facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-4);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: oklch(46% 0.010 250);
+  margin-bottom: var(--sp-10);
+  animation: hs-up 0.50s cubic-bezier(0.22,1,0.36,1) 0.30s both;
+}
+.hs-cover__facts strong {
+  color: oklch(78% 0.010 85);
+  font-weight: 700;
+}
+.hs-cover__sep {
+  color: oklch(34% 0.055 270);
+  font-size: 0.55em;
+}
+
+.hs-cover__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  animation: hs-up 0.50s cubic-bezier(0.22,1,0.36,1) 0.38s both;
+}
+
+/* ── Campione (colonna destra desktop) ── */
+
+.hs-cover__champion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-top: var(--sp-6);
+  border-top: 1px solid oklch(30% 0.058 270);
+  animation: hs-up 0.55s cubic-bezier(0.22,1,0.36,1) 0.18s both;
+}
+
+@media (min-width: 768px) {
+  .hs-cover__champion {
+    align-items: flex-end;
+    text-align: right;
+    padding-top: 0;
+    border-top: none;
+    padding-left: clamp(var(--sp-8), 3vw, var(--sp-16));
+    border-left: 1px solid oklch(27% 0.058 270);
+  }
+}
+
+.hs-cover__champ-label {
+  font-family: var(--font-heading);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.hs-cover__champ-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.hs-cover__champ-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 600;
+  font-style: italic;
+  color: oklch(94% 0.008 85);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-cover__eyebrow,
+  .hs-cover__title,
+  .hs-cover__rule,
+  .hs-cover__facts,
+  .hs-cover__ctas,
+  .hs-cover__champion { animation: none; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   2. STORIA / ABOUT
+   Due colonne: logo a sinistra, testo + valori + stats + CTA a destra.
+   Mobile: contenuto sopra, immagine sotto. Desktop: affiancati.
+════════════════════════════════════════════════════════════════════════════ */
+
+.hs-storia__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-12);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hs-storia__layout {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(var(--sp-10), 6vw, var(--sp-20));
+  }
+}
+
+/* Mobile: contenuto prima, immagine sotto */
+.hs-storia__media   { order: 1; }
+.hs-storia__content { order: 0; }
+
+@media (min-width: 768px) {
+  .hs-storia__media   { order: 0; }
+  .hs-storia__content { order: 1; }
+}
+
+.hs-storia__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hs-storia__media img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  filter: grayscale(0.3) brightness(0.82);
+  transition: filter var(--dur-slow) var(--ease-out);
+}
+
+.hs-storia__media img:hover {
+  filter: grayscale(0) brightness(0.96);
+}
+
+.hs-storia__text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: oklch(52% 0.010 250);
+  margin-bottom: var(--sp-6);
+  max-width: 54ch;
+}
+
+/* Valori: Passione, Amicizia, Innovazione */
+.hs-storia__values {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.hs-storia__values li {
+  font-size: 0.8125rem;
+  color: oklch(56% 0.010 250);
+  line-height: 1.45;
+  padding-left: var(--sp-5);
+  position: relative;
+}
+
+.hs-storia__values li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--c-gold);
+  opacity: 0.7;
+  font-size: 0.9em;
+  line-height: inherit;
+}
+
+.hs-storia__values li strong {
+  color: oklch(76% 0.010 85);
+  font-weight: 600;
+}
+
+/* Strip stats: 3 numeri separati da linee verticali */
+.hs-storia__stats {
+  display: flex;
+  border-top: 1px solid oklch(27% 0.058 270);
+  border-bottom: 1px solid oklch(27% 0.058 270);
+  padding-block: var(--sp-5);
+  margin-bottom: var(--sp-8);
+}
+
+.hs-storia__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  flex: 1;
+}
+
+.hs-storia__stat + .hs-storia__stat {
+  border-left: 1px solid oklch(27% 0.058 270);
+  padding-left: var(--sp-5);
+}
+
+.hs-storia__stat-n {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  color: oklch(88% 0.008 85);
+  line-height: 1;
+}
+
+.hs-storia__stat-l {
+  font-family: var(--font-heading);
+  font-size: 0.475rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(38% 0.010 250);
+  line-height: 1.35;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   3. ARCHIVIO
+   Due colonne: Albo d'Oro Serie A + Classifica trofei.
+   Stile lista almanacco — righe con separatore sottile, niente card.
+   Mobile: colonne impilate. Desktop: 2 colonne affiancate.
+════════════════════════════════════════════════════════════════════════════ */
+
+.hs-archivio__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-12);
+}
+
+@media (min-width: 768px) {
+  .hs-archivio__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(var(--sp-10), 5vw, var(--sp-20));
+    align-items: start;
+  }
+}
+
+/* Riga albo d'oro */
+.hs-winner-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding-block: var(--sp-3);
+  border-bottom: 1px solid oklch(26% 0.058 270);
+}
+.hs-winner-row--current {
+  border-bottom-color: oklch(76% 0.162 76 / 0.22);
+}
+
+.hs-winner__year {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: oklch(36% 0.010 250);
+  flex-shrink: 0;
+  min-width: 4.5em;
+}
+.hs-winner-row--current .hs-winner__year { color: var(--c-gold); }
+
+.hs-winner__name {
+  font-size: 0.9375rem;
+  color: oklch(68% 0.008 250);
+  flex: 1;
+}
+.hs-winner-row--current .hs-winner__name {
+  color: oklch(95% 0.010 85);
+  font-weight: 600;
+}
+
+/* Logo squadra nella riga */
+.hs-winner__logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.hs-winner-row--current .hs-winner__logo { opacity: 1; }
+
+/* Placeholder logo (mantiene l'allineamento quando l'immagine manca) */
+.hs-winner__logo-ph {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+/* Badge "in carica" */
+.hs-winner__badge {
+  font-family: var(--font-heading);
+  font-size: 0.4375rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  border: 1px solid oklch(76% 0.162 76 / 0.28);
+  padding: 2px 5px;
+  flex-shrink: 0;
+}
+
+/* Classifica trofei */
+.hs-arch-standings {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hs-arch-standing {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding-block: var(--sp-3);
+  border-bottom: 1px solid oklch(26% 0.058 270);
+}
+.hs-arch-standing--lead  { border-bottom-color: oklch(76% 0.162 76 / 0.22); }
+.hs-arch-standing--zero  { opacity: 0.42; }
+
+.hs-arch-standing__rank {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: oklch(34% 0.055 270);
+  min-width: 1.4rem;
+  flex-shrink: 0;
+}
+.hs-arch-standing--lead .hs-arch-standing__rank { color: var(--c-gold); }
+
+.hs-arch-standing__logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.hs-arch-standing__logo--init {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: oklch(22% 0.055 270);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.4375rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: oklch(38% 0.018 260);
+  flex-shrink: 0;
+}
+
+.hs-arch-standing__name {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: oklch(70% 0.008 250);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hs-arch-standing--lead .hs-arch-standing__name {
+  font-weight: 600;
+  color: oklch(94% 0.010 85);
+}
+
+.hs-arch-standing__count {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: oklch(38% 0.010 258);
+  flex-shrink: 0;
+}
+.hs-arch-standing--lead .hs-arch-standing__count { color: var(--c-gold); }
+
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   5. ESPLORA / SERVIZI
+   Ispirazione diretta al backup: service-item con icon-box 90×90,
+   hover card → primary blue, expanding-circle CTA button.
+   Layout: intro testo (5fr) a sinistra + card grid (7fr) a destra.
+   Mobile: intro sopra, grid una colonna.
+════════════════════════════════════════════════════════════════════════════ */
+
+/* Wrapper esterno: intro + grid — mobile stack, desktop 5/7 */
+.hs-services__outer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-12);
+  align-items: start;
+}
+@media (min-width: 840px) {
+  .hs-services__outer {
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(var(--sp-10), 5vw, var(--sp-16));
+  }
+}
+
+/* Intro: titolo + sottotitolo */
+.hs-services__body {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--c-text-muted);
+  max-width: 46ch;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Grid 2 colonne — mobile-first */
+.hs-services__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  align-items: start;
+}
+@media (min-width: 560px) {
+  .hs-services__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-5);
+  }
+}
+
+.hs-services__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+/* Stagger: seconda colonna offset verso il basso su tablet+ */
+.hs-services__col--offset { padding-top: 0; }
+@media (min-width: 560px) {
+  .hs-services__col--offset {
+    padding-top: clamp(var(--sp-5), 3vw, var(--sp-8));
+  }
+}
+
+
+/* ── Card servizio — fedele al backup .service-item ── */
+
+.hs-service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  /* backup: padding 45px 30px */
+  padding: 2.8125rem 1.875rem;
+  background: var(--c-bg-raised);
+  border-radius: var(--r-md);
+  /* tutto via transition .5s come nel backup */
+  transition: background-color 0.5s ease;
+  overflow: hidden;
+}
+
+.hs-service-card:hover {
+  background: var(--c-accent);   /* → #1363C6 primary blue */
+}
+
+
+/* Icon box — 90×90 quadrato, sfondo trasparente */
+.hs-service-card__icon {
+  margin: 0 auto var(--sp-5);
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.hs-service-card__icon img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* Titolo */
+.hs-service-card__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-text);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: var(--sp-3);
+  transition: color 0.5s ease;
+}
+.hs-service-card:hover .hs-service-card__title {
+  color: oklch(99% 0.003 85);
+}
+
+/* Descrizione */
+.hs-service-card__desc {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--c-text-muted);
+  flex: 1;
+  margin-bottom: var(--sp-5);
+  transition: color 0.5s ease;
+}
+.hs-service-card:hover .hs-service-card__desc {
+  color: oklch(95% 0.004 85 / 0.85);
+}
+
+/* CTA: expanding-circle button — fedele al backup */
+.hs-service-card__cta {
+  position: relative;    /* ancora il ::before dentro il bottone */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  padding: 0.5625rem 1.25rem;
+  min-height: 35px;
+  overflow: hidden;     /* clippa il cerchio in espansione */
+  border-radius: 35px;  /* pill esterno per match grafico */
+  transition: color 0.5s ease;
+  margin-top: auto;
+}
+
+/* Cerchio che si espande a pill — come in backup */
+.hs-service-card__cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
+  background: oklch(93% 0.005 264);   /* sfondo chiaro, stesso dell'icon-box */
+  transition: width 0.5s ease,
+              background-color 0.5s ease;
+  z-index: -1;
+}
+
+.hs-service-card:hover .hs-service-card__cta::before {
+  width: 100%;
+  background: oklch(93% 0.005 264);
+}
+
+/* Il testo rimane accent-blue su hover: leggibile su sfondo chiaro */
+.hs-service-card:hover .hs-service-card__cta {
+  color: var(--c-accent);
+}
+
+/* ── Storia timeline (st-tl) ─────────────────────────────────────────────────
+   Componente dinamico: dati da DB storia_timeline, gestito da admin dashboard.
+   Design: l'anno "taglia" una linea orizzontale come un capitolo di almanacco.
+   Sotto: eventi con icona in cerchio, eyebrow + paragrafo.
+   ─────────────────────────────────────────────────────────────────────────── */
+.st-tl {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+}
+
+/* ── Separatore con anno centrato sulla linea ── */
+.st-tl__year-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-8);
+}
+.st-tl__year-row::before,
+.st-tl__year-row::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--c-border);
+}
+
+.st-tl__year {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--c-gold);
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+/* ── Lista eventi del gruppo ── */
+.st-tl__events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding-left: var(--sp-2);
+}
+
+/* ── Singolo evento ── */
+.st-tl__event {
+  display: grid;
+  grid-template-columns: 2.625rem 1fr;
+  column-gap: var(--sp-5);
+  align-items: start;
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--r-lg);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.st-tl__event:hover {
+  background: var(--c-bg-raised);
+}
+
+/* Cerchio icona */
+.st-tl__event-icon-wrap {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  background: var(--c-bg-inset);
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background   var(--dur-fast) var(--ease-out);
+}
+
+.st-tl__event:hover .st-tl__event-icon-wrap {
+  border-color: var(--c-gold-dim);
+  background: oklch(16% 0.055 40 / 0.25);
+}
+
+.st-tl__event-icon {
+  font-size: 1.125rem;
+  font-variation-settings: 'FILL' 1;
+  color: var(--c-gold);
+  line-height: 1;
+}
+
+/* Stagione — eyebrow stretto */
+.st-tl__event-label {
+  font-family: var(--font-heading);
+  font-size: 0.575rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin-bottom: var(--sp-2);
+  padding-top: 0.35rem; /* allinea otticamente con centro cerchio */
+}
+
+/* Testo descrittivo */
+.st-tl__event-text {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--c-text-muted);
+  margin: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .st-tl {
+    gap: var(--sp-10);
+  }
+  .st-tl__year {
+    font-size: 2rem;
+  }
+  .st-tl__year-row {
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
+  }
+  .st-tl__event {
+    grid-template-columns: 2.25rem 1fr;
+    column-gap: var(--sp-4);
+    padding-inline: var(--sp-3);
+  }
+  .st-tl__event-icon-wrap {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+/* ── Stagione in numeri (dettagli-rosa) ──────────────────────────────────────
+   Una card per competizione: record V/P/S, GF/GS/DR, Pt totale (verde=max /
+   rosso=min in lega), media punteggio, posizione finale. Più budget per reparto.
+   ─────────────────────────────────────────────────────────────────────────── */
+.rosa-stagione {
+  border-top: 1px solid var(--c-border);
+  padding-top: var(--sp-8);
+  margin-top: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.rosa-stagione__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  margin-bottom: var(--sp-1);
+}
+.rosa-stagione__header .material-symbols-rounded {
+  font-size: 15px;
+  color: var(--c-gold);
+}
+
+/* ── Card per singola competizione ── */
+.rosa-sn-comp {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+/* Carta "vinta": warm tint + bordo gold */
+.rosa-sn-comp--won {
+  border-color: var(--c-gold-dim);
+  background: oklch(15% 0.022 38);
+}
+
+/* Header row: nome comp / badge campione o elim / conteggio partite */
+.rosa-sn-comp__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.rosa-sn-comp__name {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.rosa-sn-comp__crown {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 7px;
+  border-radius: var(--r-pill);
+  background: oklch(18% 0.045 38 / 0.55);
+  border: 1px solid var(--c-gold-dim);
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+/* Badge fase eliminazione (e.g. "Semifinali") */
+.rosa-sn-comp__elim {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px 3px 6px;
+  border-radius: var(--r-pill);
+  background: oklch(14% 0.008 0);
+  border: 1px solid var(--c-border-strong);
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.rosa-sn-comp__played {
+  margin-left: auto;
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+}
+
+/* ── Riga stat tile ── */
+.rosa-sn-record {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.rosa-sn-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: var(--sp-3) var(--sp-3);
+  border-radius: var(--r-md);
+  background: var(--c-bg-inset);
+  border: 1px solid var(--c-border);
+  gap: 5px;
+}
+
+.rosa-sn-stat--win  { border-color: oklch(58% 0.15 145 / 0.55); background: oklch(58% 0.15 145 / 0.12); }
+.rosa-sn-stat--draw { border-color: oklch(66% 0.10  85 / 0.50); background: oklch(66% 0.10  85 / 0.12); }
+.rosa-sn-stat--loss { border-color: oklch(53% 0.18  25 / 0.55); background: oklch(53% 0.18  25 / 0.12); }
+
+/* Pt tot evidenziato */
+.rosa-sn-stat--best  { border-color: oklch(58% 0.15 145 / 0.55); background: oklch(58% 0.15 145 / 0.12); }
+.rosa-sn-stat--worst { border-color: oklch(53% 0.18  25 / 0.55); background: oklch(53% 0.18  25 / 0.12); }
+
+/* Pos. 1 = accento oro */
+.rosa-sn-stat--pos1 {
+  border-color: var(--c-gold-dim);
+  background: oklch(18% 0.040 38 / 0.35);
+}
+
+.rosa-sn-stat__val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+  color: oklch(92% 0.005 250);
+  line-height: 1;
+}
+.rosa-sn-stat--win  .rosa-sn-stat__val { color: oklch(80% 0.15 145); }
+.rosa-sn-stat--draw .rosa-sn-stat__val { color: oklch(84% 0.11  85); }
+.rosa-sn-stat--loss .rosa-sn-stat__val { color: oklch(72% 0.18  25); }
+.rosa-sn-pos { color: var(--c-gold) !important; }
+
+.rosa-sn-stat__lbl {
+  font-family: var(--font-heading);
+  font-size: 0.575rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: oklch(62% 0.008 250);
+  white-space: nowrap;
+}
+
+/* Separatore verticale tra gruppi di stat */
+.rosa-sn-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--c-border);
+  margin-inline: var(--sp-1);
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+/* ── Trofei standalone (edge case) ── */
+.rosa-sn-trofei {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.rosa-sn-trophy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 7px;
+  border-radius: var(--r-pill);
+  background: oklch(18% 0.045 38 / 0.40);
+  border: 1px solid var(--c-gold-dim);
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+/* ── Budget per reparto ── */
+.rosa-sn-budget {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.rosa-sn-budget-row {
+  display: grid;
+  grid-template-columns: 7rem 1fr 2.75rem 4rem;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.rosa-sn-budget-row__label {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.rosa-sn-budget-row__track {
+  height: 6px;
+  background: var(--c-bg-inset);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+
+.rosa-sn-budget-row__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.rosa-sn-budget-row__fill--p { background: oklch(62% 0.13 250); }
+.rosa-sn-budget-row__fill--d { background: oklch(64% 0.14 145); }
+.rosa-sn-budget-row__fill--c { background: oklch(70% 0.12  85); }
+.rosa-sn-budget-row__fill--a { background: oklch(62% 0.15  25); }
+.rosa-sn-budget-row__fill--? { background: var(--c-border-strong); }
+
+.rosa-sn-budget-row__pct {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--c-text-muted);
+  text-align: right;
+}
+
+.rosa-sn-budget-row__val {
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--c-text-faint);
+  text-align: right;
+}
+
+@media (max-width: 540px) {
+  .rosa-sn-comp { padding: var(--sp-4); gap: var(--sp-4); }
+  .rosa-sn-record { gap: var(--sp-1); }
+  .rosa-sn-stat { min-width: 48px; padding: var(--sp-2) var(--sp-2); gap: 4px; }
+  .rosa-sn-stat__val { font-size: 1.25rem; }
+  .rosa-sn-stat__lbl { font-size: 0.525rem; }
+  .rosa-sn-comp__played { display: none; }
+  .rosa-sn-budget-row { grid-template-columns: 5.5rem 1fr 2.25rem 3.25rem; gap: var(--sp-2); }
+}
+

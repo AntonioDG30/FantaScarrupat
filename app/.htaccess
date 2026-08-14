@@ -1,0 +1,9 @@
+# /app/.htaccess — Area privata
+# Blocca il directory listing. La protezione reale è in auth/require_login.php.
+Options -Indexes
+
+# Nessuna cache per le pagine PHP dell'area privata
+<FilesMatch "\.php$">
+  Header set Cache-Control "no-store, no-cache, must-revalidate"
+  Header set Pragma "no-cache"
+</FilesMatch>

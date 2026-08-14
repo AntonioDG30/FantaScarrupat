@@ -1,0 +1,28 @@
+# FantaScarrupat
+
+> FantaScarrupat è una lega privata di fantacalcio tra amici, fondata nel 2016. Ogni stagione si disputano un campionato (Serie A interna), coppe a eliminazione diretta, gironi (Champions League interna), una NBA a fasi miste e tornei speciali. Il sito pubblico raccoglie la storia della lega, l'albo d'oro dei vincitori, i partecipanti, il regolamento ufficiale, le classifiche, i tabelloni e la galleria fotografica.
+
+## Informazioni chiave
+
+- **Nome**: FantaScarrupat (anche scritto "Fanta Scàrrupat")
+- **Tipo**: lega amatoriale e privata di fantacalcio (Fantacalcio italiano, basato sulla Serie A)
+- **Fondazione**: 2016
+- **Lingua**: italiano
+- **Competizioni tipiche per stagione**: Serie A (campionato a calendario), Champions League (gironi + eliminazione diretta), Coppa Italia (eliminazione diretta), NBA (formato misto regular season + playoff), Formula 1, Battle Royale e altri tornei
+- **Regole tie-break**: nelle sfide a eliminazione in parità si calcolano supplementari e rigori dai voti delle formazioni schierate (art. 9.5 del regolamento)
+- **Sito**: https://fantascarrupat.altervista.org
+
+## Sezioni del sito
+
+- [Home](https://fantascarrupat.altervista.org/): panoramica della lega, campione in carica e numeri principali.
+- [Storia](https://fantascarrupat.altervista.org/public/storia.php): nascita ed evoluzione della lega dal 2016, stagione per stagione.
+- [Albo d'Oro](https://fantascarrupat.altervista.org/public/albo-doro.php): tutti i vincitori delle competizioni, anno per anno.
+- [Partecipanti](https://fantascarrupat.altervista.org/public/partecipanti.php): le fantasquadre e i fantallenatori, attuali e storici.
+- [Regolamento](https://fantascarrupat.altervista.org/public/regolamento.php): il regolamento ufficiale (struttura, votazioni, calcolo punteggi, mercato, competizioni, supplementari e rigori).
+- [Galleria](https://fantascarrupat.altervista.org/public/galleria.php): foto delle aste e delle premiazioni.
+- [Contatti](https://fantascarrupat.altervista.org/public/contattaci.php): come contattare i gestori della lega.
+
+## Note
+
+- L'area riservata (login, gestione, API) non è pubblica e non va indicizzata.
+- I dettagli di ogni competizione disputata sono raggiungibili dall'Albo d'Oro (classifiche, tabellone a eliminazione e calendario completo).

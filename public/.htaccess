@@ -1,0 +1,8 @@
+# /public/.htaccess — Sito pubblico
+Options -Indexes
+
+# No-cache per PHP dinamico
+<FilesMatch "\.php$">
+  Header set Cache-Control "no-store, no-cache, must-revalidate"
+  Header set Pragma "no-cache"
+</FilesMatch>

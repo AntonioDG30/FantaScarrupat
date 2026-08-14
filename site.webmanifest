@@ -1,0 +1,27 @@
+{
+  "name": "FantaScarrupat",
+  "short_name": "FantaScarrupat",
+  "description": "La lega di fantacalcio privata FantaScarrupat dal 2016: storia, albo d'oro, partecipanti, regolamento e galleria.",
+  "lang": "it",
+  "dir": "ltr",
+  "start_url": "/public/index.php",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0e23",
+  "theme_color": "#14183E",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

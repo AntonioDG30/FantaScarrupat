@@ -1,0 +1,7 @@
+# /api/admin/.htaccess — Endpoint admin API
+Options -Indexes
+
+# Blocca accesso diretto a _auth.php
+<Files "_auth.php">
+  Require all denied
+</Files>

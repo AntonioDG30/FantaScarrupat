@@ -1,0 +1,9 @@
+# /uploads/.htaccess
+# Permette di servire file statici (immagini)
+# Blocca esecuzione PHP nella cartella uploads
+
+Options -Indexes
+
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>

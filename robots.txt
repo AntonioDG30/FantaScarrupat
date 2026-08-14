@@ -1,0 +1,21 @@
+# FantaScarrupat — https://fantascarrupat.altervista.org
+# Lega di fantacalcio privata dal 2016.
+#
+# I crawler dei motori di ricerca (Google, Bing) e dei motori generativi/AI
+# (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, ecc.)
+# sono benvenuti sui contenuti PUBBLICI. Le aree riservate e tecniche sono escluse.
+
+User-agent: *
+Disallow: /app/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /config/
+Disallow: /database/
+Disallow: /logs/
+Disallow: /caricamenti_admin/
+Disallow: /Parametri/
+Disallow: /backup/
+Disallow: /login.php
+Allow: /
+
+Sitemap: https://fantascarrupat.altervista.org/sitemap.xml
